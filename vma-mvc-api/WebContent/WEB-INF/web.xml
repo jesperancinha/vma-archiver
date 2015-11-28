@@ -13,8 +13,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>vma</servlet-name>
-        <url-pattern>/welcome.jsp</url-pattern>
-        <url-pattern>/welcome.html</url-pattern>
+        <url-pattern>/welcomei.jsp</url-pattern>
+        <url-pattern>/welcomei.html</url-pattern>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 </web-app>
