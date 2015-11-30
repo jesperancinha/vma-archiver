@@ -26,7 +26,7 @@ public class OriginalInfoMapperTest implements OriginalInfoMapper {
 			originalInfo.setId(1);
 			originalInfo.setTitle("This is a test title");
 			mapper.insertVillage(originalInfo);
-			System.out.println("---Original title saved---");
+			log.info("---Original title saved---");
 		}
 	}
 }
