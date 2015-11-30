@@ -14,3 +14,6 @@ hs_err_pid*
 # build files
 **/build
 **/build-by-eclipse
+
+# packaging
+**/.gradle/**
