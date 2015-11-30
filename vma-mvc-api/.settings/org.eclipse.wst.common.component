@@ -2,7 +2,6 @@
     <wb-module deploy-name="vma-mvc-api">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="vma-mvc-api"/>
         <property name="java-output-path" value="/vma-mvc-api/build/classes"/>
     </wb-module>
