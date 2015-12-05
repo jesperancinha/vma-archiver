@@ -17,3 +17,6 @@ hs_err_pid*
 
 # packaging
 **/.gradle/**
+**/npm-debug.log
+**/node_modules/**
+**/dist/**
