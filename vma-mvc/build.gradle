@@ -1,7 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
 archivesBaseName = 'vma'
 version = '1' 
+eclipse.wtp.facet {
+            facet name: 'java', version: '1.8'
+            facet name: 'jst.web', version: '3.1'
+            facet name: 'wst.jsdt.web', version: '1.0'
+}
 repositories {
     mavenCentral()
 }
@@ -16,7 +23,6 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.2.3.RELEASE'
     compile 'org.springframework:spring-web:4.2.3.RELEASE'
     compile 'javax.servlet:jstl:1.2'
-    compile 'org.springframework:spring-context:4.2.3.RELEASE'
     compile 'org.springframework:spring-context:4.2.3.RELEASE'
     compile 'junit:junit:4.12'
 } 
