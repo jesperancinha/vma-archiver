@@ -5,7 +5,7 @@ After deployment on Tomcat 8 (for example) try the following address:
 
 http://localhost:8080/vma-mvc
 
-This software uses swagger-ui for the implementation of the RESTFul services:
+This development of this software uses Swagger UI for documentation (http://swagger.io/)
 
 Please go to their github README.md file and follow the instruction to install the npm packages
 
@@ -18,7 +18,7 @@ For NodeJS you may need to do the followiong:
 * sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 
-Remember that for vma-rest-api, you need to install first NodeJS, then install the JSON package, then install the Gulp JS file
+Remember that for vma-rest-api, you need to install first NodeJS, then install the JSON package, then install the Gulp JS file if you want to access the documentation for REST calls.
 
 
 Bibliography:
