@@ -30,3 +30,5 @@ Bibliography:
 * https://laracasts.com/discuss/channels/general-discussion/getting-a-local-gulp-not-found-in-error-working-with-the-bower-lesson
 
 * https://github.com/swagger-api/swagger-ui
+
+* http://jakubstas.com/spring-jersey-swagger-create-documentation
