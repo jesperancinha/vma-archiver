@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="vmc-rest-api">
-        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <property name="context-root" value="vmc-rest-api"/>
-        <property name="java-output-path" value="/vmc-rest-api/build-by-eclipse/classes"/>
-    </wb-module>
-</project-modules>
