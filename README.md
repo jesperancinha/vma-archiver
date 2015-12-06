@@ -32,3 +32,5 @@ Bibliography:
 * https://github.com/swagger-api/swagger-ui
 
 * http://jakubstas.com/spring-jersey-swagger-create-documentation
+
+* http://wiremock.org/getting-started.html

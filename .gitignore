@@ -20,3 +20,9 @@ hs_err_pid*
 **/npm-debug.log
 **/node_modules/**
 **/dist/**
+
+# dynamic configuration files (run graddle)
+vma-mvc/.settings/org.eclipse.jdt.core.prefs
+vma-mvc/.settings/org.eclipse.wst.common.component
+vma-rest-api/.settings/org.eclipse.jdt.core.prefs
+vma-rest-api/.settings/org.eclipse.wst.common.component
