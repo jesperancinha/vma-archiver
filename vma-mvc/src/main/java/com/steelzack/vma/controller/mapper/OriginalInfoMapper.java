@@ -6,5 +6,5 @@ import com.steelzack.vma.controller.pojo.OriginalInfo;
 
 public interface OriginalInfoMapper {
 	@Insert("INSERT into OriginalInfo(id,title) VALUES(#{id}, #{title})")
-	void insertVillage(OriginalInfo village);
+	void insertOriginalInfo(OriginalInfo originalInfo);
 }

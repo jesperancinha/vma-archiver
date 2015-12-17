@@ -12,7 +12,7 @@ public class OriginalInfoMapperTest implements OriginalInfoMapper {
 	private Logger log = Logger.getLogger(OriginalInfoMapper.class.getName());
 
 	@Override
-	public void insertVillage(OriginalInfo village) {
+	public void insertOriginalInfo(OriginalInfo village) {
 		log.info(String.format("Title {0} has been persisted correctly", village.getTitle()));
 	}
 
@@ -25,7 +25,7 @@ public class OriginalInfoMapperTest implements OriginalInfoMapper {
 			OriginalInfo originalInfo = new OriginalInfo();
 			originalInfo.setId(1);
 			originalInfo.setTitle("This is a test title");
-			mapper.insertVillage(originalInfo);
+			mapper.insertOriginalInfo(originalInfo);
 			log.info("---Original title saved---");
 		}
 	}
