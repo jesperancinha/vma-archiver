@@ -5,6 +5,8 @@ public class OriginalInfo {
 
 	private String title;
 
+	private Double duration;
+
 	public Integer getId() {
 		return id;
 	}
@@ -19,5 +21,13 @@ public class OriginalInfo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Double duration) {
+		this.duration = duration;
 	}
 }
