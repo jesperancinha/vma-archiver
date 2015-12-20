@@ -2,8 +2,6 @@
  * 
  */
 
-var vmaApp = angular.module('vmaApp',['smart-table','originalInfoServices','ngRoute']);
-
 vmaApp.controller('titlesCtrl', ['$scope', function ($scope) {
     $scope.titlesCollections = [
         {id: '1', title: 'A new hope'},
