@@ -34,3 +34,5 @@ Bibliography:
 * http://jakubstas.com/spring-jersey-swagger-create-documentation
 
 * http://wiremock.org/getting-started.html
+
+* http://lorenzofox3.github.io/smart-table-website/
