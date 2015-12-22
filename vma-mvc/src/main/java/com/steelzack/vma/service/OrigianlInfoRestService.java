@@ -1,6 +1,9 @@
 package com.steelzack.vma.service;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,4 +30,17 @@ public class OrigianlInfoRestService {
 		originalInfoDao.createOriginalInfo(originalInfo);
 		return Response.status(201).entity("A new originalInfo has been created").build();
 	}
+
+	/************************************ READ ************************************/
+	/**
+	 * Returns all resources (podcasts) from the database
+	 * 
+	 * @return
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<OriginalInfo> getPodcasts() {
+		return originalInfoDao.getOriginalInfos();
+	}
+
 }
