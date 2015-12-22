@@ -1,5 +1,8 @@
-package com.steelzack.vma.controller.pojo;
+package com.steelzack.vma.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class OriginalInfo {
 	private Integer id;
 
