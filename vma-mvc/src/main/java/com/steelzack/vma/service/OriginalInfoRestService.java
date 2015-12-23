@@ -18,7 +18,7 @@ import com.steelzack.vma.entities.OriginalInfo;
 
 @Component
 @Path("/originalInfoService")
-public class OrigianlInfoRestService {
+public class OriginalInfoRestService {
 
 	@Autowired
 	private OriginalInfoDao originalInfoDao;
