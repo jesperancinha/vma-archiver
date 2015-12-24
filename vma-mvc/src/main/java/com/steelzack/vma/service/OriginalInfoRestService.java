@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.steelzack.vma.dao.OriginalInfoDao;
 import com.steelzack.vma.entities.OriginalInfo;
@@ -26,6 +27,7 @@ public class OriginalInfoRestService {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.TEXT_HTML })
+	@Transactional
 	public Response createOriginalInfo(OriginalInfo originalInfo) {
 		originalInfoDao.createOriginalInfo(originalInfo);
 		return Response.status(201).entity("A new originalInfo has been created").build();
@@ -33,14 +35,22 @@ public class OriginalInfoRestService {
 
 	/************************************ READ ************************************/
 	/**
-	 * Returns all resources (podcasts) from the database
+	 * Returns all resources (originalinfos) from the database
 	 * 
 	 * @return
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<OriginalInfo> getPodcasts() {
+	@Transactional
+	public List<OriginalInfo> getOriginalInfos() {
 		return originalInfoDao.getOriginalInfos();
 	}
 
+	public void setOriginalInfoDao(OriginalInfoDao originalInfoDao) {
+		this.originalInfoDao = originalInfoDao;
+	}
+
+	public OriginalInfoDao getOriginalInfoDao() {
+		return originalInfoDao;
+	}
 }
