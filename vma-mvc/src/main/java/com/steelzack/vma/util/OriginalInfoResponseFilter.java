@@ -21,7 +21,7 @@ public class OriginalInfoResponseFilter implements ContainerResponseFilter {
 				"GET, POST, DELETE, PUT" //
 		);
 		headers.add("Access-Control-Allow-Headers", //
-				"X-Requested-With, Content-Type" //
+				"*" //
 		);
 
 	}

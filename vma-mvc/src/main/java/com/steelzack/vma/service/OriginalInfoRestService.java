@@ -21,7 +21,7 @@ import com.steelzack.vma.entities.OriginalInfo;
 @Path("/originalInfoService")
 public class OriginalInfoRestService {
 
-	@Autowired(required = true)
+	@Autowired
 	private OriginalInfoDao originalInfoDao;
 
 	@POST
@@ -43,14 +43,11 @@ public class OriginalInfoRestService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Transactional
 	public List<OriginalInfo> getOriginalInfos() {
-		return getOriginalInfoDao().getOriginalInfos();
+		return this.originalInfoDao.getOriginalInfos();
 	}
 
+	@Produces
 	public void setOriginalInfoDao(OriginalInfoDao originalInfoDao) {
 		this.originalInfoDao = originalInfoDao;
-	}
-
-	public OriginalInfoDao getOriginalInfoDao() {
-		return originalInfoDao;
 	}
 }

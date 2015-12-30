@@ -2,7 +2,7 @@ package com.steelzack.vma.service;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.springframework.web.filter.RequestContextFilter;
+import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
 import com.steelzack.vma.util.OriginalInfoResponseFilter;
 
