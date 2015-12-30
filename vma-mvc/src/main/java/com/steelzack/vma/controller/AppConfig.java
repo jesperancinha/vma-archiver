@@ -21,7 +21,7 @@ public class AppConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/vma");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/vmaDB");
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
 

@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.steelzack.vma.controller.AppConfig;
-import com.steelzack.vma.controller.pojo.OriginalInfo;
+import com.steelzack.vma.entities.OriginalInfo;
 
 public class OriginalInfoMapperTest implements OriginalInfoMapper {
 	private Logger log = Logger.getLogger(OriginalInfoMapper.class.getName());

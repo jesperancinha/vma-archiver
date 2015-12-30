@@ -3,7 +3,7 @@ package com.steelzack.vma.controller.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 
-import com.steelzack.vma.controller.pojo.OriginalInfo;
+import com.steelzack.vma.entities.OriginalInfo;
 
 public interface OriginalInfoMapper {
 	@Insert("INSERT into OriginalInfo(id,title) VALUES(#{id}, #{title})")
