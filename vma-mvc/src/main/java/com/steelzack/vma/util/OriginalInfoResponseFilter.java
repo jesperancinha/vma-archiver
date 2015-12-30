@@ -1,4 +1,4 @@
-package com.steelzack.vma.service;
+package com.steelzack.vma.util;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class OriginalInfoResponseFilter implements ContainerResponseFilter {
 				"GET, POST, DELETE, PUT" //
 		);
 		headers.add("Access-Control-Allow-Headers", //
-				"X-Requested-With, Content-Type, X-Codingpedia" //
+				"X-Requested-With, Content-Type" //
 		);
 
 	}
