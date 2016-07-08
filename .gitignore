@@ -32,3 +32,12 @@ vma-rest-api/.settings/org.eclipse.wst.common.component
 vma-mvc/src/main/webapp/js
 vma-mvc/src/main/webapp/originalInfo/
 vma-mvc/src/main/webapp/vma_original_list.html
+.idea/
+src/
+vma-archiver.iml
+vma-mvc/src/main/main1.iml
+vma-mvc/src/test/test.iml
+vma-rest-api/src/main/main.iml
+vma-rest-api/src/test/test1.iml
+
+out
