@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'war'
+apply plugin: 'idea'
 archivesBaseName = 'vma-rest-api'
 version = '1' 
 eclipse.wtp.facet {
@@ -12,6 +13,12 @@ eclipse.wtp.facet {
 repositories {
     mavenCentral()
 }
+
+
+idea{
+
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.2.RELEASE'
     compile 'org.springframework:spring-context:4.2.3.RELEASE'
@@ -30,4 +37,5 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'commons-validator:commons-validator:1.4.1'
 }
+
 

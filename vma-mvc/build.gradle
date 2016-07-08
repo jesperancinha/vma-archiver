@@ -11,6 +11,7 @@ eclipse.wtp.facet {
 repositories {
     mavenCentral()
 }
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.2.RELEASE'
     compile 'org.springframework:spring-context:4.2.3.RELEASE'

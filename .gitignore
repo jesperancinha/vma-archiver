@@ -33,6 +33,8 @@ vma-mvc/src/main/webapp/js
 vma-mvc/src/main/webapp/originalInfo/
 vma-mvc/src/main/webapp/vma_original_list.html
 .idea/
+*.ipr
+*.iws
 src/
 vma-archiver.iml
 vma-mvc/src/main/main1.iml
