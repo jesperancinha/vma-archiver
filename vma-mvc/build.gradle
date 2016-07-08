@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'war'
-version = '1' 
+version = '1'
 eclipse.wtp.facet {
             facet name: 'java', version: '1.8'
             facet name: 'jst.web', version: '3.1'
