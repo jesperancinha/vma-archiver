@@ -24,8 +24,10 @@ limitations under the License.
 
 -   [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=jesperancinha&style=social)](https://github.com/jesperancinha)
 
--   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
+-   Medium [@jofisaes](https://medium.com/@jofisaes)
 
+-   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
+ 
 -   Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
 
 -   Acclaim Badges [joao-esperancinha](https://www.youracclaim.com/users/joao-esperancinha/badges)
