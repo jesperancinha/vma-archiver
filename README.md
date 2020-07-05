@@ -16,11 +16,7 @@ Please go to their github README.md file and follow the instruction to install t
 For NodeJS you may need to do the followiong:
 
 * sudo ln -s /usr/bin/nodejs /usr/bin/node
-
-
 Remember that for vma-rest-api, you need to install first NodeJS, then install the JSON package, then install the Gulp JS file if you want to access the documentation for REST calls.
-
-
 Bibliography:
 	
 * http://www.sitepoint.com/introduction-gulp-js/
