@@ -1,4 +1,21 @@
 # vma-archiver
+
+[![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=%20Checkout%20this%20%40github%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//github.com/jesperancinha/vma-archiver)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=VMA%20Archiver&color=informational)](https://github.com/jesperancinha/jeorg-spring-5-test-drives)
+[![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/vma-archiver.svg)](#)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/vma-archiver&amp;utm_campaign=Badge_Grade)
+[![codebeat badge](https://codebeat.co/badges/c1b16ed4-8341-416b-9084-c2e0f7b36ffd)](https://codebeat.co/projects/github-com-jesperancinha-vma-archiver-master)
+[![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
+[![Build Status](https://travis-ci.org/jesperancinha/vma-archiver.svg?branch=master)](https://travis-ci.org/jesperancinha/vma-archiver)
+[![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/vma-archiver?branch=master)](https://bettercodehub.com/results/jesperancinha/vma-archiver)
+[![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
+[![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/vma-archiver/badge.svg)](https://snyk.io/test/github/jesperancinha/vma-archiver)
+
+[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/vma-archiver.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/vma-archiver.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/vma-archiver.svg)](#)
+
 Video Media Archiver
 
 After deployment on Tomcat 8 (for example) try the following address:
