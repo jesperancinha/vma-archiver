@@ -8,12 +8,14 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.steelzack.vma.controller.AppConfig;
 import com.steelzack.vma.entities.OriginalInfo;
 
+@Ignore
 public class OriginalInfoMapperTest implements OriginalInfoMapper {
 	private Logger log = Logger.getLogger(OriginalInfoMapper.class.getName());
 
@@ -63,7 +65,7 @@ public class OriginalInfoMapperTest implements OriginalInfoMapper {
 			avg = avg / nElements;
 
 			Double resultAvg = originalInfos.stream(). //
-					mapToDouble(o -> o.getDuration()). //
+					mapToDouble(OriginalInfo::getDuration). //
 					average(). //
 					getAsDouble();
 

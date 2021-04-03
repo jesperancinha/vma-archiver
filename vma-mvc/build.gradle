@@ -13,6 +13,7 @@ repositories {
 }
 
 dependencies {
+    compile 'javax.xml.bind:jaxb-api:2.3.1'
     compile 'org.springframework.boot:spring-boot-starter-jdbc:2.4.4'
     compile 'org.springframework:spring-context:5.3.5'
     compile 'org.springframework:spring-aop:5.3.5'
@@ -34,8 +35,8 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4'
     compile 'org.eclipse.jetty:jetty-server:9.3.6.v20151106'
     compile 'com.google.guava:guava:18.0'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.7.9.6'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.9.6'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.9'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.9'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.9.6'
     compile 'org.apache.httpcomponents:httpclient:4.5.1'
     compile 'org.skyscreamer:jsonassert:1.2.3'
