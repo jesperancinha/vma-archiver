@@ -2,5 +2,5 @@ os: osx
 language: java
 jdk:
   - openjdk11
-before_install:
-  - gradle wrapper
+script:
+  - ./gradlew build --scan -s
