@@ -4,5 +4,5 @@ install: skip
 os: linux
 dist: trusty
 script:
-  - gradle wrapper
+  - gradle wrapper --gradle-version=5.1.1
   - ./gradlew build --scan -s
