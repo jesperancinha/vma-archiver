@@ -43,7 +43,5 @@ vma-rest-api/src/main/main.iml
 vma-rest-api/src/test/test1.iml
 
 out
-
-# Grdle
-
-gradle/
+# Gradle
+!/gradle/wrapper/gradle-wrapper.jar
