@@ -1,6 +1,7 @@
-os: osx
 language: java
-jdk:
-  - openjdk11
+jdk: openjdk11
+install: skip
+os: linux
+dist: trusty
 script:
   - ./gradlew build --scan -s
