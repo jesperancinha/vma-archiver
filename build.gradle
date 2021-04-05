@@ -8,8 +8,3 @@ subprojects {
         testCompile "junit:junit:4+"
     }
 }
-
-buildScan {
-    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-    termsOfServiceAgree = 'yes'
-}

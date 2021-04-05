@@ -4,4 +4,4 @@ install: skip
 os: linux
 dist: trusty
 script:
-  - ./gradlew build --scan -s
+  - gradle clean build
