@@ -35,7 +35,7 @@ dependencies {
     compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.22.1'
     compile 'commons-dbcp:commons-dbcp:1.4'
     compile 'commons-io:commons-io:2.4'
-    compile 'commons-validator:commons-validator:1.4.1'
+    compile 'commons-collections:commons-collections:3.2.2'
 }
 
 
