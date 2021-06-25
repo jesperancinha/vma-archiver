@@ -22,6 +22,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: ECHO
-      run: echo "${master.TEST}"
+      run: echo "${TEST}"
     - name: Build with Maven
       run: mvn clean install
