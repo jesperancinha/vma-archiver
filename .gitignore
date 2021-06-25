@@ -36,12 +36,8 @@ vma-mvc/src/main/webapp/vma_original_list.html
 *.ipr
 *.iws
 src/
-vma-archiver.iml
-vma-mvc/src/main/main1.iml
-vma-mvc/src/test/test.iml
-vma-rest-api/src/main/main.iml
-vma-rest-api/src/test/test1.iml
-
+*.iml
 out
+
 # Gradle
 !/gradle/wrapper/gradle-wrapper.jar

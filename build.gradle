@@ -1,6 +1,17 @@
+plugins {
+    id 'net.saliman.cobertura' version '4.0.0'
+    id 'com.github.kt3k.coveralls' version '2.12.0'
+}
+
+cobertura.coverageFormats = ['html', 'xml']
+
 subprojects {
     apply plugin: "java"
     repositories {
         mavenCentral()
     }
+}
+
+repositories {
+    mavenCentral()
 }
