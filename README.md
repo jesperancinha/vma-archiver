@@ -6,14 +6,16 @@
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
 [![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
+[![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/vma-archiver&amp;utm_campaign=Badge_Grade)
 [![codebeat badge](https://codebeat.co/badges/c1b16ed4-8341-416b-9084-c2e0f7b36ffd)](https://codebeat.co/projects/github-com-jesperancinha-vma-archiver-master)
-[![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
 [![Build Status](https://travis-ci.com/jesperancinha/vma-archiver.svg?branch=master)](https://travis-ci.com/jesperancinha/vma-archiver)
 [![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/vma-archiver?branch=master)](https://bettercodehub.com/results/jesperancinha/vma-archiver)
-[![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
 [![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/vma-archiver/badge.svg)](https://snyk.io/test/github/jesperancinha/vma-archiver)
+
+[![Coverage Status](https://coveralls.io/repos/github/jesperancinha/vma-archiver/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/vma-archiver?branch=master)
+[![codecov](https://codecov.io/gh/jesperancinha/vma-archiver/branch/master/graph/badge.svg?token=ZiMdS7cDfF)](https://codecov.io/gh/jesperancinha/vma-archiver)
 
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/vma-archiver.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/vma-archiver.svg)](#)
