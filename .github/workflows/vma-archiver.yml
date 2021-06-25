@@ -24,6 +24,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean test build
     - name: Coverage with Gradle
-      run: ./gradlew cobertura coveralls
+      run: ./gradlew build jacocoTestReport coveralls
       env:
          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
