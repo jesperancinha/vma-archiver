@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/context/spring-context.xsd">
  
  	<context:annotation-config />
-	<context:component-scan base-package="com.steelzack.vma.service,com.steelzack.vma.dao,com.steelzack.vma.entities" />
+	<context:component-scan base-package="org.jesperancinha.vma.service,org.jesperancinha.vma.dao,org.jesperancinha.vma.entities" />
  
 	<!--
 		Instruct Spring to perform declarative transaction management
@@ -28,7 +28,7 @@
 	<!-- =============== MyBATIS beans configuration ================== -->
 	<bean id="originalInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>    
-	   <property name="mapperInterface" value="com.steelzack.vma.dao.OriginalInfoDao" />
+	   <property name="mapperInterface" value="org.jesperancinha.vma.dao.OriginalInfoDao" />
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -36,7 +36,7 @@
 	    <property name="configLocation" value="classpath:config/mybatisV3.xml"/>
 	</bean>
 	
-    <bean id="originalInfoRestService" class="com.steelzack.vma.service.OriginalInfoRestService" >
+    <bean id="originalInfoRestService" class="org.jesperancinha.vma.service.OriginalInfoRestService" >
     	<property name="originalInfoDao" ref="originalInfoDao"/>
     </bean>
     

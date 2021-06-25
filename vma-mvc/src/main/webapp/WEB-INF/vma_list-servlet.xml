@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
  
-	<context:component-scan base-package="com.steelzack.vma.controller" />
+	<context:component-scan base-package="org.jesperancinha.vma.controller" />
 
 	<bean id="viewResolverList"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">

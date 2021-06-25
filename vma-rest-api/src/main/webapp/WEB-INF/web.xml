@@ -16,7 +16,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>com.steelzack.vma.rest.config.VmaRest</param-value>
+			<param-value>org.jesperancinha.vma.rest.config.VmaRest</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

@@ -4,4 +4,3 @@ include 'vma-rest-api'
 include 'vma-commons'
 include 'vma-js-ui'
 include 'vma-js-ui-test-data'
-
