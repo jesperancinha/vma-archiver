@@ -21,9 +21,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-    - name: ECHO
-      run: echo "$TEST"
+    - name: Build with Gradle
+      run: ./gradlew clean build
+    - name: Coverage with Gradle
+      run: ./gradlew cobertura coveralls
       env:
-         TEST: ${{ secrets.TEST }}
-    - name: Build with Maven
-      run: mvn clean install
+         COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
