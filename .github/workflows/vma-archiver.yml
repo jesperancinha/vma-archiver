@@ -31,3 +31,7 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash)
       env:
          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Codacy Coverage
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
+      env:
+         CODECOV_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
