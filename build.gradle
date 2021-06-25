@@ -7,8 +7,12 @@ cobertura.coverageFormats = ['html', 'xml']
 
 subprojects {
     apply plugin: "java"
+
     repositories {
         mavenCentral()
+    }
+    dependencies {
+        testCompile "junit:junit:4+"
     }
 }
 

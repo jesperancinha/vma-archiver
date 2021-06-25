@@ -8,22 +8,19 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'war'
 apply plugin: 'idea'
-
-cobertura.coverageFormats = ['html', 'xml']
-
 archivesBaseName = 'vma-rest-api'
-version = '1'
+version = '1' 
 eclipse.wtp.facet {
-    facet name: 'java', version: '1.8'
-    facet name: 'jst.web', version: '3.1'
-    facet name: 'wst.jsdt.web', version: '1.0'
+            facet name: 'java', version: '1.8'
+            facet name: 'jst.web', version: '3.1'
+            facet name: 'wst.jsdt.web', version: '1.0'
 }
 
 repositories {
     mavenCentral()
 }
 
-idea {
+idea{
 
 }
 
@@ -45,3 +42,5 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'commons-collections:commons-collections:3.2.2'
 }
+
+
