@@ -22,7 +22,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew clean test build
     - name: Coverage with Gradle
       run: ./gradlew cobertura coveralls
       env:
