@@ -5,7 +5,6 @@
 [![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/vma-archiver.svg)](#)
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
-[![Build Status](https://travis-ci.com/jesperancinha/vma-archiver.svg?branch=master)](https://travis-ci.com/jesperancinha/vma-archiver)
 [![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/vma-archiver&amp;utm_campaign=Badge_Grade)
