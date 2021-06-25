@@ -24,6 +24,6 @@ jobs:
     - name: ECHO
       run: echo "$TEST"
       env:
-         TEST: ${{ master.TEST }}
+         TEST: ${{ secrets.TEST }}
     - name: Build with Maven
       run: mvn clean install
