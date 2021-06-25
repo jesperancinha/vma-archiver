@@ -21,5 +21,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+    - name: ECHO
+      run: echo ${TEST}
     - name: Build with Maven
-      run: echo $TEST && mvn clean install
+      run: mvn clean install
