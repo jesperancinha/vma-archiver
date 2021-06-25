@@ -15,6 +15,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/vma-archiver/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/vma-archiver?branch=master)
 [![codecov](https://codecov.io/gh/jesperancinha/vma-archiver/branch/master/graph/badge.svg?token=ZiMdS7cDfF)](https://codecov.io/gh/jesperancinha/vma-archiver)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/vma-archiver&utm_campaign=Badge_Coverage)
 
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/vma-archiver.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/vma-archiver.svg)](#)
