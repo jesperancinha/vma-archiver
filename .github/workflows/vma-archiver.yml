@@ -34,4 +34,4 @@ jobs:
     - name: Codacy Coverage
       run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf '-r %p ')
       env:
-         CODECOV_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
