@@ -21,6 +21,8 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/vma-archiver.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/vma-archiver.svg)](#)
 
+## Guidelines
+
 Video Media Archiver
 
 After deployment on Tomcat 8 (for example) try the following address:
@@ -54,6 +56,13 @@ Bibliography:
 * http://wiremock.org/getting-started.html
 
 * http://lorenzofox3.github.io/smart-table-website/
+
+## Java version
+
+```bash
+sdk install java 11.0.11.hs-adpt
+sdk use java 11.0.11.hs-adpt
+```
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
