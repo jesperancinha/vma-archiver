@@ -23,5 +23,7 @@ jobs:
         distribution: 'adopt'
     - name: ECHO
       run: echo "$TEST"
+      env:
+         TEST: WOW
     - name: Build with Maven
       run: mvn clean install
