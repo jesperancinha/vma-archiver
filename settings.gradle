@@ -1,3 +1,4 @@
+rootProject.name = 'vma-archiver'
 include 'vma-gradle'
 include 'vma-mvc'
 include 'vma-rest-api'
