@@ -3,7 +3,7 @@
 ---
 
 [![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=%20Checkout%20this%20%40github%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//github.com/jesperancinha/vma-archiver)
-[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=VMA%20Archiver&color=informational)](https://github.com/jesperancinha/jeorg-spring-5-test-drives)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=VMA%20Archiver%20📼%20&color=informational)](https://github.com/jesperancinha/jeorg-spring-5-test-drives)
 [![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/vma-archiver.svg)](#)
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
@@ -34,48 +34,21 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/lombok-50.png "Lombok")](https://projectlombok.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-50.png "Spring Framework")](https://spring.io/projects/spring-framework)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-boot-50.png "Spring Boot")](https://spring.io/projects/spring-boot)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/tomcat-50.png "Tomcat")](http://tomcat.apache.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mockito-50.png "Mockito")](https://site.mockito.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/assertj-50.png "AssertJ")](https://assertj.github.io/doc/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/h2-50.png "H2")](https://www.h2database.com/)
 
 ---
 
-## Guidelines
+## Introduction
 
-Video Media Archiver
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 Under Construction 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
-After deployment on Tomcat 8 (for example) try the following address:
+We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version 0.0.0. It now stands for Video Music Awards.
+So we are going to make a service to register nominees and winners of a VMA show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates easily.
 
-http://localhost:8080/vma-mvc
+Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements: SpringFlux, Kotlin Co-Routines and a nice architecture.
 
-This development of this software uses Swagger UI for documentation (http://swagger.io/)
+## References
 
-Please go to their github README.md file and follow the instruction to install the npm packages
-
-* https://github.com/swagger-api
-
-(npm install / gulp)
-
-For NodeJS you may need to do the followiong:
-
-* sudo ln -s /usr/bin/nodejs /usr/bin/node
-Remember that for vma-rest-api, you need to install first NodeJS, then install the JSON package, then install the Gulp JS file if you want to access the documentation for REST calls.
-Bibliography:
-	
-* http://www.sitepoint.com/introduction-gulp-js/
-
-* https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
-
-* https://laracasts.com/discuss/channels/general-discussion/getting-a-local-gulp-not-found-in-error-working-with-the-bower-lesson
-
-* https://github.com/swagger-api/swagger-ui
-
-* http://jakubstas.com/spring-jersey-swagger-create-documentation
-
-* http://wiremock.org/getting-started.html
-
-* http://lorenzofox3.github.io/smart-table-website/
 
 ## Java version
 

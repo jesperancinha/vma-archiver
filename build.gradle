@@ -13,16 +13,6 @@ jacocoTestReport {
     }
 }
 
-subprojects {
-    apply plugin: "java"
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        testCompile "junit:junit:4+"
-    }
-}
 
 repositories {
     mavenCentral()

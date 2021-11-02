@@ -23,15 +23,15 @@ hs_err_pid*
 **/bower_components
 
 # dynamic configuration files (run graddle)
-vma-mvc/.settings/org.eclipse.jdt.core.prefs
-vma-mvc/.settings/org.eclipse.wst.common.component
-vma-rest-api/.settings/org.eclipse.jdt.core.prefs
-vma-rest-api/.settings/org.eclipse.wst.common.component
+backup/vma20211102/vma-mvc/.settings/org.eclipse.jdt.core.prefs
+backup/vma20211102/vma-mvc/.settings/org.eclipse.wst.common.component
+backup/vma20211102/vma-rest-api/.settings/org.eclipse.jdt.core.prefs
+backup/vma20211102/vma-rest-api/.settings/org.eclipse.wst.common.component
 
 # ignore
-vma-mvc/src/main/webapp/js
-vma-mvc/src/main/webapp/originalInfo/
-vma-mvc/src/main/webapp/vma_original_list.html
+backup/vma20211102/vma-mvc/src/main/webapp/js
+backup/vma20211102/vma-mvc/src/main/webapp/originalInfo/
+backup/vma20211102/vma-mvc/src/main/webapp/vma_original_list.html
 .idea/
 *.ipr
 *.iws
