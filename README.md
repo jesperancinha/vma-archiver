@@ -54,7 +54,7 @@ Our application will be built around the Reactive CoRoutine Paradigms. We'll be 
 
 ## Knowledge Cloud
 
-`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`
+`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`, `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`, `produceNumbers`, `yield`
 
 ## Knowledge for Integration Tests Cloud
 
@@ -69,6 +69,8 @@ sdk use java 17-open
 
 ## References
 
+- [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
+- [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
 - [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
 - [Imagining your Repository Layer with Coroutines](https://proandroiddev.com/imagining-your-repository-layer-with-coroutines-7ee052ee4caa)
 - [17.5. Coroutines](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#reference)

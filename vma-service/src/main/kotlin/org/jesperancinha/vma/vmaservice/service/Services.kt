@@ -9,5 +9,7 @@ import org.springframework.stereotype.Service
 class ArtistService(
     private val bandRepository: BandRepository
 ) {
-   suspend fun fetchAllBands(): Flow<Band> = bandRepository.findAll()
+    fun fetchAllBands(): Flow<Band> = bandRepository.findAll()
+
+    suspend fun getBandById(id:String) = bandRepository.findById(id)
 }
