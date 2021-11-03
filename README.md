@@ -47,14 +47,20 @@
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 Under Construction 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
-We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version 0.0.0. It now stands for Video Music Awards.
-So we are going to make a service to register nominees and winners of a VMA show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates easily with the whole data from the awards.
+We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version
+0.0.0. It now stands for Video Music Awards. So we are going to make a service to register nominees and winners of a VMA
+show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates
+easily with the whole data from the awards.
 
-Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements: SpringFlux, Kotlin Co-Routines and a nice architecture.
+Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements:
+SpringFlux, Kotlin Co-Routines and a nice architecture.
 
 ## Knowledge Cloud
 
-`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`, `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`, `produceNumbers`, `yield`
+`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`
+, `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`
+, `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`, `counterActor`,
+`massiveRun`,
 
 ## Knowledge for Integration Tests Cloud
 
@@ -69,6 +75,9 @@ sdk use java 17-open
 
 ## References
 
+- [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
+- [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
+- [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
 - [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
 - [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
 - [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
