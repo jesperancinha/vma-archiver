@@ -75,6 +75,7 @@ sdk use java 17-open
 
 ## References
 
+- [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
 - [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
 - [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
 - [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
