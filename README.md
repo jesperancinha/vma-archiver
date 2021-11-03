@@ -30,11 +30,16 @@
 
 ---
 
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/java-50.png "Java")](https://www.oracle.com/nl/java/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/lombok-50.png "Lombok")](https://projectlombok.org/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotlin-50.png "Kotlin")](https://kotlinlang.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-50.png "Spring Framework")](https://spring.io/projects/spring-framework)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-boot-50.png "Spring Boot")](https://spring.io/projects/spring-boot)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-webflux-50.png)](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/locust-50.png "Locust")](https://locust.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-boot-50.png "Spring Boot")](https://spring.io/projects/spring-boot)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/h2-50.png "H2")](https://www.h2database.com/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/postgres-50.png "PostgreSQL")](https://www.postgresql.org/)
+
 
 ---
 
@@ -43,19 +48,28 @@
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 Under Construction 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version 0.0.0. It now stands for Video Music Awards.
-So we are going to make a service to register nominees and winners of a VMA show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates easily.
+So we are going to make a service to register nominees and winners of a VMA show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates easily with the whole data from the awards.
 
 Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements: SpringFlux, Kotlin Co-Routines and a nice architecture.
+
+## Knowledge Cloud
+
+`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`
+
+## Knowledge for Integration Tests Cloud
+
+`@Mockk`
+
+## Java Setup
+
+```shell
+sdk install java 17-open
+sdk use java 17-open
+```
 
 ## References
 
 
-## Java version
-
-```bash
-sdk install java 11.0.11.hs-adpt
-sdk use java 11.0.11.hs-adpt
-```
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
