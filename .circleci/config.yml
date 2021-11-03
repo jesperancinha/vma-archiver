@@ -6,37 +6,22 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: cimg/openjdk:11.0.10
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+      - image: maven:3.8.2-openjdk-17
 
     working_directory: ~/repo
 
     environment:
       # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+      MAVEN_OPTS: -Xmx3200m
 
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: gradle dependencies
+      - run: mvn clean install
 
       - save_cache:
           paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # run tests!
-      - run: gradle test
+      - run: mvn package
