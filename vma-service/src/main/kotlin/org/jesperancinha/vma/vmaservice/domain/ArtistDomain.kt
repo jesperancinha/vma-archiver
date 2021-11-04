@@ -9,10 +9,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 
-interface BandRepository : CoroutineCrudRepository<Band, String> {
-
-}
-
+interface BandRepository : CoroutineCrudRepository<Band, String>
 
 @Table
 @Entity

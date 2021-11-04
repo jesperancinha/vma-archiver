@@ -48,17 +48,10 @@
                 </executions>
                 <configuration>
                     <compilerPlugins>
-                        <!-- Or "jpa" for JPA support -->
                         <plugin>no-arg</plugin>
                         <plugin>jpa</plugin>
                         <plugin>spring</plugin>
                     </compilerPlugins>
-
-                    <pluginOptions>
-                        <!--                        <option>no-arg:annotation=com.my.Annotation</option>-->
-                        <!-- Call instance initializers in the synthetic constructor -->
-                        <!-- <option>no-arg:invokeInitializers=true</option> -->
-                    </pluginOptions>
                 </configuration>
                 <dependencies>
                     <dependency>
