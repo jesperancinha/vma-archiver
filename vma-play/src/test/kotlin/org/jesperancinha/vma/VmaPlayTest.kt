@@ -32,11 +32,14 @@ class VmaPlayTest {
         wierdFormulaTailRec shouldBe 55.0
     }
 
-    private fun wierdFormulaPlain(n: Int, value: Double): Double {
-        return if (n < 0) 0.0 else value + wierdFormulaPlain(n - 1, value)
+    private fun wierdFormulaPlain(n: Int, value: Double): Double = when (n) {
+        -1 -> 0.0
+        else -> value + wierdFormulaPlain(n - 1, value)
     }
 
-    private tailrec fun wierdFormulaTailRec(n: Int, value: Double): Double {
-        return if (n <= 0) value else wierdFormulaTailRec(n - 1, value / n + value)
+    private tailrec fun wierdFormulaTailRec(n: Int, value: Double): Double = when (n) {
+        0 -> value
+        else -> wierdFormulaTailRec(n - 1, value / n + value)
+
     }
 }
