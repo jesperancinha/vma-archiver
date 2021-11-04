@@ -31,21 +31,22 @@ internal class ArtistServiceTest(
 
     @Test
     fun fetchAllBands() = runBlocking {
-        every { bandRepository.findAll() } returns flow { emit(Band("The Doors")) }
+        val testBand = Band(name = "The Doors")
+        every { bandRepository.findAll() } returns flow { emit(testBand) }
 
         val fetchAllBands = artistService.fetchAllBands()
 
-        fetchAllBands.toList() shouldContain Band("The Doors")
+        fetchAllBands.toList() shouldContain testBand
     }
 
     @Test
     fun getBandById() = runBlocking {
         val id = "the-doors" + UUID.randomUUID().toString()
-
-        coEvery { bandRepository.findById(id) } returns Band("The Doors")
+        val testBand = Band(name = "The Doors")
+        coEvery { bandRepository.findById(id) } returns testBand
 
         val band = artistService.getBandById(id)
 
-        band shouldBe Band("The Doors")
+        band shouldBe testBand
     }
 }
