@@ -17,6 +17,7 @@
 
     <modules>
         <module>vma-service</module>
+        <module>vma-play</module>
     </modules>
 
     <packaging>pom</packaging>
