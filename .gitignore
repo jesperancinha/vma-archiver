@@ -22,27 +22,14 @@ hs_err_pid*
 **/dist/**
 **/bower_components
 
-# dynamic configuration files (run graddle)
-backup/vma20211102/vma-mvc/.settings/org.eclipse.jdt.core.prefs
-backup/vma20211102/vma-mvc/.settings/org.eclipse.wst.common.component
-backup/vma20211102/vma-rest-api/.settings/org.eclipse.jdt.core.prefs
-backup/vma20211102/vma-rest-api/.settings/org.eclipse.wst.common.component
-
-# ignore
-backup/vma20211102/vma-mvc/src/main/webapp/js
-backup/vma20211102/vma-mvc/src/main/webapp/originalInfo/
-backup/vma20211102/vma-mvc/src/main/webapp/vma_original_list.html
 .idea/
 *.ipr
 *.iws
 *.iml
 out
 
-# Gradle
-!/gradle/wrapper/gradle-wrapper.jar
-
 # Build
-/build/
-/target/
-/bin/
+build
+target
+bin
 .DS_Store
