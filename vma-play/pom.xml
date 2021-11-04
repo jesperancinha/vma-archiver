@@ -24,6 +24,16 @@
             <version>${kotlin.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-reactor</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
@@ -40,16 +50,6 @@
             <artifactId>kotest-assertions-jvm</artifactId>
             <version>4.0.7</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-reactor</artifactId>
-            <version>1.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>1.5.2</version>
         </dependency>
     </dependencies>
 

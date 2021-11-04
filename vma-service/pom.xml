@@ -84,6 +84,40 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.ninja-squad</groupId>
+			<artifactId>springmockk</artifactId>
+			<version>3.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-test-junit</artifactId>
+			<version>${kotlin.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.kotest</groupId>
+			<artifactId>kotest-assertions-jvm</artifactId>
+			<version>4.0.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.kotest</groupId>
+			<artifactId>kotest-assertions-core-jvm</artifactId>
+			<version>5.0.0.M3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.kotest</groupId>
+			<artifactId>kotest-assertions-core</artifactId>
+			<version>5.0.0.M3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
