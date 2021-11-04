@@ -57,7 +57,7 @@ SpringFlux, Kotlin Co-Routines and a nice architecture.
 
 ## Knowledge Cloud
 
-`Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`
+`BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`
 , `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`
 , `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`, `counterActor`, `override val`
 `massiveRun`,

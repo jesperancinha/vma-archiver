@@ -3,6 +3,11 @@ package org.jesperancinha.vma
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
+/**
+ * These tests demonstrate that probably casting isn't something ever needed in Kotlin
+ * Services 1 and 3 are correctly implemented but not in the most elegant way
+ * Services 2 and 4 are also correctly implemented but solve ambiguities and provide the correct interface by overriding the instance in the upper class.
+ */
 class VmaValOverrideTest {
 
     @Test
