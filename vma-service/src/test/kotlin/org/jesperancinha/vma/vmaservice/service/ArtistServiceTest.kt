@@ -7,10 +7,10 @@ import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.every
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.newFixedThreadPoolContext
 import kotlinx.coroutines.withContext
 import org.jesperancinha.vma.vmaservice.domain.Band
 import org.jesperancinha.vma.vmaservice.domain.BandRepository
@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*
+import java.util.concurrent.Executors.newFixedThreadPool
 import kotlin.system.measureTimeMillis
 
 
@@ -59,8 +60,8 @@ internal class ArtistServiceTest(
         val testBand = Band(name = "The Doors")
         coEvery { bandRepository.findById(id) } returns testBand
 
-       val processingTime =  measureTimeMillis {
-            val dispatcher = newFixedThreadPoolContext(2, "banPoll")
+        val processingTime = measureTimeMillis {
+            val dispatcher = newFixedThreadPool(2).asCoroutineDispatcher()
             withContext(dispatcher) {
                 val band = artistService.getBandById(id)
                 band shouldBe testBand
