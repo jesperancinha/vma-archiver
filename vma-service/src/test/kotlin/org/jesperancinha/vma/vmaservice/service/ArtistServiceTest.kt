@@ -145,8 +145,7 @@ internal class ArtistServiceTest(
             val id = "the-doors" + UUID.randomUUID().toString()
             val testBand = Band(name = "The Doors")
             coEvery { bandRepository.findById(id) } returns testBand
-
-
+            
             val coroutineResult = coroutineScope {
                 listOf(
                     async(Dispatchers.IO) {
