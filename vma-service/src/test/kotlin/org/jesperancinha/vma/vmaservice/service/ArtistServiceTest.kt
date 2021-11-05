@@ -6,6 +6,7 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.delay
@@ -61,7 +62,8 @@ internal class ArtistServiceTest(
         coEvery { bandRepository.findById(id) } returns testBand
 
         val processingTime = measureTimeMillis {
-            val dispatcher = newFixedThreadPool(2).asCoroutineDispatcher()
+            val dispatcher = newFixedThreadPool(2)
+                .asCoroutineDispatcher()
             withContext(dispatcher) {
                 val band = artistService.getBandById(id)
                 band shouldBe testBand
@@ -75,5 +77,6 @@ internal class ArtistServiceTest(
         }
 
         processingTime.shouldBeLessThanOrEqual(100)
+        coVerify(exactly = 2) { bandRepository.findById(id) }
     }
 }
