@@ -17,6 +17,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jesperancinha.vma.vmaservice.domain.Band
 import org.jesperancinha.vma.vmaservice.domain.BandRepository
@@ -169,4 +170,38 @@ internal class ArtistServiceTest(
             val result = coroutineResult.awaitAll()
             result.shouldHaveSize(2)
         }
+
+
+    /**
+     * launch
+     */
+    @Test
+    suspend fun `should run launch asynchronously within the same coroutineScope`() {
+        runBlocking {
+            val id = "the-doors" + UUID.randomUUID().toString()
+            val testBand = Band(name = "The Doors")
+            coEvery { bandRepository.findById(id) } returns testBand
+
+            coroutineScope {
+                launch {
+                    val band = artistService.getBandById(id)
+                    band shouldBe testBand
+                    delay(100)
+                }
+                launch {
+                    val band = artistService.getBandById(id)
+                    band shouldBe testBand
+                    delay(200)
+                }
+            }
+
+            coVerify(exactly = 0) { bandRepository.findById(id) }
+            delay(100)
+            coVerify(exactly = 1) { bandRepository.findById(id) }
+            delay(100)
+            coVerify(exactly = 2) { bandRepository.findById(id) }
+
+        }
+
+    }
 }

@@ -16,7 +16,6 @@ class VmaPlayTest {
         val wierdFormulaPlain = wierdFormulaPlain(10, 5.0)
 
         wierdFormulaPlain shouldBe  55.0
-
     }
 
 
