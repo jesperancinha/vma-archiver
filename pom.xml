@@ -21,6 +21,7 @@
         <h2.version>1.4.200</h2.version>
         <springmockk.version>3.0.1</springmockk.version>
         <kotest-assertions.version>5.0.0.M3</kotest-assertions.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     </properties>
 
     <modules>
@@ -72,6 +73,11 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
