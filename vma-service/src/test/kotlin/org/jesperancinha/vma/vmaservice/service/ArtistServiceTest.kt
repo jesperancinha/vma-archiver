@@ -3,12 +3,17 @@ package org.jesperancinha.vma.vmaservice.service
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.common.runBlocking
 import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
@@ -20,7 +25,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import java.util.*
+import java.util.UUID
 import java.util.concurrent.Executors.newFixedThreadPool
 import kotlin.system.measureTimeMillis
 
@@ -65,18 +70,103 @@ internal class ArtistServiceTest(
             val dispatcher = newFixedThreadPool(2)
                 .asCoroutineDispatcher()
             withContext(dispatcher) {
+                delay(100)
                 val band = artistService.getBandById(id)
                 band shouldBe testBand
-                delay(100)
             }
             withContext(dispatcher) {
+                delay(100)
                 val band = artistService.getBandById(id)
                 band shouldBe testBand
-                delay(100)
             }
         }
 
         processingTime.shouldBeLessThanOrEqual(250)
         coVerify(exactly = 2) { bandRepository.findById(id) }
     }
+
+    /**
+     * withContext suspends until completion
+     */
+    @Test
+    fun `should read two using withContext if one takes 100ms and the other 200ms and no waiting on the main thread`(): Unit =
+        runBlocking {
+            val id = "the-doors" + UUID.randomUUID().toString()
+            val testBand = Band(name = "The Doors")
+            coEvery { bandRepository.findById(id) } returns testBand
+
+            val dispatcher = newFixedThreadPool(2)
+                .asCoroutineDispatcher()
+            withContext(dispatcher) {
+                delay(100)
+                val band = artistService.getBandById(id)
+                band shouldBe testBand
+            }
+            withContext(dispatcher) {
+                delay(2000)
+                val band = artistService.getBandById(id)
+                band shouldBe testBand
+            }
+
+            coVerify(exactly = 2) { bandRepository.findById(id) }
+        }
+
+    /**
+     * coroutineScope waits until completion
+     */
+    @Test
+    fun `should read two using coroutineScope if one takes 100ms and the other 200ms and no waiting on the main thread`() =
+        runBlocking {
+            val id = "the-doors" + UUID.randomUUID().toString()
+            val testBand = Band(name = "The Doors")
+            coEvery { bandRepository.findById(id) } returns testBand
+
+            coroutineScope {
+                val band = artistService.getBandById(id)
+                band shouldBe testBand
+                delay(100)
+            }
+            coroutineScope {
+                val band = artistService.getBandById(id)
+                band shouldBe testBand
+                delay(200)
+            }
+
+            coVerify(exactly = 2) { bandRepository.findById(id) }
+        }
+
+    /**
+     * coroutineScope + async may not wait until completion
+     */
+    @Test
+    fun `should read one using async if one takes 100ms and the other 200ms and no waiting on the main thread`(): Unit =
+        runBlocking {
+            val id = "the-doors" + UUID.randomUUID().toString()
+            val testBand = Band(name = "The Doors")
+            coEvery { bandRepository.findById(id) } returns testBand
+
+
+            val coroutineResult = coroutineScope {
+                listOf(
+                    async(Dispatchers.IO) {
+                        delay(100)
+                        val band = artistService.getBandById(id)
+                        band shouldBe testBand
+                        band
+                    }, async(Dispatchers.IO) {
+                        suspend {
+                            delay(200)
+                            val band = artistService.getBandById(id)
+                            band shouldBe testBand
+                            band
+                        }
+                    })
+            }
+
+            delay(200)
+            coVerify(exactly = 1) { bandRepository.findById(id) }
+
+            val result = coroutineResult.awaitAll()
+            result.shouldHaveSize(2)
+        }
 }
