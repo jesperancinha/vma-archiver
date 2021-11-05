@@ -15,7 +15,7 @@ class VmaPlayTest {
     fun `should show stacktrace for normal recursive`() {
         val wierdFormulaPlain = wierdFormulaPlain(10, 5.0)
 
-        wierdFormulaPlain shouldBe 55.0
+        wierdFormulaPlain shouldBe  55.0
 
     }
 

@@ -76,7 +76,7 @@ internal class ArtistServiceTest(
             }
         }
 
-        processingTime.shouldBeLessThanOrEqual(100)
+        processingTime.shouldBeLessThanOrEqual(250)
         coVerify(exactly = 2) { bandRepository.findById(id) }
     }
 }

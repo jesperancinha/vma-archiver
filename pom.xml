@@ -7,6 +7,7 @@
     <groupId>org.jesperancinha.vma</groupId>
     <artifactId>vma-archiver</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>VMA Parent</name>
 
     <properties>
         <java.version>17</java.version>
@@ -14,6 +15,12 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <spring-boot.version>2.5.6</spring-boot.version>
         <kotlin.version>1.6.0-RC</kotlin.version>
+        <kotlinx.version>1.5.2</kotlinx.version>
+        <kotest.version>4.0.7</kotest.version>
+        <r2dbc-h2.version>0.9.0.M1</r2dbc-h2.version>
+        <h2.version>1.4.200</h2.version>
+        <springmockk.version>3.0.1</springmockk.version>
+        <kotest-assertions.version>5.0.0.M3</kotest-assertions.version>
     </properties>
 
     <modules>
@@ -68,4 +75,65 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.5.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-reactor</artifactId>
+                <version>${kotlinx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-core</artifactId>
+                <version>${kotlinx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-h2</artifactId>
+                <version>${r2dbc-h2.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test-junit</artifactId>
+                <version>${kotlin.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ninja-squad</groupId>
+                <artifactId>springmockk</artifactId>
+                <version>${springmockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-core-jvm</artifactId>
+                <version>${kotest-assertions.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-core</artifactId>
+                <version>${kotest-assertions.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
