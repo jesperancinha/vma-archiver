@@ -7,7 +7,7 @@
 		<groupId>org.jesperancinha.vma</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>vma-service</artifactId>
+	<artifactId>vma-service-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>VMA Spring WebFlux Reactive Service</name>
 	<description>VMA Spring WebFlux Reactive Service</description>
