@@ -130,6 +130,12 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
 
 ## References
 
+- [Amazon Aurora connection management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html)
+- [PostgreSQL Load Balancing with HAProxy](https://severalnines.com/resources/database-management-tutorials/postgresql-load-balancing-haproxy)
+- [PostgreSQL HAProxy: Proxy for HA and Load Balance](https://www.alibabacloud.com/blog/postgresql-haproxy-proxy-for-ha-and-load-balance_597618)
+- [How Does a Database Load Balancer Work?](https://severalnines.com/database-blog/how-does-database-load-balancer-work)
+- [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+- [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
 - [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
 - [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
 - [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
