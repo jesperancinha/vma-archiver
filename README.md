@@ -64,13 +64,68 @@ SpringFlux, Kotlin Co-Routines and a nice architecture.
 
 ## Knowledge for Integration Tests Cloud
 
-`@Mockk`
+`@Mockk`, `@Test`, `@SpringBootTest`
 
 ## Java Setup
 
 ```shell
 sdk install java 17-open
 sdk use java 17-open
+```
+
+## Sequence diagram
+
+To visualize this diagram you may need the [mermaid-diagrams](https://chrome.google.com/webstore/detail/mermaid-diagrams/phfcghedmopjadpojhmmaffjmfiakfil) plugin installation.
+
+To visualize it in Intellij, please install the [mermaid plugin](https://mermaid-js.github.io/mermaid/#/).
+
+```mermaid
+    sequenceDiagram
+        participant VMA Voting Client 1
+        participant VMA Voting Client 2
+        participant VMA Voting Client n
+        participant VMA GUI Load Balancer
+        participant VMA Services Backend
+        participant VMA Kafka Streams
+        participant VMA Services Event Listeners
+        participant VMA BE Load Balancers
+        participant VMA PostgreSQL
+        
+        par
+        VMA Voting Client 1-->> VMA GUI Load Balancer: Cast vote
+        and
+        VMA Voting Client 2-->> VMA GUI Load Balancer: Cast vote
+        and
+        VMA Voting Client n-->> VMA GUI Load Balancer: Cast vote
+        end
+        VMA GUI Load Balancer-->>VMA Services Backend: Distribute Votes
+        VMA Services Backend-->>VMA Kafka Streams: Register Votes
+        par
+        VMA Kafka Streams-->>VMA Services Backend: Vote registered!
+        and
+        VMA Kafka Streams-->>VMA Services Event Listeners: Send Register Vote event
+        end
+        VMA Services Backend-->>VMA GUI Load Balancer: Vote registered!
+        VMA GUI Load Balancer-->>VMA Voting Client 1: Vote registered!
+        VMA GUI Load Balancer-->>VMA Voting Client 2: Vote registered!
+        VMA GUI Load Balancer-->>VMA Voting Client n: Vote registered!
+        VMA Services Event Listeners-->>VMA PostgreSQL: Create Vote database record
+        par
+        VMA Voting Client 1-->> VMA GUI Load Balancer: Read votes
+        and
+        VMA Voting Client 2-->> VMA GUI Load Balancer: Read votes
+        and
+        VMA Voting Client n-->> VMA GUI Load Balancer: Read votes
+        end
+        VMA GUI Load Balancer-->>VMA Services Backend: Distribute read votes request
+        VMA Services Backend-->>VMA BE Load Balancer: Request Database Votes
+        VMA BE Load Balancer-->>VMA PostgreSQL: Read Votes
+        VMA PostgreSQL-->>VMA BE Load Balancer: Response with Votes
+        VMA BE Load Balancer-->>VMA Services Backend: Response With Votes
+        VMA Services Backend-->>VMA GUI Load Balancer: Response With Votes
+        VMA GUI Load Balancer-->>VMA Voting Client 1: Response With Votes
+        VMA GUI Load Balancer-->>VMA Voting Client 2: Response With Votes
+        VMA GUI Load Balancer-->>VMA Voting Client n: Response With Votes
 ```
 
 ## References
