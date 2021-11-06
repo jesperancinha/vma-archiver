@@ -145,7 +145,7 @@ internal class ArtistServiceTest(
             val id = "the-doors" + UUID.randomUUID().toString()
             val testBand = Band(name = "The Doors")
             coEvery { bandRepository.findById(id) } returns testBand
-            
+
             val coroutineResult = coroutineScope {
                 listOf(
                     async(Dispatchers.IO) {
@@ -172,7 +172,7 @@ internal class ArtistServiceTest(
 
 
     /**
-     * launch
+     * launch coroutines
      */
     @Test
     suspend fun `should run launch asynchronously within the same coroutineScope`() {
@@ -201,6 +201,31 @@ internal class ArtistServiceTest(
             coVerify(exactly = 2) { bandRepository.findById(id) }
 
         }
-
     }
+    /**
+     * await for asynchronous routinr
+     */
+    @Test
+    fun `should await for the asynchronous coroutine to complete`(): Unit =
+        runBlocking {
+            val id = "the-doors" + UUID.randomUUID().toString()
+            val testBand = Band(name = "The Doors")
+            coEvery { bandRepository.findById(id) } returns testBand
+
+            val coroutineResult = coroutineScope {
+                    async(Dispatchers.IO) {
+                        delay(100)
+                        val band = artistService.getBandById(id)
+                        band shouldBe testBand
+                        band
+                    }
+            }
+
+            delay(100)
+            coVerify(exactly = 1) { bandRepository.findById(id) }
+
+            val result = coroutineResult.await()
+            result shouldBe testBand
+        }
+
 }
