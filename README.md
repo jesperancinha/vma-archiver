@@ -84,7 +84,7 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         participant VMA Voting Client 1
         participant VMA Voting Client 2
         participant VMA Voting Client n
-        participant VMA GUI Load Balancer
+        participant VMA BE NGINX LB
         participant VMA Services Backend
         participant VMA Kafka Streams
         participant VMA Services Event Listeners
@@ -93,43 +93,43 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         
         rect rgba(0, 0, 255, .1)
         par
-        VMA Voting Client 1-->> VMA GUI Load Balancer: Cast vote
+        VMA Voting Client 1-->> VMA BE NGINX LB: Cast vote
         and
-        VMA Voting Client 2-->> VMA GUI Load Balancer: Cast vote
+        VMA Voting Client 2-->> VMA BE NGINX LB: Cast vote
         and
-        VMA Voting Client n-->> VMA GUI Load Balancer: Cast vote
+        VMA Voting Client n-->> VMA BE NGINX LB: Cast vote
         end
         end
-        VMA GUI Load Balancer-->>VMA Services Backend: Distribute Votes
+        VMA BE NGINX LB-->>VMA Services Backend: Distribute Votes
         VMA Services Backend-->>VMA Kafka Streams: Register Votes
         par
         VMA Kafka Streams-->>VMA Services Backend: Vote registered!
         and
         VMA Kafka Streams-->>VMA Services Event Listeners: Send Register Vote event
         end
-        VMA Services Backend-->>VMA GUI Load Balancer: Vote registered!
-        VMA GUI Load Balancer-->>VMA Voting Client 1: Vote registered!
-        VMA GUI Load Balancer-->>VMA Voting Client 2: Vote registered!
-        VMA GUI Load Balancer-->>VMA Voting Client n: Vote registered!
+        VMA Services Backend-->>VMA BE NGINX LB: Vote registered!
+        VMA BE NGINX LB-->>VMA Voting Client 1: Vote registered!
+        VMA BE NGINX LB-->>VMA Voting Client 2: Vote registered!
+        VMA BE NGINX LB-->>VMA Voting Client n: Vote registered!
         VMA Services Event Listeners-->>VMA PostgreSQL: Create Vote database record
         rect rgba(0, 0, 255, .1)
         par
-        VMA Voting Client 1-->> VMA GUI Load Balancer: Read votes
+        VMA Voting Client 1-->> VMA BE NGINX LB: Read votes
         and
-        VMA Voting Client 2-->> VMA GUI Load Balancer: Read votes
+        VMA Voting Client 2-->> VMA BE NGINX LB: Read votes
         and
-        VMA Voting Client n-->> VMA GUI Load Balancer: Read votes
+        VMA Voting Client n-->> VMA BE NGINX LB: Read votes
         end
         end
-        VMA GUI Load Balancer-->>VMA Services Backend: Distribute read votes request
+        VMA BE NGINX LB-->>VMA Services Backend: Distribute read votes request
         VMA Services Backend-->>VMA BE HA LB: Request Database Votes
         VMA BE HA LB-->>VMA PostgreSQL: Read Votes
         VMA PostgreSQL-->>VMA BE HA LB: Response with Votes
         VMA BE HA LB-->>VMA Services Backend: Response With Votes
-        VMA Services Backend-->>VMA GUI Load Balancer: Response With Votes
-        VMA GUI Load Balancer-->>VMA Voting Client 1: Response With Votes
-        VMA GUI Load Balancer-->>VMA Voting Client 2: Response With Votes
-        VMA GUI Load Balancer-->>VMA Voting Client n: Response With Votes
+        VMA Services Backend-->>VMA BE NGINX LB: Response With Votes
+        VMA BE NGINX LB-->>VMA Voting Client 1: Response With Votes
+        VMA BE NGINX LB-->>VMA Voting Client 2: Response With Votes
+        VMA BE NGINX LB-->>VMA Voting Client n: Response With Votes
 ```
 
 ## References

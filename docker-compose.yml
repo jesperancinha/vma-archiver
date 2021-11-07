@@ -43,7 +43,8 @@ services:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
 
-  jofisaes_haproxy_img:
+  jofisaes_vma_haproxy_lb:
+    container_name: jofisaes_vma_haproxy_lb
     build: docker-images/haproxy/.
     ports:
       - "5000:5000"
@@ -56,6 +57,86 @@ services:
       - POSTGRES_1_IP=${POSTGRES_1_IP}
       - POSTGRES_2_IP=${POSTGRES_2_IP}
       - POSTGRES_EXPOSED_PORT=${PG_EXPOSED_PORT}
+
+  jofisaes_vma_backend_img_1:
+    hostname: jofisaes_vma_backend_img_1
+    container_name: jofisaes_vma_backend_img_1
+    build:
+      context: vma-service-backend/.
+    ports:
+      - "8081"
+    environment:
+      - VMA_PORT=8081
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_BACKEND_1}
+
+  jofisaes_vma_backend_img_2:
+    hostname: jofisaes_vma_backend_img_2
+    container_name: jofisaes_vma_backend_img_2
+    build:
+      context: vma-service-backend/.
+    ports:
+      - "8082"
+    environment:
+      - VMA_PORT=8082
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_BACKEND_2}
+
+  jofisaes_vma_backend_img_3:
+    hostname: jofisaes_vma_backend_img_3
+    container_name: jofisaes_vma_backend_img_3
+    build:
+      context: vma-service-backend/.
+    ports:
+      - "8083"
+    environment:
+      - VMA_PORT=8083
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_BACKEND_3}
+
+  jofisaes_vma_nginx_lb:
+    hostname: jofisaes_vma_nginx_lb
+    container_name: jofisaes_vma_nginx_lb
+    build:
+      context: ./docker-images/nginx/.
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+        reservations:
+          memory: 300M
+    env_file:
+      - .env
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_NGINX_IP}
 
 networks:
   vma_net:

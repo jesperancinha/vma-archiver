@@ -31,8 +31,8 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-delete-apps: stop
-docker-clean-build-start: docker-clean b docker-images
-docker-clean-start: docker-clean docker-images
+docker-clean-build-start: docker-clean b docker
+docker-clean-start: docker-clean docker
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm
