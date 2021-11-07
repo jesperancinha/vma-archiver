@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+  jofisaes_vma_postgres_1:
+    container_name: ${PROJECT_NAME}_postgres_1
+    hostname: jofisaes-vma-postgres
+    build:
+      context: ./docker-images/psql/.
+    ports:
+      - "5434:5432"
+    env_file:
+      - ./docker-images/psql/.env
+    volumes:
+      - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=vma
+    expose:
+      - ${PG_EXPOSED_PORT}
+    networks:
+      vma_net:
+        ipv4_address: ${POSTGRES_1_IP}
+
+
+  jofisaes_vma_postgres_2:
+    container_name: ${PROJECT_NAME}_postgres_2
+    hostname: jofisaes-vma-postgres
+    build:
+      context: ./docker-images/psql/.
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./docker-images/psql/.env
+    volumes:
+      - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=vma
+    expose:
+      - ${PG_EXPOSED_PORT}
+    networks:
+      vma_net:
+        ipv4_address: ${POSTGRES_2_IP}
+
+  jofisaes_haproxy_img:
+    build: docker-images/haproxy/.
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    networks:
+      vma_net:
+        ipv4_address: ${HA_PROXY_IP}
+    environment:
+      - POSTGRES_1_IP=${POSTGRES_1_IP}
+      - POSTGRES_2_IP=${POSTGRES_2_IP}
+      - POSTGRES_EXPOSED_PORT=${PG_EXPOSED_PORT}
+
+networks:
+  vma_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
