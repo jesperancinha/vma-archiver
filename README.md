@@ -88,15 +88,17 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         participant VMA Services Backend
         participant VMA Kafka Streams
         participant VMA Services Event Listeners
-        participant VMA BE Load Balancers
+        participant VMA BE HA LB
         participant VMA PostgreSQL
         
+        rect rgba(0, 0, 255, .1)
         par
         VMA Voting Client 1-->> VMA GUI Load Balancer: Cast vote
         and
         VMA Voting Client 2-->> VMA GUI Load Balancer: Cast vote
         and
         VMA Voting Client n-->> VMA GUI Load Balancer: Cast vote
+        end
         end
         VMA GUI Load Balancer-->>VMA Services Backend: Distribute Votes
         VMA Services Backend-->>VMA Kafka Streams: Register Votes
@@ -110,6 +112,7 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         VMA GUI Load Balancer-->>VMA Voting Client 2: Vote registered!
         VMA GUI Load Balancer-->>VMA Voting Client n: Vote registered!
         VMA Services Event Listeners-->>VMA PostgreSQL: Create Vote database record
+        rect rgba(0, 0, 255, .1)
         par
         VMA Voting Client 1-->> VMA GUI Load Balancer: Read votes
         and
@@ -117,11 +120,12 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         and
         VMA Voting Client n-->> VMA GUI Load Balancer: Read votes
         end
+        end
         VMA GUI Load Balancer-->>VMA Services Backend: Distribute read votes request
-        VMA Services Backend-->>VMA BE Load Balancer: Request Database Votes
-        VMA BE Load Balancer-->>VMA PostgreSQL: Read Votes
-        VMA PostgreSQL-->>VMA BE Load Balancer: Response with Votes
-        VMA BE Load Balancer-->>VMA Services Backend: Response With Votes
+        VMA Services Backend-->>VMA BE HA LB: Request Database Votes
+        VMA BE HA LB-->>VMA PostgreSQL: Read Votes
+        VMA PostgreSQL-->>VMA BE HA LB: Response with Votes
+        VMA BE HA LB-->>VMA Services Backend: Response With Votes
         VMA Services Backend-->>VMA GUI Load Balancer: Response With Votes
         VMA GUI Load Balancer-->>VMA Voting Client 1: Response With Votes
         VMA GUI Load Balancer-->>VMA Voting Client 2: Response With Votes
