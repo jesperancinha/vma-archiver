@@ -1,13 +1,13 @@
 scope: postgres
 namespace: /db/
-name: postgresql0
+name: postgresql${POSTGRES_NUMBER}
 
 restapi:
   listen: ${POSTGRES_MAIN_IP}:8008
   connect_address: ${POSTGRES_MAIN_IP}:8008
 
 etcd:
-  host: ${VMA_ETCD_IP}:2379
+  hosts: ${VMA_ETCD_IP}:2379
 
 bootstrap:
   dcs:
@@ -23,9 +23,9 @@ bootstrap:
     - data-checksums
 
   pg_hba:
-    - host replication replicator 127.0.0.1/32 md5
-    - host replication replicator ${POSTGRES_MAIN_IP}/0 md5
-    - host replication replicator ${POSTGRES_SECOND_IP}/0 md5
+    - host replication postgres 127.0.0.1/32 md5
+    - host replication postgres ${POSTGRES_MAIN_IP}/0 md5
+    - host replication postgres ${POSTGRES_SECOND_IP}/0 md5
     - host all all 0.0.0.0/0 md5
 
   users:
@@ -35,20 +35,21 @@ bootstrap:
         - createrole
         - createdb
 
-  postgresql:
-    listen: ${POSTGRES_MAIN_IP}:5432
-    connect_address: ${POSTGRES_MAIN_IP}:5432
-    data_dir: /data/patroni
-    pgpass: /tmp/pgpass
-    authentication:
-      replication:
-        username: postgres
-        password: admin
-      superuser:
-        username: postgres
-        password: admin
-    parameters:
-      unix_socket_directories: '.'
+postgresql:
+  listen: 0.0.0.0:5432
+  connect_address: ${POSTGRES_MAIN_IP}:5432
+  data_dir: /data/patroni
+  bin_dir: /usr/lib/postgresql/11/bin
+  pgpass: /tmp/pgpass
+  authentication:
+    replication:
+      username: postgres
+      password: admin
+    superuser:
+      username: postgres
+      password: admin
+  parameters:
+    unix_socket_directories: '.'
 
 tags:
   nofailover: false

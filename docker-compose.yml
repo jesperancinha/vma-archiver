@@ -2,32 +2,8 @@ version: "3.7"
 services:
   jofisaes_vma_postgres_1:
     container_name: ${PROJECT_NAME}_postgres_1
-    hostname: jofisaes-vma-postgres
-    build:
-      context: ./docker-images/psql/.
-    ports:
-      - "5434:5432"
-    env_file:
-      - ./docker-images/psql/.env
-    volumes:
-      - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=vma
-      - VMA_ETCD_IP=${VMA_ETCD_IP}
-      - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
-      - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
-    expose:
-      - ${PG_EXPOSED_PORT}
-    networks:
-      vma_net:
-        ipv4_address: ${POSTGRES_1_IP}
-
-
-  jofisaes_vma_postgres_2:
-    container_name: ${PROJECT_NAME}_postgres_2
-    hostname: jofisaes-vma-postgres
+    hostname: jofisaes-vma-postgres-1
+    restart: on-failure
     build:
       context: ./docker-images/psql/.
     ports:
@@ -41,8 +17,36 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_MULTIPLE_DATABASES=vma
       - VMA_ETCD_IP=${VMA_ETCD_IP}
+      - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
+      - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
+      - POSTGRES_NUMBER=2
+    expose:
+      - ${PG_EXPOSED_PORT}
+    networks:
+      vma_net:
+        ipv4_address: ${POSTGRES_1_IP}
+
+
+  jofisaes_vma_postgres_2:
+    container_name: ${PROJECT_NAME}_postgres_2
+    hostname: jofisaes-vma-postgres-2
+    restart: on-failure
+    build:
+      context: ./docker-images/psql/.
+    ports:
+      - "5434:5432"
+    env_file:
+      - ./docker-images/psql/.env
+    volumes:
+      - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=vma
+      - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
+      - POSTGRES_NUMBER=1
     expose:
       - ${PG_EXPOSED_PORT}
     networks:
@@ -54,8 +58,12 @@ services:
     build: docker-images/haproxy/.
     ports:
       - "5000:5000"
+      - "5001:5001"
+      - "7000:7000"
     expose:
+      - 5001
       - 5000
+      - 7000
     networks:
       vma_net:
         ipv4_address: ${HA_PROXY_IP}
@@ -149,10 +157,12 @@ services:
     container_name: jofisaes_${PROJECT_NAME}_etcd
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
-      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://${VMA_ETCD_IP}:2379
+      - ETCD_ENABLE_V2=true
     ports:
       - "2379:2379"
       - "2380:2380"
+    restart: on-failure
     networks:
       vma_net:
         ipv4_address: ${VMA_ETCD_IP}
