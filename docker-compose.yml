@@ -15,6 +15,9 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_MULTIPLE_DATABASES=vma
+      - VMA_ETCD_IP=${VMA_ETCD_IP}
+      - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
+      - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
     expose:
       - ${PG_EXPOSED_PORT}
     networks:
@@ -37,6 +40,9 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_MULTIPLE_DATABASES=vma
+      - VMA_ETCD_IP=${VMA_ETCD_IP}
+      - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
+      - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
     expose:
       - ${PG_EXPOSED_PORT}
     networks:
@@ -137,6 +143,19 @@ services:
     networks:
       vma_net:
         ipv4_address: ${VMA_NGINX_IP}
+
+  jofisaes_vma_etcd:
+    image: 'bitnami/etcd:latest'
+    container_name: jofisaes_${PROJECT_NAME}_etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_ETCD_IP}
 
 networks:
   vma_net:
