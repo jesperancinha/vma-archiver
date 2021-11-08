@@ -26,6 +26,7 @@ bootstrap:
     - host replication postgres 127.0.0.1/32 md5
     - host replication postgres ${POSTGRES_MAIN_IP}/0 md5
     - host replication postgres ${POSTGRES_SECOND_IP}/0 md5
+    - host replication postgres ${POSTGRES_THIRD_IP}/0 md5
     - host all all 0.0.0.0/0 md5
 
   users:

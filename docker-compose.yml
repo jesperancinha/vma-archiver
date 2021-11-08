@@ -19,13 +19,13 @@ services:
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
-      - POSTGRES_NUMBER=2
+      - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
+      - POSTGRES_NUMBER=3
     expose:
       - ${PG_EXPOSED_PORT}
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_1_IP}
-
 
   jofisaes_vma_postgres_2:
     container_name: ${PROJECT_NAME}_postgres_2
@@ -46,12 +46,40 @@ services:
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
-      - POSTGRES_NUMBER=1
+      - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
+      - POSTGRES_NUMBER=2
     expose:
       - ${PG_EXPOSED_PORT}
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
+
+  jofisaes_vma_postgres_3:
+    container_name: ${PROJECT_NAME}_postgres_3
+    hostname: jofisaes-vma-postgres-3
+    restart: on-failure
+    build:
+      context: ./docker-images/psql/.
+    ports:
+      - "5435:5432"
+    env_file:
+      - ./docker-images/psql/.env
+    volumes:
+      - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=vma
+      - VMA_ETCD_IP=${VMA_ETCD_IP}
+      - POSTGRES_MAIN_IP=${POSTGRES_3_IP}
+      - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
+      - POSTGRES_THIRD_IP=${POSTGRES_2_IP}
+      - POSTGRES_NUMBER=1
+    expose:
+      - ${PG_EXPOSED_PORT}
+    networks:
+      vma_net:
+        ipv4_address: ${POSTGRES_3_IP}
 
   jofisaes_vma_haproxy_lb:
     container_name: jofisaes_vma_haproxy_lb
@@ -70,6 +98,7 @@ services:
     environment:
       - POSTGRES_1_IP=${POSTGRES_1_IP}
       - POSTGRES_2_IP=${POSTGRES_2_IP}
+      - POSTGRES_3_IP=${POSTGRES_3_IP}
       - POSTGRES_EXPOSED_PORT=${PG_EXPOSED_PORT}
 
   jofisaes_vma_backend_img_1:
