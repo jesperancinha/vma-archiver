@@ -24,7 +24,7 @@ class CategoryService(
     private val categoryRepository: CategoryRepository
 ) {
     fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
-        return categoryRepository.saveAll(registryDtos.map { categoryRepository.save(it.toData()) })
+        return categoryRepository.saveAll(registryDtos.map { it.toData() })
             .map { it.toDto() }
     }
 }

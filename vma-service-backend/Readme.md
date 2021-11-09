@@ -3,6 +3,7 @@
 ## Endpoints
 
 - [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
+- [http://localhost:8080/api/vma/registry](http://localhost:8080/api/vma/registry)
 
 ## References
 

@@ -4,13 +4,13 @@ import org.jesperancinha.vma.common.domain.Category
 
 data class CategoryDto(
     val id: String? = null,
-    val name: String,
+    val category: String,
     val capacity: Int
 )
 
 fun CategoryDto.toData(): Category {
     return Category(
-        name = this.name,
+        name = this.category,
         capacity = this.capacity
     )
 }
@@ -18,7 +18,7 @@ fun CategoryDto.toData(): Category {
 fun Category.toDto(): CategoryDto {
     return CategoryDto(
         id = this.id,
-        name = this.name,
+        category = this.name,
         capacity = this.capacity
     )
 }

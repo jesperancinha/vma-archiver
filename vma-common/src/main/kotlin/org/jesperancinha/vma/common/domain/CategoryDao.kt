@@ -1,5 +1,6 @@
 package org.jesperancinha.vma.common.domain
 
+import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
@@ -8,9 +9,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.OneToMany
-import javax.persistence.OneToOne
-import javax.persistence.Table
 
 
 @Table
@@ -25,11 +23,11 @@ data class Category(
     @field: Column
     val capacity: Int,
 
-    @field: OneToMany
-    val candidates: List<Artist> = emptyList(),
+//    @field: OneToMany
+//    val candidates: List<Artist> = emptyList(),
 
-    @field: OneToOne
-    val winner: Artist? = null
+//    @field: OneToOne
+//    val winner: Artist? = null
 
 )
 
