@@ -42,7 +42,7 @@ class VotingRequestService(
         .create<String, CreateVoteRequest>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
-        .subscription(Collections.singleton(votingKafkaConfigProperties.createUserRequestTopic))
+        .subscription(Collections.singleton(votingKafkaConfigProperties.createVoteRequestTopic))
 
     @Bean
     private fun votingRequestListener(): Disposable {

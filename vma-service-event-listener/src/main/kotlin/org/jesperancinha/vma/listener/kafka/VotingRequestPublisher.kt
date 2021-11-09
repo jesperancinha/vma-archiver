@@ -26,13 +26,17 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
     )
 
     private val voteRequestSenderOptions: SenderOptions<String, CreateVoteRequest> = SenderOptions.create(producerProps)
-    private val voteRequestRequestKafkaSender: KafkaSender<String, CreateVoteRequest> = KafkaSender.create(voteRequestSenderOptions)
+    private val voteRequestRequestKafkaSender: KafkaSender<String, CreateVoteRequest> =
+        KafkaSender.create(voteRequestSenderOptions)
 
-    private val voteCreatedEventSenderOptions: SenderOptions<String, CreatedVoteEvent> = SenderOptions.create(producerProps)
-    private val voteCreatedEventKafkaSender: KafkaSender<String, CreatedVoteEvent> = KafkaSender.create(voteCreatedEventSenderOptions)
+    private val voteCreatedEventSenderOptions: SenderOptions<String, CreatedVoteEvent> =
+        SenderOptions.create(producerProps)
+    private val voteCreatedEventKafkaSender: KafkaSender<String, CreatedVoteEvent> =
+        KafkaSender.create(voteCreatedEventSenderOptions)
 
     fun publishVote(key: String, value: CreateVoteRequest): Mono<Void> {
-        val producerRecord: ProducerRecord<String, CreateVoteRequest> = ProducerRecord(kafkaConfigProperties.createUserRequestTopic, key, value)
+        val producerRecord: ProducerRecord<String, CreateVoteRequest> =
+            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
 
         return voteRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))
@@ -41,7 +45,8 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
     }
 
     fun publishCreatedVoteEvent(key: String, value: CreatedVoteEvent): Mono<Void> {
-        val producerRecord: ProducerRecord<String, CreatedVoteEvent> = ProducerRecord(kafkaConfigProperties.userCreatedEventTopic, key, value)
+        val producerRecord: ProducerRecord<String, CreatedVoteEvent> =
+            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
 
         return voteCreatedEventKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))

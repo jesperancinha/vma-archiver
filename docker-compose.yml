@@ -196,6 +196,45 @@ services:
       vma_net:
         ipv4_address: ${VMA_ETCD_IP}
 
+  jofisaes_vma_zookeeper:
+    image: confluentinc/cp-zookeeper:5.4.0
+    hostname: jofisaes_vma_zookeeper
+    container_name: jofisaes_vma_zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_ZOOKEEPER}
+
+  jofisaes_vma_broker:
+    image: confluentinc/cp-server:5.4.0
+    hostname: jofisaes_vma_broker
+    container_name: jofisaes_vma_broker
+    depends_on:
+      - jofisaes_vma_zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "${VMA_ZOOKEEPER}:2181"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${VMA_KAFKA}:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: ${VMA_KAFKA}:29092
+      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: ${VMA_ZOOKEEPER}:2181
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
+      CONFLUENT_METRICS_ENABLE: "true"
+      CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_KAFKA}
+
 networks:
   vma_net:
     driver: bridge

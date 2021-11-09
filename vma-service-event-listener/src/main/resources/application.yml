@@ -4,5 +4,7 @@ application:
     serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
     deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
     schema-registry-url: "http://localhost:8081"
-    create-user-request-topic: "create-user-request"
-    user-created-event-topic: "user-created-event"
+    create-vote-request-topic: "create-vote-request"
+    vote-created-event-topic: "vote-created-event"
+server:
+  port: 8090
