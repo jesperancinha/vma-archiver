@@ -35,6 +35,11 @@ docker-cleanup: docker-delete
 docker-delete-apps: stop
 docker-clean-build-start: docker-clean b docker
 docker-clean-start: docker-clean docker
+docker-psql-cluster:
+	docker-compose down --remove-orphans
+	docker-compose up -d --build jofisaes_vma_haproxy_lb jofisaes_vma_etcd
+	docker-compose up -d --build jofisaes_vma_postgres_1
+	docker-compose up -d --build jofisaes_vma_postgres_2 jofisaes_vma_postgres_3
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm

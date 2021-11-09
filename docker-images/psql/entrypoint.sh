@@ -8,6 +8,7 @@ sed -i 's/${POSTGRES_SECOND_IP}/'"$POSTGRES_SECOND_IP"'/g' /var/lib/postgresql/p
 sed -i 's/${POSTGRES_THIRD_IP}/'"$POSTGRES_THIRD_IP"'/g' /var/lib/postgresql/patroni.yml
 sed -i 's/${POSTGRES_NUMBER}/'"$POSTGRES_NUMBER"'/g' /var/lib/postgresql/patroni.yml
 
+/root/update-schema.sh &
 su - postgres -c "/var/lib/postgresql/command.sh"
 
 tail -f /dev/null

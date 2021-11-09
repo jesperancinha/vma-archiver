@@ -8,14 +8,12 @@ services:
       context: ./docker-images/psql/.
     ports:
       - "5433:5432"
-    env_file:
-      - ./docker-images/psql/.env
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=vma
+      - POSTGRES_DB=${DB_DATABASE}
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
@@ -35,14 +33,12 @@ services:
       context: ./docker-images/psql/.
     ports:
       - "5434:5432"
-    env_file:
-      - ./docker-images/psql/.env
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=vma
+      - POSTGRES_DB=${DB_DATABASE}
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
@@ -62,14 +58,12 @@ services:
       context: ./docker-images/psql/.
     ports:
       - "5435:5432"
-    env_file:
-      - ./docker-images/psql/.env
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=vma
+      - POSTGRES_DB=${DB_DATABASE}
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_3_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}

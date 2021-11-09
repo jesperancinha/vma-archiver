@@ -26,6 +26,8 @@ COPY command.sh /var/lib/postgresql
 
 COPY entrypoint.sh /root
 
+COPY update-schema.sh /root
+
 RUN mkdir -p /data
 
 RUN chmod 700 /data
