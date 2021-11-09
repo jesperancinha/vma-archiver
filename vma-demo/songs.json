@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Swanee",
+    "artists": [
+      "Al Jolson"
+    ]
+  },
+  {
+    "name": "West End Blues",
+    "artists": [
+      "Louis Armstrong"
+    ]
+  },
+  {
+    "name": "Rhapsody In Blue",
+    "artists": [
+      "Paul Whiteman",
+      "George Gershwin"
+    ]
+  },
+  {
+    "name": "Ain't Misbehavin'",
+    "artists": [
+      "Fats Waller",
+      "Louis Armstrong"
+    ]
+  },
+  {
+    "name": "T For Texas (Blue Yodel #1)",
+    "artists": [
+      "Jimmie Rodgers"
+    ]
+  },
+  {
+    "name": "Down Hearted Blues",
+    "artists": [
+      "Bessie Smith"
+    ]
+  },
+  {
+    "name": "California, Here I Come!",
+    "artists": [
+      "Al Jolson"
+    ]
+  },
+  {
+    "name": "The St. Louis Blues",
+    "artists": [
+      "Bessie Smith",
+      "Marion Harris"
+    ]
+  }
+]

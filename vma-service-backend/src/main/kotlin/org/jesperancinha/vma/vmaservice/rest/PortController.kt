@@ -13,5 +13,6 @@ class PortController(
 ) {
 
     @GetMapping
-    fun getWelcomeMessage(): String = "Welcome to the VMA Voting System Test App! This one is running on port $port"
+    suspend fun getWelcomeMessage() =
+        "Welcome to the VMA Voting System Test App! This one is running on port $port"
 }

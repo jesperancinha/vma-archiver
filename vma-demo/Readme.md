@@ -1,12 +1,8 @@
-# VMA Spring WebFlux Reactive Service
-
-## Endpoints
-
-- [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
+# VMA Demo
 
 ## References
 
-- [A Comprehensive Guide to Building an Event-Driven Application with Kotlin, Kafka, and DynamoDB](https://betterprogramming.pub/a-comprehensive-guide-to-build-an-event-driven-application-with-kotlin-kafka-and-dynamodb-a8d9bfb19e42)
+-   [Tail Recursion in Kotlin](https://en.wikipedia.org/wiki/2020_MTV_Video_Music_Awards)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

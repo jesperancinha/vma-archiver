@@ -55,6 +55,33 @@ easily with the whole data from the awards.
 Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements:
 SpringFlux, Kotlin Co-Routines and a nice architecture.
 
+---
+
+## Project Layout
+
+- [VMA Demo Generation](./vma-demo) - Generates The Demo Awards - It is customizable in terms of categories, music and artists.
+- [VMA Common](./vma-common) - A Common Library to support Spring Boot Startup Services.
+- [VMA Play](./vma-play) - A way to play with co-routines separated from the project. It has examples on the main and test directories.
+- [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts votes in Kafka, registers a new award show directly and reads voting results from the database.
+- [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
+- [Locust](./locust) - The loation of locust service. It creates workers in kotlin that simulate random massive voters.
+
+---
+
+## Endpoints
+
+- [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
+
+---
+
+## How to start
+
+```shell
+make docker-clean-build-start
+```
+
+---
+
 ## Knowledge Cloud
 
 `BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`
@@ -62,9 +89,13 @@ SpringFlux, Kotlin Co-Routines and a nice architecture.
 , `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`, `counterActor`, `override val`
 `massiveRun`,
 
+---
+
 ## Knowledge for Integration Tests Cloud
 
 `@Mockk`, `@Test`, `@SpringBootTest`
+
+---
 
 ## Java Setup
 
@@ -72,6 +103,8 @@ SpringFlux, Kotlin Co-Routines and a nice architecture.
 sdk install java 17-open
 sdk use java 17-open
 ```
+
+---
 
 ## Sequence diagram
 
@@ -131,6 +164,8 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         VMA BE NGINX LB-->>VMA Voting Client 2: Response With Votes
         VMA BE NGINX LB-->>VMA Voting Client n: Response With Votes
 ```
+
+---
 
 ## References
 
