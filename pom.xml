@@ -164,8 +164,12 @@
 
     <repositories>
         <repository>
-            <id>confluent</id>
+            <id>redhat</id>
             <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+        </repository>
+        <repository>
+            <id>confluent</id>
+            <url>https://packages.confluent.io/maven/</url>
         </repository>
     </repositories>
 </project>
