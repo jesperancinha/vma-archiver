@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.vmaservice
+package org.jesperancinha.vma
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

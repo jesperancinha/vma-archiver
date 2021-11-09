@@ -1,16 +1,14 @@
-package org.jesperancinha.vma.vmaservice.domain
+package org.jesperancinha.vma.common.domain
 
 import org.hibernate.Hibernate
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
+import org.springframework.stereotype.Repository
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-
-
-interface BandRepository : CoroutineCrudRepository<Band, String>
 
 @Table
 @Entity
@@ -35,6 +33,9 @@ data class Band(
         return this::class.simpleName + "(id = $id , name = $name )"
     }
 }
+
+@Repository
+interface BandRepository : CoroutineCrudRepository<Band, String>
 
 @Table
 @Entity

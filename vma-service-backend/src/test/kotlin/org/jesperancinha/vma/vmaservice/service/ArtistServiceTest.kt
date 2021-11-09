@@ -19,8 +19,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jesperancinha.vma.vmaservice.domain.Band
-import org.jesperancinha.vma.vmaservice.domain.BandRepository
+import org.jesperancinha.vma.common.domain.Band
+import org.jesperancinha.vma.common.domain.BandRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
