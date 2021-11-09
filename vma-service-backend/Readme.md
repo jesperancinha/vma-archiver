@@ -1,5 +1,9 @@
 # VMA Spring WebFlux Reactive Service
 
+## References
+
+- [A Comprehensive Guide to Building an Event-Driven Application with Kotlin, Kafka, and DynamoDB](https://betterprogramming.pub/a-comprehensive-guide-to-build-an-event-driven-application-with-kotlin-kafka-and-dynamodb-a8d9bfb19e42)
+
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)

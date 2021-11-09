@@ -4,7 +4,7 @@ buildw:
 build:
 	mvn clean install
 build-maven:
-	mvn clean install -Pdemo -DskipTests
+	mvn clean install -DskipTests
 test:
 	mvn test
 test-maven:

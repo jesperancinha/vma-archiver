@@ -1,0 +1,3 @@
+package org.jesperancinha.vma
+
+internal class VmaServiceEventListenerLauncherTest

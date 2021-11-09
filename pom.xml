@@ -22,12 +22,15 @@
         <springmockk.version>3.0.1</springmockk.version>
         <kotest-assertions.version>5.0.0.M3</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <reactor-kafka.version>1.3.7</reactor-kafka.version>
+        <kafka-avro-serializer.version>6.0.0</kafka-avro-serializer.version>
     </properties>
 
     <modules>
         <module>vma-play</module>
         <module>vma-service-backend</module>
         <module>vma-service-event-listener</module>
+        <module>vma-common</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -88,9 +91,19 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>2.5.6</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jesperancinha.vma</groupId>
+                <artifactId>vma-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.projectreactor.kafka</groupId>
+                <artifactId>reactor-kafka</artifactId>
+                <version>${reactor-kafka.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -120,6 +133,11 @@
 <!--                <scope>test</scope>-->
             </dependency>
             <dependency>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-avro-serializer</artifactId>
+                <version>${kafka-avro-serializer.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-test-junit</artifactId>
                 <version>${kotlin.version}</version>
@@ -143,4 +161,11 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+        </repository>
+    </repositories>
 </project>

@@ -1,4 +1,4 @@
-package org.jesperancinha.vma
+ package org.jesperancinha.vma
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test

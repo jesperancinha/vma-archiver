@@ -1,0 +1,8 @@
+application:
+  kafka:
+    broker: "localhost:9092"
+    serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    schema-registry-url: "http://localhost:8081"
+    create-user-request-topic: "create-user-request"
+    user-created-event-topic: "user-created-event"
