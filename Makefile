@@ -1,10 +1,12 @@
-b: build-maven
+b: build-npm build-maven
 buildw:
 	cd vma-service && ./mvnw clean install
 build:
 	mvn clean install
 build-maven:
 	mvn clean install -DskipTests
+build-npm:
+	cd vma-gui && yarn install && npm run build
 test:
 	mvn test
 test-maven:
