@@ -12,35 +12,20 @@ import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.Id
 
-
 @Table
 @Entity
 data class Category(
     @field: Id
     @field: org.springframework.data.annotation.Id
     val idC: String = UUID.randomUUID().toString(),
-
     val name: String,
-
     val capacity: Int,
-
     val created: Long? = null,
-
     val updates: Int = -1,
-
     val type: CategoryType? = null
-
-//    @field: OneToOne
-//    val winner: Artist? = null
-
 ) : Persistable<String> {
-    override fun isNew(): Boolean {
-        return updates == 0
-    }
-
-    override fun getId(): String {
-        return idC
-    }
+    override fun isNew(): Boolean = updates == 0
+    override fun getId(): String = idC
 }
 
 @Entity
@@ -51,10 +36,10 @@ data class CategoryArtist(
     val idCA: String = UUID.randomUUID().toString(),
     val idC: String? = null,
     val idA: String? = null,
-    val updates: Int = -1
+    val updates: Int = -1,
+    val votes: Int = 0
 ) : Persistable<String> {
     override fun getId(): String = idCA
-
     override fun isNew(): Boolean = updates < 0
 }
 
@@ -66,10 +51,10 @@ data class CategorySong(
     val idCS: String = UUID.randomUUID().toString(),
     val idC: String? = null,
     val idS: String? = null,
-    val updates: Int = -1
+    val updates: Int = -1,
+    val votes: Int = 0
 ) : Persistable<String> {
     override fun getId(): String = idCS
-
     override fun isNew(): Boolean = updates < 0
 }
 
@@ -84,7 +69,6 @@ interface CategoryArtistRepository : CoroutineCrudRepository<CategoryArtist, Str
 
 @Repository
 interface CategorySongRepository : CoroutineCrudRepository<CategorySong, String> {
-
     @Query("Select * from category_song cg where cg.id_c=:idc")
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategorySong>
 }

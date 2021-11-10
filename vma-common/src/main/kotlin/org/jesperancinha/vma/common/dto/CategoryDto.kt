@@ -1,8 +1,6 @@
 package org.jesperancinha.vma.common.dto
 
-import org.jesperancinha.vma.common.domain.Artist
 import org.jesperancinha.vma.common.domain.Category
-import org.jesperancinha.vma.common.domain.Song
 
 
 enum class CategoryType {
@@ -21,13 +19,11 @@ data class CategoryDto(
 
 )
 
-fun CategoryDto.toData(): Category {
-    return Category(
-        name = this.category,
-        capacity = this.capacity,
-        type = this.type
-    )
-}
+fun CategoryDto.toData(): Category = Category(
+    name = this.category,
+    capacity = this.capacity,
+    type = this.type
+)
 
 val CategoryDto.toNewData: Category
     get() = Category(
@@ -37,31 +33,26 @@ val CategoryDto.toNewData: Category
         type = this.type
     )
 
-fun Category.toDto(): CategoryDto {
-    return CategoryDto(
-        id = this.id,
-        category = this.name,
-        capacity = this.capacity,
-        type = this.type
-    )
-}
+fun Category.toDto(): CategoryDto = CategoryDto(
+    id = this.id,
+    category = this.name,
+    capacity = this.capacity,
+    type = this.type
+)
 
-fun Category.toDtoWithArtists(artists: List<ArtistDto>): CategoryDto {
-    return CategoryDto(
-        id = this.id,
-        category = this.name,
-        capacity = this.capacity,
-        type = this.type,
-        artists = artists
-    )
-}
+fun Category.toDtoWithArtists(artists: List<ArtistDto>): CategoryDto = CategoryDto(
+    id = this.id,
+    category = this.name,
+    capacity = this.capacity,
+    type = this.type,
+    artists = artists
+)
 
-fun Category.toDtoWithSongs(songs: List<SongDto>): CategoryDto {
-    return CategoryDto(
-        id = this.id,
-        category = this.name,
-        capacity = this.capacity,
-        type = this.type,
-        songs = songs
-    )
-}
+fun Category.toDtoWithSongs(songs: List<SongDto>): CategoryDto = CategoryDto(
+    id = this.id,
+    category = this.name,
+    capacity = this.capacity,
+    type = this.type,
+    songs = songs
+)
+

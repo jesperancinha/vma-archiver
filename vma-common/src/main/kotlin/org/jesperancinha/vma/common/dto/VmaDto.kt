@@ -11,6 +11,6 @@ data class VmaSongDto(
 
 val VmaSongDto.toData: Song
     get() = Song(
-            name = this.name,
-            type = this.types.joinToString(",") { it.toString() }
+        name = this.name,
+        type = this.types.joinToString(",") { it.toString() }
     )

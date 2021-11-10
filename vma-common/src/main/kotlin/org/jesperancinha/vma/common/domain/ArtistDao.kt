@@ -18,13 +18,11 @@ data class Band(
     @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: String = UUID.randomUUID().toString(),
     val name: String
-
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as Band
-
         return id == other.id
     }
 
@@ -45,25 +43,17 @@ data class Artist(
     @field: Id
     @field: org.springframework.data.annotation.Id
     val idA: String = UUID.randomUUID().toString(),
-
     val name: String,
-
     val type: CategoryType,
-
     val created: Long? = null,
-
     val updates: Int = -1
-
 ) : Persistable<String> {
     override fun isNew(): Boolean = updates < 0
-
     override fun getId(): String = idA
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as Artist
-
         return idA == other.idA
     }
 
