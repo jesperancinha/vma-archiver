@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.listener.kafka
+package org.jesperancinha.vma.vmaservice.kafka
 
 import org.jesperancinha.vma.common.domain.kafka.CreateVoteRequest
 import org.jesperancinha.vma.common.domain.kafka.CreatedVoteEvent

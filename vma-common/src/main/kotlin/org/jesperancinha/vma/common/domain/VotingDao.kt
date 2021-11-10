@@ -21,9 +21,9 @@ class CreatedVoteEvent {
 data class VoteCategoryArtist(
     @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: String = UUID.randomUUID().toString(),
-    val userId: String,
-    val idC: String,
-    val idA:String
+    val userId: String? = null,
+    val idC: String? = null,
+    val idA: String? = null
 )
 
 interface VotingRepository : CoroutineCrudRepository<VoteCategoryArtist, String>
