@@ -77,3 +77,18 @@ interface CategorySongRepository : CoroutineCrudRepository<CategorySong, String>
     @Query("Select * from category_song cg where cg.id_c=:idc")
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategorySong>
 }
+
+
+suspend fun CategoryArtistRepository.saveByIds(idC: String, idA: String?) = this.save(
+    CategoryArtist(
+        idC = idC,
+        idA = idA
+    )
+)
+
+suspend fun CategorySongRepository.saveByIds(idC: String, idS: String?) = this.save(
+    CategorySong(
+        idC = idC,
+        idS = idS
+    )
+)

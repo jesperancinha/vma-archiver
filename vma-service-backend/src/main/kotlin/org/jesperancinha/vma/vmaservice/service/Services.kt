@@ -8,14 +8,14 @@ import org.jesperancinha.vma.common.domain.Artist
 import org.jesperancinha.vma.common.domain.ArtistRepository
 import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
-import org.jesperancinha.vma.common.domain.CategoryArtist
 import org.jesperancinha.vma.common.domain.CategoryArtistRepository
 import org.jesperancinha.vma.common.domain.CategoryRepository
-import org.jesperancinha.vma.common.domain.CategorySong
 import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
+import org.jesperancinha.vma.common.domain.kafka.VotingRepository
+import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto
 import org.jesperancinha.vma.common.dto.CategoryDto
@@ -83,32 +83,17 @@ class CategoryService(
             when (it.type) {
                 ARTIST -> it.toDtoWithArtists(artists.random5(it.capacity)).also { category ->
                     category.artists.forEach { artistDto ->
-                        categoryArtistRepository.save(
-                            CategoryArtist(
-                                idC = it.id,
-                                idA = artistDto.id
-                            )
-                        )
+                        categoryArtistRepository.saveByIds(it.id, artistDto.id)
                     }
                 }
                 INSTRUMENTAL -> it.toDtoWithSongs(songs.instrumental().random5(it.capacity)).also { category ->
                     category.songs.forEach { songDto ->
-                        categorySongRepository.save(
-                            CategorySong(
-                                idC = it.id,
-                                idS = songDto.id
-                            )
-                        )
+                        categorySongRepository.saveByIds(it.id, songDto.id)
                     }
                 }
                 else -> it.toDtoWithSongs(songs.sung().random5(it.capacity)).also { category ->
                     category.songs.forEach { songDto ->
-                        categorySongRepository.save(
-                            CategorySong(
-                                idC = it.id,
-                                idS = songDto.id
-                            )
-                        )
+                        categorySongRepository.saveByIds(it.id, songDto.id)
                     }
                 }
             }
@@ -121,15 +106,20 @@ class CategoryService(
                 ARTIST -> it.toDtoWithArtists(
                     artistService.findAll(
                         categoryArtistRepository.findByCategoryId(it.id).map { e -> e.idA }.filterNotNull().toList()
-                    ).toList().map { it.toDto })
+                    ).toList().map { artist -> artist.toDto })
                 else -> it.toDtoWithSongs(
                     songService.findAll(
                         categorySongRepository.findByCategoryId(it.id).map { e -> e.idS }.filterNotNull().toList()
-                    ).toList().map { it.toDto })
+                    ).toList().map { song -> song.toDto })
             }
         }
     }
 }
+
+@Service
+class VotingService(
+    private val votingRepository: VotingRepository
+)
 
 fun <T> List<T>.random5(capacity: Int): List<T> =
     this.sortedBy { kotlin.random.Random.nextInt(10) - 5 }.subList(0, capacity)
