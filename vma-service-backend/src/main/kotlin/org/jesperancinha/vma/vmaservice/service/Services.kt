@@ -6,8 +6,8 @@ import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
 import org.jesperancinha.vma.common.domain.CategoryRepository
 import org.jesperancinha.vma.common.dto.CategoryDto
-import org.jesperancinha.vma.common.dto.toData
 import org.jesperancinha.vma.common.dto.toDto
+import org.jesperancinha.vma.common.dto.toNewData
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,7 +24,7 @@ class CategoryService(
     private val categoryRepository: CategoryRepository
 ) {
     fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
-        return categoryRepository.saveAll(registryDtos.map { it.toData() })
+        return categoryRepository.saveAll(registryDtos.map { it.toNewData() })
             .map { it.toDto() }
     }
 }

@@ -8,6 +8,7 @@
 ## References
 
 - [A Comprehensive Guide to Building an Event-Driven Application with Kotlin, Kafka, and DynamoDB](https://betterprogramming.pub/a-comprehensive-guide-to-build-an-event-driven-application-with-kotlin-kafka-and-dynamodb-a8d9bfb19e42)
+- [Fixing array type look-up on r2dbc-postgresql, a reactive library from Spring Framework](https://www.stackbuilders.com/tutorials/java/webflux-contribution/)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

@@ -1,10 +1,12 @@
 package org.jesperancinha.vma.common.domain
 
 import org.hibernate.Hibernate
+import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -40,16 +42,30 @@ interface BandRepository : CoroutineCrudRepository<Band, String>
 @Table
 @Entity
 data class Artist(
-    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String = UUID.randomUUID().toString(),
-    val name: String
-) {
+    @field: Id
+    @field: org.springframework.data.annotation.Id
+    val idA: String = UUID.randomUUID().toString(),
+
+    @field: Column
+    val name: String,
+
+    @field: Column
+    val created: Long? = null
+) : Persistable<String> {
+    override fun isNew(): Boolean {
+        return created == null
+    }
+
+    override fun getId(): String {
+        return idA
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as Artist
 
-        return id != null && id == other.id
+        return idA == other.idA
     }
 
     override fun hashCode(): Int = 0

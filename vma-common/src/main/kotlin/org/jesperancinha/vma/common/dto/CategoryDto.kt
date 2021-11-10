@@ -11,7 +11,16 @@ data class CategoryDto(
 fun CategoryDto.toData(): Category {
     return Category(
         name = this.category,
-        capacity = this.capacity
+        capacity = this.capacity,
+    )
+}
+
+
+fun CategoryDto.toNewData(): Category {
+    return Category(
+        name = this.category,
+        capacity = this.capacity,
+        updates = 0
     )
 }
 

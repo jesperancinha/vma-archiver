@@ -5,38 +5,31 @@ import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 
 
 @Table
 @Entity
 data class Category(
-    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
+    @field: Id
     @field: org.springframework.data.annotation.Id
     val idC: String = UUID.randomUUID().toString(),
 
-    @field: Column
     val name: String,
 
-    @field: Column
     val capacity: Int,
 
-    @field: Column
     val created: Long? = null,
 
-//    @field: OneToMany
-//    val candidates: List<Artist> = emptyList(),
+    val updates: Int = -1
 
 //    @field: OneToOne
 //    val winner: Artist? = null
 
 ) : Persistable<String> {
     override fun isNew(): Boolean {
-        return created == null
+        return updates == 0
     }
 
     override fun getId(): String {
@@ -44,6 +37,18 @@ data class Category(
     }
 }
 
+@Entity
+@Table
+data class CategoryArtist(
+    @field: Id
+    @field: org.springframework.data.annotation.Id
+    val idCA: String = UUID.randomUUID().toString(),
+    val idC: String = UUID.randomUUID().toString(),
+    val idA: String = UUID.randomUUID().toString()
+)
+
 @Repository
 interface CategoryRepository : CoroutineCrudRepository<Category, String>
 
+@Repository
+interface CategoryArtistRepository : CoroutineCrudRepository<CategoryArtist, String>

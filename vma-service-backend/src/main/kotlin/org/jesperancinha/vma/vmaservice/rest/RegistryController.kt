@@ -22,4 +22,10 @@ class RegistryController(
         return categoryService.createRegistry(registryDtos.asFlow())
     }
 
+    @PostMapping("/random")
+    fun createRandomVma(
+    ) {
+
+    }
+
 }
