@@ -7,7 +7,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFI
 import org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG
-import org.jesperancinha.vma.common.domain.kafka.CreateVoteRequest
+import org.apache.kafka.common.requests.VoteRequest
 import org.jesperancinha.vma.listener.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -38,8 +38,8 @@ class VotingRequestService(
         "schema.registry.url" to votingKafkaConfigProperties.schemaRegistryUrl,
     )
 
-    private val receiverOptions: ReceiverOptions<String, CreateVoteRequest> = ReceiverOptions
-        .create<String, CreateVoteRequest>(consumerProps)
+    private val receiverOptions: ReceiverOptions<String, VoteRequest> = ReceiverOptions
+        .create<String, VoteRequest>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
         .subscription(Collections.singleton(votingKafkaConfigProperties.createVoteRequestTopic))

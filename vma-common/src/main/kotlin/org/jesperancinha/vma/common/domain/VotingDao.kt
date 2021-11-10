@@ -8,14 +8,6 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-class CreateVoteRequest {
-
-}
-
-class CreatedVoteEvent {
-
-}
-
 @Table
 @Entity
 data class VoteCategoryArtist(
@@ -26,5 +18,17 @@ data class VoteCategoryArtist(
     val idA: String? = null
 )
 
-interface VotingRepository : CoroutineCrudRepository<VoteCategoryArtist, String>
+interface VotingCategoryArtistRepository : CoroutineCrudRepository<VoteCategoryArtist, String>
+
+@Table
+@Entity
+data class VoteCategorySong(
+    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: String = UUID.randomUUID().toString(),
+    val userId: String? = null,
+    val idC: String? = null,
+    val idS: String? = null
+)
+
+interface VotingCategorySongRepository : CoroutineCrudRepository<VoteCategorySong, String>
 
