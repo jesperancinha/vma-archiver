@@ -24,14 +24,13 @@ fun CategoryDto.toData(): Category {
     )
 }
 
-fun CategoryDto.toNewData(): Category {
-    return Category(
+val CategoryDto.toNewData: Category
+    get() = Category(
         name = this.category,
         capacity = this.capacity,
         updates = 0,
         type = this.type
     )
-}
 
 fun Category.toDto(): CategoryDto {
     return CategoryDto(

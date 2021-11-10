@@ -1,6 +1,7 @@
 package org.jesperancinha.vma.common.domain
 
 import org.hibernate.Hibernate
+import org.jesperancinha.vma.common.dto.CategoryType
 import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
@@ -47,18 +48,16 @@ data class Artist(
 
     val name: String,
 
+    val type: CategoryType,
+
     val created: Long? = null,
 
     val updates: Int = -1
 
 ) : Persistable<String> {
-    override fun isNew(): Boolean {
-        return created == null
-    }
+    override fun isNew(): Boolean = updates < 0
 
-    override fun getId(): String {
-        return idA
-    }
+    override fun getId(): String = idA
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -78,29 +77,3 @@ data class Artist(
 
 @Repository
 interface ArtistRepository : CoroutineCrudRepository<Artist, String>
-
-@Table
-@Entity
-data class Song(
-    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String = UUID.randomUUID().toString(),
-    val name: String = UUID.randomUUID().toString(),
-    val year: Int,
-    val month: Int,
-    val day: Int
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as Song
-
-        return id != null && id == other.id
-    }
-
-    override fun hashCode(): Int = 0
-
-    @Override
-    override fun toString(): String {
-        return this::class.simpleName + "(id = $id , name = $name , year = $year , month = $month , day = $day )"
-    }
-}

@@ -8,3 +8,9 @@ data class VmaSongDto(
     val artists: List<String>,
     val types: List<CategoryType>
 )
+
+val VmaSongDto.toData: Song
+    get() = Song(
+            name = this.name,
+            type = this.types.joinToString(",") { it.toString() }
+    )

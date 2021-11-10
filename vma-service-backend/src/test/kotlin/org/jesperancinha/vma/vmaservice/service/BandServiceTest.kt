@@ -32,10 +32,10 @@ import kotlin.system.measureTimeMillis
 
 
 @ExtendWith(SpringExtension::class)
-@ContextConfiguration(classes = [ArtistService::class])
-internal class ArtistServiceTest(
+@ContextConfiguration(classes = [BandService::class])
+internal class BandServiceTest(
     @Autowired
-    private val artistService: ArtistService
+    private val bandService: BandService
 ) {
     @MockkBean
     lateinit var bandRepository: BandRepository
@@ -45,7 +45,7 @@ internal class ArtistServiceTest(
         val testBand = Band(name = "The Doors")
         every { bandRepository.findAll() } returns flow { emit(testBand) }
 
-        val fetchAllBands = artistService.fetchAllBands()
+        val fetchAllBands = bandService.fetchAllBands()
 
         fetchAllBands.toList() shouldContain testBand
     }
@@ -56,7 +56,7 @@ internal class ArtistServiceTest(
         val testBand = Band(name = "The Doors")
         coEvery { bandRepository.findById(id) } returns testBand
 
-        val band = artistService.getBandById(id)
+        val band = bandService.getBandById(id)
 
         band shouldBe testBand
     }
@@ -72,12 +72,12 @@ internal class ArtistServiceTest(
                 .asCoroutineDispatcher()
             withContext(dispatcher) {
                 delay(100)
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
             withContext(dispatcher) {
                 delay(100)
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
         }
@@ -100,12 +100,12 @@ internal class ArtistServiceTest(
                 .asCoroutineDispatcher()
             withContext(dispatcher) {
                 delay(100)
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
             withContext(dispatcher) {
                 delay(2000)
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
 
@@ -123,12 +123,12 @@ internal class ArtistServiceTest(
             coEvery { bandRepository.findById(id) } returns testBand
 
             coroutineScope {
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
                 delay(100)
             }
             coroutineScope {
-                val band = artistService.getBandById(id)
+                val band = bandService.getBandById(id)
                 band shouldBe testBand
                 delay(200)
             }
@@ -150,13 +150,13 @@ internal class ArtistServiceTest(
                 listOf(
                     async(Dispatchers.IO) {
                         delay(100)
-                        val band = artistService.getBandById(id)
+                        val band = bandService.getBandById(id)
                         band shouldBe testBand
                         band
                     }, async(Dispatchers.IO) {
                         suspend {
                             delay(200)
-                            val band = artistService.getBandById(id)
+                            val band = bandService.getBandById(id)
                             band shouldBe testBand
                             band
                         }
@@ -183,12 +183,12 @@ internal class ArtistServiceTest(
 
             coroutineScope {
                 launch {
-                    val band = artistService.getBandById(id)
+                    val band = bandService.getBandById(id)
                     band shouldBe testBand
                     delay(100)
                 }
                 launch {
-                    val band = artistService.getBandById(id)
+                    val band = bandService.getBandById(id)
                     band shouldBe testBand
                     delay(200)
                 }
@@ -215,7 +215,7 @@ internal class ArtistServiceTest(
             val coroutineResult = coroutineScope {
                     async(Dispatchers.IO) {
                         delay(100)
-                        val band = artistService.getBandById(id)
+                        val band = bandService.getBandById(id)
                         band shouldBe testBand
                         band
                     }
