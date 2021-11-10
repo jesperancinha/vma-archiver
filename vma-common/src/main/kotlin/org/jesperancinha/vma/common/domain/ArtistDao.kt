@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -46,11 +45,12 @@ data class Artist(
     @field: org.springframework.data.annotation.Id
     val idA: String = UUID.randomUUID().toString(),
 
-    @field: Column
     val name: String,
 
-    @field: Column
-    val created: Long? = null
+    val created: Long? = null,
+
+    val updates: Int = -1
+
 ) : Persistable<String> {
     override fun isNew(): Boolean {
         return created == null
@@ -75,6 +75,9 @@ data class Artist(
         return this::class.simpleName + "(id = $id , name = $name )"
     }
 }
+
+@Repository
+interface ArtistRepository : CoroutineCrudRepository<Artist, String>
 
 @Table
 @Entity

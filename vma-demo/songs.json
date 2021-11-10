@@ -3,12 +3,20 @@
     "name": "Swanee",
     "artists": [
       "Al Jolson"
+    ],
+    "types": [
+      "SONG",
+      "ARTIST"
     ]
   },
   {
     "name": "West End Blues",
     "artists": [
       "Louis Armstrong"
+    ],
+    "types": [
+      "SONG",
+      "ARTIST"
     ]
   },
   {
@@ -16,6 +24,9 @@
     "artists": [
       "Paul Whiteman",
       "George Gershwin"
+    ],
+    "types": [
+      "SONG"
     ]
   },
   {
@@ -23,24 +34,39 @@
     "artists": [
       "Fats Waller",
       "Louis Armstrong"
+    ],
+    "types": [
+      "SONG"
     ]
   },
   {
     "name": "T For Texas (Blue Yodel #1)",
     "artists": [
       "Jimmie Rodgers"
+    ],
+    "types": [
+      "SONG",
+      "ARTIST"
     ]
   },
   {
     "name": "Down Hearted Blues",
     "artists": [
       "Bessie Smith"
+    ],
+    "types": [
+      "SONG",
+      "ARTIST"
     ]
   },
   {
     "name": "California, Here I Come!",
     "artists": [
       "Al Jolson"
+    ],
+    "types": [
+      "SONG",
+      "ARTIST"
     ]
   },
   {
@@ -48,6 +74,55 @@
     "artists": [
       "Bessie Smith",
       "Marion Harris"
+    ],
+    "types": [
+      "SONG"
+    ]
+  },
+  {
+    "name": "Loud Speaki'n Papa",
+    "artists": [
+      "The Charleston Chasers"
+    ],
+    "types": [
+      "INSTRUMENTAL"
+    ]
+  },
+  {
+    "name": "Five foot two eyes of blue medley",
+    "artists": [
+      "Joe Fingers Webster",
+      "His River City Jazzmen"
+    ],
+    "types": [
+      "INSTRUMENTAL"
+    ]
+  },
+  {
+    "name": "King Porter Stomp",
+    "artists": [
+      "Benny Goodman"
+    ],
+    "types": [
+      "INSTRUMENTAL"
+    ]
+  },
+  {
+    "name": "Mazel in Liebe",
+    "artists": [
+      "Dave Tarras"
+    ],
+    "types": [
+      "INSTRUMENTAL"
+    ]
+  },
+  {
+    "name": "The Skeleton in the Closet",
+    "artists": [
+      "Artie Shaw"
+    ],
+    "types": [
+      "INSTRUMENTAL"
     ]
   }
 ]

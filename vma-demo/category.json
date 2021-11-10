@@ -1,18 +1,22 @@
 [
   {
     "category": "Best Song",
-    "capacity": 5
+    "capacity": 5,
+    "type": "SONG"
   },
   {
     "category": "Best Singer",
-    "capacity": 4
+    "capacity": 4,
+    "type": "ARTIST"
   },
   {
     "category": "Best New Artist",
-    "capacity": 4
+    "capacity": 4,
+    "type": "ARTIST"
   },
   {
     "category": "Best Instrumental",
-    "capacity": 4
+    "capacity": 4,
+    "type": "INSTRUMENTAL"
   }
 ]

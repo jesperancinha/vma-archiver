@@ -1,5 +1,6 @@
 package org.jesperancinha.vma.common.domain
 
+import org.jesperancinha.vma.common.dto.CategoryType
 import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
@@ -22,7 +23,9 @@ data class Category(
 
     val created: Long? = null,
 
-    val updates: Int = -1
+    val updates: Int = -1,
+
+    val type: CategoryType? = null
 
 //    @field: OneToOne
 //    val winner: Artist? = null
