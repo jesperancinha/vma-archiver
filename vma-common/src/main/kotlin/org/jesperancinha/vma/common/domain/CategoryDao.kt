@@ -2,6 +2,7 @@ package org.jesperancinha.vma.common.domain
 
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.vma.common.dto.CategoryType
+import org.springframework.data.annotation.Version
 import org.springframework.data.domain.Persistable
 import org.springframework.data.r2dbc.repository.Query
 import org.springframework.data.relational.core.mapping.Table
@@ -37,7 +38,9 @@ data class CategoryArtist(
     val idC: String? = null,
     val idA: String? = null,
     val updates: Int = -1,
-    val votes: Int = 0
+    val votes: Int = 0,
+    @field: Version
+    val version: Long? = null,
 ) : Persistable<String> {
     override fun getId(): String = idCA
     override fun isNew(): Boolean = updates < 0
@@ -52,7 +55,9 @@ data class CategorySong(
     val idC: String? = null,
     val idS: String? = null,
     val updates: Int = -1,
-    val votes: Int = 0
+    val votes: Int = 0,
+    @field: Version
+    val version: Long? = null,
 ) : Persistable<String> {
     override fun getId(): String = idCS
     override fun isNew(): Boolean = updates < 0

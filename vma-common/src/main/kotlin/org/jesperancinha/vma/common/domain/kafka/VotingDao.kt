@@ -18,10 +18,13 @@ class CreatedVoteEvent {
 
 @Table
 @Entity
-data class Vote(
+data class VoteCategoryArtist(
     @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String = UUID.randomUUID().toString()
+    val id: String = UUID.randomUUID().toString(),
+    val userId: String,
+    val idC: String,
+    val idA:String
 )
 
-interface VotingRepository : CoroutineCrudRepository<Vote, String>
+interface VotingRepository : CoroutineCrudRepository<VoteCategoryArtist, String>
 
