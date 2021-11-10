@@ -1,6 +1,8 @@
 package org.jesperancinha.vma.common.dto
 
+import org.jesperancinha.vma.common.domain.Artist
 import org.jesperancinha.vma.common.domain.Category
+import org.jesperancinha.vma.common.domain.Song
 
 
 enum class CategoryType {
@@ -13,7 +15,10 @@ data class CategoryDto(
     val id: String? = null,
     val category: String,
     val type: CategoryType?,
-    val capacity: Int
+    val capacity: Int,
+    val artists: List<ArtistDto> = emptyList(),
+    val songs: List<SongDto> = emptyList()
+
 )
 
 fun CategoryDto.toData(): Category {
@@ -38,5 +43,25 @@ fun Category.toDto(): CategoryDto {
         category = this.name,
         capacity = this.capacity,
         type = this.type
+    )
+}
+
+fun Category.toDtoWithArtists(artists: List<ArtistDto>): CategoryDto {
+    return CategoryDto(
+        id = this.id,
+        category = this.name,
+        capacity = this.capacity,
+        type = this.type,
+        artists = artists
+    )
+}
+
+fun Category.toDtoWithSongs(songs: List<SongDto>): CategoryDto {
+    return CategoryDto(
+        id = this.id,
+        category = this.name,
+        capacity = this.capacity,
+        type = this.type,
+        songs = songs
     )
 }

@@ -1,6 +1,9 @@
 drop table if exists Category;
 drop table if exists Artist;
 drop table if exists CategoryArtist;
+drop table if exists category_artist;
+drop table if exists CategorySong;
+drop table if exists category_song;
 drop table if exists Song;
 
 CREATE TABLE if not exists Category
@@ -29,9 +32,19 @@ CREATE TABLE if not exists Song
     updates INTEGER
 );
 
-CREATE TABLE if not exists CategoryArtist
+CREATE TABLE if not exists category_artist
 (
-    id_ca VARCHAR(255) PRIMARY KEY,
-    id_c  VARCHAR(255),
-    id_a  VARCHAR(255)
+    id_ca   VARCHAR(255) PRIMARY KEY,
+    id_c    VARCHAR(255),
+    id_a    VARCHAR(255),
+    updates INTEGER
+
+);
+
+CREATE TABLE if not exists category_song
+(
+    id_cs   VARCHAR(255) PRIMARY KEY,
+    id_c    VARCHAR(255),
+    id_s    VARCHAR(255),
+    updates INTEGER
 );

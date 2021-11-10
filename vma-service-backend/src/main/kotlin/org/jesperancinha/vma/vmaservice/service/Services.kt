@@ -1,11 +1,19 @@
 package org.jesperancinha.vma.vmaservice.service
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toList
+import org.jesperancinha.vma.common.domain.Artist
 import org.jesperancinha.vma.common.domain.ArtistRepository
 import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
+import org.jesperancinha.vma.common.domain.CategoryArtist
+import org.jesperancinha.vma.common.domain.CategoryArtistRepository
 import org.jesperancinha.vma.common.domain.CategoryRepository
+import org.jesperancinha.vma.common.domain.CategorySong
+import org.jesperancinha.vma.common.domain.CategorySongRepository
+import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.common.domain.toData
@@ -17,6 +25,8 @@ import org.jesperancinha.vma.common.dto.CategoryType.SONG
 import org.jesperancinha.vma.common.dto.SongDto
 import org.jesperancinha.vma.common.dto.toData
 import org.jesperancinha.vma.common.dto.toDto
+import org.jesperancinha.vma.common.dto.toDtoWithArtists
+import org.jesperancinha.vma.common.dto.toDtoWithSongs
 import org.jesperancinha.vma.common.dto.toNewData
 import org.springframework.stereotype.Service
 
@@ -36,6 +46,7 @@ class SongService(
     private val songRepository: SongRepository
 ) {
     suspend fun createSong(vmaSongDto: VmaSongDto): SongDto = songRepository.save(vmaSongDto.toData).toDto
+    fun findAll(ids: List<String>): Flow<Song> = songRepository.findAllById(ids)
 }
 
 @Service
@@ -43,6 +54,8 @@ class ArtistService(
     private val artistRepository: ArtistRepository,
 ) {
     suspend fun createArtist(artistDto: ArtistDto): ArtistDto = artistRepository.save(artistDto.toData).toDto
+
+    fun findAll(ids: List<String>): Flow<Artist> = artistRepository.findAllById(ids)
 }
 
 @Service
@@ -50,6 +63,8 @@ class CategoryService(
     private val songService: SongService,
     private val artistService: ArtistService,
     private val categoryRepository: CategoryRepository,
+    private val categoryArtistRepository: CategoryArtistRepository,
+    private val categorySongRepository: CategorySongRepository
 ) {
     fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
         return categoryRepository.saveAll(registryDtos.map { it.toNewData })
@@ -66,14 +81,53 @@ class CategoryService(
 
         return categoryRepository.findAll().map {
             when (it.type) {
-                ARTIST -> artists.random5(it.capacity).forEach { println(it) }
-                INSTRUMENTAL -> songs.instrumental().random5(it.capacity).forEach { println(it) }
-                SONG -> songs.sung().random5(it.capacity).forEach { println(it) }
-                else -> {
+                ARTIST -> it.toDtoWithArtists(artists.random5(it.capacity)).also { category ->
+                    category.artists.forEach { artistDto ->
+                        categoryArtistRepository.save(
+                            CategoryArtist(
+                                idC = it.id,
+                                idA = artistDto.id
+                            )
+                        )
+                    }
+                }
+                INSTRUMENTAL -> it.toDtoWithSongs(songs.instrumental().random5(it.capacity)).also { category ->
+                    category.songs.forEach { songDto ->
+                        categorySongRepository.save(
+                            CategorySong(
+                                idC = it.id,
+                                idS = songDto.id
+                            )
+                        )
+                    }
+                }
+                else -> it.toDtoWithSongs(songs.sung().random5(it.capacity)).also { category ->
+                    category.songs.forEach { songDto ->
+                        categorySongRepository.save(
+                            CategorySong(
+                                idC = it.id,
+                                idS = songDto.id
+                            )
+                        )
+                    }
                 }
             }
-            it
-        }.map { it.toDto() }
+        }
+    }
+
+    fun findAll(): Flow<CategoryDto> {
+        return categoryRepository.findAll().map {
+            when (it.type) {
+                ARTIST -> it.toDtoWithArtists(
+                    artistService.findAll(
+                        categoryArtistRepository.findByCategoryId(it.id).map { e -> e.idA }.filterNotNull().toList()
+                    ).toList().map { it.toDto })
+                else -> it.toDtoWithSongs(
+                    songService.findAll(
+                        categorySongRepository.findByCategoryId(it.id).map { e -> e.idS }.filterNotNull().toList()
+                    ).toList().map { it.toDto })
+            }
+        }
     }
 }
 

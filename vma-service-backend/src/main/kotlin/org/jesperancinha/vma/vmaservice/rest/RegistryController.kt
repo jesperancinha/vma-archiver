@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.asFlow
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.common.dto.CategoryDto
 import org.jesperancinha.vma.vmaservice.service.CategoryService
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,5 +27,8 @@ class RegistryController(
         @RequestBody
         vmaSongs: List<VmaSongDto>
     ): Flow<CategoryDto> = categoryService.makeRandomGame(vmaSongs)
+
+    @GetMapping("/current")
+    suspend fun getCurrentVma(): Flow<CategoryDto> = categoryService.findAll()
 
 }
