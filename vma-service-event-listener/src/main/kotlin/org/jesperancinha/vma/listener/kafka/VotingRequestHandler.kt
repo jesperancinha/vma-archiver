@@ -1,7 +1,6 @@
 package org.jesperancinha.vma.listener.kafka
 
 import kotlinx.coroutines.reactor.mono
-import kotlinx.coroutines.runBlocking
 import org.apache.avro.generic.GenericData.Record
 import org.jesperancinha.vma.common.domain.kafka.VoteCategoryArtist
 import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
@@ -26,15 +25,7 @@ class VotingRequestHandler(
             idC = request.get(1).toString(),
             idA = request.get(2).toString()
         )
-        return runBlocking { votingCategoryArtistRepository.save(vote) }
-            .let {
-//                kafkaPublisher.publishVotingEvent(
-//                    VotingRequestPublisher.generateMessageKey(),
-//                    ArtistVotingEvent()
-//                )
-                mono { }
-            }
-            .map { }
-            .doOnError { logger.error("Exception while trying to create a new user", it) }
+        votingCategoryArtistRepository.saveAll(listOf(vote))
+        return mono { }.doOnError { logger.error("Exception while trying to create a new user", it) }
     }
 }

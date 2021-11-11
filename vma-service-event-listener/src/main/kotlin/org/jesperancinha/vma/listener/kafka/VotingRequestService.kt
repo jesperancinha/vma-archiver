@@ -1,7 +1,5 @@
 package org.jesperancinha.vma.listener.kafka
 
-import kotlinx.coroutines.runBlocking
-import org.apache.avro.generic.GenericData
 import org.apache.avro.generic.GenericData.Record
 import org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG
@@ -9,8 +7,6 @@ import org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFI
 import org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG
-import org.apache.kafka.common.requests.VoteRequest
-import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.listener.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -52,15 +48,15 @@ class VotingRequestService(
         return KafkaReceiver.create(receiverOptions)
             .receive()
             .concatMap { record ->
-                    createUserRequestHandler.handleCreateVoteRequest(record.value())
-                        .then(record.receiverOffset().commit())
-                        .doOnError {
-                            logger.error(
-                                "Error while creating and persisting Vote",
-                                it
-                            )
-                        }
-
+                createUserRequestHandler
+                    .handleCreateVoteRequest(record.value())
+                    .then(record.receiverOffset().commit())
+                    .doOnError {
+                        logger.error(
+                            "Error while creating Vote",
+                            it
+                        )
+                    }
             }
             .subscribe()
     }
