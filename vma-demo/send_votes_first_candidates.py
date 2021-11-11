@@ -9,20 +9,34 @@ def generateUuuid():
 
 
 response = requests.get("http://localhost:8080/api/vma/registry/current")
-for category in response.json():
-    print(category["category"])
-    print(category)
 
-url = "http://localhost:8080/api/vma/voting/artist"
-
+urlArtist = "http://localhost:8080/api/vma/voting/artist"
+urlSong = "http://localhost:8080/api/vma/voting/song"
 headers = CaseInsensitiveDict()
 headers["Cookie"] = f"votingId={generateUuuid()}"
 
-resp = requests.post(url,
-                     headers=headers,
-                     json={
-                         "userID": generateUuuid(),
-                         "idC": generateUuuid(),
-                         "idA": generateUuuid()
-                     })
-print(resp.status_code)
+for category in response.json():
+    print(category["category"])
+    print(category)
+    if category["type"] == "ARTIST":
+        elected = category["artists"][0]
+        resp = requests.post(
+            urlArtist,
+            headers=headers,
+            json={
+                "userID": generateUuuid(),
+                "idC": category["id"],
+                "idA": elected["id"]
+            })
+        print(resp.status_code)
+    if category["type"] == "SONG" or category["type"] == "INSTRUMENTAL":
+        elected = category["songs"][0]
+        resp = requests.post(
+            urlSong,
+            headers=headers,
+            json={
+                "userID": generateUuuid(),
+                "idC": category["id"],
+                "idS": elected["id"]
+            })
+        print(resp.status_code)

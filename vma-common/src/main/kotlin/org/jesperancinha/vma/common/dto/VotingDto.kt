@@ -34,7 +34,27 @@ data class SongVotingDto(
     val userId: String? = null,
     val idC: String? = null,
     val idS: String? = null
-)
+): IndexedRecord {
+    override fun getSchema(): Schema =
+        SchemaBuilder.record("SongVotingDto")
+            .namespace("org.jesperancinha.vma.common.dto")
+            .fields()
+            .requiredString("userId")
+            .requiredString("idC")
+            .requiredString("idS")
+            .endRecord();
+
+    override fun put(i: Int, v: Any?) {
+        println("$i + $v")
+    }
+
+    override fun get(i: Int) = when (i) {
+        0 -> userId
+        1 -> idC
+        2 -> idS
+        else -> ""
+    }
+}
 
 data class ArtistVotingEvent(
     val userId: String? = null,
