@@ -48,3 +48,6 @@ prune-all: stop
 	docker system prune --all --volumes
 stop:
 	docker-compose down --remove-orphans
+install:
+	/usr/bin/python3 -m pip install --upgrade pip
+	pip3 install requests

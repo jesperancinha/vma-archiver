@@ -5,3 +5,5 @@ post-songs:
 get-songs:
 	curl -i  http://localhost:8080/api/vma/registry/current
 create-vmas: post-category post-songs get-songs
+send-votes:
+	python3 send_votes_first_candidates.py
