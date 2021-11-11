@@ -5,6 +5,8 @@ drop table if exists category_artist;
 drop table if exists CategorySong;
 drop table if exists category_song;
 drop table if exists Song;
+drop table if exists vote_category_artist;
+drop table if exists vote_category_song;
 
 CREATE TABLE if not exists Category
 (
@@ -50,5 +52,23 @@ CREATE TABLE if not exists category_song
     id_s    VARCHAR(255),
     version BIGINT,
     votes   INTEGER,
+    updates INTEGER
+);
+
+CREATE TABLE if not exists vote_category_artist
+(
+    id_vcs  VARCHAR(255) PRIMARY KEY,
+    user_id VARCHAR(255),
+    id_c    VARCHAR(255),
+    id_a    VARCHAR(255),
+    updates INTEGER
+);
+
+CREATE TABLE if not exists vote_category_song
+(
+    id_vcs  VARCHAR(255) PRIMARY KEY,
+    user_id VARCHAR(255),
+    id_c    VARCHAR(255),
+    id_s    VARCHAR(255),
     updates INTEGER
 );

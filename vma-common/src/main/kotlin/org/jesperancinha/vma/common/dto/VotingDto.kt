@@ -13,16 +13,20 @@ data class ArtistVotingDto(
         SchemaBuilder.record("ArtistVotingDto")
             .namespace("org.jesperancinha.vma.common.dto")
             .fields()
+            .requiredString("userId")
             .requiredString("idC")
             .requiredString("idA")
             .endRecord();
 
     override fun put(i: Int, v: Any?) {
-       print(v)
+        println("$i + $v")
     }
 
-    override fun get(i: Int): Any {
-        return "";
+    override fun get(i: Int) = when (i) {
+        0 -> userId
+        1 -> idC
+        2 -> idA
+        else -> ""
     }
 }
 

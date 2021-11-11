@@ -86,6 +86,16 @@ make install
 make docker-clean-build-start
 ```
 
+## Serving Spring Boot (LOCAL)
+
+In order to let Kafka know where to get to locally you need to define locally that `jofisaes_vma_broker` is also in `127.0.0.1`.
+
+This is done in MAC-OS and Linux machines on `/etc/hosts`:
+
+```text
+127.0.0.1   jofisaes_vma_broker
+```
+
 ---
 
 ## Knowledge Cloud

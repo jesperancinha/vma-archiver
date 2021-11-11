@@ -1,6 +1,8 @@
 package org.jesperancinha.vma.listener.kafka
 
 import kotlinx.coroutines.runBlocking
+import org.apache.avro.generic.GenericData
+import org.apache.avro.generic.GenericData.Record
 import org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG
@@ -39,8 +41,8 @@ class VotingRequestService(
         "schema.registry.url" to votingKafkaConfigProperties.schemaRegistryUrl,
     )
 
-    private val receiverOptions: ReceiverOptions<String, ArtistVotingDto> = ReceiverOptions
-        .create<String, ArtistVotingDto>(consumerProps)
+    private val receiverOptions: ReceiverOptions<String, Record> = ReceiverOptions
+        .create<String, Record>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
         .subscription(Collections.singleton(votingKafkaConfigProperties.createVoteRequestTopic))

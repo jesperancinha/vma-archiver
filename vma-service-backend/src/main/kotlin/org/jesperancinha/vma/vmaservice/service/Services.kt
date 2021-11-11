@@ -14,9 +14,6 @@ import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
-import org.jesperancinha.vma.common.domain.kafka.VoteCategorySong
-import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
-import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto
@@ -125,9 +122,13 @@ class CategoryService(
 class VotingService(
     private val votingRequestPublisher: VotingRequestPublisher
 ) {
-    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) = votingRequestPublisher.publishArtistVote(key = voterKey, artistVotingDto = artistVotingDto)
+    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) = votingRequestPublisher.publishArtistVote(
+        key = voterKey,
+        artistVotingDto = artistVotingDto.copy(userId = voterKey)
+    )
 
-    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) = votingRequestPublisher.publishSongVote(key = voterKey, songVotingDto = songVotingDto)
+    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) =
+        votingRequestPublisher.publishSongVote(key = voterKey, songVotingDto = songVotingDto.copy(userId = voterKey))
 
 }
 
