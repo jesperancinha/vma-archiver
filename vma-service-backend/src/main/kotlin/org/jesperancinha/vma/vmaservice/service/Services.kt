@@ -14,21 +14,25 @@ import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
+import org.jesperancinha.vma.common.domain.kafka.VoteCategorySong
 import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.common.dto.CategoryDto
 import org.jesperancinha.vma.common.dto.CategoryType.ARTIST
 import org.jesperancinha.vma.common.dto.CategoryType.INSTRUMENTAL
 import org.jesperancinha.vma.common.dto.CategoryType.SONG
 import org.jesperancinha.vma.common.dto.SongDto
+import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.dto.toData
 import org.jesperancinha.vma.common.dto.toDto
 import org.jesperancinha.vma.common.dto.toDtoWithArtists
 import org.jesperancinha.vma.common.dto.toDtoWithSongs
 import org.jesperancinha.vma.common.dto.toNewData
+import org.jesperancinha.vma.vmaservice.kafka.VotingRequestPublisher
 import org.springframework.stereotype.Service
 
 @Service
@@ -119,9 +123,15 @@ class CategoryService(
 
 @Service
 class VotingService(
-    private val votingCategoryArtistRepository: VotingCategoryArtistRepository,
-    private val votingCategorySongRepository: VotingCategorySongRepository
-)
+    private val votingRequestPublisher: VotingRequestPublisher
+) {
+    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) {
+        votingRequestPublisher.publishArtistVote(key = voterKey, artistVotingDto = artistVotingDto)
+    }
+    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) {
+        votingRequestPublisher.publishSongVote(key = voterKey, songVotingDto = songVotingDto)
+    }
+}
 
 fun <T> List<T>.random5(capacity: Int): List<T> =
     this.sortedBy { kotlin.random.Random.nextInt(10) - 5 }.subList(0, capacity)

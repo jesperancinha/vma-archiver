@@ -2,8 +2,9 @@ package org.jesperancinha.vma.vmaservice.kafka
 
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.requests.VoteRequest
-import org.jesperancinha.vma.common.dto.VotingEvent
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
+import org.jesperancinha.vma.common.dto.ArtistVotingEvent
+import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.vmaservice.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 import reactor.kafka.sender.KafkaSender
 import reactor.kafka.sender.SenderOptions
-import java.util.UUID
+import java.util.*
 
 @Component
 class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfigProperties) {
@@ -25,27 +26,41 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
         "schema.registry.url" to kafkaConfigProperties.schemaRegistryUrl
     )
 
-    private val voteRequestSenderOptions: SenderOptions<String, VoteRequest> = SenderOptions.create(producerProps)
-    private val voteRequestRequestKafkaSender: KafkaSender<String, VoteRequest> =
+    private val voteArtistRequestSenderOptions: SenderOptions<String, ArtistVotingDto> = SenderOptions.create(producerProps)
+    private val voteArtistRequestRequestKafkaSender: KafkaSender<String, ArtistVotingDto> =
+        KafkaSender.create(voteArtistRequestSenderOptions)
+
+    private val voteRequestSenderOptions: SenderOptions<String, SongVotingDto> = SenderOptions.create(producerProps)
+    private val voteSongRequestRequestKafkaSender: KafkaSender<String, SongVotingDto> =
         KafkaSender.create(voteRequestSenderOptions)
 
-    private val voteCreatedEventSenderOptions: SenderOptions<String, VotingEvent> =
+    private val voteCreatedEventSenderOptions: SenderOptions<String, ArtistVotingEvent> =
         SenderOptions.create(producerProps)
-    private val voteCreatedEventKafkaSender: KafkaSender<String, VotingEvent> =
+    private val voteCreatedEventKafkaSender: KafkaSender<String, ArtistVotingEvent> =
         KafkaSender.create(voteCreatedEventSenderOptions)
 
-    fun publishVote(key: String, value: VoteRequest): Mono<Void> {
-        val producerRecord: ProducerRecord<String, VoteRequest> =
-            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
+    fun publishArtistVote(key: String, artistVotingDto: ArtistVotingDto): Mono<Void> {
+        val producerRecord: ProducerRecord<String, ArtistVotingDto> =
+            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, artistVotingDto)
 
-        return voteRequestRequestKafkaSender.createOutbound()
+        return voteArtistRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))
             .then()
             .doOnSuccess { logger.info("Vote Created with id $key") }
     }
 
-    fun publishVotingEvent(key: String, value: VotingEvent): Mono<Void> {
-        val producerRecord: ProducerRecord<String, VotingEvent> =
+    fun publishSongVote(key: String, songVotingDto: SongVotingDto): Mono<Void> {
+        val producerRecord: ProducerRecord<String, SongVotingDto> =
+            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, songVotingDto)
+
+        return voteSongRequestRequestKafkaSender.createOutbound()
+            .send(Mono.just(producerRecord))
+            .then()
+            .doOnSuccess { logger.info("Vote Created with id $key") }
+    }
+
+    fun publishVotingEvent(key: String, value: ArtistVotingEvent): Mono<Void> {
+        val producerRecord: ProducerRecord<String, ArtistVotingEvent> =
             ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
 
         return voteCreatedEventKafkaSender.createOutbound()

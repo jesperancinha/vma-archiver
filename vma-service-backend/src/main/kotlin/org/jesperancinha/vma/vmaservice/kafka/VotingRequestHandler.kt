@@ -3,8 +3,8 @@ package org.jesperancinha.vma.vmaservice.kafka
 import org.jesperancinha.vma.common.domain.kafka.VoteCategoryArtist
 import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
-import org.jesperancinha.vma.common.dto.VotingDto
-import org.jesperancinha.vma.common.dto.VotingEvent
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
+import org.jesperancinha.vma.common.dto.ArtistVotingEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -20,14 +20,14 @@ class VotingRequestHandler(
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
-    suspend fun handleCreateVoteRequest(request: VotingDto): Mono<Unit> {
+    suspend fun handleCreateVoteRequest(request: ArtistVotingDto): Mono<Unit> {
         val votingId: String = createVotingId()
         val vote = VoteCategoryArtist()
         return votingCategoryArtistRepository.save(vote)
             .let {
                 kafkaPublisher.publishVotingEvent(
                     VotingRequestPublisher.generateMessageKey(),
-                    VotingEvent()
+                    ArtistVotingEvent()
                 )
             }
             .map { }

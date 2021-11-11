@@ -4,7 +4,7 @@ import org.apache.kafka.common.requests.VoteRequest
 import org.jesperancinha.vma.common.domain.kafka.VoteCategoryArtist
 import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
-import org.jesperancinha.vma.common.dto.VotingEvent
+import org.jesperancinha.vma.common.dto.ArtistVotingEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
@@ -27,7 +27,7 @@ class VotingRequestHandler(
             .let {
                 kafkaPublisher.publishVotingEvent(
                     VotingRequestPublisher.generateMessageKey(),
-                    VotingEvent()
+                    ArtistVotingEvent()
                 )
             }
             .map { }

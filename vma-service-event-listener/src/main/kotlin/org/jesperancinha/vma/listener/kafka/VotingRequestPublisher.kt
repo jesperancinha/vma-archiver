@@ -3,7 +3,7 @@ package org.jesperancinha.vma.listener.kafka
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.requests.VoteRequest
-import org.jesperancinha.vma.common.dto.VotingEvent
+import org.jesperancinha.vma.common.dto.ArtistVotingEvent
 import org.jesperancinha.vma.listener.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -29,9 +29,9 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
     private val voteRequestRequestKafkaSender: KafkaSender<String, VoteRequest> =
         KafkaSender.create(voteRequestSenderOptions)
 
-    private val voteCreatedEventSenderOptions: SenderOptions<String, VotingEvent> =
+    private val voteCreatedEventSenderOptions: SenderOptions<String, ArtistVotingEvent> =
         SenderOptions.create(producerProps)
-    private val voteCreatedEventKafkaSender: KafkaSender<String, VotingEvent> =
+    private val voteCreatedEventKafkaSender: KafkaSender<String, ArtistVotingEvent> =
         KafkaSender.create(voteCreatedEventSenderOptions)
 
     fun publishVote(key: String, value: VoteRequest): Mono<Void> {
@@ -44,8 +44,8 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
             .doOnSuccess { logger.info("Vote Created with id $key") }
     }
 
-    fun publishVotingEvent(key: String, value: VotingEvent): Mono<Void> {
-        val producerRecord: ProducerRecord<String, VotingEvent> =
+    fun publishVotingEvent(key: String, value: ArtistVotingEvent): Mono<Void> {
+        val producerRecord: ProducerRecord<String, ArtistVotingEvent> =
             ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
 
         return voteCreatedEventKafkaSender.createOutbound()

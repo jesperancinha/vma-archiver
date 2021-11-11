@@ -1,6 +1,7 @@
 package org.jesperancinha.vma.vmaservice.rest
 
-import org.jesperancinha.vma.common.dto.VotingDto
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
+import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.vmaservice.service.VotingService
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,9 +15,14 @@ class VotingController(
     val votingService: VotingService
 ) {
 
-    @PostMapping
-    fun postVote(@RequestBody votingDto: VotingDto, @CookieValue("votingId") string: String){
-        votingService
+    @PostMapping("/artist")
+    fun postArtistVote(@RequestBody artistVotingDto: ArtistVotingDto, @CookieValue("votingId") votingKey: String){
+        votingService.castArtistVote(votingKey, artistVotingDto)
+    }
+
+    @PostMapping("/song")
+    fun postSongVote(@RequestBody songVotingDto: SongVotingDto, @CookieValue("votingId") votingKey: String){
+        votingService.castSongVote(votingKey, songVotingDto)
     }
 
 }
