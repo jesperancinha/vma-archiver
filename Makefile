@@ -51,3 +51,4 @@ stop:
 install:
 	/usr/bin/python3 -m pip install --upgrade pip
 	pip3 install requests
+	pip3 install locust

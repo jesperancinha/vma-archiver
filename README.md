@@ -74,6 +74,12 @@ SpringFlux, Kotlin Co-Routines and a nice architecture.
 
 ---
 
+## Install essential libraries and commands:
+
+```shell
+make install
+```
+
 ## How to start
 
 ```shell
