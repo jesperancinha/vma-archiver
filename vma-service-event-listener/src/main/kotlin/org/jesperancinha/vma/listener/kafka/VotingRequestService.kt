@@ -8,6 +8,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG
 import org.apache.kafka.common.requests.VoteRequest
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.listener.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -38,8 +39,8 @@ class VotingRequestService(
         "schema.registry.url" to votingKafkaConfigProperties.schemaRegistryUrl,
     )
 
-    private val receiverOptions: ReceiverOptions<String, VoteRequest> = ReceiverOptions
-        .create<String, VoteRequest>(consumerProps)
+    private val receiverOptions: ReceiverOptions<String, ArtistVotingDto> = ReceiverOptions
+        .create<String, ArtistVotingDto>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
         .subscription(Collections.singleton(votingKafkaConfigProperties.createVoteRequestTopic))
@@ -49,7 +50,6 @@ class VotingRequestService(
         return KafkaReceiver.create(receiverOptions)
             .receive()
             .concatMap { record ->
-                runBlocking {
                     createUserRequestHandler.handleCreateVoteRequest(record.value())
                         .then(record.receiverOffset().commit())
                         .doOnError {
@@ -58,7 +58,7 @@ class VotingRequestService(
                                 it
                             )
                         }
-                }
+
             }
             .subscribe()
     }

@@ -17,6 +17,16 @@
             <artifactId>vma-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.avro/avro -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.11.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
         </dependency>
@@ -136,7 +146,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>org.jesperancinha.vma.vmaservice.VmaServiceApplicationKt</mainClass>
+                    <mainClass>org.jesperancinha.vma.VmaServiceApplicationKt</mainClass>
                 </configuration>
                 <executions>
                     <execution>

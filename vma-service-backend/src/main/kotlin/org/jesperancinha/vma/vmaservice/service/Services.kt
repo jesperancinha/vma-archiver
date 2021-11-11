@@ -125,12 +125,10 @@ class CategoryService(
 class VotingService(
     private val votingRequestPublisher: VotingRequestPublisher
 ) {
-    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) {
-        votingRequestPublisher.publishArtistVote(key = voterKey, artistVotingDto = artistVotingDto)
-    }
-    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) {
-        votingRequestPublisher.publishSongVote(key = voterKey, songVotingDto = songVotingDto)
-    }
+    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) = votingRequestPublisher.publishArtistVote(key = voterKey, artistVotingDto = artistVotingDto)
+
+    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) = votingRequestPublisher.publishSongVote(key = voterKey, songVotingDto = songVotingDto)
+
 }
 
 fun <T> List<T>.random5(capacity: Int): List<T> =

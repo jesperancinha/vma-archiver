@@ -23,7 +23,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaConfigProperties.broker,
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to kafkaConfigProperties.serializer,
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to kafkaConfigProperties.serializer,
-        "schema.registry.url" to kafkaConfigProperties.schemaRegistryUrl
+            "schema.registry.url" to kafkaConfigProperties.schemaRegistryUrl
     )
 
     private val voteArtistRequestSenderOptions: SenderOptions<String, ArtistVotingDto> = SenderOptions.create(producerProps)
@@ -41,7 +41,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
 
     fun publishArtistVote(key: String, artistVotingDto: ArtistVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, ArtistVotingDto> =
-            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, artistVotingDto)
+            ProducerRecord(kafkaConfigProperties.createVoteRequestTopic, key, artistVotingDto)
 
         return voteArtistRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))
@@ -51,7 +51,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
 
     fun publishSongVote(key: String, songVotingDto: SongVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, SongVotingDto> =
-            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, songVotingDto)
+            ProducerRecord(kafkaConfigProperties.createVoteRequestTopic, key, songVotingDto)
 
         return voteSongRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))

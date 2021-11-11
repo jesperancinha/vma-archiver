@@ -1,15 +1,16 @@
 package org.jesperancinha.vma.listener.kafka
 
-import org.apache.kafka.common.requests.VoteRequest
+import kotlinx.coroutines.runBlocking
 import org.jesperancinha.vma.common.domain.kafka.VoteCategoryArtist
 import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
+import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.common.dto.ArtistVotingEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
-import java.util.UUID
+import java.util.*
 
 @Component
 class VotingRequestHandler(
@@ -20,10 +21,10 @@ class VotingRequestHandler(
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
-    suspend fun handleCreateVoteRequest(request: VoteRequest): Mono<Unit> {
+    fun handleCreateVoteRequest(request: ArtistVotingDto): Mono<Unit> {
         val votingId: String = createVotingId()
         val vote = VoteCategoryArtist()
-        return votingCategoryArtistRepository.save(vote)
+        return runBlocking { votingCategoryArtistRepository.save(vote) }
             .let {
                 kafkaPublisher.publishVotingEvent(
                     VotingRequestPublisher.generateMessageKey(),

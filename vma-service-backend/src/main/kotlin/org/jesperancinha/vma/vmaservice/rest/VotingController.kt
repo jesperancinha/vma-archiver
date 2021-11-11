@@ -14,15 +14,9 @@ import org.springframework.web.bind.annotation.RestController
 class VotingController(
     val votingService: VotingService
 ) {
-
     @PostMapping("/artist")
-    fun postArtistVote(@RequestBody artistVotingDto: ArtistVotingDto, @CookieValue("votingId") votingKey: String){
-        votingService.castArtistVote(votingKey, artistVotingDto)
-    }
+    fun postArtistVote(@RequestBody artistVotingDto: ArtistVotingDto, @CookieValue("votingId") votingKey: String) = votingService.castArtistVote(votingKey, artistVotingDto)
 
     @PostMapping("/song")
-    fun postSongVote(@RequestBody songVotingDto: SongVotingDto, @CookieValue("votingId") votingKey: String){
-        votingService.castSongVote(votingKey, songVotingDto)
-    }
-
+    fun postSongVote(@RequestBody songVotingDto: SongVotingDto, @CookieValue("votingId") votingKey: String) = votingService.castSongVote(votingKey, songVotingDto)
 }
