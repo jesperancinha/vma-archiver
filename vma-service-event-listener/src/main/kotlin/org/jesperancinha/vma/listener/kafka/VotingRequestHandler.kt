@@ -46,7 +46,6 @@ class VotingRequestHandler(
                   }
               }
           }
-
         }
 
         return mono { }.doOnError { logger.error("Exception while trying to create a new user", it) }
