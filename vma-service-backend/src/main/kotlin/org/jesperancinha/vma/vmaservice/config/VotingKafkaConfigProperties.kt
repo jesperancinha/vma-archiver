@@ -8,7 +8,8 @@ import org.springframework.boot.context.properties.ConstructorBinding
 data class VotingKafkaConfigProperties(
     var broker: String = "",
     var schemaRegistryUrl: String = "",
-    var createVoteRequestTopic: String = "",
+    var createArtisVoteRequestTopic: String = "",
+    var createSongVoteRequestTopic: String = "",
     var voteCreatedEventTopic: String = "",
     var serializer: String = "",
     var deserializer: String = ""

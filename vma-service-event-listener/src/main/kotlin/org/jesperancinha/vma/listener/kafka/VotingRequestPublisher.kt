@@ -18,42 +18,6 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
-    private val producerProps: Map<String, String> = mapOf(
-        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaConfigProperties.broker,
-        ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to kafkaConfigProperties.serializer,
-        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to kafkaConfigProperties.serializer,
-        "schema.registry.url" to kafkaConfigProperties.schemaRegistryUrl
-    )
-
-    private val voteRequestSenderOptions: SenderOptions<String, VoteRequest> = SenderOptions.create(producerProps)
-    private val voteRequestRequestKafkaSender: KafkaSender<String, VoteRequest> =
-        KafkaSender.create(voteRequestSenderOptions)
-
-    private val voteCreatedEventSenderOptions: SenderOptions<String, ArtistVotingEvent> =
-        SenderOptions.create(producerProps)
-    private val voteCreatedEventKafkaSender: KafkaSender<String, ArtistVotingEvent> =
-        KafkaSender.create(voteCreatedEventSenderOptions)
-
-    fun publishVote(key: String, value: VoteRequest): Mono<Void> {
-        val producerRecord: ProducerRecord<String, VoteRequest> =
-            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
-
-        return voteRequestRequestKafkaSender.createOutbound()
-            .send(Mono.just(producerRecord))
-            .then()
-            .doOnSuccess { logger.info("Vote Created with id $key") }
-    }
-
-    fun publishVotingEvent(key: String, value: ArtistVotingEvent): Mono<Void> {
-        val producerRecord: ProducerRecord<String, ArtistVotingEvent> =
-            ProducerRecord(kafkaConfigProperties.voteCreatedEventTopic, key, value)
-
-        return voteCreatedEventKafkaSender.createOutbound()
-            .send(Mono.just(producerRecord))
-            .then()
-            .doOnSuccess { logger.info("Registered Vote with id $key") }
-    }
-
     companion object {
         fun generateMessageKey(): String {
             return UUID.randomUUID().toString()

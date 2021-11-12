@@ -41,7 +41,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
 
     fun publishArtistVote(key: String, artistVotingDto: ArtistVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, ArtistVotingDto> =
-            ProducerRecord(kafkaConfigProperties.createVoteRequestTopic, key, artistVotingDto)
+            ProducerRecord(kafkaConfigProperties.createArtisVoteRequestTopic, key, artistVotingDto)
 
         return voteArtistRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))
@@ -51,7 +51,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
 
     fun publishSongVote(key: String, songVotingDto: SongVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, SongVotingDto> =
-            ProducerRecord(kafkaConfigProperties.createVoteRequestTopic, key, songVotingDto)
+            ProducerRecord(kafkaConfigProperties.createSongVoteRequestTopic, key, songVotingDto)
 
         return voteSongRequestRequestKafkaSender.createOutbound()
             .send(Mono.just(producerRecord))

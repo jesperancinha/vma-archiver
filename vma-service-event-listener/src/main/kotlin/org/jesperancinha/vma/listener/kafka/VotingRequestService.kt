@@ -37,15 +37,21 @@ class VotingRequestService(
         "schema.registry.url" to votingKafkaConfigProperties.schemaRegistryUrl,
     )
 
-    private val receiverOptions: ReceiverOptions<String, Record> = ReceiverOptions
+    private val receiverArtistOptions: ReceiverOptions<String, Record> = ReceiverOptions
         .create<String, Record>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
-        .subscription(Collections.singleton(votingKafkaConfigProperties.createVoteRequestTopic))
+        .subscription(Collections.singleton(votingKafkaConfigProperties.createArtistVoteRequestTopic))
+
+    private val receiverSongOptions: ReceiverOptions<String, Record> = ReceiverOptions
+        .create<String, Record>(consumerProps)
+        .commitInterval(Duration.ZERO)
+        .commitBatchSize(0)
+        .subscription(Collections.singleton(votingKafkaConfigProperties.createArtistVoteRequestTopic))
 
     @Bean
-    private fun votingRequestListener(): Disposable {
-        return KafkaReceiver.create(receiverOptions)
+    private fun votingArtistRequestListener(): Disposable {
+        return KafkaReceiver.create(receiverArtistOptions)
             .receive()
             .concatMap { record ->
                 createUserRequestHandler
