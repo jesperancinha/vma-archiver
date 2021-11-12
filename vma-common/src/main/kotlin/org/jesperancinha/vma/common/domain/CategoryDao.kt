@@ -70,12 +70,24 @@ interface CategoryRepository : CoroutineCrudRepository<Category, String>
 interface CategoryArtistRepository : CoroutineCrudRepository<CategoryArtist, String> {
     @Query("Select * from category_artist ca where ca.id_c=:idc")
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategoryArtist>
+
+    @Query("Select * from category_artist ca where ca.id_c=:idc and ca.id_a=:ida")
+    fun findByCategoryIdAndArtistId(
+        @Param("idc") categoryId: String,
+        @Param("ida") artistId: String
+    ): CategoryArtist
 }
 
 @Repository
 interface CategorySongRepository : CoroutineCrudRepository<CategorySong, String> {
     @Query("Select * from category_song cg where cg.id_c=:idc")
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategorySong>
+
+    @Query("Select * from category_artist ca where ca.id_c=:idc and ca.id_a=:ids")
+    fun findByCategoryIdAndSongId(
+        @Param("idc") categoryId: String,
+        @Param("ida") songId: String
+    ): CategorySong
 }
 
 

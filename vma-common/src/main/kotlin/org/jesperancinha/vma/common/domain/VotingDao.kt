@@ -16,9 +16,9 @@ data class VoteCategoryArtist(
     @field: org.springframework.data.annotation.Id
     @field: GeneratedValue(strategy = GenerationType.IDENTITY)
     val idVCS: String = UUID.randomUUID().toString(),
-    val userId: String? = null,
-    val idC: String? = null,
-    val idA: String? = null,
+    val userId: String,
+    val idC: String,
+    val idA: String,
     val created: Long? = null,
     val updates: Int = -1
 ) : Persistable<String> {
@@ -35,9 +35,9 @@ data class VoteCategorySong(
     @field: org.springframework.data.annotation.Id
     @field: GeneratedValue(strategy = GenerationType.IDENTITY)
     val idVCS: String = UUID.randomUUID().toString(),
-    val userId: String? = null,
-    val idC: String? = null,
-    val idS: String? = null,
+    val userId: String,
+    val idC: String,
+    val idS: String,
     val created: Long? = null,
     val updates: Int = -1
 ) : Persistable<String> {

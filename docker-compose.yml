@@ -254,6 +254,44 @@ services:
       vma_net:
         ipv4_address: ${VMA_SCHEMA_REGISTRY}
 
+
+  jofisaes_vma_listener_img_1:
+    hostname: jofisaes_vma_listener_img_1
+    container_name: jofisaes_vma_listener_img_1
+    build:
+      context: vma-service-event-listener/.
+    environment:
+      - VMA_PORT=8080
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_BACKEND_1}
+
+
+  jofisaes_vma_listener_img_2:
+    hostname: jofisaes_vma_listener_img_2
+    container_name: jofisaes_vma_listener_img_2
+    build:
+      context: vma-service-event-listener/.
+    environment:
+      - VMA_PORT=8080
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_BACKEND_1}
+
 networks:
   vma_net:
     driver: bridge
