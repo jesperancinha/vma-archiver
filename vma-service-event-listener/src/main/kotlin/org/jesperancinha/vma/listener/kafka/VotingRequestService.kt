@@ -7,7 +7,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig.ENABLE_AUTO_COMMIT_CONFI
 import org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG
 import org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG
-import org.jesperancinha.vma.listener.config.VotingKafkaConfigProperties
+import org.jesperancinha.vma.common.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
@@ -16,13 +16,12 @@ import reactor.core.Disposable
 import reactor.kafka.receiver.KafkaReceiver
 import reactor.kafka.receiver.ReceiverOptions
 import java.time.Duration
-import java.util.Collections
 
 
 @Component
 class VotingRequestService(
     votingKafkaConfigProperties: VotingKafkaConfigProperties,
-    private val createUserRequestHandler: VotingRequestHandler
+    private val createVoteRequestHandler: VotingRequestHandler
 ) {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
@@ -37,24 +36,23 @@ class VotingRequestService(
         "schema.registry.url" to votingKafkaConfigProperties.schemaRegistryUrl,
     )
 
-    private val receiverArtistOptions: ReceiverOptions<String, Record> = ReceiverOptions
+    private val receiverOptions: ReceiverOptions<String, Record> = ReceiverOptions
         .create<String, Record>(consumerProps)
         .commitInterval(Duration.ZERO)
         .commitBatchSize(0)
-        .subscription(Collections.singleton(votingKafkaConfigProperties.createArtistVoteRequestTopic))
-
-    private val receiverSongOptions: ReceiverOptions<String, Record> = ReceiverOptions
-        .create<String, Record>(consumerProps)
-        .commitInterval(Duration.ZERO)
-        .commitBatchSize(0)
-        .subscription(Collections.singleton(votingKafkaConfigProperties.createArtistVoteRequestTopic))
+        .subscription(
+            listOf(
+                votingKafkaConfigProperties.createArtistVoteRequestTopic,
+                votingKafkaConfigProperties.createSongVoteRequestTopic
+            )
+        )
 
     @Bean
-    private fun votingArtistRequestListener(): Disposable {
-        return KafkaReceiver.create(receiverArtistOptions)
+    private fun votingRequestListener(): Disposable {
+        return KafkaReceiver.create(receiverOptions)
             .receive()
             .concatMap { record ->
-                createUserRequestHandler
+                createVoteRequestHandler
                     .handleCreateVoteRequest(record.value())
                     .then(record.receiverOffset().commit())
                     .doOnError {

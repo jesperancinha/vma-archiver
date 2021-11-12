@@ -6,11 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-class VmaServiceEventListenerLauncher {
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SpringApplication.run(VmaServiceEventListenerLauncher::class.java, *args)
-        }
-    }
+class VmaServiceEventListenerLauncher
+
+fun main(args: Array<String>) {
+    SpringApplication.run(VmaServiceEventListenerLauncher::class.java, *args)
 }

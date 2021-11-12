@@ -7,3 +7,5 @@ get-songs:
 create-vmas: post-category post-songs get-songs
 send-votes:
 	python3 send_votes_first_candidates.py
+send-song-votes:
+	python3 send_votes_first_candidates_song_only.py

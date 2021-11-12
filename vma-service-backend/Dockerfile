@@ -6,8 +6,6 @@ ENV LANG=C.UTF-8
 
 COPY entrypoint.sh /root
 
-COPY target/vma-service-event-listener-*.jar /root/vma-service-event-listener.jar
+COPY target/vma-service-backend-*.jar /root/vma-service-backend.jar
 
 ENTRYPOINT ["/root/entrypoint.sh"]
-
-EXPOSE 8085

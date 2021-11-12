@@ -38,7 +38,12 @@ class VotingRequestHandler(
                         )
                         votingCategoryArtistRepository.save(vote)
                         val category = categoryArtistRepository.findByCategoryIdAndArtistId(vote.idC, vote.idA)
-                        categoryArtistRepository.save(category.copy(votes = category.votes + 1))
+                        categoryArtistRepository.save(
+                            category.copy(
+                                votes = category.votes + 1,
+                                updates = category.updates + 1
+                            )
+                        )
                     }
                     else -> {
                         val vote = VoteCategorySong(
@@ -48,7 +53,12 @@ class VotingRequestHandler(
                         )
                         votingCategorySongRepository.save(vote)
                         val category = categorySongRepository.findByCategoryIdAndSongId(vote.idC, vote.idS)
-                        categorySongRepository.save(category.copy(votes = category.votes + 1))
+                        categorySongRepository.save(
+                            category.copy(
+                                votes = category.votes + 1,
+                                updates = category.updates + 1
+                            )
+                        )
 
                     }
                 }

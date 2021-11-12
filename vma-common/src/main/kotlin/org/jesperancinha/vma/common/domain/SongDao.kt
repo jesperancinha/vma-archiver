@@ -1,18 +1,15 @@
 package org.jesperancinha.vma.common.domain
 
+import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import javax.persistence.Entity
-import javax.persistence.Id
 
-@Entity
 @Table
 data class Song(
     @field: Id
-    @field: org.springframework.data.annotation.Id
     val idG: String = UUID.randomUUID().toString(),
     val name: String,
     val type: String,

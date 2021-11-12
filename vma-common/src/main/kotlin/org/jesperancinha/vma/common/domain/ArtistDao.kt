@@ -13,9 +13,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Table
-@Entity
 data class Band(
-    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
+    @field: org.springframework.data.annotation.Id @field: GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: String = UUID.randomUUID().toString(),
     val name: String
 ) {

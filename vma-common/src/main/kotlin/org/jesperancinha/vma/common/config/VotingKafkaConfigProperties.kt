@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.vmaservice.config
+package org.jesperancinha.vma.common.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 data class VotingKafkaConfigProperties(
     var broker: String = "",
     var schemaRegistryUrl: String = "",
-    var createArtisVoteRequestTopic: String = "",
+    var createArtistVoteRequestTopic: String = "",
     var createSongVoteRequestTopic: String = "",
     var voteCreatedEventTopic: String = "",
     var serializer: String = "",

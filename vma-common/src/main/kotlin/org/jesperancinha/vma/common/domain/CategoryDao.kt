@@ -14,9 +14,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Table
-@Entity
 data class Category(
-    @field: Id
     @field: org.springframework.data.annotation.Id
     val idC: String = UUID.randomUUID().toString(),
     val name: String,
@@ -29,10 +27,8 @@ data class Category(
     override fun getId(): String = idC
 }
 
-@Entity
 @Table
 data class CategoryArtist(
-    @field: Id
     @field: org.springframework.data.annotation.Id
     val idCA: String = UUID.randomUUID().toString(),
     val idC: String? = null,
@@ -46,10 +42,8 @@ data class CategoryArtist(
     override fun isNew(): Boolean = updates < 0
 }
 
-@Entity
 @Table
 data class CategorySong(
-    @field: Id
     @field: org.springframework.data.annotation.Id
     val idCS: String = UUID.randomUUID().toString(),
     val idC: String? = null,
@@ -72,7 +66,7 @@ interface CategoryArtistRepository : CoroutineCrudRepository<CategoryArtist, Str
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategoryArtist>
 
     @Query("Select * from category_artist ca where ca.id_c=:idc and ca.id_a=:ida")
-    fun findByCategoryIdAndArtistId(
+    suspend fun findByCategoryIdAndArtistId(
         @Param("idc") categoryId: String,
         @Param("ida") artistId: String
     ): CategoryArtist
@@ -83,10 +77,10 @@ interface CategorySongRepository : CoroutineCrudRepository<CategorySong, String>
     @Query("Select * from category_song cg where cg.id_c=:idc")
     fun findByCategoryId(@Param("idc") categoryId: String): Flow<CategorySong>
 
-    @Query("Select * from category_artist ca where ca.id_c=:idc and ca.id_a=:ids")
-    fun findByCategoryIdAndSongId(
+    @Query("Select * from category_song ca where ca.id_c=:idc and ca.id_s=:ids")
+    suspend fun findByCategoryIdAndSongId(
         @Param("idc") categoryId: String,
-        @Param("ida") songId: String
+        @Param("ids") songId: String
     ): CategorySong
 }
 
