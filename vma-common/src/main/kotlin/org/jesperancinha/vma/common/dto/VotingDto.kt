@@ -55,15 +55,3 @@ data class SongVotingDto(
         else -> ""
     }
 }
-
-data class ArtistVotingEvent(
-    val userId: String? = null,
-    val idC: String? = null,
-    val idA: String? = null
-)
-
-data class SongVotingEvent(
-    val userId: String? = null,
-    val idC: String? = null,
-    val idS: String? = null
-)

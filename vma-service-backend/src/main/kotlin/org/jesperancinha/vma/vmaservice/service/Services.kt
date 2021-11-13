@@ -14,6 +14,8 @@ import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
+import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
+import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto
@@ -120,19 +122,31 @@ class CategoryService(
 
 @Service
 class VotingService(
-    private val votingRequestPublisher: VotingRequestPublisher
+    private val votingRequestPublisher: VotingRequestPublisher,
+    private val categoryArtistRepository: CategoryArtistRepository,
+    private val categorySongRepository: CategorySongRepository,
+    private val votingCategoryArtistRepository: VotingCategoryArtistRepository,
+    private val votingCategorySongRepository: VotingCategorySongRepository
 ) {
-    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) =
+    suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) =
         votingRequestPublisher.publishArtistVote(
             key = voterKey,
             artistVotingDto = artistVotingDto.copy(userId = voterKey)
         )
 
-    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) =
+    suspend fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) =
         votingRequestPublisher.publishSongVote(
             key = voterKey,
             songVotingDto = songVotingDto.copy(userId = voterKey)
         )
+
+    fun countVotes() {
+        categoryArtistRepository.findAll().map { artistCategory ->
+            votingCategoryArtistRepository.findCountByCategoryId(artistCategory.id)
+            votingCategorySongRepository.findCountByCategoryId(artistCategory.id)
+        }
+
+    }
 
 }
 
