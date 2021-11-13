@@ -36,23 +36,25 @@ CREATE TABLE if not exists Song
 
 CREATE TABLE if not exists category_artist
 (
-    id_ca   VARCHAR(255) PRIMARY KEY,
-    id_c    VARCHAR(255),
-    id_a    VARCHAR(255),
-    version BIGINT,
-    votes   INTEGER,
-    updates INTEGER
+    id_ca      VARCHAR(255) PRIMARY KEY,
+    id_c       VARCHAR(255),
+    id_a       VARCHAR(255),
+    version    BIGINT,
+    votes      BIGINT,
+    vote_count BIGINT,
+    updates    INTEGER
 
 );
 
 CREATE TABLE if not exists category_song
 (
-    id_cs   VARCHAR(255) PRIMARY KEY,
-    id_c    VARCHAR(255),
-    id_s    VARCHAR(255),
-    version BIGINT,
-    votes   INTEGER,
-    updates INTEGER
+    id_cs      VARCHAR(255) PRIMARY KEY,
+    id_c       VARCHAR(255),
+    id_s       VARCHAR(255),
+    version    BIGINT,
+    votes      BIGINT,
+    vote_count BIGINT,
+    updates    INTEGER
 );
 
 CREATE TABLE if not exists vote_category_artist

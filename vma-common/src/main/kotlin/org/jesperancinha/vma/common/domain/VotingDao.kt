@@ -5,6 +5,7 @@ import org.springframework.data.domain.Persistable
 import org.springframework.data.r2dbc.repository.Query
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
+import org.springframework.data.repository.query.Param
 import java.util.UUID
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -25,8 +26,8 @@ data class VoteCategoryArtist(
 }
 
 interface VotingCategoryArtistRepository : CoroutineCrudRepository<VoteCategoryArtist, String> {
-    @Query("Select count(id_c) from voting_category_artist where id_c=:id group by id_c")
-    fun findCountByCategoryId(id: String): Long
+    @Query("Select count(id_c) from vote_category_artist where id_a=:id group by id_a")
+    suspend fun findCountByCategoryId(@Param("id") id: String?): Number?
 }
 
 @Table
@@ -44,8 +45,8 @@ data class VoteCategorySong(
     override fun getId(): String = idVCS
 }
 
-interface VotingCategorySongRepository : CoroutineCrudRepository<VoteCategorySong, String>{
-    @Query("Select count(id_c) from voting_category_song where id_c=:id group by id_c")
-    fun findCountByCategoryId(id: String): Long
+interface VotingCategorySongRepository : CoroutineCrudRepository<VoteCategorySong, String> {
+    @Query("Select count(id_c) from vote_category_song where id_s=:id group by id_s")
+    suspend fun findCountByCategoryId(@Param("id") id: String?): Number?
 }
 

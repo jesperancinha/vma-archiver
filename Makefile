@@ -42,6 +42,11 @@ docker-psql-cluster:
 	docker-compose up -d --build jofisaes_vma_postgres_2 jofisaes_vma_postgres_3
 docker-no-app: docker-psql-cluster
 	docker-compose up -d --build jofisaes_schemaregistry jofisaes_vma_zookeeper jofisaes_vma_broker
+docker-stop-apps:
+	docker stop jofisaes_vma_nginx_lb
+	docker stop jofisaes_vma_backend_img_1
+	docker stop jofisaes_vma_backend_img_2
+	docker stop jofisaes_vma_backend_img_3
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm

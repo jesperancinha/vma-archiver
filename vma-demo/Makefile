@@ -9,3 +9,6 @@ send-votes:
 	python3 send_votes_first_candidates.py
 send-song-votes:
 	python3 send_votes_first_candidates_song_only.py
+count-votes:
+	curl -X POST http://localhost:8080/api/vma/voting/count
+create-vote-count: create-vmas send-votes count-votes

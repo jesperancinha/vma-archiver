@@ -15,11 +15,15 @@ class VotingController(
     val votingService: VotingService
 ) {
     @PostMapping("/artist")
-    suspend fun postArtistVote(@RequestBody artistVotingDto: ArtistVotingDto, @CookieValue("votingId") votingKey: String) = votingService.castArtistVote(votingKey, artistVotingDto)
+    suspend fun postArtistVote(
+        @RequestBody artistVotingDto: ArtistVotingDto,
+        @CookieValue("votingId") votingKey: String
+    ) = votingService.castArtistVote(votingKey, artistVotingDto)
 
     @PostMapping("/song")
-   suspend fun postSongVote(@RequestBody songVotingDto: SongVotingDto, @CookieValue("votingId") votingKey: String) = votingService.castSongVote(votingKey, songVotingDto)
+    suspend fun postSongVote(@RequestBody songVotingDto: SongVotingDto, @CookieValue("votingId") votingKey: String) =
+        votingService.castSongVote(votingKey, songVotingDto)
 
     @PostMapping("/count")
-  suspend  fun postStartRecount() = votingService.countVotes()
+    suspend fun postStartRecount() = votingService.countVotes()
 }

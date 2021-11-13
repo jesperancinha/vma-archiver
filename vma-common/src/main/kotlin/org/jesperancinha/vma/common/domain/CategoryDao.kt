@@ -34,8 +34,8 @@ data class CategoryArtist(
     val idC: String? = null,
     val idA: String? = null,
     val updates: Int = -1,
-    val votes: Int = 0,
-    val voteCount: Int =0,
+    val votes: Long = 0,
+    val voteCount: Long =0,
     @field: Version
     val version: Long? = null,
 ) : Persistable<String> {
@@ -50,8 +50,8 @@ data class CategorySong(
     val idC: String? = null,
     val idS: String? = null,
     val updates: Int = -1,
-    val votes: Int = 0,
-    val voteCount: Int =0,
+    val votes: Long = 0,
+    val voteCount: Long =0,
     @field: Version
     val version: Long? = null,
 ) : Persistable<String> {

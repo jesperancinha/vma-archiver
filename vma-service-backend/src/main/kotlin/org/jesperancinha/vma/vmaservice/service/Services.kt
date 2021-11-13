@@ -1,6 +1,7 @@
 package org.jesperancinha.vma.vmaservice.service
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
@@ -41,8 +42,6 @@ class BandService(
     fun fetchAllBands(): Flow<Band> = bandRepository.findAll()
 
     suspend fun getBandById(id: String) = bandRepository.findById(id)
-
-    suspend fun createArtist(): Flow<Band> = bandRepository.findAll()
 }
 
 @Service
@@ -140,12 +139,25 @@ class VotingService(
             songVotingDto = songVotingDto.copy(userId = voterKey)
         )
 
-    fun countVotes() {
-        categoryArtistRepository.findAll().map { artistCategory ->
-            votingCategoryArtistRepository.findCountByCategoryId(artistCategory.id)
-            votingCategorySongRepository.findCountByCategoryId(artistCategory.id)
+    suspend fun countVotes() {
+        categoryArtistRepository.findAll().collect { artistCategory ->
+            val countByCategoryId = votingCategoryArtistRepository.findCountByCategoryId(artistCategory.idA)
+            categoryArtistRepository.save(
+                artistCategory.copy(
+                    voteCount = countByCategoryId?.toLong() ?: 0,
+                    updates = artistCategory.updates + 1
+                )
+            )
         }
-
+        categorySongRepository.findAll().collect { songCategory ->
+            val countByCategoryId = votingCategorySongRepository.findCountByCategoryId(songCategory.idS)
+            categorySongRepository.save(
+                songCategory.copy(
+                    voteCount = countByCategoryId?.toLong() ?: 0,
+                    updates = songCategory.updates + 1
+                )
+            )
+        }
     }
 
 }

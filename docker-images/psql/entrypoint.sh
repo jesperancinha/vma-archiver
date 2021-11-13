@@ -9,6 +9,7 @@ sed -i 's/${POSTGRES_THIRD_IP}/'"$POSTGRES_THIRD_IP"'/g' /var/lib/postgresql/pat
 sed -i 's/${POSTGRES_NUMBER}/'"$POSTGRES_NUMBER"'/g' /var/lib/postgresql/patroni.yml
 
 sleep "${POSTGRES_NUMBER}"
+sleep "${POSTGRES_NUMBER}"
 /root/update-schema.sh &
 su - postgres -c "/var/lib/postgresql/command.sh"
 
