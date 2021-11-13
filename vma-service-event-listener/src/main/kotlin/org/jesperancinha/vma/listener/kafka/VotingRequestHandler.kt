@@ -7,10 +7,10 @@ import kotlinx.coroutines.reactor.mono
 import org.apache.avro.generic.GenericData.Record
 import org.jesperancinha.vma.common.domain.CategoryArtistRepository
 import org.jesperancinha.vma.common.domain.CategorySongRepository
-import org.jesperancinha.vma.common.domain.kafka.VoteCategoryArtist
-import org.jesperancinha.vma.common.domain.kafka.VoteCategorySong
-import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
-import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
+import org.jesperancinha.vma.common.domain.VoteCategoryArtist
+import org.jesperancinha.vma.common.domain.VoteCategorySong
+import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
+import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component

@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.common.domain.kafka
+package org.jesperancinha.vma.common.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Persistable
@@ -14,7 +14,7 @@ import javax.persistence.GenerationType
 data class VoteCategoryArtist(
     @field: Id
     @field: GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idVCS: String = UUID.randomUUID().toString(),
+    val idVCA: String = UUID.randomUUID().toString(),
     val userId: String,
     val idC: String,
     val idA: String,
@@ -22,11 +22,11 @@ data class VoteCategoryArtist(
     val updates: Int = -1
 ) : Persistable<String> {
     override fun isNew(): Boolean = updates < 0
-    override fun getId(): String = idVCS
+    override fun getId(): String = idVCA
 }
 
 interface VotingCategoryArtistRepository : CoroutineCrudRepository<VoteCategoryArtist, String> {
-    @Query("Select count(id_c) from vote_category_artist where id_a=:id group by id_a")
+    @Query("Select count(id_vca) from vote_category_artist where id_a=:id group by id_a")
     suspend fun findCountByCategoryId(@Param("id") id: String?): Number?
 }
 
@@ -46,7 +46,7 @@ data class VoteCategorySong(
 }
 
 interface VotingCategorySongRepository : CoroutineCrudRepository<VoteCategorySong, String> {
-    @Query("Select count(id_c) from vote_category_song where id_s=:id group by id_s")
+    @Query("Select count(id_vcs) from vote_category_song where id_s=:id group by id_s")
     suspend fun findCountByCategoryId(@Param("id") id: String?): Number?
 }
 

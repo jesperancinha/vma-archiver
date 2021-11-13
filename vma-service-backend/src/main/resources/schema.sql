@@ -59,7 +59,7 @@ CREATE TABLE if not exists category_song
 
 CREATE TABLE if not exists vote_category_artist
 (
-    id_vcs  VARCHAR(255) PRIMARY KEY,
+    id_vca  VARCHAR(255) PRIMARY KEY,
     user_id VARCHAR(255),
     id_c    VARCHAR(255),
     id_a    VARCHAR(255),

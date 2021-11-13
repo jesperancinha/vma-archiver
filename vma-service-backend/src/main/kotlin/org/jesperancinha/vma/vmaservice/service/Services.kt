@@ -15,8 +15,8 @@ import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
-import org.jesperancinha.vma.common.domain.kafka.VotingCategoryArtistRepository
-import org.jesperancinha.vma.common.domain.kafka.VotingCategorySongRepository
+import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
+import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto

@@ -2,6 +2,7 @@ package org.jesperancinha.vma.common.domain
 
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.vma.common.dto.CategoryType
+import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.data.domain.Persistable
 import org.springframework.data.r2dbc.repository.Query
@@ -10,12 +11,10 @@ import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import javax.persistence.Entity
-import javax.persistence.Id
 
 @Table
 data class Category(
-    @field: org.springframework.data.annotation.Id
+    @field: Id
     val idC: String = UUID.randomUUID().toString(),
     val name: String,
     val capacity: Int,
@@ -29,13 +28,13 @@ data class Category(
 
 @Table
 data class CategoryArtist(
-    @field: org.springframework.data.annotation.Id
+    @field: Id
     val idCA: String = UUID.randomUUID().toString(),
     val idC: String? = null,
     val idA: String? = null,
     val updates: Int = -1,
     val votes: Long = 0,
-    val voteCount: Long =0,
+    val voteCount: Long = 0,
     @field: Version
     val version: Long? = null,
 ) : Persistable<String> {
@@ -45,13 +44,13 @@ data class CategoryArtist(
 
 @Table
 data class CategorySong(
-    @field: org.springframework.data.annotation.Id
+    @field: Id
     val idCS: String = UUID.randomUUID().toString(),
     val idC: String? = null,
     val idS: String? = null,
     val updates: Int = -1,
     val votes: Long = 0,
-    val voteCount: Long =0,
+    val voteCount: Long = 0,
     @field: Version
     val version: Long? = null,
 ) : Persistable<String> {
