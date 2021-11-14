@@ -33,3 +33,6 @@ build
 target
 bin
 .DS_Store
+
+# Angular
+**/.angular/cache

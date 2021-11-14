@@ -8,6 +8,26 @@ ng generate component vote-following
 ng generate component vote-result
 ```
 
+```shell
+npm install -g npm-check-updates
+ncu -u
+npm update
+```
+
+```shell
+npm install @stomp/stompjs --save
+npm install sockjs-client --save
+npm install tslib --save
+npm install @types/sockjs-client --save
+npm install @angular/material --save
+npm install rxjs --save
+```
+
+```shell
+npm install -g n
+sudo n latest
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
 ## Development server

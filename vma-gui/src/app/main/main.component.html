@@ -1,1 +1,15 @@
-<p>main works!</p>
+<mat-card>
+  <mat-card *ngFor="let category of categories">
+    <mat-card-title>{{category.category}}</mat-card-title>
+    <mat-card>
+      <mat-selection-list *ngFor="let artist of category.artists">
+        <mat-list-option>{{artist.name}}</mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+    <mat-card>
+      <mat-selection-list *ngFor="let song of category.songs">
+        <mat-list-option>{{song.name}}</mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+  </mat-card>
+</mat-card>

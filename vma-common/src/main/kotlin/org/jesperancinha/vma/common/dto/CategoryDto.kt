@@ -16,7 +16,6 @@ data class CategoryDto(
     val capacity: Int,
     val artists: List<ArtistDto> = emptyList(),
     val songs: List<SongDto> = emptyList()
-
 )
 
 fun CategoryDto.toData(): Category = Category(
