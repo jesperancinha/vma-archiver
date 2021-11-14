@@ -162,7 +162,7 @@
     "symbol-observable" "4.0.0"
     "uuid" "8.3.2"
 
-"@angular/common@^13.0.0 || ^14.0.0-0", "@angular/common@~13.0.1", "@angular/common@13.0.1":
+"@angular/common@^13.0.0", "@angular/common@^13.0.0 || ^14.0.0-0", "@angular/common@~13.0.1", "@angular/common@13.0.1":
   "integrity" "sha512-uFSYJ3Z+3ZotFZIpMlECOipOD9M6h7Y2743AMPBfi2cuLO5Ap9iqbHzInvZwO2ysGv/ZNn3lUXBXLGTkbM5HCQ=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-13.0.1.tgz"
   "version" "13.0.1"
@@ -193,7 +193,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^13.0.0 || ^14.0.0-0", "@angular/core@~13.0.1", "@angular/core@13.0.1":
+"@angular/core@^13.0.0", "@angular/core@^13.0.0 || ^14.0.0-0", "@angular/core@~13.0.1", "@angular/core@13.0.1":
   "integrity" "sha512-5VAeafT+ro2PHGEjmeg6mJhQO+R7w16c1i8EGa7iN9vBn8uYwJ9aF+/ycZruq/MKoUhQhZlwk0yoBBqqq8A7oA=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-13.0.1.tgz"
   "version" "13.0.1"
@@ -4135,6 +4135,13 @@
   "integrity" "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw=="
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
+
+"ngx-cookie-service@^13.0.0":
+  "integrity" "sha512-UGYFZ8izWqVTTq5M6j7dR59uYQTmKUn9ReI8O7PhzSSUrkvN/GNNpfq/P6QanTcpQeqdlgIq88EyzMM7dPRepQ=="
+  "resolved" "https://registry.npmjs.org/ngx-cookie-service/-/ngx-cookie-service-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "nice-napi@^1.0.2":
   "integrity" "sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA=="

@@ -1,7 +1,7 @@
 <mat-card>
+  <mat-card-title>{{votingId}}</mat-card-title>
   <mat-card *ngFor="let category of categories">
     <mat-card-title>{{category.category}}</mat-card-title>
-
     <mat-radio-group *ngIf="category.artists.length>0"
                      aria-labelledby="vma-radio-group-label"
                      class="vma-radio-group" [(ngModel)]="category.selectedArtist">

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {handleError} from './error.handler';
-import {catchError, retry} from "rxjs";
+import {catchError, Observable, retry} from "rxjs";
 
-const localUrl = '/api/fptb/blockage/moveToCity/';
+const localUrlRegistry = '/api/vma/voting/open';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,10 @@ export class VmaService {
   constructor(private http: HttpClient) {
   }
 
-  vote(id: number) {
-    this.http.get(localUrl + id).pipe(
-      retry(3), catchError(handleError())).subscribe(() => {
-    });
+  generateUserVotingId(): Observable<string[]> {
+    return this.http.get<string[]>(localUrlRegistry).pipe(
+      retry(3), catchError(handleError<string[]>()))
   }
+
 }
 
