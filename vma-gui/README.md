@@ -1,5 +1,13 @@
 # VmaGui
 
+## Steps to build
+
+```shell
+ng generate component main
+ng generate component vote-following
+ng generate component vote-result
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
 ## Development server
