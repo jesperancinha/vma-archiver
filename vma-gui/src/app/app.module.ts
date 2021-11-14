@@ -9,6 +9,8 @@ import { VoteFollowingComponent } from './vote-following/vote-following.componen
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import {MatListModule} from "@angular/material/list";
+import {MatRadioModule} from "@angular/material/radio";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatListModule} from "@angular/material/list";
     AppRoutingModule,
     MatCardModule,
     HttpClientModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

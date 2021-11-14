@@ -50,6 +50,7 @@ class SongService(
 ) {
     suspend fun createSong(vmaSongDto: VmaSongDto): SongDto = songRepository.save(vmaSongDto.toData).toDto
     fun findAll(ids: List<String>): Flow<Song> = songRepository.findAllById(ids)
+    suspend fun deleteAll() = songRepository.deleteAll()
 }
 
 @Service
@@ -59,6 +60,7 @@ class ArtistService(
     suspend fun createArtist(artistDto: ArtistDto): ArtistDto = artistRepository.save(artistDto.toData).toDto
 
     fun findAll(ids: List<String>): Flow<Artist> = artistRepository.findAllById(ids)
+    suspend fun deleteAll() = artistRepository.deleteAll()
 }
 
 @Service
@@ -69,9 +71,14 @@ class CategoryService(
     private val categoryArtistRepository: CategoryArtistRepository,
     private val categorySongRepository: CategorySongRepository
 ) {
-    fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
-        return categoryRepository.saveAll(registryDtos.map { it.toNewData })
-            .map { it.toDto() }
+    suspend fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
+        return categoryRepository.deleteAll()
+            .also { artistService.deleteAll() }
+            .also { songService.deleteAll() }
+            .let {
+            categoryRepository.saveAll(registryDtos.map { it.toNewData })
+                .map { it.toDto() }
+        }
     }
 
     suspend fun makeRandomGame(vmaSongs: List<VmaSongDto>): Flow<CategoryDto> {

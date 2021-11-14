@@ -7,5 +7,7 @@ export interface Category {
   type: string,
   capacity: number,
   artists: Artist[],
-  songs: Song[]
+  songs: Song[],
+  selectedArtist?: string,
+  selectedSong?: string
 }

@@ -1,15 +1,21 @@
 <mat-card>
   <mat-card *ngFor="let category of categories">
     <mat-card-title>{{category.category}}</mat-card-title>
-    <mat-card>
-      <mat-selection-list *ngFor="let artist of category.artists">
-        <mat-list-option>{{artist.name}}</mat-list-option>
-      </mat-selection-list>
-    </mat-card>
-    <mat-card>
-      <mat-selection-list *ngFor="let song of category.songs">
-        <mat-list-option>{{song.name}}</mat-list-option>
-      </mat-selection-list>
-    </mat-card>
+
+    <mat-radio-group *ngIf="category.artists.length>0"
+                     aria-labelledby="vma-radio-group-label"
+                     class="vma-radio-group" [(ngModel)]="category.selectedArtist">
+      <mat-radio-button class="vma-radio-button" *ngFor="let artist of category.artists" [value]="artist.id">
+        {{artist.name}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-radio-group *ngIf="category.songs.length>0"
+                     aria-labelledby="vma-radio-group-label"
+                     class="vma-radio-group" [(ngModel)]="category.selectedSong">
+      <mat-radio-button class="vma-radio-button" *ngFor="let song of category.songs" [value]="song.id">
+        {{song.name}}
+      </mat-radio-button>
+    </mat-radio-group>
   </mat-card>
 </mat-card>

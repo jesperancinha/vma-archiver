@@ -41,6 +41,14 @@ export class MainComponent implements OnInit {
   }
 
   processVma(categories: Category[]) {
+    categories.map(cat => {
+      let oldCat = this.categories.filter(catty=> catty.id == cat.id).pop();
+      if(oldCat){
+        cat.selectedArtist= oldCat.selectedArtist;
+        cat.selectedSong=oldCat.selectedSong;
+      }
+      return cat
+    })
     this.categories = categories;
   }
 }

@@ -24,7 +24,7 @@ class RegistryController(
     val categoryService: CategoryService
 ) {
     @PostMapping
-    fun createCategories(
+    suspend fun createCategories(
         @RequestBody
         registryDtos: List<CategoryDto>
     ): Flow<CategoryDto> = categoryService.createRegistry(registryDtos.asFlow())
