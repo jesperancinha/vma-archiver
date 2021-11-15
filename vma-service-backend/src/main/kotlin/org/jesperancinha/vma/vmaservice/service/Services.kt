@@ -5,15 +5,14 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
-import org.jesperancinha.vma.common.domain.Artist
 import org.jesperancinha.vma.common.domain.ArtistRepository
 import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
 import org.jesperancinha.vma.common.domain.CategoryArtistRepository
 import org.jesperancinha.vma.common.domain.CategoryRepository
 import org.jesperancinha.vma.common.domain.CategorySongRepository
-import org.jesperancinha.vma.common.domain.Song
 import org.jesperancinha.vma.common.domain.SongRepository
+import org.jesperancinha.vma.common.domain.VmaAwards
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
@@ -31,7 +30,9 @@ import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.dto.toData
 import org.jesperancinha.vma.common.dto.toDto
 import org.jesperancinha.vma.common.dto.toDtoWithArtists
+import org.jesperancinha.vma.common.dto.toDtoWithArtistsAndVote
 import org.jesperancinha.vma.common.dto.toDtoWithSongs
+import org.jesperancinha.vma.common.dto.toDtoWithSongsAndVote
 import org.jesperancinha.vma.common.dto.toNewData
 import org.jesperancinha.vma.vmaservice.kafka.VotingRequestPublisher
 import org.springframework.stereotype.Service
@@ -50,7 +51,7 @@ class SongService(
     private val songRepository: SongRepository
 ) {
     suspend fun createSong(vmaSongDto: VmaSongDto): SongDto = songRepository.save(vmaSongDto.toData).toDto
-    fun findAll(ids: List<String>): Flow<Song> = songRepository.findAllById(ids)
+    fun findAll(ids: List<String>): Flow<SongDto> = songRepository.findAllById(ids).map { it.toDto }
     suspend fun deleteAll() = songRepository.deleteAll()
 }
 
@@ -60,7 +61,7 @@ class ArtistService(
 ) {
     suspend fun createArtist(artistDto: ArtistDto): ArtistDto = artistRepository.save(artistDto.toData).toDto
 
-    fun findAll(ids: List<String>): Flow<Artist> = artistRepository.findAllById(ids)
+    fun findAll(ids: List<String>): Flow<ArtistDto> = artistRepository.findAllById(ids).map { it.toDto }
     suspend fun deleteAll() = artistRepository.deleteAll()
 }
 
@@ -70,7 +71,9 @@ class CategoryService(
     private val artistService: ArtistService,
     private val categoryRepository: CategoryRepository,
     private val categoryArtistRepository: CategoryArtistRepository,
-    private val categorySongRepository: CategorySongRepository
+    private val categorySongRepository: CategorySongRepository,
+    private val cache: MutableMap<String, VotingStatus>
+
 ) {
     suspend fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
         return categoryRepository.deleteAll()
@@ -111,17 +114,21 @@ class CategoryService(
         }
     }
 
-    fun findAll(): Flow<CategoryDto> {
+    fun findAll(): Flow<CategoryDto> = findAll(null)
+
+    fun findAll(votingKey: String?): Flow<CategoryDto> {
         return categoryRepository.findAll().map {
             when (it.type) {
-                ARTIST -> it.toDtoWithArtists(
+                ARTIST -> it.toDtoWithArtistsAndVote(
                     artistService.findAll(
                         categoryArtistRepository.findByCategoryId(it.id).map { e -> e.idA }.filterNotNull().toList()
-                    ).toList().map { artist -> artist.toDto })
-                else -> it.toDtoWithSongs(
+                    ).toList(), cache[votingKey]?.votedOff?.contains(it.id) ?: false
+                )
+                else -> it.toDtoWithSongsAndVote(
                     songService.findAll(
                         categorySongRepository.findByCategoryId(it.id).map { e -> e.idS }.filterNotNull().toList()
-                    ).toList().map { song -> song.toDto })
+                    ).toList(), cache[votingKey]?.votedOff?.contains(it.id) ?: false
+                )
             }
         }
     }
@@ -133,10 +140,10 @@ class VotingService(
     private val categoryArtistRepository: CategoryArtistRepository,
     private val categorySongRepository: CategorySongRepository,
     private val votingCategoryArtistRepository: VotingCategoryArtistRepository,
-    private val votingCategorySongRepository: VotingCategorySongRepository
+    private val votingCategorySongRepository: VotingCategorySongRepository,
+    private val cache: MutableMap<String, VotingStatus>
 ) {
-
-    private val cache: MutableMap<String, VotingStatus> = mutableMapOf()
+    private val vmaStatus: VmaAwards = VmaAwards()
 
     suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) =
         cache[voterKey]?.votedOff?.let { voted ->
@@ -182,7 +189,7 @@ class VotingService(
         }
     }
 
-    fun addVotingKeyToCache(votingId: String) {
+    suspend fun addVotingKeyToCache(votingId: String) {
         cache[votingId] = VotingStatus(votingId)
     }
 }

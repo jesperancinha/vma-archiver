@@ -15,7 +15,8 @@ data class CategoryDto(
     val type: CategoryType?,
     val capacity: Int,
     val artists: List<ArtistDto> = emptyList(),
-    val songs: List<SongDto> = emptyList()
+    val songs: List<SongDto> = emptyList(),
+    val voted: Boolean
 )
 
 fun CategoryDto.toData(): Category = Category(
@@ -36,15 +37,36 @@ fun Category.toDto(): CategoryDto = CategoryDto(
     id = this.id,
     category = this.name,
     capacity = this.capacity,
-    type = this.type
+    type = this.type,
+    voted = false
 )
+
+fun Category.toDtoWithArtistsAndVote(artists: List<ArtistDto>, voted: Boolean): CategoryDto = CategoryDto(
+    id = this.id,
+    category = this.name,
+    capacity = this.capacity,
+    type = this.type,
+    artists = artists,
+    voted = voted
+)
+
+fun Category.toDtoWithSongsAndVote(songs: List<SongDto>, voted: Boolean): CategoryDto = CategoryDto(
+    id = this.id,
+    category = this.name,
+    capacity = this.capacity,
+    type = this.type,
+    songs = songs,
+    voted = voted
+)
+
 
 fun Category.toDtoWithArtists(artists: List<ArtistDto>): CategoryDto = CategoryDto(
     id = this.id,
     category = this.name,
     capacity = this.capacity,
     type = this.type,
-    artists = artists
+    artists = artists,
+    voted = false
 )
 
 fun Category.toDtoWithSongs(songs: List<SongDto>): CategoryDto = CategoryDto(
@@ -52,6 +74,7 @@ fun Category.toDtoWithSongs(songs: List<SongDto>): CategoryDto = CategoryDto(
     category = this.name,
     capacity = this.capacity,
     type = this.type,
-    songs = songs
+    songs = songs,
+    voted = false
 )
 
