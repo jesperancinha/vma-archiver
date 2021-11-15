@@ -9,8 +9,8 @@ import {ArtistVote} from "../domain/artist.vote";
 
 const localUrlVoting = '/api/vma/voting';
 const localUrlRegistry = '/api/vma/registry';
-const urlArtist = "/api/vma/voting/artist"
-const urlSong = "/api/vma/voting/song"
+const localUrlArtist = "/api/vma/voting/artist"
+const localUrlSong = "/api/vma/voting/song"
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +31,23 @@ export class VmaService {
   }
 
   sendArtistVote(param: ArtistVote) {
-    return this.http.post(urlArtist, param)
+    return this.http.post(localUrlArtist, param)
       .pipe(retry(3), catchError(handleError()));
   }
 
   sendSongVote(songVote: SongVote) {
-    return this.http.post(urlSong, songVote)
+    return this.http.post(localUrlSong, songVote)
       .pipe(retry(3), catchError(handleError()));
+  }
+
+  getArtistVoteCount(idc: string, ida: string): Observable<number> {
+    return this.http.get<number>(localUrlArtist + "/" + idc + "/" + ida).pipe(
+      retry(3), catchError(handleError<number>()))
+  }
+
+  getSongVoteCount(idc: string, ids: string): Observable<number> {
+    return this.http.get<number>(localUrlSong + "/" + idc + "/" + ids).pipe(
+      retry(3), catchError(handleError<number>()))
   }
 }
 

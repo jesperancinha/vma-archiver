@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.reactor.mono
 import org.jesperancinha.vma.common.domain.ArtistRepository
 import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
@@ -14,6 +15,7 @@ import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaAwards
 import org.jesperancinha.vma.common.domain.VmaSongDto
+import org.jesperancinha.vma.common.domain.VmaStatus
 import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.VotingStatus
@@ -36,6 +38,7 @@ import org.jesperancinha.vma.common.dto.toDtoWithSongsAndVote
 import org.jesperancinha.vma.common.dto.toNewData
 import org.jesperancinha.vma.vmaservice.kafka.VotingRequestPublisher
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Mono
 
 @Service
 class BandService(
@@ -143,32 +146,31 @@ class VotingService(
     private val votingCategorySongRepository: VotingCategorySongRepository,
     private val cache: MutableMap<String, VotingStatus>
 ) {
-    private val vmaStatus: VmaAwards = VmaAwards()
+    private val vmaAwards: VmaAwards = VmaAwards()
 
-    suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) =
+    suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto): Mono<Void> =
         cache[voterKey]?.votedOff?.let { voted ->
-            if (!voted.contains(artistVotingDto.idA)) {
-                votingRequestPublisher.publishArtistVote(
+            if (!voted.contains(artistVotingDto.idC)) {
+                return votingRequestPublisher.publishArtistVote(
                     key = voterKey,
                     artistVotingDto = artistVotingDto.copy(userId = voterKey)
-                )
-                voted.add(artistVotingDto.idC)
+                ).and(mono { voted.add(artistVotingDto.idC) })
             }
-        }
+        }.let { Mono.empty() }
 
-    suspend fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) =
+    suspend fun castSongVote(voterKey: String, songVotingDto: SongVotingDto): Mono<Void> =
         cache[voterKey]?.votedOff?.let { voted ->
-            if (!voted.contains(songVotingDto.idS)) {
-                votingRequestPublisher.publishSongVote(
+            if (!voted.contains(songVotingDto.idC)) {
+                return votingRequestPublisher.publishSongVote(
                     key = voterKey,
                     songVotingDto = songVotingDto.copy(userId = voterKey)
-                )
-                voted.add(songVotingDto.idC)
+                ).and(mono { voted.add(songVotingDto.idC) })
             }
-        }
+        }.let { Mono.empty() }
 
 
     suspend fun countVotes() {
+        vmaAwards.status = VmaStatus.RESULTS
         categoryArtistRepository.findAll().collect { artistCategory ->
             val countByCategoryId = votingCategoryArtistRepository.findCountByCategoryId(artistCategory.idA)
             categoryArtistRepository.save(
@@ -194,6 +196,12 @@ class VotingService(
             cache[votingId] = VotingStatus(votingId)
         }
     }
+
+    suspend fun getArtistVotingResults(idc: String, ida: String): Long =
+        categoryArtistRepository.findByCategoryIdAndArtistId(idc, ida).votes
+
+    suspend fun getSongVotingResults(idc: String, ids: String): Long =
+        categorySongRepository.findByCategoryIdAndSongId(idc, ids).votes
 }
 
 fun <T> List<T>.random5(capacity: Int): List<T> =

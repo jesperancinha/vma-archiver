@@ -23,9 +23,9 @@ val VmaSongDto.toData: Song
 enum class VmaStatus{
     VOTING,
     VOTED,
-    RESUTS
+    RESULTS
 }
 
 data class VmaAwards(
-    var vmaStatus: VmaStatus = VmaStatus.VOTING
+    var status: VmaStatus = VmaStatus.VOTING
 )

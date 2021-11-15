@@ -1,4 +1,4 @@
-drop table if exists Category;
+    drop table if exists Category;
 drop table if exists Artist;
 drop table if exists CategoryArtist;
 drop table if exists category_artist;
@@ -63,7 +63,8 @@ CREATE TABLE if not exists vote_category_artist
     user_id VARCHAR(255),
     id_c    VARCHAR(255),
     id_a    VARCHAR(255),
-    updates INTEGER
+    updates INTEGER,
+    unique (user_id, id_c)
 );
 
 CREATE TABLE if not exists vote_category_song
@@ -72,5 +73,6 @@ CREATE TABLE if not exists vote_category_song
     user_id VARCHAR(255),
     id_c    VARCHAR(255),
     id_s    VARCHAR(255),
-    updates INTEGER
+    updates INTEGER,
+    unique (user_id, id_c)
 );

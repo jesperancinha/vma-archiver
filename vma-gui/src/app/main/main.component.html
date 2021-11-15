@@ -1,3 +1,4 @@
+<mat-card-title>VMA - Cast your vote page!</mat-card-title>
 <mat-card>
   <mat-card-title>{{votingId}}</mat-card-title>
   <mat-card fxLayout="row wrap">
@@ -10,10 +11,10 @@
           {{artist.name}}
         </mat-radio-button>
       </mat-radio-group>
-      <mat-radio-group *ngIf="category.artists.length>0 && category.voted">
+      <mat-card *ngIf="category.artists.length>0 && category.voted">
         <p  *ngFor="let artist of category.artists">{{artist.name}}</p>
         <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
-      </mat-radio-group>
+      </mat-card>
 
       <mat-radio-group *ngIf="category.songs.length>0 && !category.voted"
                        aria-labelledby="vma-radio-group-label"
@@ -22,10 +23,10 @@
           {{song.name}}
         </mat-radio-button>
       </mat-radio-group>
-      <mat-radio-group *ngIf="category.songs.length>0  && category.voted">
+      <mat-card *ngIf="category.songs.length>0  && category.voted">
         <p  *ngFor="let song of category.songs">{{song.name}}</p>
         <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
-      </mat-radio-group>
+      </mat-card>
     </mat-card>
   </mat-card>
   <button mat-raised-button color="primary" (click)="castVotes()">Cast Votes!</button>

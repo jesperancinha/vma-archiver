@@ -47,6 +47,10 @@ docker-stop-apps:
 	docker stop jofisaes_vma_backend_img_1
 	docker stop jofisaes_vma_backend_img_2
 	docker stop jofisaes_vma_backend_img_3
+	docker stop jofisaes_vma_listener
+docker-start-kafka:
+	docker start jofisaes_vma_zookeeper
+	docker start jofisaes_vma_broker
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm

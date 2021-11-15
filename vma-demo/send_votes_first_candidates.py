@@ -24,7 +24,7 @@ for category in response.json():
             urlArtist,
             headers=headers,
             json={
-                "userID": generateUuuid(),
+                "userId": generateUuuid(),
                 "idC": category["id"],
                 "idA": elected["id"]
             })
@@ -35,7 +35,7 @@ for category in response.json():
             urlSong,
             headers=headers,
             json={
-                "userID": generateUuuid(),
+                "userId": generateUuuid(),
                 "idC": category["id"],
                 "idS": elected["id"]
             })

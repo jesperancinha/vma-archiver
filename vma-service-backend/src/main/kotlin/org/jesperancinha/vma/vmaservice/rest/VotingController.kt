@@ -7,6 +7,7 @@ import org.jesperancinha.vma.vmaservice.service.VotingService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -35,6 +36,18 @@ class VotingController(
 
     @PostMapping("/count")
     suspend fun postStartRecount() = votingService.countVotes()
+
+    @GetMapping("/artist/{idc}/{ida}")
+    suspend fun getArtistVotingResults(
+        @PathVariable idc:String,
+        @PathVariable ida:String
+    ) = votingService.getArtistVotingResults(idc, ida)
+
+    @GetMapping("/song/{idc}/{ids}")
+    suspend fun getSongVotingResults(
+        @PathVariable idc:String,
+        @PathVariable ids:String
+    ) = votingService.getSongVotingResults(idc, ids)
 
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
     suspend fun open(@CookieValue("votingId") votingKey: String?, response: HttpServletResponse): VotingId {

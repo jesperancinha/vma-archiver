@@ -3,4 +3,5 @@ export interface Song {
   name: string,
   type: string,
   checked: boolean
+  votes: number,
 }

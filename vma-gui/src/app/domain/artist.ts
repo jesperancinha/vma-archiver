@@ -4,5 +4,6 @@ export interface Artist {
   type: string,
   year: number,
   month: number,
-  day: number
+  day: number,
+  votes?: number,
 }

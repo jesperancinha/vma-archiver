@@ -53,7 +53,6 @@ export class MainComponent implements OnInit {
   }
 
   processVma(categories: Category[]) {
-    console.log("*****")
     if (categories) {
       categories.map(cat => {
         let oldCat = this.categories.filter(catty => catty.id == cat.id).pop();
@@ -71,21 +70,27 @@ export class MainComponent implements OnInit {
   castVotes() {
     this.categories.filter(cat => cat.type === "INSTRUMENTAL" || cat.type === "SONG")
       .map(cat => {
-        if (cat.selectedSong) this.vmaService.sendSongVote(
-          {
-            userId: this.votingId,
-            idC: cat.id,
-            idS: cat.selectedSong
-          } as SongVote).subscribe(_=>cat.voted=true)
+        if (cat.selectedSong)
+          for (let i = 0; i < 3; i++) {
+            this.vmaService.sendSongVote(
+              {
+                userId: this.votingId,
+                idC: cat.id,
+                idS: cat.selectedSong
+              } as SongVote).subscribe(_ => cat.voted = true)
+          }
       })
     this.categories.filter(cat => cat.type === "ARTIST")
       .map(cat => {
-        if (cat.selectedArtist) this.vmaService.sendArtistVote(
-          {
-            userId: this.votingId,
-            idC: cat.id,
-            idA: cat.selectedArtist
-          } as ArtistVote).subscribe(_=>cat.voted=true)
+        if (cat.selectedArtist)
+          for (let i = 0; i < 3; i++) {
+            this.vmaService.sendArtistVote(
+              {
+                userId: this.votingId,
+                idC: cat.id,
+                idA: cat.selectedArtist
+              } as ArtistVote).subscribe(_ => cat.voted = true)
+          }
       })
     this.vmaService.getCurrent()
       .subscribe(data => this.processVma(data))
