@@ -104,6 +104,7 @@ services:
     ports:
       - "8081"
     environment:
+      - VMA_BACKEND_PROFILE=docker,starter
       - VMA_PORT=8081
       - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
@@ -126,6 +127,7 @@ services:
     ports:
       - "8082"
     environment:
+      - VMA_BACKEND_PROFILE=docker
       - VMA_PORT=8082
       - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
@@ -139,28 +141,6 @@ services:
     networks:
       vma_net:
         ipv4_address: ${VMA_BACKEND_2}
-
-  jofisaes_vma_backend_img_3:
-    hostname: jofisaes_vma_backend_img_3
-    container_name: jofisaes_vma_backend_img_3
-    build:
-      context: vma-service-backend/.
-    ports:
-      - "8083"
-    environment:
-      - VMA_PORT=8083
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-    restart: on-failure
-    deploy:
-      resources:
-        limits:
-          memory: 200M
-        reservations:
-          memory: 200M
-    networks:
-      vma_net:
-        ipv4_address: ${VMA_BACKEND_3}
 
   jofisaes_vma_nginx_lb:
     hostname: jofisaes_vma_nginx_lb
@@ -261,13 +241,13 @@ services:
       vma_net:
         ipv4_address: ${VMA_SCHEMA_REGISTRY}
 
-  jofisaes_vma_listener:
-    hostname: jofisaes_vma_listener
-    container_name: jofisaes_vma_listener
+  jofisaes_vma_listener_1:
+    hostname: jofisaes_vma_listener_1
+    container_name: jofisaes_vma_listener_1
     build:
       context: vma-service-event-listener/.
     environment:
-      - VMA_PORT=8080
+      - VMA_PORT=9001
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
       - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
     restart: on-failure
@@ -280,6 +260,26 @@ services:
     networks:
       vma_net:
         ipv4_address: ${VMA_LISTENER_1}
+
+  jofisaes_vma_listener_2:
+    hostname: jofisaes_vma_listener_2
+    container_name: jofisaes_vma_listener_2
+    build:
+      context: vma-service-event-listener/.
+    environment:
+      - VMA_PORT=9002
+      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
+      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_LISTENER_2}
 
 networks:
   vma_net:

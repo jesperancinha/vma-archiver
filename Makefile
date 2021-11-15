@@ -66,4 +66,6 @@ install:
 case:
 	cd vma-demo && make create-vmas
 locust: case
-	cd locust && locust --host=localhost --headless -u 10 -r 10 --run-time 10s --csv vma-awards --exit-code-on-error 0
+	cd locust && locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
+count-votes:
+	curl -X POST http://localhost:8080/api/vma/voting/count

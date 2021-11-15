@@ -1,4 +1,4 @@
-    drop table if exists Category;
+drop table if exists Category;
 drop table if exists Artist;
 drop table if exists CategoryArtist;
 drop table if exists category_artist;

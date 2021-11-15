@@ -21,30 +21,31 @@ class VmaVoting(HttpUser):
         headers["Cookie"] = f"votingId={user_id}"
 
         for category in response.json():
-            print(category["category"])
-            print(category)
-            if category["type"] == "ARTIST":
-                elected = category["artists"][randint(0, len(category['artists']) - 1)]
-                resp = requests.post(
-                    urlArtist,
-                    headers=headers,
-                    json={
-                        "userId": user_id,
-                        "idC": category["id"],
-                        "idA": elected["id"]
-                    })
-                print(resp.status_code)
-            if category["type"] == "SONG" or category["type"] == "INSTRUMENTAL":
-                elected = category["songs"][randint(0, len(category['songs']) - 1)]
-                resp = requests.post(
-                    urlSong,
-                    headers=headers,
-                    json={
-                        "userId": user_id,
-                        "idC": category["id"],
-                        "idS": elected["id"]
-                    })
-                print(resp.status_code)
+            for x in range(0, 2):
+                print(category["category"])
+                print(category)
+                if category["type"] == "ARTIST":
+                    elected = category["artists"][randint(0, len(category['artists']) - 1)]
+                    resp = requests.post(
+                        urlArtist,
+                        headers=headers,
+                        json={
+                            "userId": user_id,
+                            "idC": category["id"],
+                            "idA": elected["id"]
+                        })
+                    print(resp.status_code)
+                if category["type"] == "SONG" or category["type"] == "INSTRUMENTAL":
+                    elected = category["songs"][randint(0, len(category['songs']) - 1)]
+                    resp = requests.post(
+                        urlSong,
+                        headers=headers,
+                        json={
+                            "userId": user_id,
+                            "idC": category["id"],
+                            "idS": elected["id"]
+                        })
+                    print(resp.status_code)
 
 
 requests.post(count_url)
