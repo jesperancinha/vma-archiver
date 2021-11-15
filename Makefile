@@ -7,6 +7,7 @@ build-maven:
 	mvn clean install -DskipTests
 build-npm:
 	cd vma-gui && yarn install && npm run build
+	mv vma-gui/dist docker-images/nginx/
 test:
 	mvn test
 test-maven:

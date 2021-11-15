@@ -73,8 +73,6 @@ export class VoteResultComponent implements OnInit {
         }
         return cat
       })
-      console.log("categoriescategories")
-      console.log(categories)
       this.categories = categories;
     }
   }

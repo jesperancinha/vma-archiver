@@ -12,6 +12,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY entrypoint.sh /usr/local/bin/
 
+COPY dist/vma-gui /usr/share/nginx/html
+
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 8080

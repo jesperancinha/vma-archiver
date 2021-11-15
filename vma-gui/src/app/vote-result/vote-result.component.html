@@ -5,11 +5,11 @@
     <mat-card *ngFor="let category of categories">
       <mat-card-title>{{category.category}}</mat-card-title>
       <mat-card *ngIf="category.artists.length>0">
-        <p  *ngFor="let artist of category.artists">{{artist.name}} + {{artist.votes}}</p>
+        <p  *ngFor="let artist of category.artists">{{artist.name}}  +{{artist.votes}}</p>
       </mat-card>
 
       <mat-card *ngIf="category.songs.length>0">
-        <p  *ngFor="let song of category.songs">{{song.name}} + {{song.votes}}</p>
+        <p  *ngFor="let song of category.songs">{{song.name}} +{{song.votes}}</p>
       </mat-card>
     </mat-card>
   </mat-card>
