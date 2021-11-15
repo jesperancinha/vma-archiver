@@ -2,6 +2,7 @@ package org.jesperancinha.vma.vmaservice.rest
 
 import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.common.dto.SongVotingDto
+import org.jesperancinha.vma.common.dto.VotingId
 import org.jesperancinha.vma.vmaservice.service.VotingService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.CookieValue
@@ -36,12 +37,13 @@ class VotingController(
     suspend fun postStartRecount() = votingService.countVotes()
 
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    suspend fun open(@CookieValue("votingId") votingKey: String?, response: HttpServletResponse): List<String> {
-        return listOf(votingKey
+    suspend fun open(@CookieValue("votingId") votingKey: String?, response: HttpServletResponse): VotingId {
+        return VotingId(id = votingKey
             ?.let { votingKey }
             ?: run {
                 val votingId = UUID.randomUUID().toString()
                 response.addCookie(Cookie("votingId", votingId))
+                votingService.addVotingKeyToCache(votingId)
                 votingId
             })
     }

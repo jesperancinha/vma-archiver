@@ -3,7 +3,6 @@ import {VmaService} from "../service/vma.service";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 import {Category} from "../domain/category";
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-main',
@@ -17,7 +16,7 @@ export class MainComponent implements OnInit {
   categories: Category[] = [];
   votingId?: string
 
-  constructor(private vmaService: VmaService, private cookieService: CookieService) {
+  constructor(private vmaService: VmaService) {
     const socket = new SockJS('/api/vma/broker');
     this.stompClient = Stomp.over(socket);
   }
@@ -25,7 +24,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.connect()
     this.vmaService.generateUserVotingId()
-      .subscribe(data => this.votingId = data[0])
+      .subscribe(data => this.votingId = data.id)
   }
 
   connect() {

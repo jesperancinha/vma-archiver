@@ -5,9 +5,9 @@ import org.apache.avro.SchemaBuilder
 import org.apache.avro.generic.IndexedRecord
 
 data class ArtistVotingDto(
-    val userId: String? = null,
-    val idC: String? = null,
-    val idA: String? = null
+    val userId: String,
+    val idC: String,
+    val idA: String
 ) : IndexedRecord {
     override fun getSchema(): Schema =
         SchemaBuilder.record("ArtistVotingDto")
@@ -31,10 +31,10 @@ data class ArtistVotingDto(
 }
 
 data class SongVotingDto(
-    val userId: String? = null,
-    val idC: String? = null,
-    val idS: String? = null
-): IndexedRecord {
+    val userId: String,
+    val idC: String,
+    val idS: String
+) : IndexedRecord {
     override fun getSchema(): Schema =
         SchemaBuilder.record("SongVotingDto")
             .namespace("org.jesperancinha.vma.common.dto")
@@ -55,3 +55,7 @@ data class SongVotingDto(
         else -> ""
     }
 }
+
+data class VotingId(
+    val id: String
+)

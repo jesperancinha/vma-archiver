@@ -17,6 +17,7 @@ import org.jesperancinha.vma.common.domain.SongRepository
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
+import org.jesperancinha.vma.common.domain.VotingStatus
 import org.jesperancinha.vma.common.domain.saveByIds
 import org.jesperancinha.vma.common.domain.toData
 import org.jesperancinha.vma.common.dto.ArtistDto
@@ -76,9 +77,9 @@ class CategoryService(
             .also { artistService.deleteAll() }
             .also { songService.deleteAll() }
             .let {
-            categoryRepository.saveAll(registryDtos.map { it.toNewData })
-                .map { it.toDto() }
-        }
+                categoryRepository.saveAll(registryDtos.map { it.toNewData })
+                    .map { it.toDto() }
+            }
     }
 
     suspend fun makeRandomGame(vmaSongs: List<VmaSongDto>): Flow<CategoryDto> {
@@ -134,17 +135,31 @@ class VotingService(
     private val votingCategoryArtistRepository: VotingCategoryArtistRepository,
     private val votingCategorySongRepository: VotingCategorySongRepository
 ) {
+
+    private val cache: MutableMap<String, VotingStatus> = mutableMapOf()
+
     suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto) =
-        votingRequestPublisher.publishArtistVote(
-            key = voterKey,
-            artistVotingDto = artistVotingDto.copy(userId = voterKey)
-        )
+        cache[voterKey]?.votedOff?.let { voted ->
+            if (!voted.contains(artistVotingDto.idA)) {
+                votingRequestPublisher.publishArtistVote(
+                    key = voterKey,
+                    artistVotingDto = artistVotingDto.copy(userId = voterKey)
+                )
+                voted.add(artistVotingDto.idA)
+            }
+        }
 
     suspend fun castSongVote(voterKey: String, songVotingDto: SongVotingDto) =
-        votingRequestPublisher.publishSongVote(
-            key = voterKey,
-            songVotingDto = songVotingDto.copy(userId = voterKey)
-        )
+        cache[voterKey]?.votedOff?.let { voted ->
+            if (!voted.contains(songVotingDto.idS)) {
+                votingRequestPublisher.publishSongVote(
+                    key = voterKey,
+                    songVotingDto = songVotingDto.copy(userId = voterKey)
+                )
+                voted.add(songVotingDto.idS)
+            }
+        }
+
 
     suspend fun countVotes() {
         categoryArtistRepository.findAll().collect { artistCategory ->
@@ -167,6 +182,9 @@ class VotingService(
         }
     }
 
+    fun addVotingKeyToCache(votingId: String) {
+        cache[votingId] = VotingStatus(votingId)
+    }
 }
 
 fun <T> List<T>.random5(capacity: Int): List<T> =

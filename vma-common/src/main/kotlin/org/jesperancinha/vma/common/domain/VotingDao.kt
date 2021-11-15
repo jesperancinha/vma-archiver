@@ -50,3 +50,9 @@ interface VotingCategorySongRepository : CoroutineCrudRepository<VoteCategorySon
     suspend fun findCountByCategoryId(@Param("id") id: String?): Number?
 }
 
+data class VotingStatus(
+    val id: String,
+    val allowedArtist: Boolean = true,
+    val allowedSong: Boolean = true,
+    val votedOff: MutableList<String> = mutableListOf()
+)
