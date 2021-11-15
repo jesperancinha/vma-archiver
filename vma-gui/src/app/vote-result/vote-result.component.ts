@@ -33,6 +33,19 @@ export class VoteResultComponent implements OnInit {
           .subscribe(data => this.processVma(data))
       })
 
+    this.connect()
+  }
+
+
+  connect() {
+    const _this = this;
+    this.stompClient.connect({}, function (frame: any) {
+      _this.setConnected(true);
+      _this.stompClient.subscribe('/topic/vma', function (vmas) {
+        console.log(vmas.body)
+        _this.processVma(JSON.parse(vmas.body) as Category[]);
+      });
+    });
   }
 
   setConnected(connected: boolean) {

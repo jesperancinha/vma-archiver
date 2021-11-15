@@ -173,21 +173,26 @@ class VotingService(
         vmaAwards.status = VmaStatus.RESULTS
         categoryArtistRepository.findAll().collect { artistCategory ->
             val countByCategoryId = votingCategoryArtistRepository.findCountByCategoryId(artistCategory.idA)
-            categoryArtistRepository.save(
-                artistCategory.copy(
-                    voteCount = countByCategoryId?.toLong() ?: 0,
-                    updates = artistCategory.updates + 1
+            if (artistCategory.voteCount == 0L) {
+                categoryArtistRepository.save(
+                    artistCategory.copy(
+                        voteCount = countByCategoryId?.toLong() ?: 0,
+                        updates = artistCategory.updates + 1
+                    )
                 )
-            )
+            }
+
         }
         categorySongRepository.findAll().collect { songCategory ->
             val countByCategoryId = votingCategorySongRepository.findCountByCategoryId(songCategory.idS)
-            categorySongRepository.save(
-                songCategory.copy(
-                    voteCount = countByCategoryId?.toLong() ?: 0,
-                    updates = songCategory.updates + 1
+            if (songCategory.voteCount == 0L) {
+                categorySongRepository.save(
+                    songCategory.copy(
+                        voteCount = countByCategoryId?.toLong() ?: 0,
+                        updates = songCategory.updates + 1
+                    )
                 )
-            )
+            }
         }
     }
 

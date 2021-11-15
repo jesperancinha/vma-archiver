@@ -63,3 +63,7 @@ install:
 	/usr/bin/python3 -m pip install --upgrade pip
 	pip3 install requests
 	pip3 install locust
+case:
+	cd vma-demo && make create-vmas
+locust: case
+	cd locust && locust --host=localhost --headless -u 10 -r 10 --run-time 10s --csv vma-awards --exit-code-on-error 0
