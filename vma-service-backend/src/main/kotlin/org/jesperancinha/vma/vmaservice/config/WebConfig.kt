@@ -1,6 +1,8 @@
 package org.jesperancinha.vma.vmaservice.config
 
-import org.jesperancinha.vma.common.domain.VotingStatus
+import com.hazelcast.config.Config
+import com.hazelcast.core.Hazelcast
+import com.hazelcast.core.HazelcastInstance
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry
@@ -28,6 +30,10 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
     }
 
     @Bean
-    fun cache(): MutableMap<String, VotingStatus> = mutableMapOf()
+    fun hazelcastInstance(): HazelcastInstance {
+        val worldConfig = Config();
+        worldConfig.clusterName = "vma-world";
+        return Hazelcast.newHazelcastInstance(worldConfig)
+    }
 
 }

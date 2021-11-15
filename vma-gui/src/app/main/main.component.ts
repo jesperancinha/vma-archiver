@@ -71,26 +71,22 @@ export class MainComponent implements OnInit {
     this.categories.filter(cat => cat.type === "INSTRUMENTAL" || cat.type === "SONG")
       .map(cat => {
         if (cat.selectedSong)
-          for (let i = 0; i < 3; i++) {
-            this.vmaService.sendSongVote(
-              {
-                userId: this.votingId,
-                idC: cat.id,
-                idS: cat.selectedSong
-              } as SongVote).subscribe(_ => cat.voted = true)
-          }
+          this.vmaService.sendSongVote(
+            {
+              userId: this.votingId,
+              idC: cat.id,
+              idS: cat.selectedSong
+            } as SongVote).subscribe(_ => cat.voted = true)
       })
     this.categories.filter(cat => cat.type === "ARTIST")
       .map(cat => {
         if (cat.selectedArtist)
-          for (let i = 0; i < 3; i++) {
-            this.vmaService.sendArtistVote(
-              {
-                userId: this.votingId,
-                idC: cat.id,
-                idA: cat.selectedArtist
-              } as ArtistVote).subscribe(_ => cat.voted = true)
-          }
+          this.vmaService.sendArtistVote(
+            {
+              userId: this.votingId,
+              idC: cat.id,
+              idA: cat.selectedArtist
+            } as ArtistVote).subscribe(_ => cat.voted = true)
       })
     this.vmaService.getCurrent()
       .subscribe(data => this.processVma(data))

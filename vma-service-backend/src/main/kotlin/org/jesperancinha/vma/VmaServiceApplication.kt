@@ -1,5 +1,7 @@
 package org.jesperancinha.vma
 
+import com.hazelcast.config.Config
+import com.hazelcast.core.Hazelcast
 import io.r2dbc.spi.ConnectionFactory
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.autoconfigure.SpringBootApplication

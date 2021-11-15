@@ -6,6 +6,7 @@ import org.springframework.data.r2dbc.repository.Query
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.data.repository.query.Param
+import java.io.Serializable
 import java.util.UUID
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -55,4 +56,4 @@ data class VotingStatus(
     val allowedArtist: Boolean = true,
     val allowedSong: Boolean = true,
     val votedOff: MutableList<String> = mutableListOf()
-)
+) : Serializable

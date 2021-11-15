@@ -25,6 +25,7 @@
         <kafka-avro-serializer.version>6.0.0</kafka-avro-serializer.version>
         <r2dbc-h2.version>0.9.0.M1</r2dbc-h2.version>
         <r2dbc-spi.version>0.9.0.RC1</r2dbc-spi.version>
+        <hazelcast.version>5.0</hazelcast.version>
     </properties>
 
     <modules>
@@ -35,7 +36,6 @@
     </modules>
 
     <packaging>pom</packaging>
-
 
     <build>
         <plugins>
@@ -89,6 +89,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>${hazelcast.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>

@@ -1,5 +1,6 @@
 package org.jesperancinha.vma.vmaservice.service
 
+import com.hazelcast.core.HazelcastInstance
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
@@ -13,9 +14,7 @@ import org.jesperancinha.vma.common.domain.CategoryArtistRepository
 import org.jesperancinha.vma.common.domain.CategoryRepository
 import org.jesperancinha.vma.common.domain.CategorySongRepository
 import org.jesperancinha.vma.common.domain.SongRepository
-import org.jesperancinha.vma.common.domain.VmaAwards
 import org.jesperancinha.vma.common.domain.VmaSongDto
-import org.jesperancinha.vma.common.domain.VmaStatus
 import org.jesperancinha.vma.common.domain.VotingCategoryArtistRepository
 import org.jesperancinha.vma.common.domain.VotingCategorySongRepository
 import org.jesperancinha.vma.common.domain.VotingStatus
@@ -75,9 +74,9 @@ class CategoryService(
     private val categoryRepository: CategoryRepository,
     private val categoryArtistRepository: CategoryArtistRepository,
     private val categorySongRepository: CategorySongRepository,
-    private val cache: MutableMap<String, VotingStatus>
-
+    hazelcastInstance: HazelcastInstance
 ) {
+    private val cache: MutableMap<String, VotingStatus> = hazelcastInstance.getMap("vma-cache")
     suspend fun createRegistry(registryDtos: Flow<CategoryDto>): Flow<CategoryDto> {
         return categoryRepository.deleteAll()
             .also { artistService.deleteAll() }
@@ -120,17 +119,18 @@ class CategoryService(
     fun findAll(): Flow<CategoryDto> = findAll(null)
 
     fun findAll(votingKey: String?): Flow<CategoryDto> {
-        return categoryRepository.findAll().map {
-            when (it.type) {
-                ARTIST -> it.toDtoWithArtistsAndVote(
+        return categoryRepository.findAll().map { category ->
+            when (category.type) {
+                ARTIST -> category.toDtoWithArtistsAndVote(
                     artistService.findAll(
-                        categoryArtistRepository.findByCategoryId(it.id).map { e -> e.idA }.filterNotNull().toList()
-                    ).toList(), cache[votingKey]?.votedOff?.contains(it.id) ?: false
+                        categoryArtistRepository.findByCategoryId(category.id).map { e -> e.idA }.filterNotNull()
+                            .toList()
+                    ).toList(), votingKey?.let { cache[votingKey]?.votedOff?.contains(category.id) } ?: false
                 )
-                else -> it.toDtoWithSongsAndVote(
+                else -> category.toDtoWithSongsAndVote(
                     songService.findAll(
-                        categorySongRepository.findByCategoryId(it.id).map { e -> e.idS }.filterNotNull().toList()
-                    ).toList(), cache[votingKey]?.votedOff?.contains(it.id) ?: false
+                        categorySongRepository.findByCategoryId(category.id).map { e -> e.idS }.filterNotNull().toList()
+                    ).toList(), votingKey?.let { cache[votingKey]?.votedOff?.contains(category.id) } ?: false
                 )
             }
         }
@@ -144,9 +144,9 @@ class VotingService(
     private val categorySongRepository: CategorySongRepository,
     private val votingCategoryArtistRepository: VotingCategoryArtistRepository,
     private val votingCategorySongRepository: VotingCategorySongRepository,
-    private val cache: MutableMap<String, VotingStatus>
+    hazelcastInstance: HazelcastInstance
 ) {
-    private val vmaAwards: VmaAwards = VmaAwards()
+    private val cache: MutableMap<String, VotingStatus> = hazelcastInstance.getMap("vma-cache")
 
     suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto): Mono<Void> =
         cache[voterKey]?.votedOff?.let { voted ->
@@ -170,7 +170,6 @@ class VotingService(
 
 
     suspend fun countVotes() {
-        vmaAwards.status = VmaStatus.RESULTS
         categoryArtistRepository.findAll().collect { artistCategory ->
             val countByCategoryId = votingCategoryArtistRepository.findCountByCategoryId(artistCategory.idA)
             if (artistCategory.voteCount == 0L) {

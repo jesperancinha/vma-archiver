@@ -13,6 +13,10 @@
     <description>VMA Spring WebFlux Reactive Service</description>
     <dependencies>
         <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.jesperancinha.vma</groupId>
             <artifactId>vma-common</artifactId>
         </dependency>

@@ -21,6 +21,12 @@ services:
       - POSTGRES_NUMBER=1
     expose:
       - ${PG_EXPOSED_PORT}
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_1_IP}
@@ -46,6 +52,12 @@ services:
       - POSTGRES_NUMBER=2
     expose:
       - ${PG_EXPOSED_PORT}
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
@@ -71,6 +83,12 @@ services:
       - POSTGRES_NUMBER=3
     expose:
       - ${PG_EXPOSED_PORT}
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_3_IP}
@@ -87,6 +105,12 @@ services:
       - 5001
       - 5000
       - 7000
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+        reservations:
+          memory: 100M
     networks:
       vma_net:
         ipv4_address: ${VMA_HA_PROXY_IP}
@@ -112,9 +136,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 400M
         reservations:
-          memory: 200M
+          memory: 400M
     networks:
       vma_net:
         ipv4_address: ${VMA_BACKEND_1}
@@ -135,9 +159,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 300M
         reservations:
-          memory: 200M
+          memory: 300M
     networks:
       vma_net:
         ipv4_address: ${VMA_BACKEND_2}
@@ -173,6 +197,12 @@ services:
       - "2379:2379"
       - "2380:2380"
     restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+        reservations:
+          memory: 100M
     networks:
       vma_net:
         ipv4_address: ${VMA_ETCD_IP}
@@ -186,6 +216,12 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
     networks:
       vma_net:
         ipv4_address: ${VMA_ZOOKEEPER}
@@ -218,6 +254,12 @@ services:
       CONFLUENT_METRICS_ENABLE: "true"
       CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
       CONTROL_CENTER_SCHEMA_REGISTRY_SR1_URL: https://schemaregistry:8088
+    deploy:
+      resources:
+        limits:
+          memory: 400M
+        reservations:
+          memory: 400M
     networks:
       vma_net:
         ipv4_address: ${VMA_KAFKA}
@@ -237,6 +279,12 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8088
       SCHEMA_REGISTRY_HOST_NAME: localhost
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: ${VMA_KAFKA}:29092
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+        reservations:
+          memory: 300M
     networks:
       vma_net:
         ipv4_address: ${VMA_SCHEMA_REGISTRY}
@@ -254,9 +302,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 300M
         reservations:
-          memory: 200M
+          memory: 300M
     networks:
       vma_net:
         ipv4_address: ${VMA_LISTENER_1}

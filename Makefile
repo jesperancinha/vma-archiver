@@ -51,6 +51,8 @@ docker-stop-apps:
 docker-start-kafka:
 	docker start jofisaes_vma_zookeeper
 	docker start jofisaes_vma_broker
+docker-stats:
+	docker stats
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm
