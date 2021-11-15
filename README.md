@@ -50,20 +50,23 @@
 
 We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version
 0.0.0. It now stands for Video Music Awards. So we are going to make a service to register nominees and winners of a VMA
-show. In this case, we'll use the example of the 2020 MTV Video Music Awards. This way we can use our times and dates
-easily with the whole data from the awards.
+show. In this case, we'll use a fake MTV Awards Show. Instead of using contemporary music, we'll make an MTV awards with
+music and artists from the 1920's.
 
-Our application will be built around the Reactive CoRoutine Paradigms. We'll be using three important elements:
-SpringFlux, Kotlin Co-Routines and a nice architecture.
+Our application will be built around the Reactive CoRoutine Paradigms. We'll be using five important elements:
+Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 
 ---
 
 ## Project Layout
 
-- [VMA Demo Generation](./vma-demo) - Generates The Demo Awards - It is customizable in terms of categories, music and artists.
+- [VMA Demo Generation](./vma-demo) - Generates The Demo Awards - It is customizable in terms of categories, music and
+  artists.
 - [VMA Common](./vma-common) - A Common Library to support Spring Boot Startup Services.
-- [VMA Play](./vma-play) - A way to play with co-routines separated from the project. It has examples on the main and test directories.
-- [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts votes in Kafka, registers a new award show directly and reads voting results from the database.
+- [VMA Play](./vma-play) - A way to play with co-routines separated from the project. It has examples on the main and
+  test directories.
+- [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts
+  votes in Kafka, registers a new award show directly and reads voting results from the database.
 - [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
 - [Locust](./locust) - The loation of locust service. It creates workers in kotlin that simulate random massive voters.
 
@@ -89,7 +92,8 @@ make docker-clean-build-start
 
 ## Serving Spring Boot (LOCAL)
 
-In order to let Kafka know where to get to locally you need to define locally that `jofisaes_vma_broker` is also in `127.0.0.1`.
+In order to let Kafka know where to get to locally you need to define locally that `jofisaes_vma_broker` is also
+in `127.0.0.1`.
 
 This is done in MAC-OS and Linux machines on `/etc/hosts`:
 
@@ -101,9 +105,11 @@ This is done in MAC-OS and Linux machines on `/etc/hosts`:
 
 ## Knowledge Cloud
 
-`BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`, `sortedBy`, `async`
+`BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`
+, `sortedBy`, `async`
 , `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`
-, `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`, `counterActor`, `override val`
+, `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`
+, `counterActor`, `override val`
 `massiveRun`,
 
 ---
@@ -125,7 +131,9 @@ sdk use java 17-open
 
 ## Sequence diagram
 
-To visualize this diagram you may need the [mermaid-diagrams](https://chrome.google.com/webstore/detail/mermaid-diagrams/phfcghedmopjadpojhmmaffjmfiakfil) plugin installation.
+To visualize this diagram you may need
+the [mermaid-diagrams](https://chrome.google.com/webstore/detail/mermaid-diagrams/phfcghedmopjadpojhmmaffjmfiakfil)
+plugin installation.
 
 To visualize it in Intellij, please install the [mermaid plugin](https://mermaid-js.github.io/mermaid/#/).
 
