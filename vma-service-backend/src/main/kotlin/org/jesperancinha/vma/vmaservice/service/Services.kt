@@ -152,7 +152,7 @@ class VotingService(
                     key = voterKey,
                     artistVotingDto = artistVotingDto.copy(userId = voterKey)
                 )
-                voted.add(artistVotingDto.idA)
+                voted.add(artistVotingDto.idC)
             }
         }
 
@@ -163,7 +163,7 @@ class VotingService(
                     key = voterKey,
                     songVotingDto = songVotingDto.copy(userId = voterKey)
                 )
-                voted.add(songVotingDto.idS)
+                voted.add(songVotingDto.idC)
             }
         }
 
@@ -190,7 +190,9 @@ class VotingService(
     }
 
     suspend fun addVotingKeyToCache(votingId: String) {
-        cache[votingId] = VotingStatus(votingId)
+        if (!cache.containsKey(votingId)) {
+            cache[votingId] = VotingStatus(votingId)
+        }
     }
 }
 

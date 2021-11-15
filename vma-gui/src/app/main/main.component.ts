@@ -3,6 +3,9 @@ import {VmaService} from "../service/vma.service";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 import {Category} from "../domain/category";
+import {SongVote} from "../domain/song.vote";
+import {ArtistVote} from "../domain/artist.vote";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-main',
@@ -16,7 +19,8 @@ export class MainComponent implements OnInit {
   categories: Category[] = [];
   votingId?: string
 
-  constructor(private vmaService: VmaService) {
+  constructor(private vmaService: VmaService,
+              private cookieService: CookieService) {
     const socket = new SockJS('/api/vma/broker');
     this.stompClient = Stomp.over(socket);
   }
@@ -24,7 +28,13 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.connect()
     this.vmaService.generateUserVotingId()
-      .subscribe(data => this.votingId = data.id)
+      .subscribe(data => {
+        this.votingId = data.id
+        this.cookieService.set("votingId", this.votingId)
+        this.vmaService.getCurrent()
+          .subscribe(data => this.processVma(data))
+      })
+
   }
 
   connect() {
@@ -43,14 +53,41 @@ export class MainComponent implements OnInit {
   }
 
   processVma(categories: Category[]) {
-    categories.map(cat => {
-      let oldCat = this.categories.filter(catty => catty.id == cat.id).pop();
-      if (oldCat) {
-        cat.selectedArtist = oldCat.selectedArtist;
-        cat.selectedSong = oldCat.selectedSong;
-      }
-      return cat
-    })
-    this.categories = categories;
+    console.log("*****")
+    if (categories) {
+      categories.map(cat => {
+        let oldCat = this.categories.filter(catty => catty.id == cat.id).pop();
+        if (oldCat) {
+          cat.selectedArtist = oldCat.selectedArtist;
+          cat.selectedSong = oldCat.selectedSong;
+          cat.voted = oldCat.voted
+        }
+        return cat
+      })
+      this.categories = categories;
+    }
+  }
+
+  castVotes() {
+    this.categories.filter(cat => cat.type === "INSTRUMENTAL" || cat.type === "SONG")
+      .map(cat => {
+        if (cat.selectedSong) this.vmaService.sendSongVote(
+          {
+            userId: this.votingId,
+            idC: cat.id,
+            idS: cat.selectedSong
+          } as SongVote).subscribe(_=>cat.voted=true)
+      })
+    this.categories.filter(cat => cat.type === "ARTIST")
+      .map(cat => {
+        if (cat.selectedArtist) this.vmaService.sendArtistVote(
+          {
+            userId: this.votingId,
+            idC: cat.id,
+            idA: cat.selectedArtist
+          } as ArtistVote).subscribe(_=>cat.voted=true)
+      })
+    this.vmaService.getCurrent()
+      .subscribe(data => this.processVma(data))
   }
 }

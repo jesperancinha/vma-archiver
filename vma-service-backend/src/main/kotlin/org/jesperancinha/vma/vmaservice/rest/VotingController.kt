@@ -39,7 +39,9 @@ class VotingController(
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
     suspend fun open(@CookieValue("votingId") votingKey: String?, response: HttpServletResponse): VotingId {
         return VotingId(id = votingKey
-            ?.let { votingKey }
+            ?.let {
+                votingService.addVotingKeyToCache(it)
+                it }
             ?: run {
                 val votingId = UUID.randomUUID().toString()
                 response.addCookie(Cookie("votingId", votingId))

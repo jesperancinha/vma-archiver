@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatListModule} from "@angular/material/list";
 import {MatRadioModule} from "@angular/material/radio";
 import {FormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {FlexModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     MatListModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    FlexModule
   ],
   providers: [],
   bootstrap: [AppComponent]

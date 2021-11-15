@@ -9,5 +9,6 @@ export interface Category {
   artists: Artist[],
   songs: Song[],
   selectedArtist?: string,
-  selectedSong?: string
+  selectedSong?: string,
+  voted: boolean
 }
