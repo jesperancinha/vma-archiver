@@ -37,10 +37,11 @@ class RegistryController(
     ): Flow<CategoryDto> = categoryService.makeRandomGame(vmaSongs)
 
     @GetMapping("/current")
-    suspend fun getCurrentVma(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> = categoryService.findAll(votingKey)
+    fun getCurrentVma(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> =
+        categoryService.findAll(votingKey)
 
     @Scheduled(fixedDelay = 5000)
-     fun update() = CoroutineScope(IO).launch {
+    fun update() = CoroutineScope(IO).launch {
         template.convertAndSend("/topic/vma", categoryService.findAll().toList())
     }
 
