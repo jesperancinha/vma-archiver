@@ -40,3 +40,4 @@ bin
 # Locust
 
 locust/*.csv
+__pycache__
