@@ -6,11 +6,9 @@
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=VMA%20Archiver%20📼%20&color=informational)](https://github.com/jesperancinha/vma-archiver)
 [![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/vma-archiver.svg)](#)
 
-[![Status badge](https://img.shields.io/static/v1.svg?label=Status&message=Under%20Construction%20🚧&color=informational)](https://github.com/jesperancinha/portuguese-recipes)
 [![CircleCI](https://circleci.com/gh/jesperancinha/vma-archiver.svg?style=svg)](https://circleci.com/gh/jesperancinha/vma-archiver)
 [![Build status](https://ci.appveyor.com/api/projects/status/x2q0u359vwgl6rrl?svg=true)](https://ci.appveyor.com/project/jesperancinha/vma-archiver)
 [![vma-archiver](https://github.com/jesperancinha/vma-archiver/actions/workflows/vma-archiver.yml/badge.svg)](https://github.com/jesperancinha/vma-archiver/actions/workflows/vma-archiver.yml)
-[![Status badge](https://img.shields.io/static/v1.svg?label=Status&message=Under%20Construction%20🚧&color=informational)](https://github.com/jesperancinha/portuguese-recipes)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/vma-archiver&amp;utm_campaign=Badge_Grade)
 [![codebeat badge](https://codebeat.co/badges/c1b16ed4-8341-416b-9084-c2e0f7b36ffd)](https://codebeat.co/projects/github-com-jesperancinha-vma-archiver-master)
