@@ -52,6 +52,10 @@ music and artists from the 1920's.
 Our application will be built around the Reactive CoRoutine Paradigms. We'll be using five important elements:
 Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 
+This repo is also the official support repo to my article on medium:
+
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
+
 ---
 
 ## Project Layout
@@ -64,7 +68,7 @@ Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 - [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts
   votes in Kafka, registers a new award show directly and reads voting results from the database.
 - [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
-- [Locust](./locust) - The loation of locust service. It creates workers in kotlin that simulate random massive voters.
+- [Locust](./locust) - The location of locust service. It creates workers in kotlin that simulate random massive voters.
 
 ---
 
