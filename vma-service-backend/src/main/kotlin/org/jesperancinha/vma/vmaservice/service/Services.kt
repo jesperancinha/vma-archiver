@@ -201,11 +201,15 @@ class VotingService(
         }
     }
 
-    suspend fun getArtistVotingResults(idc: String, ida: String): Long =
-        categoryArtistRepository.findByCategoryIdAndArtistId(idc, ida).votes
+    suspend fun getArtistVotingResults(idc: String, ida: String): Long {
+        val cat = categoryArtistRepository.findByCategoryIdAndArtistId(idc, ida)
+        return cat.votes + cat.voteCount
+    }
 
-    suspend fun getSongVotingResults(idc: String, ids: String): Long =
-        categorySongRepository.findByCategoryIdAndSongId(idc, ids).votes
+    suspend fun getSongVotingResults(idc: String, ids: String): Long {
+        val cat = categorySongRepository.findByCategoryIdAndSongId(idc, ids)
+        return cat.votes + cat.voteCount
+    }
 }
 
 fun <T> List<T>.random5(capacity: Int): List<T> =
