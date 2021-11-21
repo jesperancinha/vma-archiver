@@ -3,7 +3,7 @@
 
 ## References
 
-- [Kotlin Kafka Dynamo Demo](https://github.com/billydh/kotlin-kafka-dynamo-demo)
+-   [Kotlin Kafka Dynamo Demo](https://github.com/billydh/kotlin-kafka-dynamo-demo)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
