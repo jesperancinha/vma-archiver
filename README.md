@@ -56,6 +56,16 @@ This repo is also the official support repo to my article on medium:
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
 
+#### Walk through
+
+<div align="center">
+      <a title="Coroutines, Distributed Cache, Resilience, and Replication in Kotlin DEMO — A VMA’s application" href="https://www.youtube.com/watch?v=hNpEMOFkvv4">
+     <img 
+          src="https://img.youtube.com/vi/hNpEMOFkvv4/0.jpg" 
+          style="width:50%;">
+      </a>
+</div>
+
 ---
 
 ## Project Layout
