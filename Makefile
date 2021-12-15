@@ -56,8 +56,8 @@ docker-start-kafka:
 docker-stats:
 	docker stats
 prune-all: stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker rm
+	docker ps -a --format '{{.ID}}' -q | xargs --no-run-if-empty docker stop
+	docker ps -a --format '{{.ID}}' -q | xargs --no-run-if-empty docker rm
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
