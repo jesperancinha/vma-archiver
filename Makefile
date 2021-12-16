@@ -28,10 +28,10 @@ show:
 docker-clean:
 	docker-compose rm -svf
 docker-delete-idle:
-	docker ps --format '{{.ID}}' -q --filter="name=isbn_" | xargs docker rm
+	docker ps --format '{{.ID}}' -q --filter="name=jofisaes_vma_" | xargs -I {}  docker rm {}
 docker-delete: stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=isbn_" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=isbn_" | xargs docker rm
+	docker ps -a --format '{{.ID}}' -q --filter="name=jofisaes_vma_" | xargs -I {}  docker stop {}
+	docker ps -a --format '{{.ID}}' -q --filter="name=jofisaes_vma_" | xargs -I {}  docker rm {}
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-delete-apps: stop
@@ -55,9 +55,7 @@ docker-start-kafka:
 	docker start jofisaes_vma_broker
 docker-stats:
 	docker stats
-prune-all: stop
-	docker ps -a --format '{{.ID}}' -q | xargs --no-run-if-empty docker stop
-	docker ps -a --format '{{.ID}}' -q | xargs --no-run-if-empty docker rm
+prune-all: docker-delete
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
