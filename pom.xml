@@ -17,7 +17,7 @@
         <kotlin.version>1.6.0-RC</kotlin.version>
         <kotlinx.version>1.5.2</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.0.202</h2.version>
         <springmockk.version>3.0.1</springmockk.version>
         <kotest-assertions.version>5.0.0.M3</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
