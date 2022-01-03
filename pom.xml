@@ -25,7 +25,7 @@
         <kafka-avro-serializer.version>6.0.0</kafka-avro-serializer.version>
         <r2dbc-h2.version>0.9.0.M1</r2dbc-h2.version>
         <r2dbc-spi.version>0.9.0.RELEASE</r2dbc-spi.version>
-        <hazelcast.version>5.0</hazelcast.version>
+        <hazelcast.version>5.0.2</hazelcast.version>
         <avro.version>1.11.0</avro.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
