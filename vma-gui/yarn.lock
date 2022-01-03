@@ -220,12 +220,12 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/flex-layout@^12.0.0-beta.35":
-  version "12.0.0-beta.35"
-  resolved "https://registry.npmjs.org/@angular/flex-layout/-/flex-layout-12.0.0-beta.35.tgz"
-  integrity sha512-nPi2MGDFuCacwWHqxF/G7lUJd2X99HbLjjUvKXnyLwyCIVgH1sfS52su2wYbVYWJRqAVAB2/VMlrtW8Khr8hDA==
+"@angular/flex-layout@^13.0.0-beta.36":
+  version "13.0.0-beta.36"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-13.0.0-beta.36.tgz#0e91e6837b767841b579f8a5be66667255e30484"
+  integrity sha512-JLC3C1oEKVu9lLyottvHbfyCf/pOPzjXfFO3qOPBbWyVqxuQkfkd2NILZZh4DHsKYbBxIZ01vnfQHCV8NdaZ3w==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.3.0"
 
 "@angular/forms@~13.0.1":
   version "13.0.1"
@@ -5922,7 +5922,7 @@ tree-kill@1.2.2:
   resolved "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.2.tgz"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
 
-tslib@2.3.1, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1:
+tslib@2.3.1, tslib@^2.0.0, tslib@^2.3.0, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
