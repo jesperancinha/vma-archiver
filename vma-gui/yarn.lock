@@ -3807,10 +3807,10 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~6.3.8:
-  version "6.3.8"
-  resolved "https://registry.npmjs.org/karma/-/karma-6.3.8.tgz"
-  integrity sha512-10wBBU9S0lBHhbCNfmmbWQaY5C1bXlKdnvzN2QKThujCI/+DKaezrI08l6bfTlpJ92VsEboq3zYKpXwK6DOi3A==
+karma@~6.3.9:
+  version "6.3.9"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.9.tgz#cc309607f0fcdb58a88643184f3e4ba8bff26751"
+  integrity sha512-E/MqdLM9uVIhfuyVnrhlGBu4miafBdXEAEqCmwdEMh3n17C7UWC/8Kvm3AYKr91gc7scutekZ0xv6rxRaUCtnw==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -5368,12 +5368,12 @@ rxjs@6.6.7:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.2.0, rxjs@~7.4.0:
-  version "7.4.0"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.4.0.tgz"
-  integrity sha512-7SQDi7xeTMCJpqViXh8gL/lebcwlp3d831F05+9B44A4B0WfsEwUQHR64gsH1kvJ+Ep/J9K2+n1hVl1CsGN23w==
+rxjs@^7.2.0, rxjs@~7.5.1:
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.1.tgz#af73df343cbcab37628197f43ea0c8256f54b157"
+  integrity sha512-KExVEeZWxMZnZhUZtsJcFwz8IvPvgu4G2Z2QyqjZQzUGr32KDYuSxrEYO4w3tFFNbfLozcrKUTvTPi+E9ywJkQ==
   dependencies:
-    tslib "~2.1.0"
+    tslib "^2.1.0"
 
 safe-buffer@5.1.2, safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
@@ -5936,11 +5936,6 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@~2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
-  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 type-fest@^0.21.3:
   version "0.21.3"
