@@ -5,8 +5,8 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: maven:3.8.2-openjdk-17
+    machine:
+      image: ubuntu-2004:202010-01
 
     working_directory: ~/repo
 
