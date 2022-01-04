@@ -17,19 +17,17 @@
         <kotlin.version>1.6.10</kotlin.version>
         <kotlinx.version>1.6.0</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
-        <h2.version>1.4.200</h2.version>
         <springmockk.version>3.1.0</springmockk.version>
         <kotest-assertions.version>5.0.3</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <reactor-kafka.version>1.3.8</reactor-kafka.version>
         <kafka-avro-serializer.version>7.0.1</kafka-avro-serializer.version>
-        <r2dbc-h2.version>0.9.0.M1</r2dbc-h2.version>
-        <r2dbc-spi.version>0.9.0.RELEASE</r2dbc-spi.version>
         <hazelcast.version>5.0.2</hazelcast.version>
         <avro.version>1.11.0</avro.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
+        <test.containers.version>1.16.2</test.containers.version>
     </properties>
     <modules>
         <module>vma-play</module>
@@ -161,24 +159,9 @@
                 <version>${kotlinx.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.r2dbc</groupId>
-                <artifactId>r2dbc-h2</artifactId>
-                <version>${r2dbc-h2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro</artifactId>
                 <version>${avro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.r2dbc</groupId>
-                <artifactId>r2dbc-spi</artifactId>
-                <version>${r2dbc-spi.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.confluent</groupId>
@@ -207,6 +190,24 @@
                 <artifactId>kotest-assertions-core</artifactId>
                 <version>${kotest-assertions.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${test.containers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>${test.containers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${test.containers.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -218,6 +219,11 @@
         <repository>
             <id>confluent</id>
             <url>https://packages.confluent.io/maven/</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype OSS Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
 </project>
