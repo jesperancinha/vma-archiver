@@ -1,17 +1,16 @@
 package org.jesperancinha.vma
 
-import com.ninjasquad.springmockk.MockkBean
-import org.jesperancinha.vma.common.domain.BandRepository
-import org.jesperancinha.vma.common.domain.CategoryRepository
+import org.jesperancinha.vma.utils.AbstractVmaTest
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 
 @SpringBootTest
-@MockkBean(classes = [CategoryRepository::class, BandRepository::class])
-class VmaServiceApplicationTests {
+@ActiveProfiles("dev")
+class VmaServiceApplicationTests : AbstractVmaTest() {
 
-	@Test
-	fun contextLoads() {
-	}
+    @Test
+    fun contextLoads() {
+    }
 
 }

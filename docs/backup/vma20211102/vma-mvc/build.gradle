@@ -63,7 +63,7 @@ dependencies {
     compile 'commons-collections:commons-collections:3.2.2'
     implementation group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.6'
     testCompile group: 'org.jacoco', name: 'org.jacoco.agent', classifier: 'runtime', version: '0.7.9'
-    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.0.204'
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.5.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.2'
 }
