@@ -28,7 +28,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <test.containers.version>1.16.3</test.containers.version>
-        <omni-coveragereporter-maven-plugin.version>0.1.2</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.1.4</omni-coveragereporter-maven-plugin.version>
     </properties>
     <modules>
         <module>vma-play</module>
