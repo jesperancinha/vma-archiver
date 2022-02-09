@@ -62,7 +62,7 @@ internal class BandServiceTest(
     }
 
     @Test
-    fun `should take exactly 100ms to get two bands with 100ms delay`(): Unit = runBlocking {
+    fun `should take exactly 100ms to get two bands with minimum 100ms delay`(): Unit = runBlocking {
         val id = "the-doors" + UUID.randomUUID().toString()
         val testBand = Band(name = "The Doors")
         coEvery { bandRepository.findById(id) } returns testBand
@@ -82,7 +82,7 @@ internal class BandServiceTest(
             }
         }
 
-        processingTime.shouldBeLessThanOrEqual(250)
+        processingTime.shouldBeLessThanOrEqual(300)
         coVerify(exactly = 2) { bandRepository.findById(id) }
     }
 
