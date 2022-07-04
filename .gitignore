@@ -41,3 +41,6 @@ bin
 
 locust/*.csv
 __pycache__
+
+# Logs
+logs

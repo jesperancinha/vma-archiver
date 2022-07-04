@@ -72,7 +72,7 @@ locust: case
 count-votes:
 	curl -X POST http://localhost:8080/api/vma/voting/count
 vma-wait:
-	bash vma-wait.sh
+	bash vma_wait.sh
 dcup-light:
 	docker-compose up -d postgres
 dcd:
