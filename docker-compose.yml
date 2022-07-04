@@ -127,6 +127,8 @@ services:
       context: vma-service-backend/.
     ports:
       - "8081"
+    expose:
+      - 8081
     environment:
       - VMA_BACKEND_PROFILE=docker,starter
       - VMA_PORT=8081
@@ -150,6 +152,8 @@ services:
       context: vma-service-backend/.
     ports:
       - "8082"
+    expose:
+      - 8082
     environment:
       - VMA_BACKEND_PROFILE=docker
       - VMA_PORT=8082
@@ -159,9 +163,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 400M
         reservations:
-          memory: 300M
+          memory: 400M
     networks:
       vma_net:
         ipv4_address: ${VMA_BACKEND_2}
@@ -173,6 +177,8 @@ services:
       context: ./docker-images/nginx/.
     ports:
       - "8080:8080"
+    expose:
+      - 8080
     restart: on-failure
     deploy:
       resources:
