@@ -6,8 +6,8 @@ build:
 build-maven:
 	mvn clean install -DskipTests
 build-npm:
-	cd vma-gui && yarn install && npm run build
-	rm -r docker-images/nginx/dist
+	cd vma-gui && yarn && npm run build
+	bash cleanup.sh
 	mv vma-gui/dist docker-images/nginx/
 test:
 	mvn test
