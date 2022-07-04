@@ -71,3 +71,22 @@ locust: case
 	cd locust && locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
 count-votes:
 	curl -X POST http://localhost:8080/api/vma/voting/count
+vma-wait:
+	bash vma-wait.sh
+dcup-light:
+	docker-compose up -d postgres
+dcd:
+	docker-compose down
+dcup: dcd docker-clean docker vma-wait
+dcup-full: docker-clean-build-start vma-wait
+cypress-open:
+	cd e2e && yarn && npm run cypress
+cypress:
+	cd e2e && yarn && npm run cypress:run
+cypress-chrome:
+	cd e2e && yarn && npm run cypress:run:chrome
+cypress-firefox:
+	cd e2e && yarn && npm run cypress:run:firefox
+demo: dcup cypress
+demo-full: dcup-full cypress
+demo-full-manual: dcup-full cypress-open
