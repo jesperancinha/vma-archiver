@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   jofisaes_vma_postgres_1:
-    container_name: ${PROJECT_NAME}_postgres_1
+    container_name: jofisaes_${PROJECT_NAME}_postgres_1
     hostname: jofisaes-vma-postgres-1
     restart: on-failure
     build:
@@ -32,7 +32,7 @@ services:
         ipv4_address: ${POSTGRES_1_IP}
 
   jofisaes_vma_postgres_2:
-    container_name: ${PROJECT_NAME}_postgres_2
+    container_name: jofisaes_${PROJECT_NAME}_postgres_2
     hostname: jofisaes-vma-postgres-2
     restart: on-failure
     build:
@@ -62,7 +62,7 @@ services:
         ipv4_address: ${POSTGRES_2_IP}
 
   jofisaes_vma_postgres_3:
-    container_name: ${PROJECT_NAME}_postgres_3
+    container_name: jofisaes_${PROJECT_NAME}_postgres_3
     hostname: jofisaes-vma-postgres-3
     restart: on-failure
     build:

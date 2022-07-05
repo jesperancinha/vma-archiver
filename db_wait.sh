@@ -22,5 +22,6 @@ function checkServiceByNameAndMessage() {
     echo "Succeeded $name Service after $counter tries!"
 }
 
-checkServiceByNameAndMessage jofisaes_vma_backend_img_1 'Started VmaServiceApplicationKt'
-checkServiceByNameAndMessage jofisaes_vma_backend_img_2 'Started VmaServiceApplicationKt'
+checkServiceByNameAndMessage jofisaes_vma_postgres_1 'I am (postgresql1)'
+checkServiceByNameAndMessage jofisaes_vma_postgres_2 'I am (postgresql2)'
+checkServiceByNameAndMessage jofisaes_vma_postgres_3 'I am (postgresql3)'

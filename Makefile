@@ -73,8 +73,11 @@ count-votes:
 	curl -X POST http://localhost:8080/api/vma/voting/count
 vma-wait:
 	bash vma_wait.sh
+db-wait:
+	bash db_wait.sh
 dcup-light: stop
-	docker-compose up -d --build --remove-orphans jofisaes_vma_postgres_1 jofisaes_vma_postgres_2 jofisaes_vma_postgres_3 jofisaes_vma_haproxy_lb
+	docker-compose up -d --build --remove-orphans jofisaes_vma_postgres_1 jofisaes_vma_postgres_2 jofisaes_vma_postgres_3 jofisaes_vma_haproxy_lb jofisaes_vma_etcd
+	make db-wait
 dcd: stop
 dcup: dcd docker-clean docker vma-wait
 dcup-full: docker-clean-build-start vma-wait
