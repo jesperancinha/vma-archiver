@@ -31,8 +31,8 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
 
     @Bean
     fun hazelcastInstance(): HazelcastInstance {
-        val worldConfig = Config();
-        worldConfig.clusterName = "vma-world";
+        val worldConfig = Config()
+        worldConfig.clusterName = "vma-world"
         return Hazelcast.newHazelcastInstance(worldConfig)
     }
 

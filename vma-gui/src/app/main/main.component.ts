@@ -29,10 +29,12 @@ export class MainComponent implements OnInit {
     this.connect()
     this.vmaService.generateUserVotingId()
       .subscribe(data => {
-        this.votingId = data.id
-        this.cookieService.set("votingId", this.votingId)
-        this.vmaService.getCurrent()
-          .subscribe(data => this.processVma(data))
+        if(data) {
+          this.votingId = data.id
+          this.cookieService.set("votingId", this.votingId)
+          this.vmaService.getCurrent()
+            .subscribe(data => this.processVma(data))
+        }
       })
 
   }

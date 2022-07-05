@@ -1,5 +1,9 @@
 # VmaGui
 
+## References
+
+- [Add Reactive WebSockets to Spring WebFlux](https://developer.okta.com/blog/2018/09/24/reactive-apis-with-spring-webflux)
+
 ## Steps to build
 
 ```shell
