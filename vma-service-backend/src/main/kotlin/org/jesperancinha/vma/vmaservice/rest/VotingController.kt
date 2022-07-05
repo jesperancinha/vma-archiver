@@ -5,6 +5,8 @@ import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.dto.VotingId
 import org.jesperancinha.vma.vmaservice.service.VotingService
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseCookie
+import org.springframework.http.server.reactive.ServerHttpResponse
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -39,25 +41,26 @@ class VotingController(
 
     @GetMapping("/artist/{idc}/{ida}")
     suspend fun getArtistVotingResults(
-        @PathVariable idc:String,
-        @PathVariable ida:String
+        @PathVariable idc: String,
+        @PathVariable ida: String
     ) = votingService.getArtistVotingResults(idc, ida)
 
     @GetMapping("/song/{idc}/{ids}")
     suspend fun getSongVotingResults(
-        @PathVariable idc:String,
-        @PathVariable ids:String
+        @PathVariable idc: String,
+        @PathVariable ids: String
     ) = votingService.getSongVotingResults(idc, ids)
 
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    suspend fun open(@CookieValue("votingId") votingKey: String?, response: HttpServletResponse): VotingId {
+    suspend fun open(@CookieValue("votingId") votingKey: String?, response: ServerHttpResponse): VotingId {
         return VotingId(id = votingKey
             ?.let {
                 votingService.addVotingKeyToCache(it)
-                it }
+                it
+            }
             ?: run {
                 val votingId = UUID.randomUUID().toString()
-                response.addCookie(Cookie("votingId", votingId))
+                response.addCookie(ResponseCookie.from("votingId", votingId).build())
                 votingService.addVotingKeyToCache(votingId)
                 votingId
             })
