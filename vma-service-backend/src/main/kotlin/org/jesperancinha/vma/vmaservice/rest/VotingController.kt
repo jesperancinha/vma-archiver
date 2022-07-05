@@ -3,7 +3,7 @@ package org.jesperancinha.vma.vmaservice.rest
 import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.dto.VotingId
-import org.jesperancinha.vma.vmaservice.service.VotingService
+import org.jesperancinha.vma.common.service.VotingService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseCookie
 import org.springframework.http.server.reactive.ServerHttpResponse

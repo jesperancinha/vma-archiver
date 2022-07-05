@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.common.dto.CategoryDto
-import org.jesperancinha.vma.vmaservice.service.CategoryService
+import org.jesperancinha.vma.common.service.CategoryService
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.web.bind.annotation.*
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("registry")
 class RegistryController(
-    private val template: SimpMessagingTemplate,
     val categoryService: CategoryService
 ) {
     @PostMapping
@@ -34,10 +33,4 @@ class RegistryController(
     @GetMapping("/current")
     fun getCurrentVma(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> =
         categoryService.findAll(votingKey)
-
-    @Scheduled(fixedDelay = 5000)
-    fun update() = CoroutineScope(IO).launch {
-        template.convertAndSend("/topic/vma", categoryService.findAll().toList())
-    }
-
 }

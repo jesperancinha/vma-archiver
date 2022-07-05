@@ -1,11 +1,11 @@
 {
-  "/api/vma/*": {
-    "target": "http://localhost:8080",
+  "/api/vma/broker/*": {
+    "target": "http://localhost:8081",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
   },
-  "/broker/*": {
+  "/api/vma/": {
     "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug",

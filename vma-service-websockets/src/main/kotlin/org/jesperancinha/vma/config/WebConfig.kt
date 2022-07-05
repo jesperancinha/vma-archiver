@@ -1,9 +1,5 @@
-package org.jesperancinha.vma.vmaservice.config
+package org.jesperancinha.vma.config
 
-import com.hazelcast.config.Config
-import com.hazelcast.core.Hazelcast
-import com.hazelcast.core.HazelcastInstance
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker
@@ -28,12 +24,4 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
             .setAllowedOrigins("http://localhost:4200")
             .withSockJS()
     }
-
-    @Bean
-    fun hazelcastInstance(): HazelcastInstance {
-        val worldConfig = Config()
-        worldConfig.clusterName = "vma-world"
-        return Hazelcast.newHazelcastInstance(worldConfig)
-    }
-
 }

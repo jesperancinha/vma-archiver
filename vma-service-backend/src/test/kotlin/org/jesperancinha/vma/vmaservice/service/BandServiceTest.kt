@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jesperancinha.vma.common.domain.Band
 import org.jesperancinha.vma.common.domain.BandRepository
+import org.jesperancinha.vma.common.service.BandService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

@@ -37,6 +37,7 @@
         <module>vma-service-backend</module>
         <module>vma-service-event-listener</module>
         <module>vma-common</module>
+        <module>vma-service-websockets</module>
     </modules>
 
     <packaging>pom</packaging>

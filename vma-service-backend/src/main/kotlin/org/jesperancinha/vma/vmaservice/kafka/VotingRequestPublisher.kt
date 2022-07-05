@@ -7,6 +7,7 @@ import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 import reactor.kafka.sender.KafkaSender
