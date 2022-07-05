@@ -44,7 +44,6 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_DATABASE}
       - VMA_ETCD_IP=${VMA_ETCD_IP}
       - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
@@ -126,7 +125,7 @@ services:
     build:
       context: vma-service-backend/.
     ports:
-      - "8081"
+      - "8081:8081"
     expose:
       - 8081
     environment:
@@ -151,7 +150,7 @@ services:
     build:
       context: vma-service-backend/.
     ports:
-      - "8082"
+      - "8082:8082"
     expose:
       - 8082
     environment:
