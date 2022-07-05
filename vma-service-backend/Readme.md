@@ -1,5 +1,12 @@
 # VMA Spring WebFlux Reactive Service
 
+## How to run Locally
+
+1. At the root run `make dcup-light`
+2. Start the service with the `starter` profile. `default` does not need to be added in this case
+
+![alt img](./../docs/images/20220705/Screenshot%202022-07-05%20at%2019.03.40.png)
+
 ## Endpoints
 
 -   [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
