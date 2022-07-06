@@ -9,10 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Primary
 import org.springframework.messaging.simp.SimpMessagingTemplate
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 
 @SpringBootApplication
+@EnableScheduling
 class VmaSpringCoRoutineServiceWebSocketsApplication(
     private val template: SimpMessagingTemplate,
     private val categoryService: CategoryService
@@ -26,4 +28,3 @@ class VmaSpringCoRoutineServiceWebSocketsApplication(
 fun main(args: Array<String>) {
     runApplication<VmaSpringCoRoutineServiceWebSocketsApplication>(*args)
 }
-

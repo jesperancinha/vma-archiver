@@ -18,7 +18,6 @@ import org.springframework.web.reactive.config.EnableWebFlux
 
 @SpringBootApplication(exclude = [WebMvcAutoConfiguration::class, ErrorMvcAutoConfiguration::class])
 @EnableR2dbcRepositories
-@EnableScheduling
 @EnableWebFlux
 @ConfigurationPropertiesScan
 class VmaServiceApplication {

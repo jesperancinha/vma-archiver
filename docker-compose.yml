@@ -169,6 +169,56 @@ services:
       vma_net:
         ipv4_address: ${VMA_BACKEND_2}
 
+  jofisaes_vma_websockets_1:
+    hostname: jofisaes_vma_websockets_1
+    container_name: jofisaes_vma_websockets_1
+    build:
+      context: vma-service-websockets/.
+    ports:
+      - "8083:8083"
+    expose:
+      - 8083
+    environment:
+      - VMA_BACKEND_PROFILE=docker,starter
+      - VMA_PORT=8083
+      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
+      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 400M
+        reservations:
+          memory: 400M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_WEB_SOCKETS_1}
+
+  jofisaes_vma_websockets_2:
+    hostname: jofisaes_vma_websockets_2
+    container_name: jofisaes_vma_websockets_2
+    build:
+      context: vma-service-websockets/.
+    ports:
+      - "8084:8084"
+    expose:
+      - 8084
+    environment:
+      - VMA_BACKEND_PROFILE=docker,starter
+      - VMA_PORT=8084
+      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
+      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 400M
+        reservations:
+          memory: 400M
+    networks:
+      vma_net:
+        ipv4_address: ${VMA_WEB_SOCKETS_2}
+
   jofisaes_vma_nginx_lb:
     hostname: jofisaes_vma_nginx_lb
     container_name: jofisaes_vma_nginx_lb

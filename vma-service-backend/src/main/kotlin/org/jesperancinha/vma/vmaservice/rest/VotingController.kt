@@ -3,20 +3,12 @@ package org.jesperancinha.vma.vmaservice.rest
 import org.jesperancinha.vma.common.dto.ArtistVotingDto
 import org.jesperancinha.vma.common.dto.SongVotingDto
 import org.jesperancinha.vma.common.dto.VotingId
-import org.jesperancinha.vma.common.service.VotingService
+import org.jesperancinha.vma.vmaservice.services.VotingService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseCookie
 import org.springframework.http.server.reactive.ServerHttpResponse
-import org.springframework.web.bind.annotation.CookieValue
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
-import javax.servlet.http.Cookie
-import javax.servlet.http.HttpServletResponse
+import org.springframework.web.bind.annotation.*
+import java.util.*
 
 
 @RestController
