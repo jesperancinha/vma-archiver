@@ -25,3 +25,4 @@ function checkServiceByNameAndMessage() {
 checkServiceByNameAndMessage jofisaes_vma_backend_img_1 'Started VmaServiceApplicationKt'
 checkServiceByNameAndMessage jofisaes_vma_backend_img_2 'Started VmaServiceApplicationKt'
 checkServiceByNameAndMessage jofisaes_schemaregistry 'Server started, listening for requests...'
+checkServiceByNameAndMessage jofisaes_vma_nginx_lb 'GET /api/vma/registry HTTP/1.1" 200'
