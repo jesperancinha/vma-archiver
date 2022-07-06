@@ -70,7 +70,7 @@ case:
 locust: case
 	cd locust && locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
 count-votes:
-	curl -X POST http://localhost:8080/api/vma/voting/count
+	curl -i -X POST http://localhost:8080/api/vma/voting/count
 vma-wait:
 	bash vma_wait.sh
 db-wait:
@@ -92,3 +92,6 @@ cypress-firefox:
 demo: dcup cypress
 demo-full: dcup-full cypress
 demo-full-manual: dcup-full cypress-open
+kafka:
+	docker-compose up -d --build --remove-orphans jofisaes_vma_zookeeper jofisaes_vma_broker jofisaes_schemaregistry
+	bash kafka_wait.sh

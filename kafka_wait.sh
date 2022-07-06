@@ -22,6 +22,6 @@ function checkServiceByNameAndMessage() {
     echo "Succeeded $name Service after $counter tries!"
 }
 
-checkServiceByNameAndMessage jofisaes_vma_backend_img_1 'Started VmaServiceApplicationKt'
-checkServiceByNameAndMessage jofisaes_vma_backend_img_2 'Started VmaServiceApplicationKt'
-checkServiceByNameAndMessage jofisaes_schemaregistry 'Server started, listening for requests...'
+checkServiceByNameAndMessage jofisaes_vma_zookeeper 'binding to port'
+checkServiceByNameAndMessage jofisaes_vma_broker 'Created metrics reporter topic'
+checkServiceByNameAndMessage jofisaes_schemaregistry 'started, listening for requests'
