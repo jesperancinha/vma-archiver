@@ -1,0 +1,57 @@
+version: "3.7"
+services:
+  jofisaes_vma_postgres_1:
+    ports:
+      - "5433:5432"
+
+  jofisaes_vma_postgres_2:
+    ports:
+      - "5434:5432"
+
+  jofisaes_vma_postgres_3:
+    ports:
+      - "5435:5432"
+
+  jofisaes_vma_haproxy_lb:
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+      - "7000:7000"
+
+  jofisaes_vma_backend_img_1:
+    ports:
+      - "8081:8081"
+
+  jofisaes_vma_backend_img_2:
+    ports:
+      - "8082:8082"
+
+  jofisaes_vma_websockets_1:
+    ports:
+      - "8083:8083"
+
+  jofisaes_vma_websockets_2:
+    ports:
+      - "8084:8084"
+
+  jofisaes_vma_nginx_lb:
+    ports:
+      - "8080:8080"
+
+  jofisaes_vma_etcd:
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+
+  jofisaes_vma_zookeeper:
+    ports:
+      - "2181:2181"
+
+  jofisaes_vma_broker:
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+
+  jofisaes_schemaregistry:
+    ports:
+      - "8088:8088"

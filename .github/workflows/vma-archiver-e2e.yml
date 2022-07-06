@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Start Docker
-        run: make dcup-full
+        run: make dcup-full-action
       - name: Start Locust
         run: make locust
       - name: Run Cypress
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Start Docker
-        run: make dcup-full
+        run: make dcup-full-action
       - name: Start Locust
         run: make locust
       - name: Run Cypress
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Start Docker
-        run: make dcup-full
+        run: make dcup-full-action
       - name: Start Locust
         run: make locust
       - name: Run Cypress

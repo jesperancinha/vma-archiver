@@ -6,8 +6,6 @@ services:
     restart: on-failure
     build:
       context: ./docker-images/psql/.
-    ports:
-      - "5433:5432"
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
@@ -37,8 +35,6 @@ services:
     restart: on-failure
     build:
       context: ./docker-images/psql/.
-    ports:
-      - "5434:5432"
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
@@ -67,8 +63,6 @@ services:
     restart: on-failure
     build:
       context: ./docker-images/psql/.
-    ports:
-      - "5435:5432"
     volumes:
       - ./docker-images/psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
@@ -96,10 +90,6 @@ services:
     container_name: jofisaes_vma_haproxy_lb
     hostname: jofisaes_vma_haproxy_lb
     build: docker-images/haproxy/.
-    ports:
-      - "5000:5000"
-      - "5001:5001"
-      - "7000:7000"
     expose:
       - 5001
       - 5000
@@ -124,8 +114,6 @@ services:
     container_name: jofisaes_vma_backend_img_1
     build:
       context: vma-service-backend/.
-    ports:
-      - "8081:8081"
     expose:
       - 8081
     environment:
@@ -150,8 +138,6 @@ services:
     container_name: jofisaes_vma_backend_img_2
     build:
       context: vma-service-backend/.
-    ports:
-      - "8082:8082"
     expose:
       - 8082
     environment:
@@ -176,8 +162,6 @@ services:
     container_name: jofisaes_vma_websockets_1
     build:
       context: vma-service-websockets/.
-    ports:
-      - "8083:8083"
     expose:
       - 8083
     environment:
@@ -203,8 +187,6 @@ services:
     container_name: jofisaes_vma_websockets_2
     build:
       context: vma-service-websockets/.
-    ports:
-      - "8084:8084"
     expose:
       - 8084
     environment:
@@ -253,9 +235,6 @@ services:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_ADVERTISE_CLIENT_URLS=http://${VMA_ETCD_IP}:2379
       - ETCD_ENABLE_V2=true
-    ports:
-      - "2379:2379"
-      - "2380:2380"
     restart: on-failure
     deploy:
       resources:
@@ -271,8 +250,6 @@ services:
     image: confluentinc/cp-zookeeper:5.4.0
     hostname: jofisaes_vma_zookeeper
     container_name: jofisaes_vma_zookeeper
-    ports:
-      - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -292,9 +269,6 @@ services:
     container_name: jofisaes_vma_broker
     depends_on:
       - jofisaes_vma_zookeeper
-    ports:
-      - "9092:9092"
-      - "29092:29092"
     expose:
       - 9092
       - 29092
@@ -334,8 +308,6 @@ services:
     volumes:
       - ./scripts/security:/etc/kafka/secrets
       - ./scripts/security/keypair:/tmp/conf
-    ports:
-      - "8088:8088"
     environment:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8088
       SCHEMA_REGISTRY_HOST_NAME: localhost

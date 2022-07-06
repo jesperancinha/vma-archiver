@@ -19,6 +19,8 @@ no-test:
 	mvn clean install -DskipTests
 docker:
 	docker-compose up -d --build --remove-orphans
+docker-action:
+	docker-compose -f docker-compose.yml up -d --build --remove-orphans
 docker-databases: stop local
 build-images:
 build-docker: stop no-test
@@ -82,6 +84,7 @@ dcup-medium: stop dcup-light kafka
 dcd: stop
 dcup: dcd docker-clean docker vma-wait
 dcup-full: docker-clean-build-start vma-wait
+dcup-full-action: docker-clean b docker-action vma-wait
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress:
