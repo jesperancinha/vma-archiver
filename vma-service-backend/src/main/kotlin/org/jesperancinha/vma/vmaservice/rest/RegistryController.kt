@@ -5,12 +5,14 @@ import kotlinx.coroutines.flow.asFlow
 import org.jesperancinha.vma.common.domain.VmaSongDto
 import org.jesperancinha.vma.dto.CategoryDto
 import org.jesperancinha.vma.vmaservice.services.CategoryService
+import org.jesperancinha.vma.vmaservice.services.VotingService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("registry")
 class RegistryController(
-    val categoryService: CategoryService
+    val categoryService: CategoryService,
+    val votingService: VotingService
 ) {
     @PostMapping
     suspend fun createCategories(
@@ -22,7 +24,9 @@ class RegistryController(
     suspend fun createRandomVma(
         @RequestBody
         vmaSongs: List<VmaSongDto>
-    ): Flow<CategoryDto> = categoryService.makeRandomGame(vmaSongs)
+    ): Flow<CategoryDto> = votingService.resetDemo().run {
+        categoryService.makeRandomGame(vmaSongs)
+    }
 
     @GetMapping("/current")
     fun getCurrentVma(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> =

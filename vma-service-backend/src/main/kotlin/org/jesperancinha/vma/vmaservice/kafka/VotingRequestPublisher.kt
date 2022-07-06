@@ -32,8 +32,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
     private val voteSongRequestSenderOptions: SenderOptions<String, SongVotingDto> = SenderOptions.create(producerProps)
     private val voteSongRequestRequestKafkaSender: KafkaSender<String, SongVotingDto> =
         KafkaSender.create(voteSongRequestSenderOptions)
-
-   suspend fun publishArtistVote(key: String, artistVotingDto: ArtistVotingDto): Mono<Void> {
+    fun publishArtistVote(key: String, artistVotingDto: ArtistVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, ArtistVotingDto> =
             ProducerRecord(kafkaConfigProperties.createArtistVoteRequestTopic, key, artistVotingDto)
 
@@ -43,7 +42,7 @@ class VotingRequestPublisher(private val kafkaConfigProperties: VotingKafkaConfi
             .doOnSuccess { logger.info("Vote Created with id $key") }
     }
 
-   suspend fun publishSongVote(key: String, songVotingDto: SongVotingDto): Mono<Void> {
+    fun publishSongVote(key: String, songVotingDto: SongVotingDto): Mono<Void> {
         val producerRecord: ProducerRecord<String, SongVotingDto> =
             ProducerRecord(kafkaConfigProperties.createSongVoteRequestTopic, key, songVotingDto)
 

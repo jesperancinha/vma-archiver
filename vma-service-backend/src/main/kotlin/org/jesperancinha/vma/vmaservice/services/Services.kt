@@ -12,6 +12,7 @@ import org.jesperancinha.vma.dto.*
 import org.jesperancinha.vma.vmaservice.kafka.VotingRequestPublisher
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
+import reactor.core.publisher.Mono.empty
 
 /**
  * Created by jofisaes on 06/07/2022
@@ -125,7 +126,7 @@ class VotingService(
 ) {
     private val cache: MutableMap<String, VotingStatus> = hazelcastInstance.getMap("vma-cache")
 
-    suspend fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto): Mono<Void> =
+    fun castArtistVote(voterKey: String, artistVotingDto: ArtistVotingDto): Mono<Void> =
         cache[voterKey]?.votedOff?.let { voted ->
             if (!voted.contains(artistVotingDto.idC)) {
                 return votingRequestPublisher.publishArtistVote(
@@ -133,17 +134,17 @@ class VotingService(
                     artistVotingDto = artistVotingDto.copy(userId = voterKey)
                 ).and(mono { voted.add(artistVotingDto.idC) })
             }
-        }.let { Mono.empty() }
+        }.let { empty() }
 
-    suspend fun castSongVote(voterKey: String, songVotingDto: SongVotingDto): Mono<Void> =
+    fun castSongVote(voterKey: String, songVotingDto: SongVotingDto): Mono<Void> =
         cache[voterKey]?.votedOff?.let { voted ->
             if (!voted.contains(songVotingDto.idC)) {
                 return votingRequestPublisher.publishSongVote(
                     key = voterKey,
                     songVotingDto = songVotingDto.copy(userId = voterKey)
                 ).and(mono { voted.add(songVotingDto.idC) })
-            }
-        }.let { Mono.empty() }
+            } else empty()
+        } ?: throw RuntimeException("Voter Key not found!")
 
 
     suspend fun countVotes() {
@@ -188,7 +189,7 @@ class VotingService(
         return cat.votes + cat.voteCount
     }
 
-    suspend fun resetDemo(){
+    suspend fun resetDemo() {
         votingCategorySongRepository.deleteAll()
         votingCategoryArtistRepository.deleteAll()
         categorySongRepository.deleteAll()

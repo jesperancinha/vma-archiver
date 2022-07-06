@@ -200,7 +200,28 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         VMA BE NGINX LB-->>VMA Voting Client n: Response With Votes
 ```
 
+
 ---
+
+#### How to run
+
+1. Start all containers
+```shell
+make dcup-full
+```
+
+>If it fails, you can always try `make dcup`.
+---
+2. Start Locust
+```shell
+make locust
+````
+---
+3. Cast your vote
+Go to [http://localhost:8080](http://localhost:8080) and cast your votes
+---
+4. Wait for locust to stop and check the result
+Go to [http://localhost:8080/result](http://localhost:8080/result)
 
 #### Swagger tests
 

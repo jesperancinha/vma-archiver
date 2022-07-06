@@ -31,12 +31,15 @@ for category in response.json():
         print(resp.status_code)
     if category["type"] == "SONG" or category["type"] == "INSTRUMENTAL":
         elected = category["songs"][randint(0, len(category['songs'])-1)]
+        payload = {
+            "userId": user_id,
+            "idC": category["id"],
+            "idS": elected["id"]
+        }
         resp = requests.post(
             urlSong,
             headers=headers,
-            json={
-                "userId": user_id,
-                "idC": category["id"],
-                "idS": elected["id"]
-            })
+            json=payload)
+        print("=======")
+        print(payload)
         print(resp.status_code)

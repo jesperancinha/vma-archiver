@@ -19,12 +19,15 @@ for category in response.json():
     print(category)
     if category["type"] == "SONG" or category["type"] == "INSTRUMENTAL":
         elected = category["songs"][0]
+        payload = {
+            "userId": generateUuuid(),
+            "idC": category["id"],
+            "idS": elected["id"]
+        }
         resp = requests.post(
             urlSong,
             headers=headers,
-            json={
-                "userID": generateUuuid(),
-                "idC": category["id"],
-                "idS": elected["id"]
-            })
+            json=payload)
+        print("=======")
+        print(payload)
         print(resp.status_code)

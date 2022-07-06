@@ -17,13 +17,13 @@ class VotingController(
     val votingService: VotingService
 ) {
     @PostMapping("/artist")
-    suspend fun postArtistVote(
+    fun postArtistVote(
         @RequestBody artistVotingDto: ArtistVotingDto,
         @CookieValue("votingId") votingKey: String
     ) = votingService.castArtistVote(votingKey, artistVotingDto)
 
     @PostMapping("/song")
-    suspend fun postSongVote(
+    fun postSongVote(
         @RequestBody songVotingDto: SongVotingDto,
         @CookieValue("votingId") votingKey: String
     ) = votingService.castSongVote(votingKey, songVotingDto)
@@ -46,7 +46,7 @@ class VotingController(
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
     suspend fun open(
         @CookieValue("votingId") votingKey: String?, response: ServerHttpResponse
-    ): VotingId = votingService.resetDemo().run {
+    ): VotingId =
         VotingId(id = votingKey
             ?.let {
                 votingService.addVotingKeyToCache(it)
@@ -58,5 +58,5 @@ class VotingController(
                 votingService.addVotingKeyToCache(votingId)
                 votingId
             })
-    }
+
 }
