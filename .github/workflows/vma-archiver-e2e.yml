@@ -1,0 +1,43 @@
+name: e2e-staco-app
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  e2e-electron:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start Docker
+        run: make dcup-full
+      - name: Start Locust
+        run: make locust
+      - name: Run Cypress
+        run: make cypress
+
+  e2e-chrome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start Docker
+        run: make dcup-full
+      - name: Start Locust
+        run: make locust
+      - name: Run Cypress
+        run: make cypress-chrome
+
+  e2e-firefox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start Docker
+        run: make dcup-full
+      - name: Start Locust
+        run: make locust
+      - name: Run Cypress
+        run: make cypress-firefox
+
