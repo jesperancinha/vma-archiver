@@ -1,8 +1,8 @@
 package org.jesperancinha.vma.vmaservice.rest
 
-import org.jesperancinha.vma.common.dto.ArtistVotingDto
-import org.jesperancinha.vma.common.dto.SongVotingDto
-import org.jesperancinha.vma.common.dto.VotingId
+import org.jesperancinha.vma.dto.ArtistVotingDto
+import org.jesperancinha.vma.dto.SongVotingDto
+import org.jesperancinha.vma.dto.VotingId
 import org.jesperancinha.vma.vmaservice.services.VotingService
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseCookie

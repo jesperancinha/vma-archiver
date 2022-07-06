@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.common.config
+package org.jesperancinha.vma.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

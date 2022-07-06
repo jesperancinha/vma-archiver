@@ -1,7 +1,7 @@
-package org.jesperancinha.vma.common.domain
+package org.jesperancinha.vma.domain
 
 import org.hibernate.Hibernate
-import org.jesperancinha.vma.common.dto.CategoryType
+import org.jesperancinha.vma.dto.CategoryType
 import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository

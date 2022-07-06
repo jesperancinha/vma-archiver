@@ -1,16 +1,10 @@
 package org.jesperancinha.vma.vmaservice.rest
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
 import org.jesperancinha.vma.common.domain.VmaSongDto
-import org.jesperancinha.vma.common.dto.CategoryDto
-import org.jesperancinha.vma.common.service.CategoryService
-import org.springframework.messaging.simp.SimpMessagingTemplate
-import org.springframework.scheduling.annotation.Scheduled
+import org.jesperancinha.vma.dto.CategoryDto
+import org.jesperancinha.vma.vmaservice.services.CategoryService
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -33,4 +27,8 @@ class RegistryController(
     @GetMapping("/current")
     fun getCurrentVma(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> =
         categoryService.findAll(votingKey)
+
+    @GetMapping
+    fun getAllCategories(@CookieValue("votingId") votingKey: String?): Flow<CategoryDto> =
+        categoryService.findAll()
 }

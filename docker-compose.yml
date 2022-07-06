@@ -183,6 +183,8 @@ services:
       - VMA_PORT=8083
       - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
+      - VMA_NGINX_IP=${VMA_NGINX_IP}
+
     restart: on-failure
     deploy:
       resources:
@@ -208,6 +210,7 @@ services:
       - VMA_PORT=8084
       - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
+      - VMA_NGINX_IP=${VMA_NGINX_IP}
     restart: on-failure
     deploy:
       resources:

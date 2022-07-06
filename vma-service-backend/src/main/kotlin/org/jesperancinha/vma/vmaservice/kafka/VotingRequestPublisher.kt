@@ -2,9 +2,9 @@ package org.jesperancinha.vma.vmaservice.kafka
 
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.jesperancinha.vma.common.dto.ArtistVotingDto
-import org.jesperancinha.vma.common.dto.SongVotingDto
-import org.jesperancinha.vma.common.config.VotingKafkaConfigProperties
+import org.jesperancinha.vma.dto.ArtistVotingDto
+import org.jesperancinha.vma.dto.SongVotingDto
+import org.jesperancinha.vma.config.VotingKafkaConfigProperties
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Profile

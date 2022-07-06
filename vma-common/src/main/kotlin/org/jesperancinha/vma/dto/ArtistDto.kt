@@ -1,6 +1,6 @@
-package org.jesperancinha.vma.common.dto
+package org.jesperancinha.vma.dto
 
-import org.jesperancinha.vma.common.domain.Artist
+import org.jesperancinha.vma.domain.Artist
 
 data class ArtistDto(
     val id: String? = null,

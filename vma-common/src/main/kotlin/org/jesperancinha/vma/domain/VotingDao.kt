@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.common.domain
+package org.jesperancinha.vma.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Persistable

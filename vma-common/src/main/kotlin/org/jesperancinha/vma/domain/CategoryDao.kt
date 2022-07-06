@@ -1,7 +1,7 @@
-package org.jesperancinha.vma.common.domain
+package org.jesperancinha.vma.domain
 
 import kotlinx.coroutines.flow.Flow
-import org.jesperancinha.vma.common.dto.CategoryType
+import org.jesperancinha.vma.dto.CategoryType
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.data.domain.Persistable

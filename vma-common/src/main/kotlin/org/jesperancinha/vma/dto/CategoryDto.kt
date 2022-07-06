@@ -1,6 +1,6 @@
-package org.jesperancinha.vma.common.dto
+package org.jesperancinha.vma.dto
 
-import org.jesperancinha.vma.common.domain.Category
+import org.jesperancinha.vma.domain.Category
 
 
 enum class CategoryType {

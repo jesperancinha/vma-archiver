@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.common.config
+package org.jesperancinha.vma.vmaservice.config
 
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast

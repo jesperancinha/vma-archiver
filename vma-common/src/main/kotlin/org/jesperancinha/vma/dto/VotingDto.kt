@@ -1,4 +1,4 @@
-package org.jesperancinha.vma.common.dto
+package org.jesperancinha.vma.dto
 
 import org.apache.avro.Schema
 import org.apache.avro.SchemaBuilder

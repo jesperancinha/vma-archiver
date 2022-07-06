@@ -1,6 +1,7 @@
 package org.jesperancinha.vma.common.domain
 
-import org.jesperancinha.vma.common.dto.CategoryType
+import org.jesperancinha.vma.dto.CategoryType
+import org.jesperancinha.vma.domain.Song
 
 
 /**
