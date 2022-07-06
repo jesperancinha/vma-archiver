@@ -217,10 +217,10 @@ make dcup-full
 make locust
 ````
 ---
-3. Cast your vote
+3. Cast your vote   
 Go to [http://localhost:8080](http://localhost:8080) and cast your votes
 ---
-4. Wait for locust to stop and check the result
+4. Wait for locust to stop and check the result   
 Go to [http://localhost:8080/result](http://localhost:8080/result)
 
 #### Swagger tests
