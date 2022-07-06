@@ -1,8 +1,8 @@
-name: e2e-staco-app
+name: e2e-vma-archiver-app
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   e2e-electron:
