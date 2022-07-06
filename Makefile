@@ -93,5 +93,8 @@ demo: dcup cypress
 demo-full: dcup-full cypress
 demo-full-manual: dcup-full cypress-open
 kafka:
+	docker-compose rm -svf jofisaes_vma_zookeeper
+	docker-compose rm -svf jofisaes_vma_broker
+	docker-compose rm -svf jofisaes_schemaregistry
 	docker-compose up -d --build --remove-orphans jofisaes_vma_zookeeper jofisaes_vma_broker jofisaes_schemaregistry
 	bash kafka_wait.sh
