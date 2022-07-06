@@ -187,6 +187,13 @@ class VotingService(
         val cat = categorySongRepository.findByCategoryIdAndSongId(idc, ids)
         return cat.votes + cat.voteCount
     }
+
+    suspend fun resetDemo(){
+        votingCategorySongRepository.deleteAll()
+        votingCategoryArtistRepository.deleteAll()
+        categorySongRepository.deleteAll()
+        categoryArtistRepository.deleteAll()
+    }
 }
 
 fun <T> List<T>.random5(capacity: Int): List<T> =

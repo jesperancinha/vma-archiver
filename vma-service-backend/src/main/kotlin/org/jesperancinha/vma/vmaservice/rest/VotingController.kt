@@ -44,8 +44,10 @@ class VotingController(
     ) = votingService.getSongVotingResults(idc, ids)
 
     @GetMapping(path = ["/open"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    suspend fun open(@CookieValue("votingId") votingKey: String?, response: ServerHttpResponse): VotingId {
-        return VotingId(id = votingKey
+    suspend fun open(
+        @CookieValue("votingId") votingKey: String?, response: ServerHttpResponse
+    ): VotingId = votingService.resetDemo().run {
+        VotingId(id = votingKey
             ?.let {
                 votingService.addVotingKeyToCache(it)
                 it
