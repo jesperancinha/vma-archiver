@@ -1,3 +1,24 @@
+Cypress.Commands.add("titlesCheck", (title) => {
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card > mat-card-title").contains("Best Song")
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(2) > mat-card-title").contains("Best Singer")
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(3) > mat-card-title").contains("Best New Artist")
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(4) > mat-card-title").contains("Best Instrumental")
+});
+Cypress.Commands.add("selectFirst", (title) => {
+    cy.wait(1000);
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card > mat-radio-group > mat-radio-button").first().click();
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(2) > mat-radio-group > mat-radio-button").first().click();
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(3) > mat-radio-group > mat-radio-button").first().click();
+    cy.get('mat-card-title').contains(title).next()
+        .get("mat-card > mat-card:nth-child(4) > mat-radio-group > mat-radio-button").first().click();
+});
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +56,4 @@
 //     }
 //   }
 // }
+
