@@ -207,22 +207,22 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
 
 #### How to run
 
-1. Start all containers
+1.  Start all containers
 ```shell
 make dcup-full
 ```
 
 >If it fails, you can always try `make dcup`.
 ---
-2. Start Locust
+2.  Start Locust
 ```shell
 make locust
 ````
 ---
-3. Cast your vote   
+3.  Cast your vote   
 Go to [http://localhost:8080](http://localhost:8080) and cast your votes
 ---
-4. Wait for locust to stop and check the result   
+4.  Wait for locust to stop and check the result   
 Go to [http://localhost:8080/result](http://localhost:8080/result)
 
 #### Swagger tests
@@ -236,7 +236,7 @@ You can make tests for this application using the Swagger UI at:
 
 ## Troubleshooting
 
-1. As decribed in [[Solved] Port 5000 Used by Control Center in macOS Monterey](https://nono.ma/port-5000-used-by-control-center-in-macos-controlce), there is potentially an issue with por 5000 on a MAC. For this case you probably just need to deactivate AirPlay:
+1.  As decribed in [[Solved] Port 5000 Used by Control Center in macOS Monterey](https://nono.ma/port-5000-used-by-control-center-in-macos-controlce), there is potentially an issue with por 5000 on a MAC. For this case you probably just need to deactivate AirPlay:
 
 Select `System Preferences` and then `Sharing`:
 
@@ -250,30 +250,30 @@ Now, just deactivate the `AirPlay Receiver`
 
 ## References
 
-- [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka)
-- [Using Kotlin Coroutines with Spring](https://hantsy.medium.com/using-kotlin-coroutines-with-spring-d2784a300bda)
-- [Going Reactive with Spring, Coroutines and Kotlin Flow](https://spring.io/blog/2019/04/12/going-reactive-with-spring-coroutines-and-kotlin-flow)
-- [How to Set Up PostgreSQL Cluster using Patroni on Ubuntu 20.04](https://snapshooter.com/learn/postgresql/postgresql-cluster-patroni)
-- [Creating a single HAProxy and two Apache containers with Docker compose](http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose?ref=morioh.com&utm_source=morioh.com)
-- [HAProxy - The Reliable, High Performance TCP/HTTP Load Balancer](https://hub.docker.com/_/haproxy)
-- [Ingress Gateways](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/)
-- [Amazon Aurora connection management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html)
-- [PostgreSQL Load Balancing with HAProxy](https://severalnines.com/resources/database-management-tutorials/postgresql-load-balancing-haproxy)
-- [PostgreSQL HAProxy: Proxy for HA and Load Balance](https://www.alibabacloud.com/blog/postgresql-haproxy-proxy-for-ha-and-load-balance_597618)
-- [How Does a Database Load Balancer Work?](https://severalnines.com/database-blog/how-does-database-load-balancer-work)
-- [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
-- [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
-- [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
-- [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
-- [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
-- [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
-- [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
-- [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
-- [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
-- [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
-- [Imagining your Repository Layer with Coroutines](https://proandroiddev.com/imagining-your-repository-layer-with-coroutines-7ee052ee4caa)
-- [17.5. Coroutines](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#reference)
-- [17.5.2. How Reactive translates to Coroutines?](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#kotlin.coroutines.reactive)
+-   [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka)
+-   [Using Kotlin Coroutines with Spring](https://hantsy.medium.com/using-kotlin-coroutines-with-spring-d2784a300bda)
+-   [Going Reactive with Spring, Coroutines and Kotlin Flow](https://spring.io/blog/2019/04/12/going-reactive-with-spring-coroutines-and-kotlin-flow)
+-   [How to Set Up PostgreSQL Cluster using Patroni on Ubuntu 20.04](https://snapshooter.com/learn/postgresql/postgresql-cluster-patroni)
+-   [Creating a single HAProxy and two Apache containers with Docker compose](http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose?ref=morioh.com&utm_source=morioh.com)
+-   [HAProxy - The Reliable, High Performance TCP/HTTP Load Balancer](https://hub.docker.com/_/haproxy)
+-   [Ingress Gateways](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/)
+-   [Amazon Aurora connection management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html)
+-   [PostgreSQL Load Balancing with HAProxy](https://severalnines.com/resources/database-management-tutorials/postgresql-load-balancing-haproxy)
+-   [PostgreSQL HAProxy: Proxy for HA and Load Balance](https://www.alibabacloud.com/blog/postgresql-haproxy-proxy-for-ha-and-load-balance_597618)
+-   [How Does a Database Load Balancer Work?](https://severalnines.com/database-blog/how-does-database-load-balancer-work)
+-   [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+-   [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
+-   [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
+-   [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
+-   [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
+-   [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
+-   [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
+-   [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
+-   [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
+-   [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
+-   [Imagining your Repository Layer with Coroutines](https://proandroiddev.com/imagining-your-repository-layer-with-coroutines-7ee052ee4caa)
+-   [17.5. Coroutines](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#reference)
+-   [17.5.2. How Reactive translates to Coroutines?](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#kotlin.coroutines.reactive)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

@@ -3,8 +3,8 @@
 
 ## References
 
-- [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka) 
-- [Kotlin Kafka Dynamo Demo](https://github.com/billydh/kotlin-kafka-dynamo-demo)
+-   [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka) 
+-   [Kotlin Kafka Dynamo Demo](https://github.com/billydh/kotlin-kafka-dynamo-demo)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
