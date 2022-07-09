@@ -231,22 +231,7 @@ Go to [http://localhost:8080/result](http://localhost:8080/result)
 
 You can make tests for this application using the Swagger UI at:
 
--   [MVC Non-Reactive Solution (blocking) Swagger UI](http://localhost:8080/swagger-ui/index.html)
--   [WebFlux MVC Reactive Solution (non-blocking) Swagger UI](http://localhost:8081/webjars/swagger-ui/index.html)
-
----
-
-## Troubleshooting
-
-1.  As decribed in [[Solved] Port 5000 Used by Control Center in macOS Monterey](https://nono.ma/port-5000-used-by-control-center-in-macos-controlce), there is potentially an issue with por 5000 on a MAC. For this case you probably just need to deactivate AirPlay:
-
-Select `System Preferences` and then `Sharing`:
-
-![alt img](./docs/images/20220704/Screenshot%202022-07-04%20at%2022.36.07.png)
-
-Now, just deactivate the `AirPlay Receiver`
-
-![alt img](./docs/images/20220704/Screenshot%202022-07-04%20at%2022.36.16.png)
+-   [WebFlux Reactive Backend](http://localhost:8080/api/vma/webjars/swagger-ui/index.html)
 
 ---
 

@@ -1,6 +1,9 @@
 package org.jesperancinha.vma
 
 import io.r2dbc.spi.ConnectionFactory
+import io.swagger.v3.oas.annotations.OpenAPIDefinition
+import io.swagger.v3.oas.annotations.info.Info
+import io.swagger.v3.oas.annotations.servers.Server
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
@@ -13,13 +16,16 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
-import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.web.reactive.config.EnableWebFlux
 
 @SpringBootApplication(exclude = [WebMvcAutoConfiguration::class, ErrorMvcAutoConfiguration::class])
 @EnableR2dbcRepositories
 @EnableWebFlux
 @ConfigurationPropertiesScan
+@OpenAPIDefinition(
+    info = Info(title = "OpenAPI definition"),
+    servers = [Server(url = "\${vma.server.url}/api/vma", description = "Server URL")]
+)
 class VmaServiceApplication {
     @Bean
     @Profile("starter")

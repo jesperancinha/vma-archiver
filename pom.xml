@@ -31,6 +31,7 @@
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
+        <swagger-annotations.version>2.2.1</swagger-annotations.version>
     </properties>
     <modules>
         <module>vma-play</module>
@@ -144,6 +145,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-webflux-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jesperancinha.vma</groupId>
