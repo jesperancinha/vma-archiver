@@ -20,7 +20,9 @@ describe('Vote Casting #1', () => {
         cy.titlesCheck('VMA - Cast your vote page!');
         cy.wait(1000);
         cy.selectFirst('VMA - Cast your vote page!');
-        cy.get('mat-card-title').next().get('button').click();
+        const click = $el => $el.click()
+        cy.get('mat-card-title').next().get('button')
+            .contains("Cast Votes!").pipe(click);
         cy.wait(1000)
         cy.titlesCheck('VMA - Cast your vote page!');
 
