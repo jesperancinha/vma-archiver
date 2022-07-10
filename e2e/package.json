@@ -24,6 +24,5 @@
   "dependencies": {
     "chai-uuid": "^1.0.6",
     "cypress-pipe": "^2.0.0"
-  },
-  "type": "module"
+  }
 }
