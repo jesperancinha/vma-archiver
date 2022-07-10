@@ -29,7 +29,7 @@ services:
       - .:/e2e
 
 networks:
-  fla_net:
+  vma_net:
     driver: bridge
     ipam:
       driver: default
