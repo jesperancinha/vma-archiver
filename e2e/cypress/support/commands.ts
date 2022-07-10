@@ -9,18 +9,19 @@ Cypress.Commands.add("titlesCheck", (title) => {
         .get("mat-card > mat-card:nth-child(4) > mat-card-title").contains("Best Instrumental")
 });
 Cypress.Commands.add("selectFirst", (title) => {
+    const click = $el => $el.click()
     cy.wait(1000);
     cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card > mat-radio-group > mat-radio-button").first().click();
+        .get("mat-card > mat-card > mat-radio-group > mat-radio-button").first().pipe(click);
     cy.wait(200);
     cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(2) > mat-radio-group > mat-radio-button").first().click();
+        .get("mat-card > mat-card:nth-child(2) > mat-radio-group > mat-radio-button").first().pipe(click);
     cy.wait(200);
     cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(3) > mat-radio-group > mat-radio-button").first().click();
+        .get("mat-card > mat-card:nth-child(3) > mat-radio-group > mat-radio-button").first().pipe(click);
     cy.wait(200);
     cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(4) > mat-radio-group > mat-radio-button").first().click();
+        .get("mat-card > mat-card:nth-child(4) > mat-radio-group > mat-radio-button").first().pipe(click);
     cy.wait(200);
 });
 /// <reference types="cypress" />

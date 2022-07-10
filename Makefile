@@ -87,12 +87,14 @@ dcup-full: docker-clean-build-start vma-wait
 dcup-full-action: docker-clean b docker-action vma-wait
 cypress-open:
 	cd e2e && yarn && npm run cypress
-cypress:
-	cd e2e && yarn && npm run cypress:run
+cypress-electron:
+	cd e2e && make cypress-electron
 cypress-chrome:
-	cd e2e && yarn && npm run cypress:run:chrome
+	cd e2e && make cypress-chrome
 cypress-firefox:
-	cd e2e && yarn && npm run cypress:run:firefox
+	cd e2e && make cypress-firefox
+cypress-edge:
+	cd e2e && make cypress-edge
 demo: dcup cypress
 demo-full: dcup-full cypress
 demo-full-manual: dcup-full cypress-open

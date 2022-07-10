@@ -1,6 +1,7 @@
 describe('VMA E2E Tests', () => {
   it('shows swagger', () => {
-    cy.visit('http://localhost:8080/api/vma/webjars/swagger-ui/index.html');
+    let host = Cypress.env('host') ?  Cypress.env('host') : 'localhost';
+    cy.visit(`http://${host}:8080/api/vma/webjars/swagger-ui/index.html`);
     cy.get('h2').contains('OpenAPI definition').should('not.be.null');
     cy.wait(1000);
 

@@ -1,5 +1,9 @@
 # e2e
 
+## References
+
+- [When Can The Test Click?](https://www.cypress.io/blog/2019/01/22/when-can-the-test-click/)
+
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)

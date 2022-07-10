@@ -2,7 +2,8 @@ chai.use(require('chai-uuid'));
 
 describe('Results #1', () => {
     it('passes', () => {
-        cy.visit('http://localhost:8080/result');
+        let host = Cypress.env('host') ?  Cypress.env('host') : 'localhost';
+        cy.visit(`http://${host}:8080/result`);
         cy.get('mat-card-title').contains('VMA - Voting results!')
             .should((matCardTitle) => {
                 const text = matCardTitle.text();
