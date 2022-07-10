@@ -47,3 +47,18 @@ jobs:
       - name: Run Cypress
         run: make cypress-firefox
 
+
+  e2e-edge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Locust
+        run: sudo pip3 install locust
+
+      - name: Start Docker
+        run: make dcup-full-action
+      - name: Start Locust
+        run: make locust
+      - name: Run Cypress
+        run: make cypress-edge
+
