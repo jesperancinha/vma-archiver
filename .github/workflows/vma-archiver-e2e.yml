@@ -17,7 +17,7 @@ jobs:
       - name: Start Locust
         run: make locust
       - name: Run Cypress
-        run: make cypress
+        run: make cypress-electron
 
   e2e-chrome:
     runs-on: ubuntu-latest
