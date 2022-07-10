@@ -27,11 +27,11 @@ describe('Vote Casting #1', () => {
         cy.wait(1000)
         cy.titlesCheck('VMA - Cast your vote page!');
 
-        cy.visit('http://localhost:8080/result');
+        cy.visit(`http://${host}:8080/result`);
         cy.titlesCheck('VMA - Voting results!');
 
         cy.wait(60000)
-        cy.request("POST", "http://localhost:8080/api/vma/voting/count")
+        cy.request("POST", `http://${host}:8080/api/vma/voting/count`)
 
     })
 })
