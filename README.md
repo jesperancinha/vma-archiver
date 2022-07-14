@@ -13,7 +13,6 @@
 [![e2e-vma-archiver-app](https://github.com/jesperancinha/vma-archiver/actions/workflows/vma-archiver-e2e.yml/badge.svg)](https://github.com/jesperancinha/vma-archiver/actions/workflows/vma-archiver-e2e.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/02f12203575c48f5948baf57e8fc27b6)](https://www.codacy.com/gh/jesperancinha/vma-archiver/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/vma-archiver&amp;utm_campaign=Badge_Grade)
-[![codebeat badge](https://codebeat.co/badges/c1b16ed4-8341-416b-9084-c2e0f7b36ffd)](https://codebeat.co/projects/github-com-jesperancinha-vma-archiver-master)
 [![Build Status](https://travis-ci.com/jesperancinha/vma-archiver.svg?branch=master)](https://travis-ci.com/jesperancinha/vma-archiver)
 [![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/vma-archiver?branch=master)](https://bettercodehub.com/results/jesperancinha/vma-archiver)
 [![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/vma-archiver/badge.svg)](https://snyk.io/test/github/jesperancinha/vma-archiver)
