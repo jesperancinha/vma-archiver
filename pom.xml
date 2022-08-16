@@ -30,7 +30,7 @@
         <test.containers.version>1.17.3</test.containers.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
-        <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
+        <springdoc-openapi.version>1.6.10</springdoc-openapi.version>
         <swagger-annotations.version>2.2.2</swagger-annotations.version>
     </properties>
     <modules>
