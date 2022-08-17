@@ -263,6 +263,8 @@ services:
           memory: 300M
     env_file:
       - .env
+    ports:
+      - "8080:8080"
     networks:
       vma_net:
         ipv4_address: ${VMA_NGINX_IP}
