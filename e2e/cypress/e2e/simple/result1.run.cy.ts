@@ -1,9 +1,10 @@
 chai.use(require('chai-uuid'));
 
 describe('Results #1', () => {
+    const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
     it('passes', () => {
         let host = Cypress.env('host') ?  Cypress.env('host') : 'localhost';
-        cy.visit(`http://${host}:8080/result`);
+        cy.visit(`http://${host}:8080/result`, TIMEOUT_CONFIG);
         cy.get('mat-card-title').contains('VMA - Voting results!')
             .should((matCardTitle) => {
                 const text = matCardTitle.text();

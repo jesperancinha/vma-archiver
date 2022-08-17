@@ -4,7 +4,7 @@ describe('Vote Casting #1', () => {
     const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
     it('passes', () => {
         let host = Cypress.env('host') ?  Cypress.env('host') : 'localhost';
-        cy.visit(`http://${host}:8080`);
+        cy.visit(`http://${host}:8080`, TIMEOUT_CONFIG);
         cy.wait(1000);
         cy.get('mat-card-title', TIMEOUT_CONFIG).contains('VMA - Cast your vote page!')
             .should((matCardTitle) => {
