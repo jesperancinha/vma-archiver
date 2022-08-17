@@ -20,7 +20,6 @@ jobs:
         run: make cypress-electron
 
   e2e-chrome:
-    needs: e2e-electron
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,12 +29,11 @@ jobs:
       - name: Start Docker
         run: make dcup-full-action
       - name: Start Locust
-        run: make locust
+        run: make locust-short
       - name: Run Cypress
         run: make cypress-chrome
 
   e2e-firefox:
-    needs: e2e-chrome
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,13 +43,12 @@ jobs:
       - name: Start Docker
         run: make dcup-full-action
       - name: Start Locust
-        run: make locust
+        run: make locust-short
       - name: Run Cypress
         run: make cypress-firefox
 
 
   e2e-edge:
-    needs: e2e-firefox
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -61,7 +58,7 @@ jobs:
       - name: Start Docker
         run: make dcup-full-action
       - name: Start Locust
-        run: make locust
+        run: make locust-short
       - name: Run Cypress
         run: make cypress-edge
 
