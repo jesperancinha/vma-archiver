@@ -34,6 +34,7 @@ jobs:
         run: make cypress-chrome
 
   e2e-firefox:
+    needs: [ e2e-electron, e2e-chrome ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -49,6 +50,7 @@ jobs:
 
 
   e2e-edge:
+    needs: [ e2e-electron, e2e-chrome ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
