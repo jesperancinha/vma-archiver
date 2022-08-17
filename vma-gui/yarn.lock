@@ -5584,8 +5584,8 @@ yargs@^17.2.1:
     y18n "^5.0.5"
     yargs-parser "^21.0.0"
 
-zone.js@~0.11.4:
-  version "0.11.6"
-  resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.11.6.tgz"
+zone.js@~0.11.8:
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.8.tgz#40dea9adc1ad007b5effb2bfed17f350f1f46a21"
   dependencies:
     tslib "^2.3.0"
