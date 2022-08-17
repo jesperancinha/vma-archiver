@@ -211,8 +211,6 @@ services:
     container_name: jofisaes_vma_nginx_lb
     build:
       context: ./docker-images/nginx/.
-    ports:
-      - "8080:8080"
     expose:
       - 8080
     restart: on-failure
