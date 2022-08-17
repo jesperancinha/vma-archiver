@@ -23,6 +23,7 @@ function checkServiceByNameAndMessage() {
     echo "Succeeded $name Service after $counter tries!"
 }
 
+checkServiceByNameAndMessage jofisaes_vma_haproxy_lb 'executing /usr/local/sbin/haproxy -p /run/haproxy.pid -db -f /usr/local/etc/haproxy/haproxy.cfg -Ds'
 checkServiceByNameAndMessage jofisaes_vma_postgres_1 'database system is ready to accept connections'
 checkServiceByNameAndMessage jofisaes_vma_postgres_1 'I am (postgresql1)'
 checkServiceByNameAndMessage jofisaes_vma_postgres_2 'I am (postgresql2)'
