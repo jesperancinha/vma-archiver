@@ -18,6 +18,7 @@ services:
       - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
       - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
       - POSTGRES_NUMBER=1
+      - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - ${PG_EXPOSED_PORT}
     deploy:
@@ -32,6 +33,8 @@ services:
       timeout: 30s
       retries: 10
       start_period: 0s
+    depends_on:
+      - jofisaes_vma_haproxy_lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_1_IP}
@@ -53,6 +56,7 @@ services:
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
       - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
       - POSTGRES_NUMBER=2
+      - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - ${PG_EXPOSED_PORT}
     deploy:
@@ -67,6 +71,8 @@ services:
       timeout: 30s
       retries: 10
       start_period: 0s
+    depends_on:
+      - jofisaes_vma_haproxy_lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
@@ -89,6 +95,7 @@ services:
       - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
       - POSTGRES_THIRD_IP=${POSTGRES_2_IP}
       - POSTGRES_NUMBER=3
+      - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - ${PG_EXPOSED_PORT}
     deploy:
@@ -103,6 +110,8 @@ services:
       timeout: 30s
       retries: 10
       start_period: 0s
+    depends_on:
+      - jofisaes_vma_haproxy_lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_3_IP}
@@ -124,10 +133,6 @@ services:
     networks:
       vma_net:
         ipv4_address: ${VMA_HA_PROXY_IP}
-    depends_on:
-      - jofisaes_vma_postgres_1
-      - jofisaes_vma_postgres_2
-      - jofisaes_vma_postgres_3
     environment:
       - POSTGRES_1_IP=${POSTGRES_1_IP}
       - POSTGRES_2_IP=${POSTGRES_2_IP}
