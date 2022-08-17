@@ -4,6 +4,7 @@ services:
     container_name: jofisaes_${PROJECT_NAME}_postgres_1
     hostname: jofisaes-vma-postgres-1
     restart: on-failure
+    command: -c 'max_connections=400' -c 'shared_buffers=100MB'
     build:
       context: ./docker-images/psql/.
     volumes:
@@ -25,6 +26,12 @@ services:
           memory: 150M
         reservations:
           memory: 150M
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 0s
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_1_IP}
@@ -33,6 +40,7 @@ services:
     container_name: jofisaes_${PROJECT_NAME}_postgres_2
     hostname: jofisaes-vma-postgres-2
     restart: on-failure
+    command: -c 'max_connections=400' -c 'shared_buffers=100MB'
     build:
       context: ./docker-images/psql/.
     volumes:
@@ -53,6 +61,12 @@ services:
           memory: 150M
         reservations:
           memory: 150M
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 0s
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
@@ -61,6 +75,7 @@ services:
     container_name: jofisaes_${PROJECT_NAME}_postgres_3
     hostname: jofisaes-vma-postgres-3
     restart: on-failure
+    command: -c 'max_connections=400' -c 'shared_buffers=100MB'
     build:
       context: ./docker-images/psql/.
     volumes:
@@ -82,6 +97,12 @@ services:
           memory: 150M
         reservations:
           memory: 150M
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 0s
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_3_IP}
@@ -103,6 +124,10 @@ services:
     networks:
       vma_net:
         ipv4_address: ${VMA_HA_PROXY_IP}
+    depends_on:
+      - jofisaes_vma_postgres_1
+      - jofisaes_vma_postgres_2
+      - jofisaes_vma_postgres_3
     environment:
       - POSTGRES_1_IP=${POSTGRES_1_IP}
       - POSTGRES_2_IP=${POSTGRES_2_IP}
@@ -123,6 +148,10 @@ services:
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
       - VMA_KAFKA=${VMA_KAFKA}
     restart: on-failure
+    depends_on:
+      - jofisaes_vma_postgres_1
+      - jofisaes_vma_postgres_2
+      - jofisaes_vma_postgres_3
     deploy:
       resources:
         limits:
@@ -147,6 +176,10 @@ services:
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
       - VMA_KAFKA=${VMA_KAFKA}
     restart: on-failure
+    depends_on:
+      - jofisaes_vma_postgres_1
+      - jofisaes_vma_postgres_2
+      - jofisaes_vma_postgres_3
     deploy:
       resources:
         limits:
@@ -172,6 +205,10 @@ services:
       - VMA_NGINX_IP=${VMA_NGINX_IP}
 
     restart: on-failure
+    depends_on:
+      - jofisaes_vma_postgres_1
+      - jofisaes_vma_postgres_2
+      - jofisaes_vma_postgres_3
     deploy:
       resources:
         limits:
@@ -196,6 +233,10 @@ services:
       - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
       - VMA_NGINX_IP=${VMA_NGINX_IP}
     restart: on-failure
+    depends_on:
+      - jofisaes_vma_postgres_1
+      - jofisaes_vma_postgres_2
+      - jofisaes_vma_postgres_3
     deploy:
       resources:
         limits:
