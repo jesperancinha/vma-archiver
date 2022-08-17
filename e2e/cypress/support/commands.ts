@@ -1,27 +1,30 @@
 Cypress.Commands.add("titlesCheck", (title) => {
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card > mat-card-title").contains("Best Song")
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(2) > mat-card-title").contains("Best Singer")
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(3) > mat-card-title").contains("Best New Artist")
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(4) > mat-card-title").contains("Best Instrumental")
+    const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card > mat-card-title", TIMEOUT_CONFIG).contains("Best Song", TIMEOUT_CONFIG)
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(2) > mat-card-title", TIMEOUT_CONFIG).contains("Best Singer", TIMEOUT_CONFIG)
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(3) > mat-card-title", TIMEOUT_CONFIG).contains("Best New Artist", TIMEOUT_CONFIG)
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(4) > mat-card-title", TIMEOUT_CONFIG).contains("Best Instrumental", TIMEOUT_CONFIG)
 });
+
 Cypress.Commands.add("selectFirst", (title) => {
+    const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
     const click = $el => $el.click()
     cy.wait(1000);
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card > mat-radio-group > mat-radio-button").first().pipe(click);
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card > mat-radio-group > mat-radio-button", TIMEOUT_CONFIG).first(TIMEOUT_CONFIG).pipe(click);
     cy.wait(200);
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(2) > mat-radio-group > mat-radio-button").first().pipe(click);
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(2) > mat-radio-group > mat-radio-button", TIMEOUT_CONFIG).first(TIMEOUT_CONFIG).pipe(click);
     cy.wait(200);
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(3) > mat-radio-group > mat-radio-button").first().pipe(click);
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(3) > mat-radio-group > mat-radio-button", TIMEOUT_CONFIG).first(TIMEOUT_CONFIG).pipe(click);
     cy.wait(200);
-    cy.get('mat-card-title').contains(title).next()
-        .get("mat-card > mat-card:nth-child(4) > mat-radio-group > mat-radio-button").first().pipe(click);
+    getChainableCardTitle(title)
+        .get("mat-card > mat-card:nth-child(4) > mat-radio-group > mat-radio-button", TIMEOUT_CONFIG).first(TIMEOUT_CONFIG).pipe(click);
     cy.wait(200);
 });
 /// <reference types="cypress" />
@@ -62,3 +65,7 @@ Cypress.Commands.add("selectFirst", (title) => {
 //   }
 // }
 
+function getChainableCardTitle(title: any) {
+    const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
+    return cy.get('mat-card-title', TIMEOUT_CONFIG).contains(title, TIMEOUT_CONFIG).next();
+}
