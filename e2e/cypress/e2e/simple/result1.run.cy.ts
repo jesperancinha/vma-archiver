@@ -5,6 +5,7 @@ describe('Results #1', () => {
     it('passes', () => {
         let host = Cypress.env('host') ?  Cypress.env('host') : 'localhost';
         cy.visit(`http://${host}:8080/result`, TIMEOUT_CONFIG);
+        cy.wait(TIMEOUT_CONFIG.timeout);
         cy.get('mat-card-title').contains('VMA - Voting results!')
             .should((matCardTitle) => {
                 const text = matCardTitle.text();
