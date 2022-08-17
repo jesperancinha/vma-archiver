@@ -24,8 +24,8 @@ function checkServiceByNameAndMessage() {
 }
 
 checkServiceByNameAndMessage jofisaes_vma_postgres_1 'database system is ready to accept connections'
-checkServiceByNameAndMessage jofisaes_vma_postgres_2 'database system is ready to accept connections'
-checkServiceByNameAndMessage jofisaes_vma_postgres_3 'database system is ready to accept connections'
+checkServiceByNameAndMessage jofisaes_vma_postgres_2 'I am (postgresql2)'
+checkServiceByNameAndMessage jofisaes_vma_postgres_3 'I am (postgresql3)'
 checkServiceByNameAndMessage jofisaes_vma_backend_img_1 'Started VmaServiceApplicationKt'
 checkServiceByNameAndMessage jofisaes_vma_backend_img_2 'Started VmaServiceApplicationKt'
 checkServiceByNameAndMessage jofisaes_schemaregistry 'Server started, listening for requests...'
