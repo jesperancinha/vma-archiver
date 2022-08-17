@@ -3473,9 +3473,9 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~6.3.12:
-  version "6.3.20"
-  resolved "https://registry.npmjs.org/karma/-/karma-6.3.20.tgz"
+karma@~6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.4.0.tgz#82652dfecdd853ec227b74ed718a997028a99508"
   dependencies:
     "@colors/colors" "1.5.0"
     body-parser "^1.19.0"
