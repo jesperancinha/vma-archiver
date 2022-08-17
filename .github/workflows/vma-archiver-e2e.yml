@@ -1,4 +1,4 @@
-name: e2e-vma-archiver-app
+name: E2E e2e-vma-archiver-app
 
 on:
   push:
