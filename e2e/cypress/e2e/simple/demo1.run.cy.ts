@@ -1,7 +1,7 @@
 chai.use(require('chai-uuid'));
 
-const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
 describe('Vote Casting #1', () => {
+    const TIMEOUT_CONFIG = Cypress.env('TIMEOUT_CONFIG');
     it('passes', () => {
         cy.log(TIMEOUT_CONFIG);
         let host = Cypress.env('host') ? Cypress.env('host') : 'localhost';
