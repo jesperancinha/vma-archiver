@@ -31,7 +31,7 @@
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.11</springdoc-openapi.version>
-        <swagger-annotations.version>2.2.2</swagger-annotations.version>
+        <swagger-annotations.version>2.2.3</swagger-annotations.version>
     </properties>
     <modules>
         <module>vma-play</module>
