@@ -17,13 +17,6 @@ jobs:
     steps:
       - checkout
 
-      - run: mvn clean install
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
       - run:
           name: Install SDK 17
           command: wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz &&
@@ -43,3 +36,9 @@ jobs:
           command: export JAVA_HOME=/opt/jdk17 &&
               export PATH=$PATH:$JAVA_HOME/bin &&
               mvn test
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
