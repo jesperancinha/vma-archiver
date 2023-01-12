@@ -14,6 +14,8 @@ RUN pip install python-etcd
 
 RUN pip install psycopg2
 
+RUN apt update
+
 RUN apt-get install systemd -y
 
 COPY postgresql.conf /etc/postgresql/postgresql.conf
