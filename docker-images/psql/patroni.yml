@@ -40,7 +40,7 @@ postgresql:
   listen: 0.0.0.0:5432
   connect_address: ${POSTGRES_MAIN_IP}:5432
   data_dir: /data/patroni
-  bin_dir: /usr/lib/postgresql/11/bin
+  bin_dir: /usr/lib/postgresql/15/bin
   pgpass: /tmp/pgpass
   authentication:
     replication:

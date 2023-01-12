@@ -1,57 +1,57 @@
 version: "3.7"
 services:
-  jofisaes_vma_postgres_1:
+  jofisaes-vma-postgres-1:
     ports:
       - "5433:5432"
 
-  jofisaes_vma_postgres_2:
+  jofisaes-vma-postgres-2:
     ports:
       - "5434:5432"
 
-  jofisaes_vma_postgres_3:
+  jofisaes-vma-postgres-3:
     ports:
       - "5435:5432"
 
-  jofisaes_vma_haproxy_lb:
+  jofisaes-vma-haproxy-lb:
     ports:
       - "5000:5000"
       - "5001:5001"
       - "7000:7000"
 
-  jofisaes_vma_backend_img_1:
+  jofisaes-vma-backend-img-1:
     ports:
       - "8081:8081"
 
-  jofisaes_vma_backend_img_2:
+  jofisaes-vma-backend-img-2:
     ports:
       - "8082:8082"
 
-  jofisaes_vma_websockets_1:
+  jofisaes-vma-websockets-1:
     ports:
       - "8083:8083"
 
-  jofisaes_vma_websockets_2:
+  jofisaes-vma-websockets-2:
     ports:
       - "8084:8084"
 
-  jofisaes_vma_nginx_lb:
+  jofisaes-vma-nginx-lb:
     ports:
       - "8080:8080"
 
-  jofisaes_vma_etcd:
+  jofisaes-vma-etcd:
     ports:
       - "2379:2379"
       - "2380:2380"
 
-  jofisaes_vma_zookeeper:
+  jofisaes-vma-zookeeper:
     ports:
       - "2181:2181"
 
-  jofisaes_vma_broker:
+  jofisaes-vma-broker:
     ports:
       - "9092:9092"
       - "29092:29092"
 
-  jofisaes_schemaregistry:
+  jofisaes-schemaregistry:
     ports:
       - "8088:8088"

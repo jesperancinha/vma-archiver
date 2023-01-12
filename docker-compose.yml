@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  jofisaes_vma_postgres_1:
+  jofisaes-vma-postgres-1:
     container_name: jofisaes_${PROJECT_NAME}_postgres_1
     hostname: jofisaes-vma-postgres-1
     restart: on-failure
@@ -34,12 +34,12 @@ services:
       retries: 10
       start_period: 0s
     depends_on:
-      - jofisaes_vma_haproxy_lb
+      - jofisaes-vma-haproxy-lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_1_IP}
 
-  jofisaes_vma_postgres_2:
+  jofisaes-vma-postgres-2:
     container_name: jofisaes_${PROJECT_NAME}_postgres_2
     hostname: jofisaes-vma-postgres-2
     restart: on-failure
@@ -72,12 +72,12 @@ services:
       retries: 10
       start_period: 0s
     depends_on:
-      - jofisaes_vma_haproxy_lb
+      - jofisaes-vma-haproxy-lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_2_IP}
 
-  jofisaes_vma_postgres_3:
+  jofisaes-vma-postgres-3:
     container_name: jofisaes_${PROJECT_NAME}_postgres_3
     hostname: jofisaes-vma-postgres-3
     restart: on-failure
@@ -111,14 +111,14 @@ services:
       retries: 10
       start_period: 0s
     depends_on:
-      - jofisaes_vma_haproxy_lb
+      - jofisaes-vma-haproxy-lb
     networks:
       vma_net:
         ipv4_address: ${POSTGRES_3_IP}
 
-  jofisaes_vma_haproxy_lb:
-    container_name: jofisaes_vma_haproxy_lb
-    hostname: jofisaes_vma_haproxy_lb
+  jofisaes-vma-haproxy-lb:
+    container_name: jofisaes-vma-haproxy-lb
+    hostname: jofisaes-vma-haproxy-lb
     build: docker-images/haproxy/.
     expose:
       - 5001
@@ -139,9 +139,9 @@ services:
       - POSTGRES_3_IP=${POSTGRES_3_IP}
       - POSTGRES_EXPOSED_PORT=${PG_EXPOSED_PORT}
 
-  jofisaes_vma_backend_img_1:
-    hostname: jofisaes_vma_backend_img_1
-    container_name: jofisaes_vma_backend_img_1
+  jofisaes-vma-backend-img-1:
+    hostname: jofisaes-vma-backend-img-1
+    container_name: jofisaes-vma-backend-img-1
     build:
       context: vma-service-backend/.
     expose:
@@ -154,9 +154,9 @@ services:
       - VMA_KAFKA=${VMA_KAFKA}
     restart: on-failure
     depends_on:
-      - jofisaes_vma_postgres_1
-      - jofisaes_vma_postgres_2
-      - jofisaes_vma_postgres_3
+      - jofisaes-vma-postgres-1
+      - jofisaes-vma-postgres-2
+      - jofisaes-vma-postgres-3
     deploy:
       resources:
         limits:
@@ -167,9 +167,9 @@ services:
       vma_net:
         ipv4_address: ${VMA_BACKEND_1}
 
-  jofisaes_vma_backend_img_2:
-    hostname: jofisaes_vma_backend_img_2
-    container_name: jofisaes_vma_backend_img_2
+  jofisaes-vma-backend-img-2:
+    hostname: jofisaes-vma-backend-img-2
+    container_name: jofisaes-vma-backend-img-2
     build:
       context: vma-service-backend/.
     expose:
@@ -182,9 +182,9 @@ services:
       - VMA_KAFKA=${VMA_KAFKA}
     restart: on-failure
     depends_on:
-      - jofisaes_vma_postgres_1
-      - jofisaes_vma_postgres_2
-      - jofisaes_vma_postgres_3
+      - jofisaes-vma-postgres-1
+      - jofisaes-vma-postgres-2
+      - jofisaes-vma-postgres-3
     deploy:
       resources:
         limits:
@@ -195,9 +195,9 @@ services:
       vma_net:
         ipv4_address: ${VMA_BACKEND_2}
 
-  jofisaes_vma_websockets_1:
-    hostname: jofisaes_vma_websockets_1
-    container_name: jofisaes_vma_websockets_1
+  jofisaes-vma-websockets-1:
+    hostname: jofisaes-vma-websockets-1
+    container_name: jofisaes-vma-websockets-1
     build:
       context: vma-service-websockets/.
     expose:
@@ -211,9 +211,9 @@ services:
 
     restart: on-failure
     depends_on:
-      - jofisaes_vma_postgres_1
-      - jofisaes_vma_postgres_2
-      - jofisaes_vma_postgres_3
+      - jofisaes-vma-postgres-1
+      - jofisaes-vma-postgres-2
+      - jofisaes-vma-postgres-3
     deploy:
       resources:
         limits:
@@ -224,9 +224,9 @@ services:
       vma_net:
         ipv4_address: ${VMA_WEB_SOCKETS_1}
 
-  jofisaes_vma_websockets_2:
-    hostname: jofisaes_vma_websockets_2
-    container_name: jofisaes_vma_websockets_2
+  jofisaes-vma-websockets-2:
+    hostname: jofisaes-vma-websockets-2
+    container_name: jofisaes-vma-websockets-2
     build:
       context: vma-service-websockets/.
     expose:
@@ -239,9 +239,9 @@ services:
       - VMA_NGINX_IP=${VMA_NGINX_IP}
     restart: on-failure
     depends_on:
-      - jofisaes_vma_postgres_1
-      - jofisaes_vma_postgres_2
-      - jofisaes_vma_postgres_3
+      - jofisaes-vma-postgres-1
+      - jofisaes-vma-postgres-2
+      - jofisaes-vma-postgres-3
     deploy:
       resources:
         limits:
@@ -252,9 +252,9 @@ services:
       vma_net:
         ipv4_address: ${VMA_WEB_SOCKETS_2}
 
-  jofisaes_vma_nginx_lb:
-    hostname: jofisaes_vma_nginx_lb
-    container_name: jofisaes_vma_nginx_lb
+  jofisaes-vma-nginx-lb:
+    hostname: jofisaes-vma-nginx-lb
+    container_name: jofisaes-vma-nginx-lb
     build:
       context: ./docker-images/nginx/.
     expose:
@@ -274,7 +274,7 @@ services:
       vma_net:
         ipv4_address: ${VMA_NGINX_IP}
 
-  jofisaes_vma_etcd:
+  jofisaes-vma-etcd:
     image: 'bitnami/etcd:latest'
     container_name: jofisaes_${PROJECT_NAME}_etcd
     environment:
@@ -292,10 +292,10 @@ services:
       vma_net:
         ipv4_address: ${VMA_ETCD_IP}
 
-  jofisaes_vma_zookeeper:
+  jofisaes-vma-zookeeper:
     image: confluentinc/cp-zookeeper:5.4.0
-    hostname: jofisaes_vma_zookeeper
-    container_name: jofisaes_vma_zookeeper
+    hostname: jofisaes-vma-zookeeper
+    container_name: jofisaes-vma-zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -309,12 +309,12 @@ services:
       vma_net:
         ipv4_address: ${VMA_ZOOKEEPER}
 
-  jofisaes_vma_broker:
+  jofisaes-vma-broker:
     image: confluentinc/cp-server:5.4.0
-    hostname: jofisaes_vma_broker
-    container_name: jofisaes_vma_broker
+    hostname: jofisaes-vma-broker
+    container_name: jofisaes-vma-broker
     depends_on:
-      - jofisaes_vma_zookeeper
+      - jofisaes-vma-zookeeper
     expose:
       - 9092
       - 29092
@@ -322,14 +322,14 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "${VMA_ZOOKEEPER}:2181"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_PUBLIC:PLAINTEXT,LISTENER_INTERNAL:PLAINTEXT
-      KAFKA_LISTENERS: LISTENER_PUBLIC://jofisaes_vma_broker:29092,LISTENER_INTERNAL://localhost:9092
-      KAFKA_ADVERTISED_LISTENERS: LISTENER_PUBLIC://jofisaes_vma_broker:29092,LISTENER_INTERNAL://localhost:9092
+      KAFKA_LISTENERS: LISTENER_PUBLIC://jofisaes-vma-broker:29092,LISTENER_INTERNAL://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_PUBLIC://jofisaes-vma-broker:29092,LISTENER_INTERNAL://localhost:9092
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_PUBLIC
-      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: jofisaes_vma_broker:29092
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: jofisaes-vma-broker:29092
       CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: ${VMA_ZOOKEEPER}:2181
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: "true"
@@ -345,19 +345,19 @@ services:
       vma_net:
         ipv4_address: ${VMA_KAFKA}
 
-  jofisaes_schemaregistry:
+  jofisaes-schemaregistry:
     image: confluentinc/cp-schema-registry:5.4.0
-    container_name: jofisaes_schemaregistry
+    container_name: jofisaes-schemaregistry
     restart: always
     depends_on:
-      - jofisaes_vma_broker
+      - jofisaes-vma-broker
     volumes:
       - ./scripts/security:/etc/kafka/secrets
       - ./scripts/security/keypair:/tmp/conf
     environment:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8088
       SCHEMA_REGISTRY_HOST_NAME: localhost
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: jofisaes_vma_broker:29092
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: jofisaes-vma-broker:29092
     deploy:
       resources:
         limits:

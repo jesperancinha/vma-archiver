@@ -3,7 +3,7 @@ services:
   e2e-electron:
     image: "cypress/included:12.0.2"
     working_dir: /e2e
-    command: "--browser electron --env host=jofisaes_vma_nginx_lb"
+    command: "--browser electron --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -12,7 +12,7 @@ services:
   e2e-chrome:
     image: "cypress/included:12.0.2"
     working_dir: /e2e
-    command: "--browser chrome --env host=jofisaes_vma_nginx_lb"
+    command: "--browser chrome --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -21,7 +21,7 @@ services:
   e2e-firefox:
     image: "cypress/included:12.0.2"
     working_dir: /e2e
-    command: "--browser firefox --env host=jofisaes_vma_nginx_lb"
+    command: "--browser firefox --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -30,7 +30,7 @@ services:
   e2e-edge:
     image: "cypress/included:12.0.2"
     working_dir: /e2e
-    command: "--browser edge --env host=jofisaes_vma_nginx_lb"
+    command: "--browser edge --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
     networks:

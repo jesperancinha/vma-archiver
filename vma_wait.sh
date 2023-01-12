@@ -23,12 +23,13 @@ function checkServiceByNameAndMessage() {
     echo "Succeeded $name Service after $counter tries!"
 }
 
-checkServiceByNameAndMessage jofisaes_vma_haproxy_lb 'executing /usr/local/sbin/haproxy -p /run/haproxy.pid -db -f /usr/local/etc/haproxy/haproxy.cfg -Ds'
-checkServiceByNameAndMessage jofisaes_vma_postgres_1 'database system is ready to accept connections'
-checkServiceByNameAndMessage jofisaes_vma_postgres_1 'I am (postgresql1)'
-checkServiceByNameAndMessage jofisaes_vma_postgres_2 'I am (postgresql2)'
-checkServiceByNameAndMessage jofisaes_vma_postgres_3 'I am (postgresql3)'
-checkServiceByNameAndMessage jofisaes_vma_backend_img_1 'Started VmaServiceApplicationKt'
-checkServiceByNameAndMessage jofisaes_vma_backend_img_2 'Started VmaServiceApplicationKt'
-checkServiceByNameAndMessage jofisaes_schemaregistry 'Server started, listening for requests...'
-checkServiceByNameAndMessage jofisaes_vma_nginx_lb 'GET /api/vma/registry HTTP/1.1" 200'
+checkServiceByNameAndMessage jofisaes-vma-haproxy-lb 'Server ReadWrite/postgres1 is UP,'
+checkServiceByNameAndMessage jofisaes-vma-haproxy-lb 'Server Read/postgres3 is UP,'
+checkServiceByNameAndMessage jofisaes-vma-haproxy-lb 'Server Read/postgres2 is UP,'
+checkServiceByNameAndMessage jofisaes-vma-backend-img-1 'Started VmaServiceApplicationKt'
+checkServiceByNameAndMessage jofisaes-vma-backend-img-2 'Started VmaServiceApplicationKt'
+checkServiceByNameAndMessage jofisaes-vma-nginx-lb 'GET /api/vma/registry HTTP/1.1" 200'
+checkServiceByNameAndMessage jofisaes-vma-postgres-1 'I am (postgresql1)'
+checkServiceByNameAndMessage jofisaes-vma-postgres-2 'I am (postgresql2)'
+checkServiceByNameAndMessage jofisaes-vma-postgres-3 'I am (postgresql3)'
+checkServiceByNameAndMessage jofisaes-schemaregistry 'Server started, listening for requests...'
