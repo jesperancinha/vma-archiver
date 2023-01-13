@@ -107,6 +107,7 @@ services:
   jofisaes-vma-haproxy-lb:
     hostname: jofisaes-vma-haproxy-lb
     build: docker-images/haproxy/.
+    restart: on-failure
     expose:
       - 5001
       - 5000
@@ -389,7 +390,7 @@ services:
 
   jofisaes-schemaregistry:
     image: confluentinc/cp-schema-registry:7.3.1
-    restart: always
+    restart: on-failure
     depends_on:
       jofisaes-vma-broker:
         condition: service_healthy
@@ -406,6 +407,12 @@ services:
           memory: 300M
         reservations:
           memory: 300M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8088' || exit 1
+      interval: 30s
+      timeout: 2m
+      retries: 10
+      start_period: 0s
     networks:
       - vma_net
 
