@@ -5,6 +5,9 @@ services:
     command: "--browser electron --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
+    depends_on:
+      jofisaes-vma-nginx-lb:
+        condition: service_healthy
     networks:
       - vma_net
 
@@ -14,6 +17,9 @@ services:
     command: "--browser chrome --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
+    depends_on:
+      jofisaes-vma-nginx-lb:
+        condition: service_healthy
     networks:
       - vma_net
 
@@ -23,6 +29,9 @@ services:
     command: "--browser firefox --env host=jofisaes-vma-nginx-lb"
     volumes:
       - ./e2e:/e2e
+    depends_on:
+      jofisaes-vma-nginx-lb:
+        condition: service_healthy
     networks:
       - vma_net
 
