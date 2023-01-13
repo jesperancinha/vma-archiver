@@ -2,7 +2,7 @@
 
 cd /var/lib/postgresql || exit
 
-sed -i 's/${VMA_ETCD_IP}/'"$VMA_ETCD_IP"'/g' /var/lib/postgresql/patroni.yml
+sed -i 's/jofisaes-vma-etcd/'"$VMA_ETCD_IP"'/g' /var/lib/postgresql/patroni.yml
 sed -i 's/${POSTGRES_MAIN_IP}/'"$POSTGRES_MAIN_IP"'/g' /var/lib//postgresql/patroni.yml
 sed -i 's/${POSTGRES_SECOND_IP}/'"$POSTGRES_SECOND_IP"'/g' /var/lib/postgresql/patroni.yml
 sed -i 's/${POSTGRES_THIRD_IP}/'"$POSTGRES_THIRD_IP"'/g' /var/lib/postgresql/patroni.yml

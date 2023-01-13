@@ -7,7 +7,7 @@ restapi:
   connect_address: ${POSTGRES_MAIN_IP}:8008
 
 etcd:
-  hosts: ${VMA_ETCD_IP}:2379
+  hosts: jofisaes-vma-etcd:2379
 
 bootstrap:
   dcs:
