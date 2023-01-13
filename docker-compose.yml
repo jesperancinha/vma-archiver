@@ -153,6 +153,11 @@ services:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
       - vma_net
 
@@ -182,6 +187,11 @@ services:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
       - vma_net
 
@@ -197,7 +207,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_NGINX_IP=jofisaes-vma-nginx-lb
-
     restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
@@ -212,6 +221,11 @@ services:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
       - vma_net
 
@@ -241,6 +255,11 @@ services:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
       - vma_net
 
@@ -347,7 +366,7 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
       interval: 30s
-      timeout: 30s
+      timeout: 60s
       retries: 10
       start_period: 0s
     networks:
