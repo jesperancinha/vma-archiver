@@ -109,3 +109,9 @@ kafka:
 	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-schemaregistry
 	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-zookeeper jofisaes-vma-broker jofisaes-schemaregistry
 	bash kafka_wait.sh
+backend:
+	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-1
+	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-2
+	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-1
+	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-2
+	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-backend-img-1 jofisaes-vma-backend-img-2
