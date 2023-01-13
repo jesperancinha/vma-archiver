@@ -8,8 +8,8 @@ import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.data.repository.query.Param
 import java.io.Serializable
 import java.util.UUID
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 
 @Table
 data class VoteCategoryArtist(

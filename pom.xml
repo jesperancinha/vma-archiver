@@ -13,7 +13,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <spring-boot.version>2.7.6</spring-boot.version>
+        <spring-boot.version>3.0.1</spring-boot.version>
         <kotlin.version>1.7.20</kotlin.version>
         <kotlinx.version>1.6.3-native-mt</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
@@ -24,15 +24,15 @@
         <kafka-avro-serializer.version>7.2.2</kafka-avro-serializer.version>
         <hazelcast.version>5.1.4</hazelcast.version>
         <avro.version>1.11.1</avro.version>
-        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <test.containers.version>1.17.6</test.containers.version>
-        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
-        <springdoc-openapi-starter.version>2.0.2</springdoc-openapi-starter.version>
+        <springdoc-openapi-starter.version>2.0.0</springdoc-openapi-starter.version>
+
+        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
     <modules>
         <module>vma-play</module>
@@ -72,6 +72,7 @@
                         <plugin>jpa</plugin>
                         <plugin>spring</plugin>
                     </compilerPlugins>
+                    <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -134,28 +135,8 @@
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc-openapi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-kotlin</artifactId>
-                <version>${springdoc-openapi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-ui</artifactId>
-                <version>${springdoc-openapi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc-openapi-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jesperancinha.vma</groupId>
