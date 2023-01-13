@@ -13,7 +13,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <spring-boot.version>2.7.4</spring-boot.version>
+        <spring-boot.version>2.7.6</spring-boot.version>
         <kotlin.version>1.7.20</kotlin.version>
         <kotlinx.version>1.6.3-native-mt</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
@@ -32,6 +32,7 @@
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
+        <springdoc-openapi-starter.version>2.0.2</springdoc-openapi-starter.version>
     </properties>
     <modules>
         <module>vma-play</module>
@@ -145,6 +146,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-webflux-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+                <version>${springdoc-openapi-starter.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
