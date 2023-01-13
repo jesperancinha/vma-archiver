@@ -1,7 +1,6 @@
 version: "3.7"
 services:
   jofisaes-vma-postgres-1:
-    container_name: jofisaes_${PROJECT_NAME}_postgres_1
     hostname: jofisaes-vma-postgres-1
     restart: on-failure
     command: -c 'max_connections=400' -c 'shared_buffers=100MB'
@@ -13,14 +12,14 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
-      - VMA_ETCD_IP=${VMA_ETCD_IP}
-      - POSTGRES_MAIN_IP=${POSTGRES_1_IP}
-      - POSTGRES_SECOND_IP=${POSTGRES_2_IP}
-      - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
+      - VMA_ETCD_IP=jofisaes-vma-etcd
+      - POSTGRES_MAIN_IP=jofisaes-vma-postgres-1
+      - POSTGRES_SECOND_IP=jofisaes-vma-postgres-2
+      - POSTGRES_THIRD_IP=jofisaes-vma-postgres-3
       - POSTGRES_NUMBER=1
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
-      - ${PG_EXPOSED_PORT}
+      - 5432
     deploy:
       resources:
         limits:
@@ -28,19 +27,15 @@ services:
         reservations:
           memory: 150M
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
       timeout: 30s
       retries: 10
       start_period: 0s
-    depends_on:
-      - jofisaes-vma-haproxy-lb
     networks:
-      vma_net:
-        ipv4_address: ${POSTGRES_1_IP}
+      - vma_net
 
   jofisaes-vma-postgres-2:
-    container_name: jofisaes_${PROJECT_NAME}_postgres_2
     hostname: jofisaes-vma-postgres-2
     restart: on-failure
     command: -c 'max_connections=400' -c 'shared_buffers=100MB'
@@ -51,14 +46,14 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - VMA_ETCD_IP=${VMA_ETCD_IP}
-      - POSTGRES_MAIN_IP=${POSTGRES_2_IP}
-      - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
-      - POSTGRES_THIRD_IP=${POSTGRES_3_IP}
+      - VMA_ETCD_IP=jofisaes-vma-etcd
+      - POSTGRES_MAIN_IP=jofisaes-vma-postgres-2
+      - POSTGRES_SECOND_IP=jofisaes-vma-postgres-1
+      - POSTGRES_THIRD_IP=jofisaes-vma-postgres-3
       - POSTGRES_NUMBER=2
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
-      - ${PG_EXPOSED_PORT}
+      - 5432
     deploy:
       resources:
         limits:
@@ -66,19 +61,15 @@ services:
         reservations:
           memory: 150M
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
       timeout: 30s
       retries: 10
       start_period: 0s
-    depends_on:
-      - jofisaes-vma-haproxy-lb
     networks:
-      vma_net:
-        ipv4_address: ${POSTGRES_2_IP}
+      - vma_net
 
   jofisaes-vma-postgres-3:
-    container_name: jofisaes_${PROJECT_NAME}_postgres_3
     hostname: jofisaes-vma-postgres-3
     restart: on-failure
     command: -c 'max_connections=400' -c 'shared_buffers=100MB'
@@ -90,14 +81,14 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
-      - VMA_ETCD_IP=${VMA_ETCD_IP}
-      - POSTGRES_MAIN_IP=${POSTGRES_3_IP}
-      - POSTGRES_SECOND_IP=${POSTGRES_1_IP}
-      - POSTGRES_THIRD_IP=${POSTGRES_2_IP}
+      - VMA_ETCD_IP=jofisaes-vma-etcd
+      - POSTGRES_MAIN_IP=jofisaes-vma-postgres-3
+      - POSTGRES_SECOND_IP=jofisaes-vma-postgres-1
+      - POSTGRES_THIRD_IP=jofisaes-vma-postgres-2
       - POSTGRES_NUMBER=3
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
-      - ${PG_EXPOSED_PORT}
+      - 5432
     deploy:
       resources:
         limits:
@@ -105,19 +96,15 @@ services:
         reservations:
           memory: 150M
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
       timeout: 30s
       retries: 10
       start_period: 0s
-    depends_on:
-      - jofisaes-vma-haproxy-lb
     networks:
-      vma_net:
-        ipv4_address: ${POSTGRES_3_IP}
+      - vma_net
 
   jofisaes-vma-haproxy-lb:
-    container_name: jofisaes-vma-haproxy-lb
     hostname: jofisaes-vma-haproxy-lb
     build: docker-images/haproxy/.
     expose:
@@ -131,17 +118,20 @@ services:
         reservations:
           memory: 100M
     networks:
-      vma_net:
-        ipv4_address: ${VMA_HA_PROXY_IP}
+      - vma_net
     environment:
-      - POSTGRES_1_IP=${POSTGRES_1_IP}
-      - POSTGRES_2_IP=${POSTGRES_2_IP}
-      - POSTGRES_3_IP=${POSTGRES_3_IP}
-      - POSTGRES_EXPOSED_PORT=${PG_EXPOSED_PORT}
+      - POSTGRES_1_IP=jofisaes-vma-postgres-1
+      - POSTGRES_2_IP=jofisaes-vma-postgres-2
+      - POSTGRES_3_IP=jofisaes-vma-postgres-3
+      - POSTGRES_EXPOSED_PORT=5432
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5000' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
 
   jofisaes-vma-backend-img-1:
     hostname: jofisaes-vma-backend-img-1
-    container_name: jofisaes-vma-backend-img-1
     build:
       context: vma-service-backend/.
     expose:
@@ -149,9 +139,9 @@ services:
     environment:
       - VMA_BACKEND_PROFILE=docker,starter
       - VMA_PORT=8081
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_KAFKA=${VMA_KAFKA}
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_KAFKA=jofisaes-vma-broker
     restart: on-failure
     depends_on:
       - jofisaes-vma-postgres-1
@@ -163,13 +153,16 @@ services:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
-      vma_net:
-        ipv4_address: ${VMA_BACKEND_1}
+      - vma_net
 
   jofisaes-vma-backend-img-2:
     hostname: jofisaes-vma-backend-img-2
-    container_name: jofisaes-vma-backend-img-2
     build:
       context: vma-service-backend/.
     expose:
@@ -177,27 +170,33 @@ services:
     environment:
       - VMA_BACKEND_PROFILE=docker
       - VMA_PORT=8082
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_KAFKA=${VMA_KAFKA}
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_KAFKA=jofisaes-vma-broker
     restart: on-failure
     depends_on:
-      - jofisaes-vma-postgres-1
-      - jofisaes-vma-postgres-2
-      - jofisaes-vma-postgres-3
+      jofisaes-vma-postgres-1:
+        condition: service_healthy
+      jofisaes-vma-postgres-2:
+        condition: service_healthy
+      jofisaes-vma-postgres-3:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
-      vma_net:
-        ipv4_address: ${VMA_BACKEND_2}
+      - vma_net
 
   jofisaes-vma-websockets-1:
     hostname: jofisaes-vma-websockets-1
-    container_name: jofisaes-vma-websockets-1
     build:
       context: vma-service-websockets/.
     expose:
@@ -205,28 +204,33 @@ services:
     environment:
       - VMA_BACKEND_PROFILE=docker,starter
       - VMA_PORT=8083
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_NGINX_IP=${VMA_NGINX_IP}
-
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_NGINX_IP=jofisaes-vma-nginx-lb
     restart: on-failure
     depends_on:
-      - jofisaes-vma-postgres-1
-      - jofisaes-vma-postgres-2
-      - jofisaes-vma-postgres-3
+      jofisaes-vma-postgres-1:
+        condition: service_healthy
+      jofisaes-vma-postgres-2:
+        condition: service_healthy
+      jofisaes-vma-postgres-3:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
-      vma_net:
-        ipv4_address: ${VMA_WEB_SOCKETS_1}
+      - vma_net
 
   jofisaes-vma-websockets-2:
     hostname: jofisaes-vma-websockets-2
-    container_name: jofisaes-vma-websockets-2
     build:
       context: vma-service-websockets/.
     expose:
@@ -234,27 +238,33 @@ services:
     environment:
       - VMA_BACKEND_PROFILE=docker,starter
       - VMA_PORT=8084
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_NGINX_IP=${VMA_NGINX_IP}
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_NGINX_IP=jofisaes-vma-nginx-lb
     restart: on-failure
     depends_on:
-      - jofisaes-vma-postgres-1
-      - jofisaes-vma-postgres-2
-      - jofisaes-vma-postgres-3
+      jofisaes-vma-postgres-1:
+        condition: service_healthy
+      jofisaes-vma-postgres-2:
+        condition: service_healthy
+      jofisaes-vma-postgres-3:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           memory: 400M
         reservations:
           memory: 400M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1
+      interval: 30s
+      timeout: 15s
+      retries: 3
     networks:
-      vma_net:
-        ipv4_address: ${VMA_WEB_SOCKETS_2}
+      - vma_net
 
   jofisaes-vma-nginx-lb:
     hostname: jofisaes-vma-nginx-lb
-    container_name: jofisaes-vma-nginx-lb
     build:
       context: ./docker-images/nginx/.
     expose:
@@ -270,16 +280,24 @@ services:
       - .env
     ports:
       - "8080:8080"
+    depends_on:
+      jofisaes-vma-backend-img-1:
+        condition: service_healthy
+      jofisaes-vma-backend-img-2:
+        condition: service_healthy
+      jofisaes-vma-websockets-1:
+        condition: service_healthy
+      jofisaes-vma-websockets-2:
+        condition: service_healthy
     networks:
-      vma_net:
-        ipv4_address: ${VMA_NGINX_IP}
+      - vma_net
 
   jofisaes-vma-etcd:
+    hostname: jofisaes-vma-etcd
     image: 'bitnami/etcd:latest'
-    container_name: jofisaes_${PROJECT_NAME}_etcd
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
-      - ETCD_ADVERTISE_CLIENT_URLS=http://${VMA_ETCD_IP}:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://jofisaes-vma-etcd:2379
       - ETCD_ENABLE_V2=true
     restart: on-failure
     deploy:
@@ -289,13 +307,11 @@ services:
         reservations:
           memory: 100M
     networks:
-      vma_net:
-        ipv4_address: ${VMA_ETCD_IP}
+      - vma_net
 
   jofisaes-vma-zookeeper:
-    image: confluentinc/cp-zookeeper:5.4.0
+    image: confluentinc/cp-zookeeper:7.3.1
     hostname: jofisaes-vma-zookeeper
-    container_name: jofisaes-vma-zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -305,22 +321,28 @@ services:
           memory: 150M
         reservations:
           memory: 150M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/2181' || exit 1
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 0s
     networks:
-      vma_net:
-        ipv4_address: ${VMA_ZOOKEEPER}
+      - vma_net
 
   jofisaes-vma-broker:
-    image: confluentinc/cp-server:5.4.0
+    image: confluentinc/cp-server:7.3.1
     hostname: jofisaes-vma-broker
-    container_name: jofisaes-vma-broker
     depends_on:
-      - jofisaes-vma-zookeeper
+      jofisaes-vma-zookeeper:
+        condition: service_healthy
+    restart: on-failure
     expose:
       - 9092
       - 29092
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: "${VMA_ZOOKEEPER}:2181"
+      KAFKA_ZOOKEEPER_CONNECT: "jofisaes-vma-zookeeper:2181"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_PUBLIC:PLAINTEXT,LISTENER_INTERNAL:PLAINTEXT
       KAFKA_LISTENERS: LISTENER_PUBLIC://jofisaes-vma-broker:29092,LISTENER_INTERNAL://localhost:9092
       KAFKA_ADVERTISED_LISTENERS: LISTENER_PUBLIC://jofisaes-vma-broker:29092,LISTENER_INTERNAL://localhost:9092
@@ -330,7 +352,7 @@ services:
       KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_PUBLIC
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: jofisaes-vma-broker:29092
-      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: ${VMA_ZOOKEEPER}:2181
+      CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: jofisaes-vma-zookeeper:2181
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: "true"
       CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
@@ -338,19 +360,24 @@ services:
     deploy:
       resources:
         limits:
-          memory: 400M
+          memory: 700M
         reservations:
-          memory: 400M
+          memory: 700M
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
+      interval: 30s
+      timeout: 60s
+      retries: 10
+      start_period: 0s
     networks:
-      vma_net:
-        ipv4_address: ${VMA_KAFKA}
+      - vma_net
 
   jofisaes-schemaregistry:
-    image: confluentinc/cp-schema-registry:5.4.0
-    container_name: jofisaes-schemaregistry
+    image: confluentinc/cp-schema-registry:7.3.1
     restart: always
     depends_on:
-      - jofisaes-vma-broker
+      jofisaes-vma-broker:
+        condition: service_healthy
     volumes:
       - ./scripts/security:/etc/kafka/secrets
       - ./scripts/security/keypair:/tmp/conf
@@ -365,19 +392,17 @@ services:
         reservations:
           memory: 300M
     networks:
-      vma_net:
-        ipv4_address: ${VMA_SCHEMA_REGISTRY}
+      - vma_net
 
-  jofisaes_vma_listener_1:
-    hostname: jofisaes_vma_listener_1
-    container_name: jofisaes_vma_listener_1
+  jofisaes-vma-listener-1:
+    hostname: jofisaes-vma-listener-1
     build:
       context: vma-service-event-listener/.
     environment:
       - VMA_PORT=9001
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_KAFKA=${VMA_KAFKA}
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_KAFKA=jofisaes-vma-broker
     restart: on-failure
     deploy:
       resources:
@@ -386,19 +411,17 @@ services:
         reservations:
           memory: 300M
     networks:
-      vma_net:
-        ipv4_address: ${VMA_LISTENER_1}
+      - vma_net
 
-  jofisaes_vma_listener_2:
-    hostname: jofisaes_vma_listener_2
-    container_name: jofisaes_vma_listener_2
+  jofisaes-vma-listener-2:
+    hostname: jofisaes-vma-listener-2
     build:
       context: vma-service-event-listener/.
     environment:
       - VMA_PORT=9002
-      - VMA_SCHEMA_REGISTRY=${VMA_SCHEMA_REGISTRY}
-      - VMA_HA_PROXY_IP=${VMA_HA_PROXY_IP}
-      - VMA_KAFKA=${VMA_KAFKA}
+      - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
+      - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
+      - VMA_KAFKA=jofisaes-vma-broker
     restart: on-failure
     deploy:
       resources:
@@ -407,13 +430,7 @@ services:
         reservations:
           memory: 200M
     networks:
-      vma_net:
-        ipv4_address: ${VMA_LISTENER_2}
+      - vma_net
 
 networks:
   vma_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${NETWORK_SUBNET}
