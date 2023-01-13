@@ -13,6 +13,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <spring-boot.version>3.0.1</spring-boot.version>
         <kotlin.version>1.7.20</kotlin.version>
         <kotlinx.version>1.6.3-native-mt</kotlinx.version>
