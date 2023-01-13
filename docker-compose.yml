@@ -285,8 +285,6 @@ services:
           memory: 300M
     env_file:
       - .env
-    ports:
-      - "8080:8080"
     depends_on:
       jofisaes-vma-backend-img-1:
         condition: service_healthy
