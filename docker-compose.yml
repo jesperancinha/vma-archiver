@@ -376,9 +376,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 1500M
         reservations:
-          memory: 1000M
+          memory: 1500M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
       interval: 30s
