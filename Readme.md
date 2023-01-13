@@ -46,7 +46,7 @@
 
 ## Introduction
 
-We are going to make a VMA archiver. VMA in this case does not stand for Video Music Archive anymore. That was version
+We are going to make a VMA archiver. VMA in this case does not stand for Video Media Archive anymore. That was version
 0.0.0. It now stands for Video Music Awards. So we are going to make a service to register nominees and winners of a VMA
 show. In this case, we'll use a fake MTV Awards Show. Instead of using contemporary music, we'll make an MTV awards with
 music and artists from the 1920's.
@@ -57,6 +57,12 @@ Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 This repo is also the official support repo to my article on medium:
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
+
+#### Stable releases
+
+-   [0.0.0](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) - [36e8f4b35b0a1226d440d6698194e989b8601c1b](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) - First Video Media Archive version / Gradle / Spring 5 / JDK 11
+-   [1.0.0](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - [992cdb7f6262b8e366142814f6b6547ae922cf52](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 2.7.4 / Docker with fixed IP's
+-   [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
 
 #### Walk through
 
