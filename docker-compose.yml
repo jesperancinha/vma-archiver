@@ -277,6 +277,8 @@ services:
     expose:
       - 8080
     restart: on-failure
+    ports:
+      - "8080:8080"
     deploy:
       resources:
         limits:
