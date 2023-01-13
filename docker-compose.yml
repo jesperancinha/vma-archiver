@@ -144,9 +144,14 @@ services:
       - VMA_KAFKA=jofisaes-vma-broker
     restart: on-failure
     depends_on:
-      - jofisaes-vma-postgres-1
-      - jofisaes-vma-postgres-2
-      - jofisaes-vma-postgres-3
+      jofisaes-vma-postgres-1:
+        condition: service_healthy
+      jofisaes-vma-postgres-2:
+        condition: service_healthy
+      jofisaes-vma-postgres-3:
+        condition: service_healthy
+      jofisaes-vma-haproxy-lb:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -180,6 +185,8 @@ services:
       jofisaes-vma-postgres-2:
         condition: service_healthy
       jofisaes-vma-postgres-3:
+        condition: service_healthy
+      jofisaes-vma-haproxy-lb:
         condition: service_healthy
     deploy:
       resources:
@@ -336,6 +343,14 @@ services:
     depends_on:
       jofisaes-vma-zookeeper:
         condition: service_healthy
+      jofisaes-vma-postgres-1:
+        condition: service_healthy
+      jofisaes-vma-postgres-2:
+        condition: service_healthy
+      jofisaes-vma-postgres-3:
+        condition: service_healthy
+      jofisaes-vma-haproxy-lb:
+        condition: service_healthy
     restart: on-failure
     expose:
       - 9092
@@ -366,7 +381,7 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
       interval: 30s
-      timeout: 60s
+      timeout: 2m
       retries: 10
       start_period: 0s
     networks:
