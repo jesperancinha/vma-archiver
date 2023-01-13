@@ -9,6 +9,10 @@ module.exports = defineConfig({
             TIMEOUT_CONFIG: {
                 timeout: 10000
             }
+        },
+        retries: {
+            runMode: 4,
+            openMode: 0
         }
     },
 });
