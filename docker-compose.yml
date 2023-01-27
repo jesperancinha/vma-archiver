@@ -128,7 +128,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5000' || exit 1
       interval: 30s
       timeout: 15s
-      retries: 3
+      retries: 10
 
   jofisaes-vma-backend-img-1:
     hostname: jofisaes-vma-backend-img-1
@@ -162,7 +162,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
       interval: 30s
       timeout: 15s
-      retries: 3
+      retries: 10
     networks:
       - vma_net
 
@@ -198,7 +198,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
       interval: 30s
       timeout: 15s
-      retries: 3
+      retries: 10
     networks:
       - vma_net
 
@@ -232,7 +232,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
       interval: 30s
       timeout: 15s
-      retries: 3
+      retries: 10
     networks:
       - vma_net
 
@@ -266,7 +266,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1
       interval: 30s
       timeout: 15s
-      retries: 3
+      retries: 10
     networks:
       - vma_net
 
