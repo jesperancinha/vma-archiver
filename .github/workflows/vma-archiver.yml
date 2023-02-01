@@ -3,6 +3,9 @@ name: Build vma-archiver
 on:
   push:
     branches: [ master ]
+  pull_request:
+    types:
+      - opened
 
 jobs:
   build:
