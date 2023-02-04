@@ -19,12 +19,6 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
@@ -53,12 +47,6 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
@@ -88,12 +76,6 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
