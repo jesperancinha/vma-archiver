@@ -19,17 +19,11 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
@@ -53,17 +47,11 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
@@ -88,17 +76,11 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=${DB_DATABASE}
     expose:
       - 5432
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
@@ -111,12 +93,6 @@ services:
       - 5001
       - 5000
       - 7000
-    deploy:
-      resources:
-        limits:
-          memory: 100M
-        reservations:
-          memory: 100M
     networks:
       - vma_net
     environment:
@@ -127,8 +103,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5000' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
 
   jofisaes-vma-backend-img-1:
     hostname: jofisaes-vma-backend-img-1
@@ -142,7 +118,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_KAFKA=jofisaes-vma-broker
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -152,17 +127,11 @@ services:
         condition: service_healthy
       jofisaes-vma-haproxy-lb:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 400M
-        reservations:
-          memory: 400M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
     networks:
       - vma_net
 
@@ -178,7 +147,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_KAFKA=jofisaes-vma-broker
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -188,17 +156,11 @@ services:
         condition: service_healthy
       jofisaes-vma-haproxy-lb:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 400M
-        reservations:
-          memory: 400M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
     networks:
       - vma_net
 
@@ -214,7 +176,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_NGINX_IP=jofisaes-vma-nginx-lb
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -222,17 +183,11 @@ services:
         condition: service_healthy
       jofisaes-vma-postgres-3:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 400M
-        reservations:
-          memory: 400M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
     networks:
       - vma_net
 
@@ -248,7 +203,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_NGINX_IP=jofisaes-vma-nginx-lb
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -256,17 +210,11 @@ services:
         condition: service_healthy
       jofisaes-vma-postgres-3:
         condition: service_healthy
-    deploy:
-      resources:
-        limits:
-          memory: 400M
-        reservations:
-          memory: 400M
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
     networks:
       - vma_net
 
@@ -299,8 +247,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
     networks:
       - vma_net
 
@@ -336,8 +284,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/2181' || exit 1
       interval: 30s
-      timeout: 10m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
@@ -386,8 +334,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
       interval: 30s
-      timeout: 2m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
@@ -414,8 +362,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8088' || exit 1
       interval: 30s
-      timeout: 2m
-      retries: 20
+      timeout: 20m
+      retries: 40
       start_period: 0s
     networks:
       - vma_net
