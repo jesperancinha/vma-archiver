@@ -118,7 +118,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_KAFKA=jofisaes-vma-broker
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -148,7 +147,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_KAFKA=jofisaes-vma-broker
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -178,7 +176,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_NGINX_IP=jofisaes-vma-nginx-lb
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
@@ -206,7 +203,6 @@ services:
       - VMA_HA_PROXY_IP=jofisaes-vma-haproxy-lb
       - VMA_SCHEMA_REGISTRY=jofisaes-schemaregistry
       - VMA_NGINX_IP=jofisaes-vma-nginx-lb
-    restart: on-failure
     depends_on:
       jofisaes-vma-postgres-1:
         condition: service_healthy
