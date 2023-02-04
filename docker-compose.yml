@@ -28,8 +28,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 30s
-      retries: 10
+      timeout: 10m
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
@@ -62,8 +62,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 30s
-      retries: 10
+      timeout: 10m
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
@@ -97,8 +97,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5432' || exit 1
       interval: 30s
-      timeout: 30s
-      retries: 10
+      timeout: 10m
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
@@ -127,8 +127,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/5000' || exit 1
       interval: 30s
-      timeout: 5m
-      retries: 10
+      timeout: 10m
+      retries: 20
 
   jofisaes-vma-backend-img-1:
     hostname: jofisaes-vma-backend-img-1
@@ -161,8 +161,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
       interval: 30s
-      timeout: 5m
-      retries: 10
+      timeout: 10m
+      retries: 20
     networks:
       - vma_net
 
@@ -197,8 +197,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
       interval: 30s
-      timeout: 5m
-      retries: 10
+      timeout: 10m
+      retries: 20
     networks:
       - vma_net
 
@@ -231,8 +231,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
       interval: 30s
-      timeout: 5m
-      retries: 10
+      timeout: 10m
+      retries: 20
     networks:
       - vma_net
 
@@ -265,8 +265,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1
       interval: 30s
-      timeout: 5m
-      retries: 10
+      timeout: 10m
+      retries: 20
     networks:
       - vma_net
 
@@ -299,7 +299,7 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1
       interval: 30s
-      timeout: 5m
+      timeout: 10m
       retries: 20
     networks:
       - vma_net
@@ -336,8 +336,8 @@ services:
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/2181' || exit 1
       interval: 30s
-      timeout: 30s
-      retries: 10
+      timeout: 10m
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
@@ -387,7 +387,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/9092' || exit 1
       interval: 30s
       timeout: 2m
-      retries: 10
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
@@ -415,7 +415,7 @@ services:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8088' || exit 1
       interval: 30s
       timeout: 2m
-      retries: 10
+      retries: 20
       start_period: 0s
     networks:
       - vma_net
