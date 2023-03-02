@@ -85,6 +85,25 @@ services:
     networks:
       - vma_net
 
+  jofisaes-vma-control:
+    hostname: jofisaes-vma-control
+    restart: on-failure
+    command: -c 'max_connections=400' -c 'shared_buffers=100MB'
+    image: postgres:15.1
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/jofisaes-vma-haproxy-lb/5000' && PGPASSWORD=admin psql -h jofisaes-vma-haproxy-lb -U postgres -p 5000 -d vma -c "select 1;" || exit 1
+      interval: 30s
+      timeout: 20m
+      retries: 40
+      start_period: 0s
+    networks:
+      - vma_net
+
   jofisaes-vma-haproxy-lb:
     hostname: jofisaes-vma-haproxy-lb
     build: docker-images/haproxy/.
@@ -127,6 +146,8 @@ services:
         condition: service_healthy
       jofisaes-vma-haproxy-lb:
         condition: service_healthy
+      jofisaes-vma-control:
+        condition: service_healthy
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8081' || exit 1
       interval: 30s
@@ -156,6 +177,8 @@ services:
         condition: service_healthy
       jofisaes-vma-haproxy-lb:
         condition: service_healthy
+      jofisaes-vma-control:
+        condition: service_healthy
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8082' || exit 1
       interval: 30s
@@ -183,6 +206,8 @@ services:
         condition: service_healthy
       jofisaes-vma-postgres-3:
         condition: service_healthy
+      jofisaes-vma-control:
+        condition: service_healthy
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8083' || exit 1
       interval: 30s
@@ -209,6 +234,8 @@ services:
       jofisaes-vma-postgres-2:
         condition: service_healthy
       jofisaes-vma-postgres-3:
+        condition: service_healthy
+      jofisaes-vma-control:
         condition: service_healthy
     healthcheck:
       test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8084' || exit 1

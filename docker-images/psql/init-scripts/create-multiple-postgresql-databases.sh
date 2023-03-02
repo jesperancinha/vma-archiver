@@ -12,7 +12,7 @@ function create_user_and_database() {
 	echo "  Creating user and database '$database'"
 	psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -dbname "$POSTGRES_DB" <<-EOSQL
 	    CREATE USER $database;
-	    CREATE DATABASE $database;
+	    SELECT 'CREATE DATABASE $database' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'mydb')\gexec;
 	    GRANT ALL PRIVILEGES ON DATABASE $database TO $database;
 EOSQL
 }
