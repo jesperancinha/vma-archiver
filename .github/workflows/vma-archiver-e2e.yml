@@ -24,7 +24,7 @@ jobs:
         with:
           max_attempts: 2
           retry_on: error
-          timeout_seconds: 1200
+          timeout_seconds: 2400
           command: |
             make dcup-full-action
 
@@ -50,7 +50,7 @@ jobs:
         with:
           max_attempts: 2
           retry_on: error
-          timeout_seconds: 1200
+          timeout_seconds: 2400
           command: |
             make dcup-full-action
 
@@ -76,7 +76,7 @@ jobs:
         with:
           max_attempts: 2
           retry_on: error
-          timeout_seconds: 1200
+          timeout_seconds: 2400
           command: |
             make dcup-full-action
 
@@ -103,7 +103,7 @@ jobs:
         with:
           max_attempts: 2
           retry_on: error
-          timeout_seconds: 1200
+          timeout_seconds: 2400
           command: |
             make dcup-full-action
 
