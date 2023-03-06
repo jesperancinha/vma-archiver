@@ -20,7 +20,14 @@ jobs:
         run: sudo pip3 install locust
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 1200
+          command: |
+            make dcup-full-action
+
       - name: Start Locust
         run: make locust
       - name: Run Cypress
@@ -39,7 +46,14 @@ jobs:
         run: sudo pip3 install locust
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 1200
+          command: |
+            make dcup-full-action
+
       - name: Start Locust
         run: make locust-short
       - name: Run Cypress
@@ -58,7 +72,14 @@ jobs:
         run: sudo pip3 install locust
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 1200
+          command: |
+            make dcup-full-action
+
       - name: Start Locust
         run: make locust-short
       - name: Run Cypress
@@ -78,7 +99,14 @@ jobs:
         run: sudo pip3 install locust
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 1200
+          command: |
+            make dcup-full-action
+
       - name: Start Locust
         run: make locust-short
       - name: Run Cypress
