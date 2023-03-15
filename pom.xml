@@ -21,7 +21,7 @@
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-assertions.version>5.5.1</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-        <reactor-kafka.version>1.3.16</reactor-kafka.version>
+        <reactor-kafka.version>1.3.17</reactor-kafka.version>
         <kafka-avro-serializer.version>7.2.2</kafka-avro-serializer.version>
         <hazelcast.version>5.1.4</hazelcast.version>
         <avro.version>1.11.1</avro.version>
