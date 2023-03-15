@@ -21,7 +21,7 @@
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-assertions.version>5.5.1</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-        <reactor-kafka.version>1.3.16</reactor-kafka.version>
+        <reactor-kafka.version>1.3.17</reactor-kafka.version>
         <kafka-avro-serializer.version>7.2.2</kafka-avro-serializer.version>
         <hazelcast.version>5.1.4</hazelcast.version>
         <avro.version>1.11.1</avro.version>
@@ -30,7 +30,7 @@
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
-        <springdoc-openapi-starter.version>2.0.3</springdoc-openapi-starter.version>
+        <springdoc-openapi-starter.version>2.0.4</springdoc-openapi-starter.version>
 
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
