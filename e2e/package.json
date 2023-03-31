@@ -19,7 +19,7 @@
   "devDependencies": {
     "cypress": "12.9.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   },
   "dependencies": {
     "chai-uuid": "^1.0.6",
