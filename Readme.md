@@ -40,7 +40,7 @@ Our application will be built around the Reactive CoRoutine Paradigms. We'll be 
 Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 
 <details>
-<summary><b>Project Details</b></summary>
+<summary><b>Stable Releases</b></summary>
 
 
 This repo is also the official support repo to my article on medium:
@@ -56,7 +56,20 @@ This repo is also the official support repo to my article on medium:
 - [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) -
   Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
 
-#### - [Walk through](https://www.youtube.com/watch?v=hNpEMOFkvv4)
+</details>
+
+<details>
+<summary><b><a href="https://www.youtube.com/watch?v=hNpEMOFkvv4">Walk Through</a>
+</b></summary>
+
+
+<div align="center">
+      <a title="Coroutines, Distributed Cache, Resilience, and Replication in Kotlin DEMO — A VMA’s application" href="https://www.youtube.com/watch?v=hNpEMOFkvv4">
+     <img 
+          src="https://img.youtube.com/vi/hNpEMOFkvv4/0.jpg" 
+          style="width:50%;">
+      </a>
+</div>
 
 </details>
 
@@ -73,37 +86,6 @@ This repo is also the official support repo to my article on medium:
   votes in Kafka, registers a new award show directly and reads voting results from the database.
 - [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
 - [Locust](./locust) - The location of locust service. It creates workers in kotlin that simulate random massive voters.
-
----
-
-## Endpoints
-
-- [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
-
----
-
-## Install essential libraries and commands
-
-```shell
-make install
-```
-
-## How to start
-
-```shell
-make docker-clean-build-start
-```
-
-## Serving Spring Boot (LOCAL)
-
-In order to let Kafka know where to get to locally you need to define locally that `jofisaes-vma-broker` is also
-in `127.0.0.1`.
-
-This is done in MAC-OS and Linux machines on `/etc/hosts`:
-
-```text
-127.0.0.1   jofisaes-vma-broker
-```
 
 ---
 
@@ -198,6 +180,12 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
 
 ## How to run
 
+In general:
+
+```shell
+make docker-clean-build-start
+```
+
 <details>
 <summary><b>Start all containers</b></summary>
 
@@ -221,7 +209,7 @@ make locust
 <details>
 <summary><b>Cast your vote</b></summary>
 
-Go to [http://localhost:8080](http://localhost:8080) and cast your votes
+- Go to [http://localhost:8080](http://localhost:8080) and cast your votes
 
 </details>
 
@@ -229,17 +217,46 @@ Go to [http://localhost:8080](http://localhost:8080) and cast your votes
 <details>
 <summary><b>Wait for locust to stop and check the result</b></summary>
 
-Go to [http://localhost:8080/result](http://localhost:8080/result)
+- Go to [http://localhost:8080/result](http://localhost:8080/result)
 
 </details>
 
 <details>
 <summary><b>Swagger tests</b></summary>
 
-You can make tests for this application using the Swagger UI at:
+##### You can make tests for this application using the Swagger UI at:
 
 - [WebFlux Reactive Backend](http://localhost:8080/api/vma/webjars/swagger-ui/index.html)
 
+</details>
+
+<details>
+<summary><b>Endpoints</b></summary>
+
+- [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
+
+</details>
+
+<details>
+<summary><b>Install essential libraries and commands</b></summary>
+
+```shell
+make install
+```
+
+</details>
+
+<details>
+<summary><b>Serving Spring Boot (LOCAL)</b></summary>
+
+In order to let Kafka know where to get to locally you need to define locally that `jofisaes-vma-broker` is also
+in `127.0.0.1`.
+
+This is done in MAC-OS and Linux machines on `/etc/hosts`:
+
+```text
+127.0.0.1   jofisaes-vma-broker
+```
 </details>
 
 ---
