@@ -189,21 +189,23 @@ make docker-clean-build-start
 <details>
 <summary><b>Start all containers</b></summary>
 
+---
 ```shell
 make dcup-full
 ```
 
 > If it fails, you can always try `make dcup`.
-
+---
 </details>
 
 <details>
 <summary><b>Start Locust</b></summary>
 
+---
 ```shell
 make locust
 ````
-
+---
 </details>
 
 <details>
@@ -226,10 +228,11 @@ make locust
 <details>
 <summary><b>Swagger tests</b></summary>
 
+---
 ##### You can make tests for this application using the Swagger UI at:
 
 - [WebFlux Reactive Backend](http://localhost:8080/api/vma/webjars/swagger-ui/index.html)
-
+---
 </details>
 
 <details>
@@ -243,10 +246,11 @@ make locust
 <details>
 <summary><b>Install essential libraries and commands</b></summary>
 
+---
 ```shell
 make install
 ```
-
+---
 </details>
 
 <details>
@@ -264,6 +268,7 @@ This is done in MAC-OS and Linux machines on `/etc/hosts`:
 ---
 </details>
 
+---
 
 ## References
 
