@@ -39,62 +39,53 @@ music and artists from the 1920's.
 Our application will be built around the Reactive CoRoutine Paradigms. We'll be using five important elements:
 Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 
+<details>
+<summary><b>Stable Releases</b></summary>
+
+
 This repo is also the official support repo to my article on medium:
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
 
-#### Stable releases
+#### - Stable releases
 
--   [0.0.0](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) - [36e8f4b35b0a1226d440d6698194e989b8601c1b](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) - First Video Media Archive version / Gradle / Spring 5 / JDK 11
--   [1.0.0](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - [992cdb7f6262b8e366142814f6b6547ae922cf52](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 2.7.4 / Docker with fixed IP's
--   [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
+- [0.0.0](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) - [36e8f4b35b0a1226d440d6698194e989b8601c1b](https://github.com/jesperancinha/vma-archiver/tree/0.0.0) -
+  First Video Media Archive version / Gradle / Spring 5 / JDK 11
+- [1.0.0](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - [992cdb7f6262b8e366142814f6b6547ae922cf52](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) -
+  Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 2.7.4 / Docker with fixed IP's
+- [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) -
+  Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
 
-#### [Walk through](https://www.youtube.com/watch?v=hNpEMOFkvv4)
+</details>
+
+<details>
+<summary><b><a href="https://www.youtube.com/watch?v=hNpEMOFkvv4">Walk Through</a>
+</b></summary>
+
+
+<div align="center">
+      <a title="Coroutines, Distributed Cache, Resilience, and Replication in Kotlin DEMO — A VMA’s application" href="https://www.youtube.com/watch?v=hNpEMOFkvv4">
+     <img 
+          src="https://img.youtube.com/vi/hNpEMOFkvv4/0.jpg" 
+          style="width:50%;">
+      </a>
+</div>
+
+</details>
 
 ---
 
 ## Project Layout
 
--   [VMA Demo Generation](./vma-demo) - Generates The Demo Awards - It is customizable in terms of categories, music and
+- [VMA Demo Generation](./vma-demo) - Generates The Demo Awards - It is customizable in terms of categories, music and
   artists.
--   [VMA Common](./vma-common) - A Common Library to support Spring Boot Startup Services.
--   [VMA Play](./vma-play) - A way to play with co-routines separated from the project. It has examples on the main and
+- [VMA Common](./vma-common) - A Common Library to support Spring Boot Startup Services.
+- [VMA Play](./vma-play) - A way to play with co-routines separated from the project. It has examples on the main and
   test directories.
--   [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts
+- [VMA Spring CoRoutine Reactive Service](./vma-service-backend) - The reactive service facing the front-end - It posts
   votes in Kafka, registers a new award show directly and reads voting results from the database.
--   [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
--   [Locust](./locust) - The location of locust service. It creates workers in kotlin that simulate random massive voters.
-
----
-
-## Endpoints
-
--   [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
-
----
-
-## Install essential libraries and commands
-
-```shell
-make install
-```
-
-## How to start
-
-```shell
-make docker-clean-build-start
-```
-
-## Serving Spring Boot (LOCAL)
-
-In order to let Kafka know where to get to locally you need to define locally that `jofisaes-vma-broker` is also
-in `127.0.0.1`.
-
-This is done in MAC-OS and Linux machines on `/etc/hosts`:
-
-```text
-127.0.0.1   jofisaes-vma-broker
-```
+- [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
+- [Locust](./locust) - The location of locust service. It creates workers in kotlin that simulate random massive voters.
 
 ---
 
@@ -185,63 +176,117 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         VMA BE NGINX LB-->>VMA Voting Client n: Response With Votes
 ```
 
-
 ---
 
-#### How to run
+## How to run
 
-1.  Start all containers
+In general:
+
+```shell
+make docker-clean-build-start
+```
+
+<details>
+<summary><b>Start all containers</b></summary>
+
 ```shell
 make dcup-full
 ```
 
->If it fails, you can always try `make dcup`.
----
-2.  Start Locust
+> If it fails, you can always try `make dcup`.
+
+</details>
+
+<details>
+<summary><b>Start Locust</b></summary>
+
 ```shell
 make locust
 ````
----
-3.  Cast your vote   
-Go to [http://localhost:8080](http://localhost:8080) and cast your votes
----
-4.  Wait for locust to stop and check the result   
-Go to [http://localhost:8080/result](http://localhost:8080/result)
 
-#### Swagger tests
+</details>
 
-You can make tests for this application using the Swagger UI at:
+<details>
+<summary><b>Cast your vote</b></summary>
 
--   [WebFlux Reactive Backend](http://localhost:8080/api/vma/webjars/swagger-ui/index.html)
+- Go to [http://localhost:8080](http://localhost:8080) and cast your votes
+
+</details>
+
+
+<details>
+<summary><b>Wait for locust to stop and check the result</b></summary>
+
+- Go to [http://localhost:8080/result](http://localhost:8080/result)
+
+</details>
+
+<details>
+<summary><b>Swagger tests</b></summary>
+
+##### You can make tests for this application using the Swagger UI at:
+
+- [WebFlux Reactive Backend](http://localhost:8080/api/vma/webjars/swagger-ui/index.html)
+
+</details>
+
+<details>
+<summary><b>Endpoints</b></summary>
+
+- [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
+
+</details>
+
+<details>
+<summary><b>Install essential libraries and commands</b></summary>
+
+```shell
+make install
+```
+
+</details>
+
+<details>
+<summary><b>Serving Spring Boot (LOCAL)</b></summary>
+
+In order to let Kafka know where to get to locally you need to define locally that `jofisaes-vma-broker` is also
+in `127.0.0.1`.
+
+This is done in MAC-OS and Linux machines on `/etc/hosts`:
+
+```text
+127.0.0.1   jofisaes-vma-broker
+```
+</details>
 
 ---
 
 ## References
 
--   [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka)
--   [Using Kotlin Coroutines with Spring](https://hantsy.medium.com/using-kotlin-coroutines-with-spring-d2784a300bda)
--   [Going Reactive with Spring, Coroutines and Kotlin Flow](https://spring.io/blog/2019/04/12/going-reactive-with-spring-coroutines-and-kotlin-flow)
--   [How to Set Up PostgreSQL Cluster using Patroni on Ubuntu 20.04](https://snapshooter.com/learn/postgresql/postgresql-cluster-patroni)
--   [Creating a single HAProxy and two Apache containers with Docker compose](http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose?ref=morioh.com&utm_source=morioh.com)
--   [HAProxy - The Reliable, High Performance TCP/HTTP Load Balancer](https://hub.docker.com/_/haproxy)
--   [Ingress Gateways](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/)
--   [Amazon Aurora connection management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html)
--   [PostgreSQL Load Balancing with HAProxy](https://severalnines.com/resources/database-management-tutorials/postgresql-load-balancing-haproxy)
--   [PostgreSQL HAProxy: Proxy for HA and Load Balance](https://www.alibabacloud.com/blog/postgresql-haproxy-proxy-for-ha-and-load-balance_597618)
--   [How Does a Database Load Balancer Work?](https://severalnines.com/database-blog/how-does-database-load-balancer-work)
--   [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
--   [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
--   [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
--   [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
--   [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
--   [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
--   [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
--   [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
--   [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
--   [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
--   [Imagining your Repository Layer with Coroutines](https://proandroiddev.com/imagining-your-repository-layer-with-coroutines-7ee052ee4caa)
--   [17.5. Coroutines](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#reference)
--   [17.5.2. How Reactive translates to Coroutines?](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#kotlin.coroutines.reactive)
+- [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka)
+- [Using Kotlin Coroutines with Spring](https://hantsy.medium.com/using-kotlin-coroutines-with-spring-d2784a300bda)
+- [Going Reactive with Spring, Coroutines and Kotlin Flow](https://spring.io/blog/2019/04/12/going-reactive-with-spring-coroutines-and-kotlin-flow)
+- [How to Set Up PostgreSQL Cluster using Patroni on Ubuntu 20.04](https://snapshooter.com/learn/postgresql/postgresql-cluster-patroni)
+- [Creating a single HAProxy and two Apache containers with Docker compose](http://www.inanzzz.com/index.php/post/w14j/creating-a-single-haproxy-and-two-apache-containers-with-docker-compose?ref=morioh.com&utm_source=morioh.com)
+- [HAProxy - The Reliable, High Performance TCP/HTTP Load Balancer](https://hub.docker.com/_/haproxy)
+- [Ingress Gateways](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/)
+- [Amazon Aurora connection management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html)
+- [PostgreSQL Load Balancing with HAProxy](https://severalnines.com/resources/database-management-tutorials/postgresql-load-balancing-haproxy)
+- [PostgreSQL HAProxy: Proxy for HA and Load Balance](https://www.alibabacloud.com/blog/postgresql-haproxy-proxy-for-ha-and-load-balance_597618)
+- [How Does a Database Load Balancer Work?](https://severalnines.com/database-blog/how-does-database-load-balancer-work)
+- [HTTP Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+- [Using nginx as HTTP load balancer](http://nginx.org/en/docs/http/load_balancing.html)
+- [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
+- [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines)
+- [Full Kotlin Coroutines Design Reference](https://kotlin.github.io/kotlinx.coroutines/)
+- [Kotlin Coroutines Design Document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
+- [Guide to UI programming with coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md)
+- [Coroutine Channels](https://kotlinlang.org/docs/channels.html)
+- [Coroutine](https://en.wikipedia.org/wiki/Coroutine)
+- [Best practices for coroutines in Android](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
+- [Imagining your Repository Layer with Coroutines](https://proandroiddev.com/imagining-your-repository-layer-with-coroutines-7ee052ee4caa)
+- [17.5. Coroutines](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#reference)
+- [17.5.2. How Reactive translates to Coroutines?](https://docs.spring.io/spring-data/r2dbc/docs/current/reference/html/#kotlin.coroutines.reactive)
 
 ## About me
 
