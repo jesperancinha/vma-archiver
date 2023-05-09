@@ -12,7 +12,7 @@ build-maven:
 build-npm:
 	cd vma-gui; \
   		yarn; \
-		npm run build; \
+		npm run build;
 	@if [ -d docker-images/nginx/dist ]; then \
       rm -r docker-images/nginx/dist; \
     fi
