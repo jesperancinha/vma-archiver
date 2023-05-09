@@ -3,14 +3,18 @@ GITHUB_RUN_ID ?=123
 
 b: build-npm build-maven
 buildw:
-	cd vma-service && ./mvnw clean install
+	cd vma-service; \
+		./mvnw clean install
 build:
 	mvn clean install
 build-maven:
 	mvn clean install -DskipTests
 build-npm:
-	cd vma-gui && yarn && npm run build
-	bash cleanup.sh
+	cd vma-gui; \
+		npm run build
+	@if [ -d docker-images/nginx/dist ]; then \
+      rm -r docker-images/nginx/dist; \
+    fi
 	mv vma-gui/dist docker-images/nginx/
 test:
 	mvn test
