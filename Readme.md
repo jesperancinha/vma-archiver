@@ -42,7 +42,7 @@ Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 <details>
 <summary><b>Stable Releases</b></summary>
 
-
+---
 This repo is also the official support repo to my article on medium:
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
@@ -55,14 +55,14 @@ This repo is also the official support repo to my article on medium:
   Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 2.7.4 / Docker with fixed IP's
 - [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) -
   Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
-
+---
 </details>
 
 <details>
 <summary><b><a href="https://www.youtube.com/watch?v=hNpEMOFkvv4">Walk Through</a>
 </b></summary>
 
-
+---
 <div align="center">
       <a title="Coroutines, Distributed Cache, Resilience, and Replication in Kotlin DEMO — A VMA’s application" href="https://www.youtube.com/watch?v=hNpEMOFkvv4">
      <img 
@@ -71,6 +71,27 @@ This repo is also the official support repo to my article on medium:
       </a>
 </div>
 
+---
+</details>
+<details>
+<summary><b>Knowledge Cloud</b></summary>
+
+---
+##### Knowledge Cloud
+
+`BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`
+, `sortedBy`, `async`
+, `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`
+, `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`
+, `counterActor`, `override val`
+`massiveRun`,
+
+---
+
+##### Knowledge for Integration Tests Cloud
+
+`@Mockk`, `@Test`, `@SpringBootTest`
+----
 </details>
 
 ---
@@ -86,32 +107,6 @@ This repo is also the official support repo to my article on medium:
   votes in Kafka, registers a new award show directly and reads voting results from the database.
 - [VMA Service Event Listener](./vma-service-event-listener) - Listens to incoming votes sent in a massive load fashion.
 - [Locust](./locust) - The location of locust service. It creates workers in kotlin that simulate random massive voters.
-
----
-
-## Knowledge Cloud
-
-`BuildersKt.class`, `Builders.common`, `withContext`, `ifEmpty`, `tailrec`, `suspend`, `runBlocking`, `shuffled`
-, `sortedBy`, `async`
-, `await`, `launch`, `delay`, `runBlocking`, `coroutineScope`, `Channel`, `consumeEach`, `produce`, `produceSquares`
-, `produceNumbers`, `yield`, `@Volatile`, `withContext`, `Dispatchers.Default`, `Mutex`, `CoroutineScope`
-, `counterActor`, `override val`
-`massiveRun`,
-
----
-
-## Knowledge for Integration Tests Cloud
-
-`@Mockk`, `@Test`, `@SpringBootTest`
-
----
-
-## Java Setup
-
-```shell
-sdk install java 17-open
-sdk use java 17-open
-```
 
 ---
 
@@ -264,6 +259,17 @@ This is done in MAC-OS and Linux machines on `/etc/hosts`:
 
 ```text
 127.0.0.1   jofisaes-vma-broker
+```
+---
+</details>
+
+<details>
+<summary><b>Java setup</b></summary>
+
+---
+```shell
+sdk install java 17-open
+sdk use java 17-open
 ```
 ---
 </details>
