@@ -11,7 +11,8 @@ build-maven:
 	mvn clean install -DskipTests
 build-npm:
 	cd vma-gui; \
-		npm run build
+  		yarn; \
+		npm run build; \
 	@if [ -d docker-images/nginx/dist ]; then \
       rm -r docker-images/nginx/dist; \
     fi
