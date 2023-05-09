@@ -49,15 +49,7 @@ This repo is also the official support repo to my article on medium:
 -   [1.0.0](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - [992cdb7f6262b8e366142814f6b6547ae922cf52](https://github.com/jesperancinha/vma-archiver/tree/1.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 2.7.4 / Docker with fixed IP's
 -   [2.0.0](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - [17ae13b0c8c1bdc282225ef1515215f7f5906997](https://github.com/jesperancinha/vma-archiver/tree/2.0.0) - Video Music Awards App / JDK 17 / Coroutines / Kotlin 1.7.20 / Spring Boot 3.0.1 / Docker with dynamic IP's
 
-#### Walk through
-
-<div align="center">
-      <a title="Coroutines, Distributed Cache, Resilience, and Replication in Kotlin DEMO — A VMA’s application" href="https://www.youtube.com/watch?v=hNpEMOFkvv4">
-     <img 
-          src="https://img.youtube.com/vi/hNpEMOFkvv4/0.jpg" 
-          style="width:50%;">
-      </a>
-</div>
+#### [Walk through](https://www.youtube.com/watch?v=hNpEMOFkvv4)
 
 ---
 
