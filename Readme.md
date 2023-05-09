@@ -209,16 +209,18 @@ make locust
 <details>
 <summary><b>Cast your vote</b></summary>
 
+---
 - Go to [http://localhost:8080](http://localhost:8080) and cast your votes
-
+---
 </details>
 
 
 <details>
 <summary><b>Wait for locust to stop and check the result</b></summary>
 
+---
 - Go to [http://localhost:8080/result](http://localhost:8080/result)
-
+---
 </details>
 
 <details>
@@ -233,8 +235,9 @@ make locust
 <details>
 <summary><b>Endpoints</b></summary>
 
+---
 - [http://localhost:8080/api/vma/welcome](http://localhost:8080/api/vma/welcome)
-
+---
 </details>
 
 <details>
@@ -249,6 +252,7 @@ make install
 <details>
 <summary><b>Serving Spring Boot (LOCAL)</b></summary>
 
+---
 In order to let Kafka know where to get to locally you need to define locally that `jofisaes-vma-broker` is also
 in `127.0.0.1`.
 
@@ -257,9 +261,9 @@ This is done in MAC-OS and Linux machines on `/etc/hosts`:
 ```text
 127.0.0.1   jofisaes-vma-broker
 ```
+---
 </details>
 
----
 
 ## References
 
