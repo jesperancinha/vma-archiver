@@ -34,7 +34,7 @@
     "@angular/cli": "~16.0.2",
     "@angular/compiler-cli": "~13.0.1",
     "@types/jasmine": "~4.3.1",
-    "@types/node": "^20.1.7",
+    "@types/node": "^20.2.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.3.10",
     "jasmine-core": "~4.6.0",
