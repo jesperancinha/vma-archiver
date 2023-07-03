@@ -11,7 +11,7 @@ abstract class AbstractVmaTest {
     companion object {
         @Container
         @JvmField
-        val postgreSQLContainer: TestPostgresSQLContainer = TestPostgresSQLContainer("postgres:12")
+        val postgreSQLContainer: TestPostgresSQLContainer = TestPostgresSQLContainer("postgres")
             .withUsername("postgres")
             .withPassword("admin")
             .withDatabaseName("vma")
