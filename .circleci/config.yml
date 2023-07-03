@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install SDK 20
           command: wget https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz &&
-            tar xvf openjdk-20.0.2_linux-x64_bin.tar.gz &&
+            tar xvf openjdk-20.0.1_linux-x64_bin.tar.gz &&
             sudo mv jdk-20*/ /opt/jdk20 &&
             export JAVA_HOME=/opt/jdk20 &&
             export PATH=$PATH:$JAVA_HOME/bin
