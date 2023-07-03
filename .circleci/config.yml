@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2023.04.2
 
     working_directory: ~/repo
 
@@ -18,22 +18,22 @@ jobs:
       - checkout
 
       - run:
-          name: Install SDK 17
-          command: wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz &&
-            tar xvf openjdk-17.0.2_linux-x64_bin.tar.gz &&
-            sudo mv jdk-17*/ /opt/jdk17 &&
-            export JAVA_HOME=/opt/jdk17 &&
+          name: Install SDK 20
+          command: wget https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz &&
+            tar xvf openjdk-20.0.2_linux-x64_bin.tar.gz &&
+            sudo mv jdk-20*/ /opt/jdk20 &&
+            export JAVA_HOME=/opt/jdk20 &&
             export PATH=$PATH:$JAVA_HOME/bin
 
       - run:
           name: Build
-          command: export JAVA_HOME=/opt/jdk17 &&
+          command: export JAVA_HOME=/opt/jdk20 &&
               export PATH=$PATH:$JAVA_HOME/bin &&
               mvn -B -DskipTests clean package
 
       - run:
           name: Test
-          command: export JAVA_HOME=/opt/jdk17 &&
+          command: export JAVA_HOME=/opt/jdk20 &&
               export PATH=$PATH:$JAVA_HOME/bin &&
               mvn test
 
