@@ -96,7 +96,7 @@ dcup: dcd docker-clean docker vma-wait
 dcup-full: docker-clean-build-start vma-wait
 dcup-full-action: docker-clean b docker-action vma-wait
 cypress-open:
-	cd e2e && yarn && npm run cypress
+	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
 	cd e2e && make cypress-electron
 cypress-chrome:
