@@ -101,7 +101,7 @@ jobs:
       - name: Start Docker
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 4
+          max_attempts: 5
           retry_on: error
           timeout_seconds: 2400
           command: |
