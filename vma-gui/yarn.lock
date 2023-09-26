@@ -1416,9 +1416,10 @@
     "@types/mime" "*"
     "@types/node" "*"
 
-"@types/sockjs-client@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/@types/sockjs-client/-/sockjs-client-1.5.1.tgz"
+"@types/sockjs-client@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@types/sockjs-client/-/sockjs-client-1.5.2.tgz#e2dc204ac0ca02d9635a11f0d2d124e97e130e5f"
+  integrity sha512-KYM0HvjLD5OsyXGpISnydbwy/VU9T06rRKOJPs2WEPR19/sBNSNh+CUjulu3Qg0jmd8bINCqJILrSKDLDGzZMA==
 
 "@types/sockjs@^0.3.33":
   version "0.3.33"
