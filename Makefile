@@ -120,3 +120,12 @@ backend:
 	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-1
 	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-2
 	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-backend-img-1 jofisaes-vma-backend-img-2
+node-update-old:
+	sudo npm cache clean -f
+	sudo npm install -g n
+	sudo n stable
+node-update:
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
+	source ~/.nvm/nvm.sh
+	nvm install --lts
+	nvm use --lts
