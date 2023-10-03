@@ -26,7 +26,7 @@
         <hazelcast.version>5.1.6</hazelcast.version>
         <avro.version>1.11.3</avro.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <test.containers.version>1.19.0</test.containers.version>
+        <test.containers.version>1.19.1</test.containers.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
