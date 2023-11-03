@@ -5342,10 +5342,10 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
 
-ngx-cookie-service@^16.0.1:
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-16.0.1.tgz#8e821d7d5c0d3d245d7a908c7f28c06686cca73c"
-  integrity sha512-q8i5eX2b6SIIZcu9wy+lvOU65cLJhHD9EVz5TGGkKi8Y7X/aZbUyQ9U4CgNOfKDWtPUDFOMD8IW/cijoVKe59Q==
+ngx-cookie-service@^16.0.2:
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-16.0.2.tgz#b3b13c9998bcb4f0faccdfc0e25dbc51c8364ee3"
+  integrity sha512-6u1111XD8wR/VqfE7GdN4F2Vg5QKYFwuRr47hGnqZ2If0XDYXOSSrGXPJWSfEnWUjFrWHcebEAjPZDYZ4dutKg==
   dependencies:
     tslib "^2.0.0"
 
