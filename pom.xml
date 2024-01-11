@@ -15,8 +15,8 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <spring-boot.version>3.0.1</spring-boot.version>
-        <kotlin.version>1.7.20</kotlin.version>
-        <kotlinx.version>1.6.3-native-mt</kotlinx.version>
+        <kotlin.version>1.9.22</kotlin.version>
+        <kotlinx.version>1.8.0-RC2</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-assertions.version>5.5.5</kotest-assertions.version>
