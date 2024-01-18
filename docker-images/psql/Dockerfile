@@ -6,7 +6,7 @@ RUN apt update
 
 RUN apt-get install python3-pip python3-dev libpq-dev -y
 
-RUN pip3 install --upgrade pip
+#RUN pip3 install --upgrade pip
 
 RUN pip install patroni
 
