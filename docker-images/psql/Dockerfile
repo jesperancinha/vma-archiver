@@ -8,11 +8,11 @@ RUN apt-get install python3-pip python3-dev libpq-dev -y
 
 #RUN pip3 install --upgrade pip
 
-RUN pip install patroni
+RUN pip3 install patroni
 
-RUN pip install python-etcd
+RUN pip3 install python-etcd
 
-RUN pip install psycopg2
+RUN pip3 install psycopg2
 
 RUN apt update
 
