@@ -4,7 +4,7 @@ COPY init-scripts/create-multiple-postgresql-databases.sh /docker-entrypoint-ini
 
 RUN apt update
 
-RUN apt-get install python3-pip python3-dev libpq-dev -y
+RUN apt-get install python3-pip python3-dev libpq-dev python3-full -y
 
 #RUN pip3 install --upgrade pip
 
