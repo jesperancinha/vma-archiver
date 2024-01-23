@@ -45,7 +45,7 @@ Hazelcast, SpringWebFlux, Flow, Kotlin Co-Routines and a nice architecture.
 ---
 This repo is also the official support repo to my article on medium:
 
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8) [Coroutines, Distributed Cache, Resilience, and Replication in Kotlin — Making a VMA’s application](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
+[![](https://img.shields.io/badge/Coroutines,%20Distributed%20Cache,%20Resilience,%20and%20Replication%20'in%20'Kotlin%20'—%20'Making%20'a%20'VMA’s%20'application-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://itnext.io/coroutines-distributed-cache-resilience-and-replication-in-kotlin-making-a-vmas-application-df563edf8fe8)
 
 #### - Stable releases
 
