@@ -9,6 +9,15 @@ updates:
     directory: "/vma-gui"
     schedule:
       interval: "daily"
+    groups:
+      angular:
+        patterns:
+          - "@angular*"
+          - "angular*"
+          - "*angular*"
+          - "@types*"
+          - "*types*"
+
   - package-ecosystem: "npm"
     directory: "/e2e"
     schedule:
