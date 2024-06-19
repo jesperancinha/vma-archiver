@@ -1,4 +1,4 @@
-name: Updates cypress dependencies and containers
+name: Updates plugins
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-dependencies:
+  update-plugins:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,15 +19,15 @@ jobs:
           node-version: '20'
 
       - name: Run dependency update script
-        run: make deps-cypress-update
+        run: make deps-plugins-update
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: Update sbt dependencies
-          branch: update-cypress-dependencies-and-containers
-          title: 'Update cypress dependencies and containers'
+          commit-message: Update plugins
+          branch: update-plugins
+          title: 'Update plugins'
           body: |
             This pull request updates the following dependencies:
-            - Current Cypress dependencies and containers updates
+            - Current plugin updates
           labels: dependencies
