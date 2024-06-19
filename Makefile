@@ -129,3 +129,30 @@ node-update:
 	source ~/.nvm/nvm.sh
 	nvm install --lts
 	nvm use --lts
+remove-lock-files:
+	find . -name "package-lock.json" | xargs -I {} rm {}; \
+	find . -name "yarn.lock" | xargs -I {} rm {};
+update: remove-lock-files
+	git pull; \
+	curl --compressed -o- -L https://yarnpkg.com/install.sh | bash; \
+	npm install caniuse-lite; \
+	npm install -g npm-check-updates; \
+	cd vma-gui; \
+		yarn; \
+		npx browserslist --update-db; \
+		ncu -u; \
+		yarn; \
+	cd ..; \
+	cd e2e; \
+		yarn; \
+		npx browserslist --update-db; \
+		ncu -u; \
+		yarn;
+deps-update: update
+revert-deps-cypress-update:
+	if [ -f  e2e/docker-composetmp.yml ]; then rm e2e/docker-composetmp.yml; fi
+	if [ -f  e2e/packagetmp.json ]; then rm e2e/packagetmp.json; fi
+	git checkout e2e/docker-compose.yml
+	git checkout e2e/package.json
+deps-cypress-update:
+	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/cypressUpdateOne.sh | bash

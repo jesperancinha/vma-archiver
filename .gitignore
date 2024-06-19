@@ -48,3 +48,12 @@ logs
 # Cypress
 videos
 /**/screenshots/**
+
+#Node
+package-lock.json
+yarn.lock
+
+## Automation
+cypressUpdateOne.sh
+docker-composetmp.yml
+packagetmp.json
