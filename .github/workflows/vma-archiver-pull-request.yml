@@ -2,9 +2,11 @@ name: PR vma-archiver
 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - '**'
   push:
     branches:
+      - '**'
       - '!master'
 jobs:
   build:
