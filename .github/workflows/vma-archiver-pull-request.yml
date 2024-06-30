@@ -1,6 +1,12 @@
 name: PR vma-archiver
 
 on:
+  pull_request_target:
+    branches:
+      - '**'
+  create:
+    branches:
+      - '**'
   pull_request:
     branches:
       - '**'
