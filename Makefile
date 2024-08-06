@@ -93,8 +93,8 @@ dcup-light: stop
 dcup-medium: stop dcup-light kafka
 dcd: dc-migration stop
 dcup: dcd docker-clean docker vma-wait
-dcup-full: docker-clean-build-start vma-wait
-dcup-full-action: docker-clean b docker-action vma-wait
+dcup-full: dcd docker-clean-build-start vma-wait
+dcup-full-action: dcd docker-clean b docker-action vma-wait
 cypress-open:
 	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
