@@ -5,9 +5,6 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      postgresql:
-        patterns:
-          - "*postgresql*"
       maven:
         patterns:
           - "*maven*"
