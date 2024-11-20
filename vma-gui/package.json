@@ -28,7 +28,7 @@
     "@angular/router": "~18.2.11",
     "@stomp/stompjs": "^7.0.0",
     "@types/sockjs-client": "^1.5.4",
-    "ngx-cookie-service": "^18.0.0",
+    "ngx-cookie-service": "^19.0.0",
     "rxjs": "~7.8.1",
     "sockjs-client": "^1.6.1",
     "tslib": "^2.8.1",
