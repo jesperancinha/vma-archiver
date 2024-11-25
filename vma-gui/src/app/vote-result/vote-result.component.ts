@@ -8,7 +8,8 @@ import {Stomp} from "@stomp/stompjs";
 @Component({
   selector: 'app-vote-result',
   templateUrl: './vote-result.component.html',
-  styleUrls: ['./vote-result.component.less']
+  styleUrls: ['./vote-result.component.less'],
+  standalone: false
 })
 export class VoteResultComponent implements OnInit {
 
