@@ -10,7 +10,8 @@ import {CookieService} from "ngx-cookie-service";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.less']
+  styleUrls: ['./main.component.less'],
+  standalone: false
 })
 export class MainComponent implements OnInit {
 
