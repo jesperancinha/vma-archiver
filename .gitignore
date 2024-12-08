@@ -52,6 +52,7 @@ videos
 #Node
 package-lock.json
 yarn.lock
+/package.json
 
 ## Automation
 cypressUpdateOne.sh
