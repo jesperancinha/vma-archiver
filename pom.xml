@@ -19,7 +19,7 @@
         <kotlinx.version>1.9.0</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
-        <kotest-assertions.version>5.9.0</kotest-assertions.version>
+        <kotest-assertions.version>5.9.1</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <reactor-kafka.version>1.3.22</reactor-kafka.version>
         <kafka-avro-serializer.version>7.2.2</kafka-avro-serializer.version>
