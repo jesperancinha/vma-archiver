@@ -19,7 +19,7 @@
         <kotlinx.version>1.9.0</kotlinx.version>
         <kotest.version>4.0.7</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
-        <kotest-assertions.version>5.9.0</kotest-assertions.version>
+        <kotest-assertions.version>5.9.1</kotest-assertions.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <reactor-kafka.version>1.3.22</reactor-kafka.version>
         <kafka-avro-serializer.version>7.2.2</kafka-avro-serializer.version>
@@ -32,7 +32,7 @@
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
         <springdoc-openapi-starter.version>2.7.0</springdoc-openapi-starter.version>
 
-        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
     <modules>
