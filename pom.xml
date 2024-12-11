@@ -32,7 +32,7 @@
         <swagger-annotations.version>2.2.3</swagger-annotations.version>
         <springdoc-openapi-starter.version>2.6.0</springdoc-openapi-starter.version>
 
-        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
     <modules>
