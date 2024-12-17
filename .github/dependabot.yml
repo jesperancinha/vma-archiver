@@ -24,6 +24,9 @@ updates:
     directory: "/vma-gui"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "typescript"
+        versions: ["5.7.2"]
     groups:
       angular:
         patterns:
@@ -37,3 +40,7 @@ updates:
     directory: "/e2e"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "typescript"
+        versions: ["5.7.2"]
+
