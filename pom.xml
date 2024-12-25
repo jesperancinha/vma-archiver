@@ -28,8 +28,6 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <test.containers.version>1.20.4</test.containers.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
-        <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
-        <swagger-annotations.version>2.2.3</swagger-annotations.version>
         <springdoc-openapi-starter.version>2.6.0</springdoc-openapi-starter.version>
 
         <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
