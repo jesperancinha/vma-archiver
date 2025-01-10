@@ -17,7 +17,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Locust
-        run: sudo pip3 install locust
+        run: make install
 
       - name: Start Docker
         uses: nick-fields/retry@v3
@@ -43,7 +43,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Locust
-        run: sudo pip3 install locust
+        run: make install
 
       - name: Start Docker
         uses: nick-fields/retry@v3
@@ -69,7 +69,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Locust
-        run: sudo pip3 install locust
+        run: make install
 
       - name: Start Docker
         uses: nick-fields/retry@v3
@@ -96,7 +96,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Locust
-        run: sudo pip3 install locust
+        run: make install
 
       - name: Start Docker
         uses: nick-fields/retry@v3
