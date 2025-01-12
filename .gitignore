@@ -58,3 +58,4 @@ yarn.lock
 cypressUpdateOne.sh
 docker-composetmp.yml
 packagetmp.json
+package.json.bak
