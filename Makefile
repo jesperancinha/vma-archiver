@@ -1,5 +1,4 @@
-SHELL := /bin/bash
-GITHUB_RUN_ID ?=123
+include Makefile.mk
 
 b: build-npm build-maven
 buildw:
