@@ -27,7 +27,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
       - name: Start Locust
         run: make locust
       - name: Run Cypress
@@ -53,7 +56,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
       - name: Start Locust
         run: make locust-short
       - name: Run Cypress
@@ -79,7 +85,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
       - name: Start Locust
         run: make locust-short
       - name: Run Cypress
@@ -97,7 +106,10 @@ jobs:
           distribution: 'adopt'
       - name: Locust
         run: make install
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
       - name: Start Docker
         uses: nick-fields/retry@v3
         with:

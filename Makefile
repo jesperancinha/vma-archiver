@@ -107,8 +107,11 @@ cypress-firefox:
 	cd e2e && make cypress-firefox
 cypress-edge:
 	cd e2e && make cypress-edge
-demo: dcup cypress
-demo-full: dcup-full cypress
+docker-logs:
+	cd e2e; \
+	make docker-logs
+demo: dcup cypress-electron
+demo-full: dcup-full cypress-electron
 demo-full-manual: dcup-full cypress-open
 kafka:
 	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-zookeeper
