@@ -31,7 +31,7 @@
         <springdoc-openapi-starter.version>2.8.3</springdoc-openapi-starter.version>
 
         <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
     </properties>
     <modules>
         <module>vma-play</module>
