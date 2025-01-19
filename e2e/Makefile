@@ -11,3 +11,5 @@ cypress-firefox:
 	yarn && docker-compose -p "${GITHUB_RUN_ID}" -f ../docker-compose.yml -f docker-compose.yml up --exit-code-from e2e-firefox e2e-firefox
 cypress-edge:
 	yarn && docker-compose -p "${GITHUB_RUN_ID}" -f ../docker-compose.yml -f docker-compose.yml up --exit-code-from e2e-edge e2e-edge
+docker-logs:
+	docker-compose -p ${GITHUB_RUN_ID} -f ../docker-compose.yml -f docker-compose.yml logs
