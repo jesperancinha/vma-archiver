@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 sed -i 's/${VMA_BACKEND_1}/'"$(getent hosts jofisaes-vma-backend-img-1 | cut -d' ' -f1)"'/g' /etc/nginx/nginx.conf
 sed -i 's/${VMA_BACKEND_2}/'"$(getent hosts jofisaes-vma-backend-img-2 | cut -d' ' -f1)"'/g' /etc/nginx/nginx.conf
