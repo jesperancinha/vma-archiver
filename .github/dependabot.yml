@@ -35,6 +35,7 @@ updates:
           - "*angular*"
           - "@types*"
           - "*types*"
+          - "*ngx-cookie-service*"
 
   - package-ecosystem: "npm"
     directory: "/e2e"
