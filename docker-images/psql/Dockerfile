@@ -1,4 +1,4 @@
-FROM postgres:15
+FROM postgres:17
 
 COPY init-scripts/create-multiple-postgresql-databases.sh /docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
 
