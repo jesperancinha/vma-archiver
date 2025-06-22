@@ -54,6 +54,10 @@ package-lock.json
 yarn.lock
 /package.json
 
+## draw.io
+
+*.bkp
+
 ## Automation
 cypressUpdateOne.sh
 docker-composetmp.yml
