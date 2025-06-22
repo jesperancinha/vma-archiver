@@ -170,6 +170,11 @@ To visualize it in Intellij, please install the [mermaid plugin](https://mermaid
         VMA BE NGINX LB-->>VMA Voting Client 2: Response With Votes
         VMA BE NGINX LB-->>VMA Voting Client n: Response With Votes
 ```
+---
+
+## Complete Overview
+
+![Alt text](/docs/draw.io/article.vma.complete.overview.jpg "Complete Overview")
 
 ---
 
@@ -273,6 +278,10 @@ sdk use java 17-open
 ```
 ---
 </details>
+
+---
+
+![Alt VMA Archiver Banner](/docs/images/article.vma.banner.png "VMA Archiver Banner")
 
 ---
 
