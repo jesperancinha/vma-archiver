@@ -18,7 +18,6 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^18.2.13",
     "@angular/platform-browser": "~18.2.12",
-    "@angular/platform-browser-dynamic": "~18.2.12",
     "@angular/forms": "~20.1.6",
     "@angular/material": "^20.1.5",
     "@angular/platform-browser": "~20.1.6",
