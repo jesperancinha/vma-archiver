@@ -2,32 +2,49 @@
 <mat-card>
   <mat-card-title>{{votingId}}</mat-card-title>
   <mat-card fxLayout="row wrap">
-    <mat-card *ngFor="let category of categories">
-      <mat-card-title>{{category.category}}</mat-card-title>
-      <mat-radio-group *ngIf="category.artists.length>0 && !category.voted"
-                       aria-labelledby="vma-radio-group-label"
-                       class="vma-radio-group" [(ngModel)]="category.selectedArtist">
-        <mat-radio-button class="vma-radio-button" *ngFor="let artist of category.artists" [value]="artist.id">
-          {{artist.name}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <mat-card *ngIf="category.artists.length>0 && category.voted">
-        <p  *ngFor="let artist of category.artists">{{artist.name}}</p>
-        <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
+    @for (category of categories; track category) {
+      <mat-card>
+        <mat-card-title>{{category.category}}</mat-card-title>
+        @if (category.artists.length>0 && !category.voted) {
+          <mat-radio-group
+            aria-labelledby="vma-radio-group-label"
+            class="vma-radio-group" [(ngModel)]="category.selectedArtist">
+            @for (artist of category.artists; track artist) {
+              <mat-radio-button class="vma-radio-button" [value]="artist.id">
+                {{artist.name}}
+              </mat-radio-button>
+            }
+          </mat-radio-group>
+        }
+        @if (category.artists.length>0 && category.voted) {
+          <mat-card>
+            @for (artist of category.artists; track artist) {
+              <p>{{artist.name}}</p>
+            }
+            <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
+          </mat-card>
+        }
+        @if (category.songs.length>0 && !category.voted) {
+          <mat-radio-group
+            aria-labelledby="vma-radio-group-label"
+            class="vma-radio-group" [(ngModel)]="category.selectedSong">
+            @for (song of category.songs; track song) {
+              <mat-radio-button class="vma-radio-button" [value]="song.id">
+                {{song.name}}
+              </mat-radio-button>
+            }
+          </mat-radio-group>
+        }
+        @if (category.songs.length>0  && category.voted) {
+          <mat-card>
+            @for (song of category.songs; track song) {
+              <p>{{song.name}}</p>
+            }
+            <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
+          </mat-card>
+        }
       </mat-card>
-
-      <mat-radio-group *ngIf="category.songs.length>0 && !category.voted"
-                       aria-labelledby="vma-radio-group-label"
-                       class="vma-radio-group" [(ngModel)]="category.selectedSong">
-        <mat-radio-button class="vma-radio-button" *ngFor="let song of category.songs" [value]="song.id">
-          {{song.name}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <mat-card *ngIf="category.songs.length>0  && category.voted">
-        <p  *ngFor="let song of category.songs">{{song.name}}</p>
-        <mat-card-title><b>Your vote has been cast! Thank you for voting!</b></mat-card-title>
-      </mat-card>
-    </mat-card>
+    }
   </mat-card>
   <button mat-raised-button color="primary" (click)="castVotes()">Cast Votes!</button>
 </mat-card>
