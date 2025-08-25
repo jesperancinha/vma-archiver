@@ -1,12 +1,38 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {enableProdMode, importProvidersFrom} from '@angular/core';
+import {bootstrapApplication} from '@angular/platform-browser';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import {AppComponent} from './app/app.component';
+import {environment} from './environments/environment';
+
+import {provideRouter, withComponentInputBinding} from '@angular/router';
+import {provideHttpClient} from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {FlexModule} from '@angular/flex-layout';
+import {provideAnimations} from '@angular/platform-browser/animations';
+import {CookieService} from 'ngx-cookie-service';
+import {routes} from "./app/app-routing.module";
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(),
+    provideAnimations(),
+    importProvidersFrom(
+      MatCardModule,
+      MatListModule,
+      MatRadioModule,
+      FormsModule,
+      MatButtonModule,
+      FlexModule
+    ),
+    CookieService
+  ]
+}).catch(err => console.error(err));
