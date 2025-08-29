@@ -1,6 +1,6 @@
 services:
   e2e-electron:
-    image: "cypress/included:14.5.4"
+    image: "cypress/included:15.0.0"
     working_dir: /e2e
     command: "--browser electron --env host=jofisaes-vma-nginx-lb"
     volumes:
@@ -9,7 +9,7 @@ services:
       - vma_net
 
   e2e-chrome:
-    image: "cypress/included:14.5.4"
+    image: "cypress/included:15.0.0"
     working_dir: /e2e
     command: "--browser chrome --env host=jofisaes-vma-nginx-lb"
     volumes:
@@ -18,7 +18,7 @@ services:
       - vma_net
 
   e2e-firefox:
-    image: "cypress/included:14.5.4"
+    image: "cypress/included:15.0.0"
     working_dir: /e2e
     command: "--browser firefox --env host=jofisaes-vma-nginx-lb"
     volumes:
@@ -27,7 +27,7 @@ services:
       - vma_net
 
   e2e-edge:
-    image: "cypress/included:14.5.4"
+    image: "cypress/included:15.0.0"
     working_dir: /e2e
     command: "--browser edge --env host=jofisaes-vma-nginx-lb"
     volumes:
