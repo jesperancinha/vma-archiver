@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "vma-gui:build:production"
+              "buildTarget": "vma-gui:build:production"
             },
             "development": {
-              "browserTarget": "vma-gui:build:development"
+              "buildTarget": "vma-gui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -109,6 +109,5 @@
         }
       }
     }
-  },
-  "defaultProject": "vma-gui"
+  }
 }

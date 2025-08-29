@@ -2,15 +2,24 @@
 <mat-card>
   <mat-card-title>{{votingId}}</mat-card-title>
   <mat-card fxLayout="row wrap">
-    <mat-card *ngFor="let category of categories">
-      <mat-card-title>{{category.category}}</mat-card-title>
-      <mat-card *ngIf="category.artists.length>0">
-        <p  *ngFor="let artist of category.artists">{{artist.name}}  +{{artist.votes}}</p>
+    @for (category of categories; track category) {
+      <mat-card>
+        <mat-card-title>{{category.category}}</mat-card-title>
+        @if (category.artists.length>0) {
+          <mat-card>
+            @for (artist of category.artists; track artist) {
+              <p>{{artist.name}}  +{{artist.votes}}</p>
+            }
+          </mat-card>
+        }
+        @if (category.songs.length>0) {
+          <mat-card>
+            @for (song of category.songs; track song) {
+              <p>{{song.name}} +{{song.votes}}</p>
+            }
+          </mat-card>
+        }
       </mat-card>
-
-      <mat-card *ngIf="category.songs.length>0">
-        <p  *ngFor="let song of category.songs">{{song.name}} +{{song.votes}}</p>
-      </mat-card>
-    </mat-card>
+    }
   </mat-card>
 </mat-card>

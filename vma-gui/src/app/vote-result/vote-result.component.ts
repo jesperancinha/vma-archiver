@@ -4,12 +4,15 @@ import {VmaService} from "../service/vma.service";
 import {CookieService} from "ngx-cookie-service";
 import * as SockJS from "sockjs-client";
 import {Stomp} from "@stomp/stompjs";
+import {MatCardModule} from '@angular/material/card';
+import {FlexModule} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-vote-result',
   templateUrl: './vote-result.component.html',
   styleUrls: ['./vote-result.component.less'],
-  standalone: false
+  standalone: true,
+  imports: [MatCardModule, FlexModule]
 })
 export class VoteResultComponent implements OnInit {
 

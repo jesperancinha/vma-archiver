@@ -6,12 +6,17 @@ import {Category} from "../domain/category";
 import {SongVote} from "../domain/song.vote";
 import {ArtistVote} from "../domain/artist.vote";
 import {CookieService} from "ngx-cookie-service";
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
+import {FlexModule} from '@angular/flex-layout';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.less'],
-  standalone: false
+  standalone: true,
+  imports: [MatCardModule, MatRadioModule, FormsModule, FlexModule]
 })
 export class MainComponent implements OnInit {
 
