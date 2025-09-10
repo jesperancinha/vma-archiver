@@ -310,7 +310,6 @@ services:
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_ADVERTISE_CLIENT_URLS=http://jofisaes-vma-etcd:2379
-      - ETCD_ENABLE_V2=true
     restart: on-failure
     deploy:
       resources:
