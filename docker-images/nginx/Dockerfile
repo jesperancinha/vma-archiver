@@ -1,6 +1,6 @@
 FROM nginx:1.29.1
 
-ENV runningFolder /usr/local/bin/
+ENV runningFolder=/usr/local/bin/
 
 WORKDIR ${runningFolder}
 
