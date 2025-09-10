@@ -1,8 +1,6 @@
 name: E2E e2e-vma-archiver-app
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
