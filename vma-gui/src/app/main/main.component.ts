@@ -10,13 +10,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {FlexModule} from '@angular/flex-layout';
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.less'],
   standalone: true,
-  imports: [MatCardModule, MatRadioModule, FormsModule, FlexModule]
+  imports: [MatCardModule, MatRadioModule, FormsModule, FlexModule, MatButton]
 })
 export class MainComponent implements OnInit {
 
