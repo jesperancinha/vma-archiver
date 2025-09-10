@@ -6,7 +6,7 @@ restapi:
   listen: ${POSTGRES_MAIN_IP}:8008
   connect_address: ${POSTGRES_MAIN_IP}:8008
 
-etcd:
+etcd3:
   hosts: jofisaes-vma-etcd:2379
 
 bootstrap:
