@@ -38,7 +38,7 @@ RUN chown postgres:postgres /data
 
 WORKDIR /root
 
-ENTRYPOINT /root/entrypoint.sh
+ENTRYPOINT exec /root/entrypoint.sh
 
 EXPOSE 5432
 
