@@ -75,7 +75,7 @@ install:
 	source venv/bin/activate; \
 	pip install --upgrade pip; \
 	pip install locust gevent zope.event; \
-	python -m locust -f locustcheck.py --headless -u 1 -r 1 --run-time 1s
+	python -m locust -f locustcheck.py --host=localhost --headless -u 1 -r 1 --run-time 1s
 case:
 	cd vma-demo && make create-vmas
 locust: case
