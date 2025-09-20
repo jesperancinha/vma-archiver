@@ -30,7 +30,7 @@
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <springdoc-openapi-starter.version>2.8.13</springdoc-openapi-starter.version>
 
-        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
     </properties>
     <modules>
