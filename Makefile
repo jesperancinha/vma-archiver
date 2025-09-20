@@ -73,6 +73,7 @@ stop:
 install:
 	sudo apt remove --purge python3-blinker -y
 	sudo apt autoremove --purge -y
+	sudo apt install python3 python3-pip -y
 	/usr/bin/python3 -m pip install --upgrade pip
 	pip3 install requests
 	pip3 install locust
