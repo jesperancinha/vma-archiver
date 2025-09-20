@@ -84,7 +84,12 @@ install:
 	python3 -m pip install --user locust zope.event
 	python3 -m pip show locust
 	python3 -m pip show zope.event
-	locust -f locustfile.py --headless -u 1 -r 1 --run-time 1s
+	pip install zope.event
+	python3 -m pip install --user --upgrade gevent
+	python3 -m pip install --upgrade pip
+	python3 -m pip install --upgrade pip --user
+	python3 -m pip install --user --upgrade locust gevent zope.event
+	python3 -m locust -f locustfile.py --headless -u 1 -r 1 --run-time 1s
 case:
 	cd vma-demo && make create-vmas
 locust: case
