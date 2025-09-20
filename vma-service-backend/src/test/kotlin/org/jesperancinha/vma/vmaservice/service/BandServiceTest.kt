@@ -205,7 +205,7 @@ internal class BandServiceTest(
 
 
     /**
-     * await for asynchronous routinr
+     * await for asynchronous coroutine
      */
     @Test
     fun `should await for the asynchronous coroutine to complete`(): Unit =
