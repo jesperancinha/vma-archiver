@@ -71,24 +71,19 @@ prune-all: docker-delete
 stop:
 	docker-compose -p "${GITHUB_RUN_ID}" down --remove-orphans
 install:
-	sudo apt autoremove --purge -y
-	sudo apt install python3 python3-pip -y
-	/usr/bin/python3 -m pip install --upgrade pip
-	pip3 install requests
-	pip3 install locust
-	pip3 install zope.event
-	python -m pip install zope.event
-	python3 -m pip install --user zope.event
-	pip3 install --user -r requirements.txt
-	python3 -m pip install --user --upgrade pip
-	python3 -m pip install --user locust zope.event
-	python3 -m pip show locust
-	python3 -m pip show zope.event
-	pip install zope.event
-	python3 -m pip install --user --upgrade gevent
-	python3 -m pip install --upgrade pip
+	# Upgrade pip in user environment
 	python3 -m pip install --upgrade pip --user
-	python3 -m pip install --user --upgrade locust gevent zope.event
+
+	# Install / upgrade required packages in user site-packages
+	python3 -m pip install --user --upgrade locust gevent zope.event requests
+
+	# Optional: install other dependencies from requirements.txt
+	python3 -m pip install --user -r requirements.txt || true
+
+	# Verify installation paths
+	python3 -m pip show locust gevent zope.event
+
+	# Run Locust using Python3 directly
 	python3 -m locust -f locustfile.py --headless -u 1 -r 1 --run-time 1s
 case:
 	cd vma-demo && make create-vmas
