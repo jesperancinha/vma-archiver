@@ -71,11 +71,12 @@ prune-all: docker-delete
 stop:
 	docker-compose -p "${GITHUB_RUN_ID}" down --remove-orphans
 install:
-	sudo apt remove --purge python3-blinker
-	sudo apt autoremove --purge
+	sudo apt remove --purge python3-blinker -y
+	sudo apt autoremove --purge -y
 	/usr/bin/python3 -m pip install --upgrade pip
 	pip3 install requests
 	pip3 install locust
+	pip3 install pip install zope.event
 case:
 	cd vma-demo && make create-vmas
 locust: case
