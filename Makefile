@@ -76,7 +76,7 @@ install:
 	/usr/bin/python3 -m pip install --upgrade pip
 	pip3 install requests
 	pip3 install locust
-	pip3 install pip install zope.event
+	pip3 install zope.event
 case:
 	cd vma-demo && make create-vmas
 locust: case
