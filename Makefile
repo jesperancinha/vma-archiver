@@ -81,6 +81,7 @@ install:
 	python3 -m pip install --user zope.event
 	pip3 install --user -r requirements.txt
 	python3 -m pip show zope.event
+	locust -f locustfile.py --headless -u 1 -r 1 --run-time 1s
 case:
 	cd vma-demo && make create-vmas
 locust: case
