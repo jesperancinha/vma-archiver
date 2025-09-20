@@ -1,7 +1,6 @@
 package org.jesperancinha.vma.vmaservice.service
 
 import com.ninjasquad.springmockk.MockkBean
-import io.kotest.common.runBlocking
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
@@ -19,6 +18,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.jesperancinha.vma.domain.Band
 import org.jesperancinha.vma.domain.BandRepository
@@ -177,32 +177,31 @@ internal class BandServiceTest(
      * launch coroutines
      */
     @Test
-    fun `should run launch asynchronously within the same coroutineScope`(): Unit = kotlinx.coroutines.runBlocking(
-        Dispatchers.IO) {
-            val id = "the-doors" + UUID.randomUUID().toString()
-            val testBand = Band(name = "The Doors")
-            coEvery { bandRepository.findById(id) } returns testBand
+    fun `should run launch asynchronously within the same coroutineScope`(): Unit = runBlocking(Dispatchers.IO) {
+        val id = "the-doors" + UUID.randomUUID().toString()
+        val testBand = Band(name = "The Doors")
+        coEvery { bandRepository.findById(id) } returns testBand
 
-            coroutineScope {
-                launch {
-                    delay(100)
-                    val band = bandService.getBandById(id)
-                    band shouldBe testBand
-                }
-                launch {
-                    delay(200)
-                    val band = bandService.getBandById(id)
-                    band shouldBe testBand
-                }
-            coVerify(exactly = 0) { bandRepository.findById(id) }
+        coroutineScope {
+            launch {
                 delay(100)
-                coVerify(exactly = 1) { bandRepository.findById(id) }
-                delay(100)
-                coVerify(exactly = 2) { bandRepository.findById(id) }
+                val band = bandService.getBandById(id)
+                band shouldBe testBand
             }
+            launch {
+                delay(200)
+                val band = bandService.getBandById(id)
+                band shouldBe testBand
 
+            }
+            coVerify(exactly = 0) { bandRepository.findById(id) }
+            delay(100)
+            coVerify(exactly = 1) { bandRepository.findById(id) }
+            delay(100)
+            coVerify(exactly = 2) { bandRepository.findById(id) }
+
+        }
     }
-
 
     /**
      * await for asynchronous coroutine
