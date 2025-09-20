@@ -78,6 +78,8 @@ install:
 	pip3 install locust
 	pip3 install zope.event
 	python -m pip install zope.event
+	python3 -m pip install --user zope.event
+	python3 -m pip show zope.event
 case:
 	cd vma-demo && make create-vmas
 locust: case
