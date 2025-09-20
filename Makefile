@@ -81,11 +81,11 @@ case:
 locust: case
 	cd locust; \
  	source venv/bin/activate; \
-	locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
+	python -m locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
 locust-short: case
 	cd locust; \
 	source venv/bin/activate; \
-	locust --host=localhost --headless -u 10 -r 10 --run-time 5s --csv vma-awards --exit-code-on-error 0
+	python -m locust --host=localhost --headless -u 10 -r 10 --run-time 5s --csv vma-awards --exit-code-on-error 0
 count-votes:
 	curl -i -X POST http://localhost:8080/api/vma/voting/count
 vma-wait:
