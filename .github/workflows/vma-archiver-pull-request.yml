@@ -15,5 +15,8 @@ jobs:
             java-version: '21'
             distribution: 'adopt'
 
+        - name: Install
+          run: make install
+
         - name: Build and Test
           run: mvn clean install jacoco:prepare-agent package jacoco:report
