@@ -80,6 +80,9 @@ install:
 	python -m pip install zope.event
 	python3 -m pip install --user zope.event
 	pip3 install --user -r requirements.txt
+	python3 -m pip install --user --upgrade pip
+	python3 -m pip install --user locust zope.event
+	python3 -m pip show locust
 	python3 -m pip show zope.event
 	locust -f locustfile.py --headless -u 1 -r 1 --run-time 1s
 case:
