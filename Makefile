@@ -71,7 +71,6 @@ prune-all: docker-delete
 stop:
 	docker-compose -p "${GITHUB_RUN_ID}" down --remove-orphans
 install:
-	sudo apt remove --purge python3-blinker -y
 	sudo apt autoremove --purge -y
 	sudo apt install python3 python3-pip -y
 	/usr/bin/python3 -m pip install --upgrade pip
@@ -80,6 +79,7 @@ install:
 	pip3 install zope.event
 	python -m pip install zope.event
 	python3 -m pip install --user zope.event
+	pip3 install --user -r requirements.txt
 	python3 -m pip show zope.event
 case:
 	cd vma-demo && make create-vmas
