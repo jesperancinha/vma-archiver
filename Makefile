@@ -79,12 +79,12 @@ install:
 case:
 	cd vma-demo && make create-vmas
 locust: case
+	source venv/bin/activate; \
 	cd locust; \
- 	source venv/bin/activate; \
 	python -m locust --host=localhost --headless -u 10 -r 10 --run-time 30s --csv vma-awards --exit-code-on-error 0
 locust-short: case
-	cd locust; \
 	source venv/bin/activate; \
+	cd locust; \
 	python -m locust --host=localhost --headless -u 10 -r 10 --run-time 5s --csv vma-awards --exit-code-on-error 0
 count-votes:
 	curl -i -X POST http://localhost:8080/api/vma/voting/count
