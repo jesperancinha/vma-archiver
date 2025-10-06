@@ -281,7 +281,7 @@ services:
 
   jofisaes-vma-etcd:
     hostname: jofisaes-vma-etcd
-    image: 'bitnami/etcd:latest'
+    image: 'bitnamilegacy/etcd:latest'
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_ADVERTISE_CLIENT_URLS=http://jofisaes-vma-etcd:2379
