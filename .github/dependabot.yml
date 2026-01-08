@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "yearly"
     groups:
       spring:
         patterns:
@@ -23,7 +23,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/vma-gui"
     schedule:
-      interval: "daily"
+      interval: "yearly"
     ignore:
       - dependency-name: "typescript"
         versions: ["5.7.2"]
@@ -40,7 +40,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/e2e"
     schedule:
-      interval: "daily"
+      interval: "yearly"
     ignore:
       - dependency-name: "typescript"
         versions: ["5.7.2"]
