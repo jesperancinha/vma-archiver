@@ -51,5 +51,5 @@ class CategoryService(
     lateinit var vmaBackEndEndpoint: String
 
     fun findAll(): List<CategoryDto> = restTemplate.getForObject<List<CategoryDto>>(
-        "${vmaBackEndEndpoint}/api/vma/registry", List::class.java)
+        "${vmaBackEndEndpoint}/api/vma/registry")
 }

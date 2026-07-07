@@ -4,11 +4,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "application.kafka")
 data class VotingKafkaConfigProperties(
-    var broker: String = "",
-    var schemaRegistryUrl: String = "",
-    var createArtistVoteRequestTopic: String = "",
-    var createSongVoteRequestTopic: String = "",
-    var voteCreatedEventTopic: String = "",
-    var serializer: String = "",
-    var deserializer: String = ""
+    val broker: String = "",
+    val schemaRegistryUrl: String = "",
+    val createArtistVoteRequestTopic: String = "",
+    val createSongVoteRequestTopic: String = "",
+    val voteCreatedEventTopic: String = "",
+    val serializer: String = "",
+    val deserializer: String = ""
 )
