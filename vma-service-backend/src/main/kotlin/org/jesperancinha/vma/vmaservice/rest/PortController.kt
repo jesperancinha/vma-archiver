@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("welcome")
 class PortController(
-    @Value("\${server.port}")
+    @param:Value($$"${server.port}")
     private val port: Int
 ) {
 
