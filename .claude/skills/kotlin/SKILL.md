@@ -15,3 +15,24 @@ It makes no sense to use this operator when the value is guaranteed to be non-nu
 ## 3. Avoid using `var` when possible
 
 In Kotlin, it is recommended to use `val` instead of `var` whenever possible. This helps to make the code more readable and maintainable, as it makes it clear that the value of a variable is not expected to change.
+
+## 4. Use Duration overload when possible
+
+### Example 1
+
+When using the `delay` function, it is recommended to use the overload that accepts a `Duration` parameter instead of a `Long` parameter. This makes the code more readable and easier to understand, as it clearly indicates the intended duration of the delay.
+
+replace this:
+
+```kotlin
+delay(100)
+```
+
+with this:
+
+```kotlin
+delay(100.milliseconds)
+```
+
+Add import: `import kotlin.time.Duration.Companion.milliseconds`
+
