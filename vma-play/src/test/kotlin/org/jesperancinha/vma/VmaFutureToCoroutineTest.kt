@@ -8,6 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.util.concurrent.CompletableFuture
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.milliseconds
 
 class VmaFutureToCoroutineTest {
 
@@ -18,7 +19,7 @@ class VmaFutureToCoroutineTest {
     }
 
     private suspend fun getAnIntNumber(): Int {
-        delay(1000)
+        delay(1000.milliseconds)
         val cf = CompletableFuture.supplyAsync { Random.nextInt() }
         return cf.await()
     }
