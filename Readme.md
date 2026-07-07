@@ -285,6 +285,18 @@ sdk use java 17-open
 
 ---
 
+## Claude
+
+Prompt claude with the following:
+
+### Run all skills
+```text
+please run skills annotations, kotlin, angular, parallel, docker, and spring-integration-test-wiring on this project
+```
+
+---
+
+
 ## References
 
 -   [How to fix the LEADER_NOT_AVAILABLE error in Kafka?](https://www.hadoopinrealworld.com/how-to-fix-the-leader_not_available-error-in-kafka)
