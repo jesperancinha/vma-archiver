@@ -16,7 +16,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -31,6 +30,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.UUID
 import java.util.concurrent.Executors.newFixedThreadPool
 import kotlin.system.measureTimeMillis
+import kotlin.time.Duration.Companion.milliseconds
 
 
 @ExtendWith(SpringExtension::class)
@@ -73,12 +73,12 @@ internal class BandServiceTest(
             val dispatcher = newFixedThreadPool(2)
                 .asCoroutineDispatcher()
             withContext(dispatcher) {
-                delay(100)
+                delay(100.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
             withContext(dispatcher) {
-                delay(100)
+                delay(100.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
@@ -101,12 +101,12 @@ internal class BandServiceTest(
             val dispatcher = newFixedThreadPool(2)
                 .asCoroutineDispatcher()
             withContext(dispatcher) {
-                delay(100)
+                delay(100.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
             withContext(dispatcher) {
-                delay(2000)
+                delay(2000.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
@@ -127,12 +127,12 @@ internal class BandServiceTest(
             coroutineScope {
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
-                delay(100)
+                delay(100.milliseconds)
             }
             coroutineScope {
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
-                delay(200)
+                delay(200.milliseconds)
             }
 
             coVerify(exactly = 2) { bandRepository.findById(id) }
@@ -151,13 +151,13 @@ internal class BandServiceTest(
             val coroutineResult = coroutineScope {
                 listOf(
                     async(Dispatchers.IO) {
-                        delay(100)
+                        delay(100.milliseconds)
                         val band = bandService.getBandById(id)
                         band shouldBe testBand
                         band
                     }, async(Dispatchers.IO) {
                         suspend {
-                            delay(200)
+                            delay(200.milliseconds)
                             val band = bandService.getBandById(id)
                             band shouldBe testBand
                             band
@@ -165,7 +165,7 @@ internal class BandServiceTest(
                     })
             }
 
-            delay(150)
+            delay(150.milliseconds)
             coVerify(exactly = 1) { bandRepository.findById(id) }
 
             val result = coroutineResult.awaitAll()
@@ -184,20 +184,20 @@ internal class BandServiceTest(
 
         coroutineScope {
             launch {
-                delay(100)
+                delay(100.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
             }
             launch {
-                delay(200)
+                delay(200.milliseconds)
                 val band = bandService.getBandById(id)
                 band shouldBe testBand
 
             }
             coVerify(exactly = 0) { bandRepository.findById(id) }
-            delay(100)
+            delay(100.milliseconds)
             coVerify(exactly = 1) { bandRepository.findById(id) }
-            delay(100)
+            delay(100.milliseconds)
             coVerify(exactly = 2) { bandRepository.findById(id) }
 
         }
@@ -215,14 +215,14 @@ internal class BandServiceTest(
 
             val coroutineResult = coroutineScope {
                 async(Dispatchers.IO) {
-                    delay(100)
+                    delay(100.milliseconds)
                     val band = bandService.getBandById(id)
                     band shouldBe testBand
                     band
                 }
             }
 
-            delay(100)
+            delay(100.milliseconds)
             coVerify(exactly = 1) { bandRepository.findById(id) }
 
             val result = coroutineResult.await()
