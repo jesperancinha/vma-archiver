@@ -47,9 +47,9 @@ class CategoryService(
     val restTemplate: RestTemplate
 ) {
 
-    @Value("\${vma.reactive.endpoint}")
+    @field:Value($$"${vma.reactive.endpoint}")
     lateinit var vmaBackEndEndpoint: String
 
     fun findAll(): List<CategoryDto> = restTemplate.getForObject<List<CategoryDto>>(
-        "${vmaBackEndEndpoint}/api/vma/registry", List::class.java)
+        "${vmaBackEndEndpoint}/api/vma/registry")
 }
