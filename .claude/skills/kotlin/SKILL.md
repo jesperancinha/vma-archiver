@@ -36,3 +36,121 @@ delay(100.milliseconds)
 
 Add import: `import kotlin.time.Duration.Companion.milliseconds`
 
+## 5. Remove all code signatures
+
+Code does not need to be signed. The code signature used to have some value, but in current times, the commit already has a signature.
+Old code may contain signatures that look like this:
+
+```kotlin
+/**
+ * Created by joao on 28-4-16.
+ */
+```
+
+They should all be removed, as they are not needed and add no value to the code.
+
+## 6. When using Kotlin code make sure to use the kotlin extensions for parsing
+
+### Example 1
+
+When finding this:
+
+```kotlin
+    .getForEntity("/tulips", String::class.java)
+```
+replace with:
+```kotlin
+    .getForEntity<String>("/tulips")
+```
+
+## 7. Update the usage of `CSVParser` which is now deprecated
+
+This skill refers to the `CSVParser` from `org.apache.commons.csv.*`
+
+### Example 1
+
+Replace
+```kotlin
+val csvParser = CSVParser(reader, CSV_HEADER)
+```
+
+with
+
+```kotlin
+val csvParser = CSVParser.builder()
+    .setReader(reader)
+    .setFormat(CSV_HEADER).get()
+```
+
+### Example 2
+
+Replace this
+
+```kotlin
+private val CSV_HEADER = DEFAULT
+    .withHeader(
+        "id",
+        "description",
+        "year",
+        "value",
+        "currency",
+        "type",
+        "diameterMM",
+        "internalDiameterMM",
+        "heightMM",
+        "widthMM"
+    )
+```
+
+with:
+
+```kotlin
+private val CSV_HEADER = CSVFormat.DEFAULT.builder()
+    .setHeader(
+        "id",
+        "description",
+        "year",
+        "value",
+        "currency",
+        "type",
+        "diameterMM",
+        "internalDiameterMM",
+        "heightMM",
+        "widthMM"
+    ).get()
+```
+
+## 8. For all uses of Lombok in Kotlin classes that still use its builder pattern, please convert them to data classes
+
+Due to Java conversions to Kotlin, some of them, due to their automatic nature, didn't consider the existence of data classes.
+If Kotlin classes still use lombok for the builder pattern please convert them to `data class`.
+
+## 9. Replace the package of `jackson-module-kotlin` 
+
+Please replace:
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.module</groupId>
+    <artifactId>jackson-module-kotlin</artifactId>
+</dependency>
+```
+
+with 
+
+```xml
+<dependency>
+    <groupId>tools.jackson.module</groupId>
+    <artifactId>jackson-module-kotlin</artifactId>
+</dependency>
+```
+
+## 10. Checklist
+
+[ ] The code does not use the `!!` operator.
+[ ] The code does not use the safe call operator (`?.`) when the value is guaranteed to be non-null.
+[ ] The code uses `val` instead of `var` whenever possible.
+[ ] The code uses the `Duration` overload when using the `delay` function.
+[ ] The code does not contain any code signatures.
+[ ] The code uses the kotlin extensions for parsing when using Kotlin code.
+[ ] The code should not use the `CSVParser` constructuro directly

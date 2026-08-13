@@ -25,17 +25,17 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans
 docker-action:
-	docker-compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml up -d --build --remove-orphans
+	docker compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml up -d --build --remove-orphans
 docker-databases: stop local
 build-images:
 build-docker: stop no-test
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 docker-clean:
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=jofisaes_vma_" | xargs -I {}  docker rm {}
 docker-delete: stop
@@ -47,12 +47,12 @@ docker-delete-apps: stop
 docker-clean-build-start: docker-clean b docker
 docker-clean-start: docker-clean docker
 docker-psql-cluster:
-	docker-compose -p "${GITHUB_RUN_ID}" down --remove-orphans
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-haproxy-lb jofisaes-vma-etcd
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-postgres-1
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-postgres-2 jofisaes-vma-postgres-3
+	docker compose -p "${GITHUB_RUN_ID}" down --remove-orphans
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-haproxy-lb jofisaes-vma-etcd
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-postgres-1
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-vma-postgres-2 jofisaes-vma-postgres-3
 docker-no-app: docker-psql-cluster
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-schemaregistry jofisaes-vma-zookeeper jofisaes-vma-broker
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build jofisaes-schemaregistry jofisaes-vma-zookeeper jofisaes-vma-broker
 docker-stop-apps:
 	docker stop jofisaes-vma-nginx-lb
 	docker stop jofisaes-vma-backend-img-1
@@ -69,7 +69,7 @@ prune-all: docker-delete
 	docker builder prune
 	docker system prune --all --volumes
 stop:
-	docker-compose -p "${GITHUB_RUN_ID}" down --remove-orphans
+	docker compose -p "${GITHUB_RUN_ID}" down --remove-orphans
 install:
 	python3 -m venv venv; \
 	source venv/bin/activate; \
@@ -93,7 +93,7 @@ vma-wait:
 db-wait:
 	bash db_wait.sh
 dcup-light: stop
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-postgres-1 jofisaes-vma-postgres-2 jofisaes-vma-postgres-3 jofisaes-vma-haproxy-lb jofisaes-vma-etcd
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-postgres-1 jofisaes-vma-postgres-2 jofisaes-vma-postgres-3 jofisaes-vma-haproxy-lb jofisaes-vma-etcd
 	make db-wait
 dcup-medium: stop dcup-light kafka
 dcd: dc-migration stop
@@ -117,17 +117,17 @@ demo: dcup cypress-electron
 demo-full: dcup-full cypress-electron
 demo-full-manual: dcup-full cypress-open
 kafka:
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-zookeeper
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-broker
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-schemaregistry
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-zookeeper jofisaes-vma-broker jofisaes-schemaregistry
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-zookeeper
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-broker
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-schemaregistry
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-zookeeper jofisaes-vma-broker jofisaes-schemaregistry
 	bash kafka_wait.sh
 backend:
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-1
-	docker-compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-2
-	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-1
-	docker-compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-2
-	docker-compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-backend-img-1 jofisaes-vma-backend-img-2
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-1
+	docker compose -p "${GITHUB_RUN_ID}" rm -svf jofisaes-vma-backend-img-2
+	docker compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-1
+	docker compose -p "${GITHUB_RUN_ID}" build jofisaes-vma-backend-img-2
+	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-backend-img-1 jofisaes-vma-backend-img-2
 node-update-old:
 	sudo npm cache clean -f
 	sudo npm install -g n
