@@ -28,5 +28,5 @@ enum class VmaStatus{
 }
 
 data class VmaAwards(
-    var status: VmaStatus = VmaStatus.VOTING
+    val status: VmaStatus = VmaStatus.VOTING
 )
