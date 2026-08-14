@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {Category} from "../domain/category";
 import {VmaService} from "../service/vma.service";
 import {CookieService} from "ngx-cookie-service";
@@ -6,6 +6,7 @@ import * as SockJS from "sockjs-client";
 import {Stomp} from "@stomp/stompjs";
 import {MatCardModule} from '@angular/material/card';
 import {FlexModule} from '@angular/flex-layout';
+import {toSignal} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-vote-result',
@@ -16,50 +17,51 @@ import {FlexModule} from '@angular/flex-layout';
 })
 export class VoteResultComponent implements OnInit {
 
+  private vmaService = inject(VmaService);
+  private cookieService = inject(CookieService);
 
   private readonly stompClient;
-  private connected: boolean = false;
-  categories: Category[] = [];
-  votingId?: string
+  connected = signal(false);
+  categories = signal<Category[]>([]);
 
-  constructor(private vmaService: VmaService,
-              private cookieService: CookieService) {
+  votingIdResource = toSignal(this.vmaService.generateUserVotingId());
+
+  constructor() {
     const socket = new SockJS('/api/vma/broker');
     this.stompClient = Stomp.over(socket);
+
+    effect(() => {
+      const data = this.votingIdResource();
+      if (data) {
+        this.cookieService.set("votingId", data.id);
+        this.vmaService.getCurrent().subscribe(categories => this.processVma(categories));
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.vmaService.generateUserVotingId()
-      .subscribe(data => {
-        this.votingId = data.id
-        this.cookieService.set("votingId", this.votingId)
-        this.vmaService.getCurrent()
-          .subscribe(data => this.processVma(data))
-      })
-
     this.connect()
   }
 
 
   connect() {
-    const _this = this;
-    this.stompClient.connect({}, function (frame: any) {
-      _this.setConnected(true);
-      _this.stompClient.subscribe('/topic/vma', function (vmas) {
+    this.stompClient.connect({}, (frame: any) => {
+      this.connected.set(true);
+      this.stompClient.subscribe('/topic/vma', (vmas) => {
         console.log(vmas.body)
-        _this.processVma(JSON.parse(vmas.body) as Category[]);
+        this.processVma(JSON.parse(vmas.body) as Category[]);
       });
     });
   }
 
   setConnected(connected: boolean) {
-    this.connected = connected
+    this.connected.set(connected)
   }
 
   processVma(categories: Category[]) {
     if (categories) {
       categories.map(cat => {
-        let oldCat = this.categories.filter(catty => catty.id == cat.id).pop();
+        let oldCat = this.categories().filter(catty => catty.id == cat.id).pop();
         if (oldCat) {
           cat.selectedArtist = oldCat.selectedArtist;
           cat.selectedSong = oldCat.selectedSong;
@@ -77,7 +79,7 @@ export class VoteResultComponent implements OnInit {
         }
         return cat
       })
-      this.categories = categories;
+      this.categories.set(categories);
     }
   }
 }

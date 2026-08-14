@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {handleError} from './error.handler';
 import {catchError, Observable, retry} from "rxjs";
@@ -17,8 +17,7 @@ const localUrlSong = "/api/vma/voting/song"
 })
 export class VmaService {
 
-  constructor(private http: HttpClient) {
-  }
+  private http = inject(HttpClient);
 
   generateUserVotingId(): Observable<VotingId> {
     return this.http.get<VotingId>(localUrlVoting + "/open").pipe(
