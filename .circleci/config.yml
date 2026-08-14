@@ -7,6 +7,9 @@ jobs:
       MAVEN_OPTS: -Xmx3200m
     steps:
       - checkout
+      - setup_remote_docker:
+          version: default
+          docker_layer_caching: true
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
