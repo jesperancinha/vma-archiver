@@ -43,6 +43,10 @@ jobs:
         with:
           java-version: '25'
           distribution: 'adopt'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
       - name: Locust
         run: make install
 
@@ -72,6 +76,10 @@ jobs:
         with:
           java-version: '25'
           distribution: 'adopt'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
       - name: Locust
         run: make install
 
@@ -102,8 +110,13 @@ jobs:
         with:
           java-version: '25'
           distribution: 'adopt'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
       - name: Locust
         run: make install
+
       - name: Docker Startup Fail!
         if: failure()
         run: |
