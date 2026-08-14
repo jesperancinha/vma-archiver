@@ -5,42 +5,38 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
+import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.jesperancinha.vma.domain.Band
 import org.jesperancinha.vma.domain.BandRepository
 import org.jesperancinha.vma.vmaservice.services.BandService
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import java.util.UUID
+import java.util.*
 import java.util.concurrent.Executors.newFixedThreadPool
 import kotlin.system.measureTimeMillis
 import kotlin.time.Duration.Companion.milliseconds
 
 
 @ExtendWith(SpringExtension::class)
-@ContextConfiguration(classes = [BandService::class])
-internal class BandServiceTest(
-    @Autowired
-    private val bandService: BandService
-) {
+@ContextConfiguration(classes = [BandService::class, BandRepository::class])
+@Execution(value = SAME_THREAD)
+internal class BandServiceTest @Autowired constructor(
+    private val bandService: BandService,
     @MockkBean
-    lateinit var bandRepository: BandRepository
+    val bandRepository: BandRepository
+) {
 
     @Test
     fun `should get all bands when summoning findAll`(): Unit = runBlocking {
@@ -204,7 +200,7 @@ internal class BandServiceTest(
     }
 
     /**
-     * await for asynchronous coroutine
+     * await for asynchronous coroutineid
      */
     @Test
     fun `should await for the asynchronous coroutine to complete`(): Unit =
@@ -228,5 +224,10 @@ internal class BandServiceTest(
             val result = coroutineResult.await()
             result shouldBe testBand
         }
+
+    @AfterEach
+    fun tearDown() {
+        clearMocks(bandRepository)
+    }
 
 }
