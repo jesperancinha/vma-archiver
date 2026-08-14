@@ -1,7 +1,7 @@
 import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {VmaService} from "../service/vma.service";
 import {Stomp} from "@stomp/stompjs";
-import * as SockJS from "sockjs-client";
+import SockJS from "sockjs-client";
 import {Category} from "../domain/category";
 import {SongVote} from "../domain/song.vote";
 import {ArtistVote} from "../domain/artist.vote";
