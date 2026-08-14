@@ -1,8 +1,8 @@
 <mat-card-title>VMA - Cast your vote page!</mat-card-title>
 <mat-card>
-  <mat-card-title>{{votingId}}</mat-card-title>
+  <mat-card-title>{{votingIdResource()?.id}}</mat-card-title>
   <mat-card fxLayout="row wrap">
-    @for (category of categories; track category) {
+    @for (category of categories(); track category) {
       <mat-card>
         <mat-card-title>{{category.category}}</mat-card-title>
         @if (category.artists.length>0 && !category.voted) {
