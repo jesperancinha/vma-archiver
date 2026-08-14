@@ -7,10 +7,10 @@ jobs:
       - image: cimg/openjdk:25.0
     steps:
       - checkout
-      - maven/setup
       - maven/install:
           command: '-B -DskipTests clean package'
-      - maven/test
+      - maven/test:
+          command: 'test'
 workflows:
   maven_workflow:
     jobs:
