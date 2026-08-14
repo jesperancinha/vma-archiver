@@ -12,7 +12,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {FlexModule} from '@angular/flex-layout';
-import {provideAnimations} from '@angular/platform-browser/animations';
 import {CookieService} from 'ngx-cookie-service';
 import {routes} from "./app/app-routing.module";
 
@@ -24,7 +23,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(),
-    provideAnimations(),
     importProvidersFrom(
       MatCardModule,
       MatListModule,
