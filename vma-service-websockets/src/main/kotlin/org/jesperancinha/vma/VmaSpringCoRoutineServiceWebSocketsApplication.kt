@@ -50,5 +50,5 @@ class CategoryService(
     lateinit var vmaBackEndEndpoint: String
 
     fun findAll(): List<CategoryDto> = restTemplate.getForObject<Array<CategoryDto>>(
-        "${vmaBackEndEndpoint}/api/vma/registry").toList()
+        "${vmaBackEndEndpoint}/api/vma/registry")?.toList() ?: emptyList()
 }
