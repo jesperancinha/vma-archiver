@@ -2,7 +2,7 @@ import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {Category} from "../domain/category";
 import {VmaService} from "../service/vma.service";
 import {CookieService} from "ngx-cookie-service";
-import * as SockJS from "sockjs-client";
+import SockJS from "sockjs-client";
 import {Stomp} from "@stomp/stompjs";
 import {MatCardModule} from '@angular/material/card';
 import {FlexModule} from '@angular/flex-layout';
