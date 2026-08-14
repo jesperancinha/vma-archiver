@@ -3,6 +3,8 @@ name: E2E e2e-vma-archiver-app
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: [ master ]
 
 jobs:
   e2e-electron:
