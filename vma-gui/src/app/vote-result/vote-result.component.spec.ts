@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { CookieService } from 'ngx-cookie-service';
 
 import { VoteResultComponent } from './vote-result.component';
 
@@ -8,7 +11,12 @@ describe('VoteResultComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VoteResultComponent ]
+      imports: [ VoteResultComponent ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        CookieService
+      ]
     })
     .compileComponents();
   });
