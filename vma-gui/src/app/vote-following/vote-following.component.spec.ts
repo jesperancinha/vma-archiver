@@ -8,7 +8,7 @@ describe('VoteFollowingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VoteFollowingComponent ]
+      imports: [ VoteFollowingComponent ]
     })
     .compileComponents();
   });

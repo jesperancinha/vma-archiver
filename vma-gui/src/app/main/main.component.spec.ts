@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { CookieService } from 'ngx-cookie-service';
 
 import { MainComponent } from './main.component';
 
@@ -8,7 +11,12 @@ describe('MainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainComponent ]
+      imports: [ MainComponent ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        CookieService
+      ]
     })
     .compileComponents();
   });
