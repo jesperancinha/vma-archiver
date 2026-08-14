@@ -96,7 +96,7 @@ dcup-light: stop
 	docker compose -p "${GITHUB_RUN_ID}" up -d --build --remove-orphans jofisaes-vma-postgres-1 jofisaes-vma-postgres-2 jofisaes-vma-postgres-3 jofisaes-vma-haproxy-lb jofisaes-vma-etcd
 	make db-wait
 dcup-medium: stop dcup-light kafka
-dcd: dc-migration stop
+dcd: stop
 dcup: dcd docker-clean docker vma-wait
 dcup-full: dcd docker-clean-build-start vma-wait
 dcup-full-action: dcd docker-clean b docker-action vma-wait
@@ -183,5 +183,3 @@ update-repo-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/update-all-repo-prs.sh | bash
 set-typescript:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/setTypescriptVersion.sh | bash
-dc-migration:
-	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/setupDockerCompose.sh | bash
