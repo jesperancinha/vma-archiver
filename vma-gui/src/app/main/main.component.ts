@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {VmaService} from "../service/vma.service";
 import {Stomp} from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
@@ -11,6 +11,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {FlexModule} from '@angular/flex-layout';
 import {MatButton} from "@angular/material/button";
+import {toSignal} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-main',
@@ -21,50 +22,54 @@ import {MatButton} from "@angular/material/button";
 })
 export class MainComponent implements OnInit {
 
-  private readonly stompClient;
-  private connected: boolean = false;
-  categories: Category[] = [];
-  votingId?: string
+  private vmaService = inject(VmaService);
+  private cookieService = inject(CookieService);
 
-  constructor(private vmaService: VmaService,
-              private cookieService: CookieService) {
+  private readonly stompClient;
+  connected = signal(false);
+  categories = signal<Category[]>([]);
+
+  votingIdResource = toSignal(this.vmaService.generateUserVotingId());
+
+  votingId = signal<string | undefined>(undefined);
+
+  constructor() {
     const socket = new SockJS('/api/vma/broker');
     this.stompClient = Stomp.over(socket);
+
+    effect(() => {
+      const data = this.votingIdResource();
+      if (data) {
+        this.cookieService.set("votingId", data.id);
+        this.vmaService.getCurrent().subscribe(categories => this.processVma(categories));
+      }
+    });
   }
 
   ngOnInit(): void {
     this.connect()
-    this.vmaService.generateUserVotingId()
-      .subscribe(data => {
-        if(data) {
-          this.votingId = data.id
-          this.cookieService.set("votingId", this.votingId)
-          this.vmaService.getCurrent()
-            .subscribe(data => this.processVma(data))
-        }
-      })
-
+    // Using a simple subscription for initial load of categories once votingId is available
+    // Alternatively we could use another rxResource dependent on votingId.value()
   }
 
   connect() {
-    const _this = this;
-    this.stompClient.connect({}, function (frame: any) {
-      _this.setConnected(true);
-      _this.stompClient.subscribe('/topic/vma', function (vmas) {
+    this.stompClient.connect({}, (frame: any) => {
+      this.connected.set(true);
+      this.stompClient.subscribe('/topic/vma', (vmas) => {
         console.log(vmas.body)
-        _this.processVma(JSON.parse(vmas.body) as Category[]);
+        this.processVma(JSON.parse(vmas.body) as Category[]);
       });
     });
   }
 
   setConnected(connected: boolean) {
-    this.connected = connected
+    this.connected.set(connected)
   }
 
   processVma(categories: Category[]) {
     if (categories) {
       categories.map(cat => {
-        let oldCat = this.categories.filter(catty => catty.id == cat.id).pop();
+        let oldCat = this.categories().filter(catty => catty.id == cat.id).pop();
         if (oldCat) {
           cat.selectedArtist = oldCat.selectedArtist;
           cat.selectedSong = oldCat.selectedSong;
@@ -72,27 +77,27 @@ export class MainComponent implements OnInit {
         }
         return cat
       })
-      this.categories = categories;
+      this.categories.set(categories);
     }
   }
 
   castVotes() {
-    this.categories.filter(cat => cat.type === "INSTRUMENTAL" || cat.type === "SONG")
+    this.categories().filter(cat => cat.type === "INSTRUMENTAL" || cat.type === "SONG")
       .map(cat => {
         if (cat.selectedSong)
           this.vmaService.sendSongVote(
             {
-              userId: this.votingId,
+              userId: this.votingIdResource()?.id,
               idC: cat.id,
               idS: cat.selectedSong
             } as SongVote).subscribe(_ => cat.voted = true)
       })
-    this.categories.filter(cat => cat.type === "ARTIST")
+    this.categories().filter(cat => cat.type === "ARTIST")
       .map(cat => {
         if (cat.selectedArtist)
           this.vmaService.sendArtistVote(
             {
-              userId: this.votingId,
+              userId: this.votingIdResource()?.id,
               idC: cat.id,
               idA: cat.selectedArtist
             } as ArtistVote).subscribe(_ => cat.voted = true)
