@@ -145,7 +145,27 @@ with
 </dependency>
 ```
 
-## 10. Checklist
+## 10. Replace usages of deprected URL(url) contructor and use URI.toURL() instead
+
+The usage of the URL constructor is deprecated. When finding it please replace it with `URI.toURL()`
+
+### Example 1.
+
+Replace
+
+```kotlin
+URL("http://" + host + ":" + port)
+```
+
+with
+
+```kotlin
+URI.create("http://$host:$port").toURL()
+```
+
+The usage of create wil make a `URI` object, which then can be converted to a `URL` object via the `toURL()` method.
+
+## 11. Checklist
 
 [ ] The code does not use the `!!` operator.
 [ ] The code does not use the safe call operator (`?.`) when the value is guaranteed to be non-null.
