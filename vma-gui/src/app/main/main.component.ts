@@ -1,4 +1,5 @@
 import {Component, effect, inject, OnInit, signal} from '@angular/core';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {VmaService} from "../service/vma.service";
 import {Stomp} from "@stomp/stompjs";
 import SockJS from "sockjs-client";
@@ -6,19 +7,18 @@ import {Category} from "../domain/category";
 import {SongVote} from "../domain/song.vote";
 import {ArtistVote} from "../domain/artist.vote";
 import {CookieService} from "ngx-cookie-service";
-import {MatCardModule} from '@angular/material/card';
-import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import {FlexModule} from '@angular/flex-layout';
-import {MatButton} from "@angular/material/button";
-import {toSignal} from "@angular/core/rxjs-interop";
+import {MatCardModule} from "@angular/material/card";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.less'],
   standalone: true,
-  imports: [MatCardModule, MatRadioModule, FormsModule, FlexModule, MatButton]
+  imports: [MatCardModule, MatRadioModule, FormsModule, FlexModule, MatButtonModule],
 })
 export class MainComponent implements OnInit {
 
