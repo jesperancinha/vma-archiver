@@ -35,6 +35,10 @@ jobs:
         run: make locust
       - name: Run Cypress
         run: make cypress-electron
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
 
   e2e-chrome:
     runs-on: ubuntu-latest
@@ -68,6 +72,10 @@ jobs:
         run: make locust-short
       - name: Run Cypress
         run: make cypress-chrome
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
 
   e2e-firefox:
     runs-on: ubuntu-latest
@@ -101,7 +109,10 @@ jobs:
         run: make locust-short
       - name: Run Cypress
         run: make cypress-firefox
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
 
   e2e-edge:
     runs-on: ubuntu-latest
@@ -136,4 +147,7 @@ jobs:
         run: make locust-short
       - name: Run Cypress
         run: make cypress-edge
-
+      - name: Docker Startup Fail!
+        if: failure()
+        run: |
+          make docker-logs
